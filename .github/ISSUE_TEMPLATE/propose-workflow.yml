@@ -1,0 +1,58 @@
+name: Propose a workflow
+description: Describe an AI-agent workflow you run, and a maintainer will help add it.
+labels: [proposal]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe a workflow you or your team actually runs. Leave out secrets, personal data and client names.
+  - type: input
+    id: name
+    attributes:
+      label: What would you call it?
+      placeholder: e.g. Playbook contract review
+    validations:
+      required: true
+  - type: input
+    id: profession
+    attributes:
+      label: Profession and deliverable
+      description: Who does this work, and what does the workflow produce?
+      placeholder: e.g. In-house lawyers; a redlined contract
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: Number the steps. Mark every point where a person reviews or approves with 🛑 and say who checks what.
+      placeholder: |
+        1. Agent classifies the contract and loads our playbook
+        2. ...
+        3. 🛑 Lawyer reviews yellow and red clauses
+    validations:
+      required: true
+  - type: input
+    id: tools
+    attributes:
+      label: Tools and models
+      placeholder: e.g. Claude Code with a custom skill, Word
+  - type: dropdown
+    id: autonomy
+    attributes:
+      label: How independently does the agent run?
+      options:
+        - A person reviews each piece before the next step (assist)
+        - It runs on its own between fixed checkpoints (checkpointed)
+        - It runs end to end; people check samples and exceptions (sampled)
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to write-ups, or what you can share from your own runs (time saved, error rates, what went wrong).
+  - type: checkboxes
+    id: example
+    attributes:
+      label: Example run
+      options:
+        - label: I can share anonymized context files and a sample input and output

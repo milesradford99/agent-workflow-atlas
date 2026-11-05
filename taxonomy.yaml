@@ -1,0 +1,45 @@
+# Machine-readable classification. TAXONOMY.md explains the rules.
+# scripts/validate.py reads this file; changing a code here is a reclassification (see CONTRIBUTING.md).
+
+kingdoms:
+  PRO:
+    name: Professional services
+    phyla:
+      HLT: {name: Healthcare & life sciences, classes: [CLINDOC, RCM, CLINTRIAL, DRUGDISC]}
+      LEG: {name: Legal & compliance, classes: [CONTRACT, RESEARCH, LITIG, REG, DD]}
+      FIN: {name: Finance & accounting, classes: [AP, CLOSE, FPA, INVEST, AUDIT, TAX]}
+      EDU: {name: Education & training, classes: [COURSE, ASSESS, TUTOR, LND]}
+      RES: {name: Research & academia, classes: [LITREV, WRITE, ANALYSIS, GRANT, PEER]}
+  COM:
+    name: Commerce & customers
+    phyla:
+      CSX: {name: Customer support & success, classes: [RESOLVE, QA, KB, CS]}
+      SAL: {name: Sales & revenue, classes: [PROSPECT, DEAL, RFP, REVOPS]}
+      MKT: {name: Marketing & growth, classes: [CONTENT, ADS, SOCIAL, LIFECYCLE, MKTRES]}
+  TEC:
+    name: Technology & product
+    phyla:
+      ENG: {name: Physical engineering & AEC, classes: [CAD, SIM, CODECOMP, MFG]}
+      PRD: {name: Product & design, classes: [PM, UXR, UI, PROTO, DSYS]}
+      DAT: {name: Data & ML, classes: [ANALYTICS, DATAENG, DS, MLOPS]}
+      ITS: {name: IT, infrastructure & security, classes: [SRE, INFRA, SECOPS, APPSEC, HELPDESK]}
+      SWE: {name: Software engineering, classes: [FEAT, MAINT, TEST, REVIEW, DEBUG, ARCH]}
+  CRE:
+    name: Creative & media
+    phyla:
+      WRI: {name: Writing & publishing, classes: [FICTION, SERIAL, SCREEN, NONFIC, JOURN, TECHW, TRANS]}
+      MED: {name: Media production, classes: [SHORTDRAMA, AIGCVIDEO, POST, DUB, AUDIO, GAMEART]}
+  ORG:
+    name: Organization & public
+    phyla:
+      GOV: {name: Public sector, classes: [POLICY, CASEWORK, CIVIC]}
+      BIZ: {name: Business operations & people, classes: [HR, PROC, PMO, STRAT, ADMIN]}
+      XFN: {name: Personal knowledge work, classes: [INBOX, MEET, PKM]}
+
+traits:
+  autonomy: [assist, checkpointed, sampled]
+  checkpoints: [plan, action, review, sample, sign-off, handoff]
+  patterns: [chain, route, parallel, orch-workers, eval-opt, auto-loop, role-crew, computer-use]
+  evidence: [A, B, C]
+  status: [draft, accepted, merged, retired]
+  risk: [low, medium, high]

@@ -1,0 +1,22 @@
+name: Correction or outdated source
+description: A claim, number, tool or regulation in an entry is wrong or out of date.
+labels: [correction]
+body:
+  - type: input
+    id: workflow
+    attributes:
+      label: Workflow ID or file
+      placeholder: e.g. AWF-0021 or research/phase1-report.md
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: What's wrong
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source for the correction
+      placeholder: URL
