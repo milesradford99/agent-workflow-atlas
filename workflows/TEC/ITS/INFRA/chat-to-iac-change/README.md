@@ -1,0 +1,50 @@
+---
+id: AWF-0066
+name: Chat-to-IaC change
+kingdom: TEC
+phylum: ITS
+class: INFRA
+deliverable: applied-infra-change
+shape: "Slack request or monitoring alert → read IaC repo patterns (MCP) → generate Terragrunt/OpenTofu change → open PR → plan runs on PR, posted to PR + Slack → 🛑 review (CODEOWNERS approve plan) → apply on merge → daily drift check"
+autonomy: checkpointed
+checkpoints: [review]
+patterns: [chain, route]
+variants: [opentofu-terragrunt-mcp, terraform-atlantis, hcp-terraform]
+tags: {risk: medium}
+evidence: A
+status: draft
+reference_example: null
+inputs_from: []
+merged_into: null
+last_verified: 2026-11
+---
+
+# Chat-to-IaC change
+
+`TEC › ITS › INFRA` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+
+**Shape:** `Slack request or monitoring alert → read IaC repo patterns (MCP) → generate Terragrunt/OpenTofu change → open PR → plan runs on PR, posted to PR + Slack → 🛑 review (CODEOWNERS approve plan) → apply on merge → daily drift check`
+**How it differs:** AWF-0001 Plan-gated build and AWF-0003 Delegated PR produce application-code PRs gated on tests. Here the request comes from chat or an alert, the human checkpoint is the infrastructure plan (what will be created, changed or destroyed), and merging is itself the deploy.
+**Variants:** `opentofu-terragrunt-mcp` · `terraform-atlantis` · `hcp-terraform`
+
+## Steps
+1. Entry point is either a person typing a plain-language request in Slack (e.g. 'add two instances for service A') or a monitoring alert sent straight to the agent [[1]](#sources).
+2. The agent reaches the OpenTofu repository through MCP, finds the existing code pattern for that kind of resource, and writes the Terragrunt change in the same style [[1]](#sources).
+3. The agent opens a PR. On an alert, the PR records the reason, the alert and the plan output, so 'who added servers and why' has an answer [[1]](#sources).
+4. CI runs `plan` automatically when the PR opens and comments the result on the PR. The result is also posted to Slack [[1]](#sources).
+5. 🛑 **Review**: the required reviewers set in CODEOWNERS read the plan and the diff. Merging without review is technically blocked. The rule is the same whether a human or the agent wrote the change [[1]](#sources).
+6. Apply runs automatically on merge, so only approved changes reach infrastructure [[1]](#sources).
+7. A daily drift check compares code with live infrastructure and alerts in Slack on console edits. Intentional exceptions go in `.driftignore` [[1]](#sources).
+
+**Output:** A merged IaC PR with its plan output, applied to the cloud, with the request or alert attached as the change record.
+**Failure modes → guards:** Reviewers approve a small-looking HCL diff that actually replaces or destroys resources → make the plan output the review artifact, posted on the PR. Console hotfixes drift from code → daily drift scan plus a rule that emergency edits are written back to code. Locked state → a force-unlock workflow in every project instead of SSH [[1]](#sources).
+
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+
+- [LY Corporation, From IaC to AI: Adopting OpenTofu and ChatOps](https://techblog.lycorp.co.jp/en/techverse2026-86) (2026-06-22). Slack bot opens Terragrunt PRs, plan goes to Slack, human approves, apply runs on merge, across seven services. "about 1,500 resources" declared as code (no metric for the agent part itself). *First-hand: yes; confidence: med.*
+
+## Sources
+
+1. Chaeseung Lee, Eunhak Cho (LINE Plus SRE, LY Corporation), From infrastructure as code (IAC) to AI: Adopting OpenTofu and ChatOps, Tech-Verse 2026 (page lists 2026-06-22). https://techblog.lycorp.co.jp/en/techverse2026-86
