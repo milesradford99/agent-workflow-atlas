@@ -9,11 +9,11 @@ shape: "key question → MECE issue tree → 🛑 plan → each branch: deep res
 autonomy: checkpointed
 checkpoints: [plan, review]
 patterns: [orch-workers, parallel]
-variants: []
+variants: [claude-code]
 tags: {risk: low}
 evidence: A
-status: draft
-reference_example: null
+status: accepted
+reference_example: examples/2026-11-where-are-the-real-runs/
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
@@ -21,6 +21,6 @@ last_verified: 2026-11
 
 # Issue-tree research
 
-`ORG › BIZ › STRAT` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+`ORG › BIZ › STRAT` · checkpointed · evidence A · accepted · [reference example](examples/2026-11-where-are-the-real-runs/)
 
 **Shape:** `key question → MECE issue tree → 🛑 plan → each branch: deep research → claims table (claim, number, source, date, confidence) → each number: re-fetch source → so-what pages → 🛑 review → deck from firm template`

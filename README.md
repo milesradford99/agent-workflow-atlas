@@ -4,7 +4,7 @@
 
 It covers software engineering, product design, research, law, finance, healthcare, education, marketing, sales, support, fiction and screenwriting, and industrialized short-drama production (短剧). Each workflow lists its sources and how strong its evidence is.
 
-**Status:** early. 31 workflows are seeded from [the research report](research/phase1-report.md); all are `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)).
+**Status:** early. 31 workflows are seeded from [the research report](research/phase1-report.md). One is `accepted` ([Issue-tree research](workflows/ORG/BIZ/STRAT/issue-tree-research/)); the rest stay `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)). [Where are the real runs?](research/2026-11-real-runs.md) lists public runs that could become examples.
 
 ## Browse
 
