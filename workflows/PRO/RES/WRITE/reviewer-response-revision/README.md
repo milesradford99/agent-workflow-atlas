@@ -33,3 +33,10 @@ last_verified: 2026-11
 5. Verify that every number matches the regenerated outputs and every citation key resolves.
 6. Draft the response letter.
 7. 🛑 **Review + sign-off**: the authors edit rebuttals for tone and substance.
+
+## Public runs
+
+Coverage as of 2026-11-06: **None found**: no public first-hand run yet. A real example run would be the first. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Pedro Sant'Anna, claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow). Has a `/respond-to-referees` skill, but no real revision run is shown. "18 agents, 61 skills". *First-hand: no (template); confidence: low.*
+

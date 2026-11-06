@@ -31,6 +31,13 @@ last_verified: 2026-11
 
 Log AI-assisted portions in each example.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Russell S.A. Palmer, *We Wrote a 100-Page Movie Script in 10 Days*](https://russellsapalmer.medium.com/we-wrote-a-100-page-feature-film-in-10-days-using-saga-and-chatgpt-316f45e0f4ad) (2025-10-28). Logline → 40-beat outline → scenes drafted with a tool, then edited by people. "a 100-page first draft, written part-time over 10 days". *First-hand: yes (reads like tool promotion); confidence: med.*
+- [Peter & David Luisi, *The Last Screenwriter*](https://lastscreenwriter.com/the-screenplay/) (2024). The AI wrote the screenplay; people only selected and shortened scenes. (none). *First-hand: yes; confidence: low.*
+
 ## Sources
 
 13. WGA, *Know Your Rights: Artificial Intelligence*. https://www.wga.org/contracts/know-your-rights/artificial-intelligence

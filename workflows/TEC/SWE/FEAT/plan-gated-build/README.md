@@ -44,6 +44,13 @@ last_verified: 2026-11
 **Failure modes → guards:** the agent edits tests to make them pass → forbid test edits after the tests are written. Scope creep → flag any file changed outside the plan's list. Context saturation → clear context between tasks and persist the plan to a file [[2]](#sources).
 **Close relative:** a version that asks approval for every edit (`assist`) is a separate species by the swap test.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [HumanLayer, *Advanced Context Engineering for Coding Agents*](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md) (no byline or date; images Aug 2025). Research → plan → implement on a 300k-LOC Rust codebase; a human reviews the research and the plan. "shipping 35k LOC to BAML"; "spent 7 hours". *First-hand: yes; confidence: high.*
+- [Harper Reed, *My LLM codegen workflow atm*](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/) (2025-02-16). Spec → prompt plan (TDD variant) → step by step, testing after each. "This entire process will take maybe 15 minutes." (planning). *First-hand: yes; confidence: med.*
+
 ## Sources
 
 2. Claude Code docs, *Best practices*. https://code.claude.com/docs/en/best-practices

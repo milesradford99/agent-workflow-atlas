@@ -34,3 +34,10 @@ last_verified: 2026-11
 5. Check internal consistency: defined terms, cross-references, liability caps vs. indemnities.
 6. 🛑 **Review**: an attorney reviews yellow and red items.
 7. 🛑 **Sign-off**: the attorney sends.
+
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Ashurst, *Vox PopulAI*](https://www.ashurstperkinscoie.com/en/insights/vox-populai-lessons-from-a-global-law-firms-exploration-of-generative-ai) (2024-06-10). Firm-wide trials; four expert lawyers blind-score AI against human work. "45% on creating first draft legal briefings"; "3 out of 5" vs "3.5 out of 5". *First-hand: yes; confidence: med.*
+

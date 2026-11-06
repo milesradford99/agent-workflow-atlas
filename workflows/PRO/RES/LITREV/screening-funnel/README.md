@@ -44,6 +44,13 @@ last_verified: 2026-11
 
 **Output:** a PRISMA diagram, extraction dataset, draft manuscript, and an audit log of AI decisions.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Fagerberg et al., Socialstyrelsen, medRxiv](https://www.medrxiv.org/content/10.64898/2026.06.02.26354724v1.full) (2026-06). A locked LLM ensemble screens for 24 guideline reviews; two blinded methodologists audit a prespecified sample. "screened 74,679 records"; "415 to 34 person-days"; of 600 audited exclusions "none was confirmed as a final false negative". *First-hand: yes; confidence: high.*
+- [Gartlehner et al., RTI and partners, medRxiv](https://www.medrxiv.org/node/963738) (2025-03-21). LLM first-pass extraction in six live reviews, verified by people, against human-only extraction. "9,341 data elements, extracted from 63 studies"; "precision of 98.9%"; "41 minutes per study". *First-hand: yes; confidence: high.*
+
 ## Sources
 
 8. ICMJE AI guidance (summary). https://utsouthwestern.libguides.com/artificial-intelligence/ai-publishing-icmje

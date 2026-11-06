@@ -36,6 +36,12 @@ last_verified: 2026-11
 **Variants:** `abridge-epic` [[26]](#sources) · `dragon-copilot` (launched March 2025; combines Dragon Medical One dictation with DAX ambient [[25]](#sources)) · `nabla` · `ambience`
 **Tags:** risk `high`, HIPAA, BAA required.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Taylor … Adams, UC Davis Health, JMIR Med Inform 2026;14:e86474](https://escholarship.org/content/qt9r89g3sp/qt9r89g3sp.pdf) (pilot Jul–Aug 2024). 31 physicians, 7,545 notes; 356 rated for omissions and hallucinations; physicians approve each note. "94.7% (337/356) free from significant errors"; "hallucinations (n=41, 11.5%)". *First-hand: yes; confidence: high.*
+
 ## Sources
 
 25. Fierce Healthcare / Maginative on Dragon Copilot. https://www.maginative.com/article/microsoft-unveils-dragon-copilot-an-ai-assistant-for-clinicians/ · https://www.fiercehealthcare.com/ai-and-machine-learning/microsoft-debuts-dragon-copilot-ai-clinical-assistant-nurses-expands-access

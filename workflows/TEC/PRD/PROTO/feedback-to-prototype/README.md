@@ -35,3 +35,10 @@ last_verified: 2026-11
 7. Run 5 user tests and feed the transcripts back to step 1.
 
 **Output:** the PRD and prototype become the input to AWF-0001 or AWF-0008.
+
+## Public runs
+
+Coverage as of 2026-11-06: **None found**: no public first-hand run yet. A real example run would be the first. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Teresa Torres, Product Talk](https://www.producttalk.org/ai-prototyping-lovable/) (2025-08-13). Interviews → scope → Lovable variants → internal user tests. "From idea to user validation, it just took us 11 days". *First-hand: no (second-hand); confidence: low.*
+

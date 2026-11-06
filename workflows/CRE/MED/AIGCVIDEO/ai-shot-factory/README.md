@@ -47,6 +47,15 @@ last_verified: 2026-11
 **Reported economics (B):** a brokerage report citing Ocean Engine data puts traditional 漫剧 at ¥2–5k per minute and AI-assisted production at ¥1–2.5k. It also reports one company cutting 11 production stages to 5 [[16]](#sources).
 **Metrics to record in examples:** usable-shot rate per generation, cost per finished minute, hours per episode.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [新民周刊 p.41](https://img1.xinmin.cn/xmzk/2026-07-13/410713.pdf) (Xinmin Weekly, 2026-07-13). AI review before human review; scripts expanded for AI production. "近七成都无法过审"; "5万字…可能要补充到8万字". *First-hand: interview; confidence: med.*
+- [毒眸 on 钛媒体](https://www.tmtpost.com/7712427.html) (How a 10-person team made an AI manhua drama in 45 days, 2025-10-02). 珀乐互动: artist-drawn originals → AI video → edit; weekly director review. "一个仅10人的团队，用45天时间，完成了50集《明日周一》". *First-hand: interview; confidence: high.*
+- [PJ Ace, *I can't believe Disney allowed us to run this AI ad*](https://pjace.beehiiv.com/p/i-can-t-believe-disney-allowed-us-to-run-this-ai-ad-during-the-nba-finals-f77e73388ab4ca62) (2025-06-11). Rough script → AI shot list and prompts → generate and re-prompt → edit. "300–400 generations to get 15 usable clips"; "One person, two days.". *First-hand: yes; confidence: high.*
+- [金姬, 新民周刊](https://www.xinminweekly.com.cn/bianjituijian/2026/04/08/41135.html) (A one-person animation factory?, 2026-04-08). Storyboard frames picked from many generations → image-to-video. "110多张分镜与定稿图的1700多次AI'抽卡'"; "近20人的团队". *First-hand: interview; confidence: med.*
+
 ## Sources
 
 14. 新华网, 微短剧分类分层审核 (February 2025). https://www.news.cn/politics/20250205/3fbf8abbfa344641b01f799ae42a6318/c.html · 新华网, 《微短剧发展管理办法(征求意见稿)》 (June 2026). https://www.news.cn/politics/20260624/5794e5cd877e440cb678a7f27112ffc7/c.html · IT之家. https://www.ithome.com/0/984/306.htm

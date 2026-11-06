@@ -8,63 +8,72 @@
 
 ### PRO · Professional services
 
-| ID | Workflow | Phylum | Class | Autonomy | Evidence | Status |
-|---|---|---|---|---|---|---|
-| AWF-0026 | [Ambient scribe](workflows/PRO/HLT/CLINDOC/ambient-scribe/) | HLT · Healthcare & life sciences | CLINDOC | checkpointed | A | draft |
-| AWF-0024 | [Playbook contract review](workflows/PRO/LEG/CONTRACT/playbook-contract-review/) | LEG · Legal & compliance | CONTRACT | checkpointed | A | draft |
-| AWF-0025 | [Grounded legal memo](workflows/PRO/LEG/RESEARCH/grounded-legal-memo/) | LEG · Legal & compliance | RESEARCH | assist | A | draft |
-| AWF-0022 | [Invoice extract-match-route](workflows/PRO/FIN/AP/invoice-extract-match-route/) | FIN · Finance & accounting | AP | sampled | B | draft |
-| AWF-0023 | [Event-driven model update](workflows/PRO/FIN/INVEST/event-driven-model-update/) | FIN · Finance & accounting | INVEST | checkpointed | A | draft |
-| AWF-0027 | [Backward-design course](workflows/PRO/EDU/COURSE/backward-design-course/) | EDU · Education & training | COURSE | assist | A | draft |
-| AWF-0028 | [Anchor-calibrated grader](workflows/PRO/EDU/ASSESS/anchor-calibrated-grader/) | EDU · Education & training | ASSESS | checkpointed | A | draft |
-| AWF-0009 | [Screening funnel](workflows/PRO/RES/LITREV/screening-funnel/) | RES · Research & academia | LITREV | checkpointed | A | draft |
-| AWF-0010 | [Reviewer-response revision](workflows/PRO/RES/WRITE/reviewer-response-revision/) | RES · Research & academia | WRITE | assist | A | draft |
+| ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |
+|---|---|---|---|---|---|---|---|
+| AWF-0026 | [Ambient scribe](workflows/PRO/HLT/CLINDOC/ambient-scribe/) | HLT · Healthcare & life sciences | CLINDOC | checkpointed | A | strong · 1 | draft |
+| AWF-0024 | [Playbook contract review](workflows/PRO/LEG/CONTRACT/playbook-contract-review/) | LEG · Legal & compliance | CONTRACT | checkpointed | A | partial · 1 | draft |
+| AWF-0025 | [Grounded legal memo](workflows/PRO/LEG/RESEARCH/grounded-legal-memo/) | LEG · Legal & compliance | RESEARCH | assist | A | none found | draft |
+| AWF-0022 | [Invoice extract-match-route](workflows/PRO/FIN/AP/invoice-extract-match-route/) | FIN · Finance & accounting | AP | sampled | B | partial · 1 | draft |
+| AWF-0023 | [Event-driven model update](workflows/PRO/FIN/INVEST/event-driven-model-update/) | FIN · Finance & accounting | INVEST | checkpointed | A | none found | draft |
+| AWF-0027 | [Backward-design course](workflows/PRO/EDU/COURSE/backward-design-course/) | EDU · Education & training | COURSE | assist | A | none found | draft |
+| AWF-0028 | [Anchor-calibrated grader](workflows/PRO/EDU/ASSESS/anchor-calibrated-grader/) | EDU · Education & training | ASSESS | checkpointed | A | partial · 2 | draft |
+| AWF-0009 | [Screening funnel](workflows/PRO/RES/LITREV/screening-funnel/) | RES · Research & academia | LITREV | checkpointed | A | strong · 2 | draft |
+| AWF-0010 | [Reviewer-response revision](workflows/PRO/RES/WRITE/reviewer-response-revision/) | RES · Research & academia | WRITE | assist | A | none found | draft |
 
 ### COM · Commerce & customers
 
-| ID | Workflow | Phylum | Class | Autonomy | Evidence | Status |
-|---|---|---|---|---|---|---|
-| AWF-0021 | [Procedure agent](workflows/COM/CSX/RESOLVE/procedure-agent/) | CSX · Customer support & success | RESOLVE | sampled | A | draft |
-| AWF-0020 | [Research-then-personalize outbound](workflows/COM/SAL/PROSPECT/research-then-personalize-outbound/) | SAL · Sales & revenue | PROSPECT | checkpointed | B | draft |
-| AWF-0018 | [Cluster-brief-draft content](workflows/COM/MKT/CONTENT/cluster-brief-draft-content/) | MKT · Marketing & growth | CONTENT | checkpointed | A | draft |
-| AWF-0019 | [Ad variant matrix](workflows/COM/MKT/ADS/ad-variant-matrix/) | MKT · Marketing & growth | ADS | checkpointed | B | draft |
+| ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |
+|---|---|---|---|---|---|---|---|
+| AWF-0021 | [Procedure agent](workflows/COM/CSX/RESOLVE/procedure-agent/) | CSX · Customer support & success | RESOLVE | sampled | A | strong · 4 | draft |
+| AWF-0020 | [Research-then-personalize outbound](workflows/COM/SAL/PROSPECT/research-then-personalize-outbound/) | SAL · Sales & revenue | PROSPECT | checkpointed | B | partial · 3 | draft |
+| AWF-0018 | [Cluster-brief-draft content](workflows/COM/MKT/CONTENT/cluster-brief-draft-content/) | MKT · Marketing & growth | CONTENT | checkpointed | A | partial · 3 | draft |
+| AWF-0019 | [Ad variant matrix](workflows/COM/MKT/ADS/ad-variant-matrix/) | MKT · Marketing & growth | ADS | checkpointed | B | none found | draft |
 
 ### TEC · Technology & product
 
-| ID | Workflow | Phylum | Class | Autonomy | Evidence | Status |
-|---|---|---|---|---|---|---|
-| AWF-0007 | [Feedback to prototype](workflows/TEC/PRD/PROTO/feedback-to-prototype/) | PRD · Product & design | PROTO | checkpointed | A | draft |
-| AWF-0008 | [Design to code](workflows/TEC/PRD/DSYS/design-to-code/) | PRD · Product & design | DSYS | checkpointed | B | draft |
-| AWF-0006 | [Governed query](workflows/TEC/DAT/ANALYTICS/governed-query/) | DAT · Data & ML | ANALYTICS | checkpointed | B | draft |
-| AWF-0004 | [Triage then remediate](workflows/TEC/ITS/SRE/triage-then-remediate/) | ITS · IT | SRE | checkpointed | B | draft |
-| AWF-0005 | [Alert enrich and adjudicate](workflows/TEC/ITS/SECOPS/alert-enrich-and-adjudicate/) | ITS · IT | SECOPS | sampled | B | draft |
-| AWF-0001 | [Plan-gated build](workflows/TEC/SWE/FEAT/plan-gated-build/) | SWE · Software engineering | FEAT | checkpointed | A | draft |
-| AWF-0002 | [Fan-out codemod](workflows/TEC/SWE/MAINT/fan-out-codemod/) | SWE · Software engineering | MAINT | sampled | A | draft |
-| AWF-0003 | [Delegated PR](workflows/TEC/SWE/FEAT/delegated-pr/) | SWE · Software engineering | FEAT | sampled | B | draft |
+| ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |
+|---|---|---|---|---|---|---|---|
+| AWF-0007 | [Feedback to prototype](workflows/TEC/PRD/PROTO/feedback-to-prototype/) | PRD · Product & design | PROTO | checkpointed | A | none found | draft |
+| AWF-0008 | [Design to code](workflows/TEC/PRD/DSYS/design-to-code/) | PRD · Product & design | DSYS | checkpointed | B | partial · 1 | draft |
+| AWF-0006 | [Governed query](workflows/TEC/DAT/ANALYTICS/governed-query/) | DAT · Data & ML | ANALYTICS | checkpointed | B | partial · 2 | draft |
+| AWF-0004 | [Triage then remediate](workflows/TEC/ITS/SRE/triage-then-remediate/) | ITS · IT | SRE | checkpointed | B | partial · 3 | draft |
+| AWF-0005 | [Alert enrich and adjudicate](workflows/TEC/ITS/SECOPS/alert-enrich-and-adjudicate/) | ITS · IT | SECOPS | sampled | B | strong · 3 | draft |
+| AWF-0001 | [Plan-gated build](workflows/TEC/SWE/FEAT/plan-gated-build/) | SWE · Software engineering | FEAT | checkpointed | A | strong · 2 | draft |
+| AWF-0002 | [Fan-out codemod](workflows/TEC/SWE/MAINT/fan-out-codemod/) | SWE · Software engineering | MAINT | sampled | A | strong · 4 | draft |
+| AWF-0003 | [Delegated PR](workflows/TEC/SWE/FEAT/delegated-pr/) | SWE · Software engineering | FEAT | sampled | B | strong · 2 | draft |
 
 No workflows yet in `ENG`.
 
 ### CRE · Creative & media
 
-| ID | Workflow | Phylum | Class | Autonomy | Evidence | Status |
-|---|---|---|---|---|---|---|
-| AWF-0011 | [Bible-driven novel draft](workflows/CRE/WRI/FICTION/bible-driven-novel-draft/) | WRI · Writing & publishing | FICTION | assist | A | draft |
-| AWF-0012 | [Daily web serial](workflows/CRE/WRI/SERIAL/daily-web-serial/) | WRI · Writing & publishing | SERIAL | checkpointed | C | draft |
-| AWF-0013 | [Beat-to-scene screenplay](workflows/CRE/WRI/SCREEN/beat-to-scene-screenplay/) | WRI · Writing & publishing | SCREEN | assist | A | draft |
-| AWF-0014 | [Hook-cadence drama script](workflows/CRE/WRI/SCREEN/hook-cadence-drama-script/) | WRI · Writing & publishing | SCREEN | checkpointed | A | draft |
-| AWF-0015 | [AI shot factory](workflows/CRE/MED/AIGCVIDEO/ai-shot-factory/) | MED · Media production | AIGCVIDEO | checkpointed | A | draft |
-| AWF-0016 | [Live-action assist](workflows/CRE/MED/SHORTDRAMA/live-action-assist/) | MED · Media production | SHORTDRAMA | assist | A | draft |
-| AWF-0017 | [Dubbing pipeline](workflows/CRE/MED/DUB/dubbing-pipeline/) | MED · Media production | DUB | sampled | A | draft |
+| ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |
+|---|---|---|---|---|---|---|---|
+| AWF-0011 | [Bible-driven novel draft](workflows/CRE/WRI/FICTION/bible-driven-novel-draft/) | WRI · Writing & publishing | FICTION | assist | A | strong · 3 | draft |
+| AWF-0012 | [Daily web serial](workflows/CRE/WRI/SERIAL/daily-web-serial/) | WRI · Writing & publishing | SERIAL | checkpointed | C | weak · 2 | draft |
+| AWF-0013 | [Beat-to-scene screenplay](workflows/CRE/WRI/SCREEN/beat-to-scene-screenplay/) | WRI · Writing & publishing | SCREEN | assist | A | partial · 2 | draft |
+| AWF-0014 | [Hook-cadence drama script](workflows/CRE/WRI/SCREEN/hook-cadence-drama-script/) | WRI · Writing & publishing | SCREEN | checkpointed | A | weak · 3 | draft |
+| AWF-0015 | [AI shot factory](workflows/CRE/MED/AIGCVIDEO/ai-shot-factory/) | MED · Media production | AIGCVIDEO | checkpointed | A | partial · 4 | draft |
+| AWF-0016 | [Live-action assist](workflows/CRE/MED/SHORTDRAMA/live-action-assist/) | MED · Media production | SHORTDRAMA | assist | A | partial · 3 | draft |
+| AWF-0017 | [Dubbing pipeline](workflows/CRE/MED/DUB/dubbing-pipeline/) | MED · Media production | DUB | sampled | A | strong · 3 | draft |
 
 ### ORG · Organization & public
 
-| ID | Workflow | Phylum | Class | Autonomy | Evidence | Status |
-|---|---|---|---|---|---|---|
-| AWF-0029 | [Source-screen-schedule hiring](workflows/ORG/BIZ/HR/source-screen-schedule-hiring/) | BIZ · Business operations & people | HR | checkpointed | B | draft |
-| AWF-0030 | [Issue-tree research](workflows/ORG/BIZ/STRAT/issue-tree-research/) | BIZ · Business operations & people | STRAT | checkpointed | A | accepted |
-| AWF-0031 | [Daily inbox triage](workflows/ORG/XFN/INBOX/daily-inbox-triage/) | XFN · Personal knowledge work | INBOX | assist | A | draft |
+| ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |
+|---|---|---|---|---|---|---|---|
+| AWF-0029 | [Source-screen-schedule hiring](workflows/ORG/BIZ/HR/source-screen-schedule-hiring/) | BIZ · Business operations & people | HR | checkpointed | B | partial · 2 | draft |
+| AWF-0030 | [Issue-tree research](workflows/ORG/BIZ/STRAT/issue-tree-research/) | BIZ · Business operations & people | STRAT | checkpointed | A | partial · 3 | accepted |
+| AWF-0031 | [Daily inbox triage](workflows/ORG/XFN/INBOX/daily-inbox-triage/) | XFN · Personal knowledge work | INBOX | assist | A | strong · 3 | draft |
 
 No workflows yet in `GOV`.
+
+## By public evidence
+
+From each workflow's Public runs section: how well public, first-hand runs cover it. The number after the grade in the tables above is how many runs are linked.
+
+- **Strong** (10): [0001](workflows/TEC/SWE/FEAT/plan-gated-build/), [0002](workflows/TEC/SWE/MAINT/fan-out-codemod/), [0003](workflows/TEC/SWE/FEAT/delegated-pr/), [0005](workflows/TEC/ITS/SECOPS/alert-enrich-and-adjudicate/), [0009](workflows/PRO/RES/LITREV/screening-funnel/), [0011](workflows/CRE/WRI/FICTION/bible-driven-novel-draft/), [0017](workflows/CRE/MED/DUB/dubbing-pipeline/), [0021](workflows/COM/CSX/RESOLVE/procedure-agent/), [0026](workflows/PRO/HLT/CLINDOC/ambient-scribe/), [0031](workflows/ORG/XFN/INBOX/daily-inbox-triage/)
+- **Partial** (13): [0004](workflows/TEC/ITS/SRE/triage-then-remediate/), [0006](workflows/TEC/DAT/ANALYTICS/governed-query/), [0008](workflows/TEC/PRD/DSYS/design-to-code/), [0013](workflows/CRE/WRI/SCREEN/beat-to-scene-screenplay/), [0015](workflows/CRE/MED/AIGCVIDEO/ai-shot-factory/), [0016](workflows/CRE/MED/SHORTDRAMA/live-action-assist/), [0018](workflows/COM/MKT/CONTENT/cluster-brief-draft-content/), [0020](workflows/COM/SAL/PROSPECT/research-then-personalize-outbound/), [0022](workflows/PRO/FIN/AP/invoice-extract-match-route/), [0024](workflows/PRO/LEG/CONTRACT/playbook-contract-review/), [0028](workflows/PRO/EDU/ASSESS/anchor-calibrated-grader/), [0029](workflows/ORG/BIZ/HR/source-screen-schedule-hiring/), [0030](workflows/ORG/BIZ/STRAT/issue-tree-research/)
+- **Weak** (2): [0012](workflows/CRE/WRI/SERIAL/daily-web-serial/), [0014](workflows/CRE/WRI/SCREEN/hook-cadence-drama-script/)
+- **None found** (6): [0007](workflows/TEC/PRD/PROTO/feedback-to-prototype/), [0010](workflows/PRO/RES/WRITE/reviewer-response-revision/), [0019](workflows/COM/MKT/ADS/ad-variant-matrix/), [0023](workflows/PRO/FIN/INVEST/event-driven-model-update/), [0025](workflows/PRO/LEG/RESEARCH/grounded-legal-memo/), [0027](workflows/PRO/EDU/COURSE/backward-design-course/)
 
 ## By trait
 
