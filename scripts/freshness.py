@@ -6,10 +6,13 @@ Usage:
   python scripts/freshness.py --as-of 2027-06  age entries against another month
 
 Prints a Markdown report. The monthly freshness workflow posts it as an issue.
+Links are split into dead (404, 410, unknown domain), couldn't reach (timeouts and
+other errors, often bot blocking) and refused (403, 429).
 An entry is due when its `last_verified` month is STALE_AFTER months old or more.
 """
 import argparse
 import re
+import socket
 import sys
 import urllib.error
 import urllib.request
@@ -20,8 +23,12 @@ from catalog import ROOT, read_front_matter, species_files
 
 STALE_AFTER = 6
 URL_RE = re.compile(r"https?://[^\s)\]>\"'`]+")
+# Only these mean the page is gone: the server says so, or the domain no longer exists.
+DEAD = {404, 410, "DNS"}
 # Many sites refuse scripted requests; these codes mean "couldn't check", not "gone".
 BLOCKED = {401, 403, 405, 406, 429, 451, 999}
+# Anything else that fails (timeouts, dropped connections, TLS errors, 5xx) is "couldn't reach":
+# often a site that is slow or rejects data-centre traffic, so it is listed apart and not called broken.
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; agent-workflow-atlas-freshness/1.0)"}
 
 
@@ -49,10 +56,13 @@ def fetch(url):
             if method == "HEAD" and e.code in (403, 404, 405, 501):
                 continue
             return url, e.code
-        except Exception as e:  # DNS, TLS, timeout
+        except Exception as e:  # DNS, TLS, timeout, dropped connection
             if method == "HEAD":
                 continue
-            return url, type(e).__name__
+            reason = getattr(e, "reason", None)
+            if isinstance(reason, socket.gaierror):
+                return url, "DNS"
+            return url, type(reason).__name__ if isinstance(reason, BaseException) else type(e).__name__
     return url, "unknown"
 
 
@@ -92,15 +102,21 @@ def main():
     if args.links:
         with ThreadPoolExecutor(max_workers=16) as pool:
             results = list(pool.map(check, sorted(urls)))
-        broken = [(u, s) for u, s in results if not (isinstance(s, int) and (s < 400 or s in BLOCKED))]
-        blocked = [(u, s) for u, s in results if isinstance(s, int) and s in BLOCKED]
-        out += [f"## Broken links ({len(broken)} of {len(results)})", ""]
-        if broken:
-            out += ["| Link | Result | Used by |", "|---|---|---|"]
-            out += [f"| {u} | {s} | {', '.join(sorted(urls[u]))} |" for u, s in broken]
+        ok = lambda s: isinstance(s, int) and s < 400
+        dead = [(u, s) for u, s in results if s in DEAD]
+        blocked = [(u, s) for u, s in results if s in BLOCKED]
+        unreachable = [(u, s) for u, s in results if not ok(s) and s not in DEAD and s not in BLOCKED]
+        table = lambda rows: ["| Link | Result | Used by |", "|---|---|---|"] + [f"| {u} | {s} | {', '.join(sorted(urls[u]))} |" for u, s in rows]
+        out += [f"## Dead links ({len(dead)} of {len(results)})", "",
+                "Pages that return 404 or 410, or whose domain no longer resolves. Replace each with an archived copy or a newer source.", ""]
+        out += table(dead) if dead else ["None."]
+        out += ["", f"## Couldn't reach ({len(unreachable)})", "",
+                "Timeouts, dropped connections and server errors from the checker. These are usually slow sites or sites that block automated traffic; check one by hand only if it shows up here several months in a row.", ""]
+        if unreachable:
+            out += ["<details><summary>Show links</summary>", ""] + table(unreachable) + ["", "</details>"]
         else:
             out.append("None.")
-        out += ["", f"{len(blocked)} links refused the automated check (403, 429 and similar) and need a look by hand only if a reader reports them.", ""]
+        out += ["", f"{len(blocked)} more links refused the automated check (403, 429 and similar) and need a look by hand only if a reader reports them.", ""]
 
     print("\n".join(out))
 
