@@ -1,6 +1,7 @@
 ---
 id: AWF-0144
 name: Manager-approved pipeline actions
+summary: "Tiers job applicants and recommends actions; the manager approves the batch, then messages are sent and candidates archived."
 kingdom: ORG
 phylum: BIZ
 class: HR

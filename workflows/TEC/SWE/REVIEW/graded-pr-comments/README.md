@@ -1,6 +1,7 @@
 ---
 id: AWF-0070
 name: Graded PR comments
+summary: "Posts confidence-graded review comments on diffs; the author rates each comment as useful or not and decides whether to act."
 kingdom: TEC
 phylum: SWE
 class: REVIEW

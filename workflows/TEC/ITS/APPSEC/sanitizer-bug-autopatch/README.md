@@ -1,6 +1,7 @@
 ---
 id: AWF-0067
 name: Sanitizer-bug autopatch
+summary: "Generates and tests fixes for sanitizer-found bugs; security engineers filter the candidates and code owners validate and submit."
 kingdom: TEC
 phylum: ITS
 class: APPSEC

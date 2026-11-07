@@ -1,6 +1,7 @@
 ---
 id: AWF-0145
 name: Calendar time audit
+summary: "Audits two weeks of calendar and proposes meetings to cut or hand off; the owner accepts or rejects each and an EA makes the changes."
 kingdom: ORG
 phylum: XFN
 class: INBOX

@@ -1,6 +1,7 @@
 ---
 id: AWF-0080
 name: Theme sign-off consultation analysis
+summary: "Generates themes from consultation responses and maps responses to them; the policy team signs off themes and analysts verify mappings."
 kingdom: ORG
 phylum: GOV
 class: POLICY

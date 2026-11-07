@@ -6,10 +6,12 @@ Exits 1 and lists every problem if any record breaks a rule.
 import re
 import sys
 
+import yaml
+
 from catalog import ROOT, WORKFLOWS, load_taxonomy, read_front_matter, species_files
 
 REQUIRED = [
-    "id", "name", "kingdom", "phylum", "class", "deliverable", "shape", "autonomy",
+    "id", "name", "summary", "kingdom", "phylum", "class", "deliverable", "shape", "autonomy",
     "checkpoints", "patterns", "variants", "evidence", "status", "reference_example",
     "last_verified",
 ]
@@ -98,6 +100,10 @@ def check_species(path, fm, tax, errors):
             if ex.is_dir() and not re.match(r"^\d{4}-\d{2}-[a-z0-9-]+$", ex.name):
                 err(f"examples/{ex.name}/ must be named YYYY-MM-short-name")
 
+    summary = str(fm["summary"] or "")
+    if not summary.strip() or len(summary) > 200:
+        err("`summary` must be one sentence of at most 200 characters")
+
     # the SOP itself: numbered steps, with every checkpoint in the shape written out as a step
     body = path.read_text().split("\n---\n", 1)[-1]
     steps = re.search(r"^## Steps\n(.*?)(?=^## |\Z)", body, re.M | re.S)
@@ -156,6 +162,21 @@ def main():
         if readme.parts[-3] == "unplaced" or depth == 5:
             continue
         errors.append(f"{readme.relative_to(ROOT)}: workflows go at workflows/<KINGDOM>/<PHYLUM>/<CLASS>/<name>/ or workflows/unplaced/<name>/")
+
+    # translations: labels cover every taxonomy code; Chinese entries point at real IDs
+    labels = yaml.safe_load((ROOT / "i18n" / "labels.yaml").read_text())
+    for kind, codes in [("kingdoms", tax["kingdoms"]), ("phyla", {p for k in tax["kingdoms"].values() for p in k["phyla"]}),
+                        ("classes", {c for k in tax["kingdoms"].values() for p in k["phyla"].values() for c in p["classes"]})]:
+        for code in codes:
+            entry = labels.get(kind, {}).get(code) or {}
+            if not entry.get("en") or not entry.get("zh-CN"):
+                errors.append(f"i18n/labels.yaml: {kind} `{code}` needs both `en` and `zh-CN`")
+    zh = yaml.safe_load((ROOT / "i18n" / "workflows.zh-CN.yaml").read_text()) or {}
+    for i, entry in zh.items():
+        if i not in ids:
+            errors.append(f"i18n/workflows.zh-CN.yaml: `{i}` is not a known id")
+        elif not isinstance(entry, dict) or not entry.get("name") or not entry.get("summary"):
+            errors.append(f"i18n/workflows.zh-CN.yaml: `{i}` needs `name` and `summary`")
 
     numbers = [int(i[4:]) for i in ids if ID_RE.match(str(i))]
     next_id = f"AWF-{(max(numbers) + 1 if numbers else 1):04d}"

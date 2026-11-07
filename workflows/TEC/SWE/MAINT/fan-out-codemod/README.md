@@ -1,6 +1,7 @@
 ---
 id: AWF-0002
 name: Fan-out codemod
+summary: "Applies a code migration across many files and opens batched PRs; a human freezes the plan after a pilot, samples results and owners review."
 kingdom: TEC
 phylum: SWE
 class: MAINT

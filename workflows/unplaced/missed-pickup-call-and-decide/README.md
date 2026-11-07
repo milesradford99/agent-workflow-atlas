@@ -1,6 +1,7 @@
 ---
 id: AWF-0153
 name: Missed-pickup call-and-decide
+summary: "Calls carriers about missed LTL pickups and decides the next action; unresolved cases go to the LTL team."
 kingdom: ORG
 phylum: LOG
 class: FREIGHT

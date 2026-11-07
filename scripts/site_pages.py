@@ -1,8 +1,9 @@
-"""Static outputs for the catalog site: one page per workflow, data exports and a sitemap.
+"""Static outputs for the catalog site: one page per workflow in each language, data exports
+and a sitemap.
 
 The interactive page (site_template.html) is for browsing. These files are for linking,
-sharing and search engines: each workflow gets a plain HTML page at w/<ID>/ with its own
-title, description and preview image, and the whole catalog is downloadable as JSON and CSV.
+sharing and search engines: each workflow gets a plain HTML page at w/<ID>/ (English) and
+w/<ID>/zh/ (Simplified Chinese), each with its own title, description and preview image.
 """
 import csv
 import html
@@ -10,9 +11,34 @@ import io
 import json
 import re
 
-CSV_FIELDS = ["id", "name", "kingdom", "kingdomName", "phylum", "phylumName", "class", "deliverable",
+CSV_FIELDS = ["id", "name", "nameZh", "summary", "summaryZh", "kingdom", "phylum", "class", "deliverable",
               "autonomy", "checkpoints", "patterns", "variants", "evidence", "coverage", "runs", "risk",
               "region", "status", "lastVerified", "kit", "shape", "url", "source"]
+
+UI = {
+    "en": {
+        "home": "All workflows", "open": "Open in the catalog", "source": "Source on GitHub",
+        "kit": "Run it with the Claude Code kit", "route": "The route", "steps": "Steps", "runs": "Public runs",
+        "sources": "Sources", "diagram": "Full diagram", "verified": "Last checked {v}.", "report": "Report something out of date",
+        "note": "", "other": "中文", "otherHref": "zh/", "stops": "{n} human stop(s)",
+        "cov": {"Strong": "Strong evidence", "Partial": "Partial evidence", "Weak": "Weak evidence", "None found": "No public run"},
+        "auto": {"assist": "Assist: a person reviews each piece", "checkpointed": "Checkpointed: runs freely between fixed approvals", "sampled": "Sampled: runs end to end while people audit samples"},
+        "cp": {"plan": "approve the plan", "action": "approve an action", "review": "review the draft", "sample": "check a sample", "sign-off": "sign off", "handoff": "take over a hard case"},
+        "delivers": "Delivers", "autonomy": "Autonomy", "desc": "{name}: a step-by-step AI agent workflow from {field}, with the human checkpoints, tools and sources. {summary}",
+        "foot": "Agent Workflow Atlas. Content CC BY 4.0.",
+    },
+    "zh-CN": {
+        "home": "全部工作流", "open": "在目录中打开", "source": "在 GitHub 查看源文件",
+        "kit": "用 Claude Code 套件运行", "route": "路线", "steps": "步骤", "runs": "公开实例",
+        "sources": "来源", "diagram": "完整流程图", "verified": "最近核对：{v}。", "report": "报告过时内容",
+        "note": "步骤、公开实例和来源保留英文原文，以便与引用的出处逐字对应。", "other": "English", "otherHref": "../", "stops": "{n} 个人工节点",
+        "cov": {"Strong": "证据充分", "Partial": "证据部分", "Weak": "证据薄弱", "None found": "暂无公开实例"},
+        "auto": {"assist": "辅助：每一步都由人审阅", "checkpointed": "分段：在固定审批点之间自动运行", "sampled": "抽检：端到端运行，人抽查样本"},
+        "cp": {"plan": "审批计划", "action": "审批操作", "review": "审阅草稿", "sample": "抽检样本", "sign-off": "签发", "handoff": "人工接手疑难"},
+        "delivers": "交付物", "autonomy": "自主程度", "desc": "{name}：来自{field}的 AI 智能体工作流，逐步写明人工检查点、工具和出处。{summary}",
+        "foot": "Agent Workflow Atlas · AI 智能体工作流图谱。内容采用 CC BY 4.0。",
+    },
+}
 
 
 def esc(s):
@@ -65,10 +91,10 @@ def markdown(text, link, sources=False):
             out.append(f"<p>{inline(line, link)}</p>")
     if kind:
         out.append(f"</{kind}>")
-    return "\n".join(out)
+    return '<div class="prose">' + "\n".join(out) + "</div>"
 
 
-def resolver(repo, path):
+def resolver(repo, path, depth):
     """Turn a link written inside a workflow README into an absolute or site-relative URL."""
     def link(url):
         if re.match(r"^(https?:|#|mailto:)", url):
@@ -81,120 +107,142 @@ def resolver(repo, path):
             elif part and part != ".":
                 stack.append(part)
         target = "/".join(stack)
-        return f"{repo}/blob/main/{target}" if repo else f"../../../{target}"
+        return f"{repo}/blob/main/{target}" if repo else "../" * depth + "../" + target
     return link
 
 
-def description(w):
-    first = re.sub(r"\s+", " ", re.sub(r"\[\[\d+\]\]\(#sources\)|\*\*|`", "", w["steps"].split("\n")[0] if w["steps"] else ""))
-    first = re.sub(r"^\d+\.\s*", "", first)
-    text = f"{w['name']}: how professionals in {w['phylumName'].lower()} run this agent workflow, step by step, with human checkpoints and sources. {first}"
-    return text if len(text) <= 300 else text[:297].rstrip() + "…"
+def route_html(w, ui, big=False):
+    def label(m):
+        return "🛑 " + ui["cp"][m["cp"]] if m["k"] == "stop" else m["t"]
+    marks = "".join(f'<span class="m {m["k"]}" title="{esc(label(m))}"><i></i></span>' for m in w["route"])
+    items = "".join(
+        f'<li class="stop">🛑 {esc(ui["cp"][m["cp"]])}' + (f'<span style="font-weight:400">: {esc(m["t"])}</span>' if m["t"] and m["t"] != m["cp"] else "") + "</li>"
+        if m["k"] == "stop" else f"<li>{esc(m['t'])}</li>" for m in w["route"])
+    aria = esc(" → ".join(label(m) for m in w["route"]))
+    return f'<div class="route{" big" if big else ""}" role="img" aria-label="{aria}">{marks}</div><ol class="route-labels">{items}</ol>'
 
 
 PAGE = """<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{canonical}">
+<link rel="alternate" hreflang="en" href="{href_en}">
+<link rel="alternate" hreflang="zh-CN" href="{href_zh}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{image}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap">
 <style>
-:root {{ --bg:#f7f6f2; --panel:#fff; --ink:#1d2433; --muted:#5b6475; --line:#e3e1d9; --accent:#2f5bd3; --chip:#eef0f5; --stop-bg:#fde2e1; --stop-ink:#8a1c13; }}
-@media (prefers-color-scheme: dark) {{ :root {{ --bg:#12151c; --panel:#1a1f29; --ink:#e7eaf0; --muted:#a2abbb; --line:#2b3240; --accent:#7c9cff; --chip:#252c39; --stop-bg:#4a1f1c; --stop-ink:#ffc9c3; }} }}
-* {{ box-sizing:border-box; }}
-body {{ margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","PingFang SC","Microsoft YaHei",sans-serif; }}
-a {{ color:var(--accent); }}
-header {{ background:var(--panel); border-bottom:1px solid var(--line); padding:12px 20px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }}
-header a.brand {{ font-weight:700; color:var(--ink); text-decoration:none; margin-right:auto; }}
-main {{ max-width:880px; margin:0 auto; padding:24px 20px 60px; }}
-.place {{ color:var(--muted); font-size:14px; }}
-h1 {{ margin:4px 0 12px; font-size:30px; line-height:1.2; }}
-h2 {{ font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:30px 0 8px; }}
-.badges {{ display:flex; flex-wrap:wrap; gap:6px; }}
-.badge {{ font-size:13px; padding:2px 9px; border-radius:6px; background:var(--chip); }}
-.badge.stop {{ background:var(--stop-bg); color:var(--stop-ink); }}
-.shape {{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13.5px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }}
-.diagram {{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px; overflow:auto; margin-top:10px; }}
-code {{ background:var(--chip); padding:1px 5px; border-radius:4px; font-size:14px; }}
-li {{ margin:5px 0; }}
-.cta {{ display:inline-block; margin-top:6px; padding:8px 14px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none; }}
-footer {{ color:var(--muted); font-size:13px; text-align:center; padding:24px; }}
+{css}
+.top {{ border-bottom: 1px solid var(--rule); background: var(--paper); }}
+.top-in, main, footer {{ max-width: 860px; margin: 0 auto; padding-left: 22px; padding-right: 22px; }}
+.top-in {{ display: flex; gap: 18px; align-items: center; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; font-size: 14px; }}
+.brand {{ display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font: 700 16px/1 var(--f-head); margin-right: auto; }}
+main {{ padding-top: 28px; padding-bottom: 60px; }}
+.crumb {{ font-size: 13.5px; color: var(--slate); }}
+h1 {{ font-size: clamp(28px, 4vw, 38px); margin: 6px 0 4px; font-weight: 600; }}
+.alt-name {{ color: var(--slate); }}
+.lede {{ font-size: 18px; margin: 10px 0 16px; max-width: 62ch; }}
+h2 {{ font-size: 19px; margin: 36px 0 12px; font-weight: 600; }}
+.actions {{ display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 4px; }}
+.route-box {{ background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r); padding: 18px 20px; }}
+dl.meta {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px 20px; font-size: 14px; margin: 18px 0 0; }}
+dl.meta dt {{ color: var(--slate); font-size: 12.5px; }} dl.meta dd {{ margin: 2px 0 0; }}
+footer {{ border-top: 1px solid var(--rule); color: var(--slate); font-size: 13.5px; padding-top: 20px; padding-bottom: 30px; }}
 </style>
 </head>
 <body>
-<header><a class="brand" href="../../">Agent Workflow Atlas</a><a href="../../#{id}">Open in the catalog</a><a href="{source}">Source file</a></header>
+<header class="top"><div class="top-in">
+<a class="brand" href="{home}"><svg width="30" height="16" viewBox="0 0 30 16" aria-hidden="true"><line x1="2" y1="8" x2="28" y2="8" stroke="var(--route-soft)" stroke-width="2"/><circle cx="4" cy="8" r="3" fill="var(--route)"/><path d="M13 3.6h4l2.8 2.8v3.2L17 12.4h-4l-2.8-2.8V6.4z" fill="var(--stop)"/><circle cx="26" cy="8" r="3" fill="var(--route)"/></svg>Agent Workflow Atlas</a>
+<a href="{home}">{t_home}</a><a href="{other_href}" hreflang="{other_lang}" lang="{other_lang}">{t_other}</a>
+</div></header>
 <main>
-<div class="place">{id} · {place}</div>
-<h1>{name}</h1>
-<div class="badges">{badges}</div>
-<h2>Shape</h2>
-<div class="shape">{shape}</div>
-<pre class="mermaid diagram">{mermaid}</pre>
-{kit}
-{intro}
-<h2>Steps</h2>
+<div class="crumb">{crumb}</div>
+<h1>{name}</h1>{alt}
+<p class="lede">{summary}</p>
+<div class="facts"><span class="grade {grade}">{cov}</span><span class="stop-text">{stops}</span></div>
+<div class="actions">{kit}<a class="btn" href="{app}">{t_open}</a><a class="btn" href="{source}">{t_source}</a></div>
+<h2>{t_route}</h2>
+<div class="route-box">{route}</div>
+<dl class="meta"><div><dt>{t_delivers}</dt><dd>{deliverable}</dd></div><div><dt>{t_autonomy}</dt><dd>{autonomy}</dd></div></dl>
+{note}
+<div lang="en">
+<h2>{t_steps}</h2>
 {steps}
-<h2>Public runs</h2>
+{intro}
+<h2>{t_runs}</h2>
 {runs}
-<h2 id="sources">Sources</h2>
+<h2 id="sources">{t_sources}</h2>
 {sources}
-<p class="place">Last verified {verified}. Spotted something outdated? <a href="{issues}">Report it</a>.</p>
+</div>
+<h2>{t_diagram}</h2>
+<div class="shape-line">{shape}</div>
+<pre class="mermaid diagram" style="margin-top:12px">{mermaid}</pre>
+<p class="crumb">{verified} <a href="{issues}">{t_report}</a></p>
 </main>
-<footer>Agent Workflow Atlas · content CC BY 4.0 · <a href="../../catalog.json">catalog.json</a> · <a href="../../catalog.csv">catalog.csv</a></footer>
+<footer>{t_foot} <a href="{json}">catalog.json</a> · <a href="{csv}">catalog.csv</a></footer>
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
-mermaid.initialize({{ startOnLoad: true, securityLevel: "strict", theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default" }});
+mermaid.initialize({{ startOnLoad: true, securityLevel: "strict", theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "neutral" }});
 </script>
 </body>
 </html>
 """
 
 
-def page(w, repo, site_url):
-    link = resolver(repo, w["path"])
-    canonical = f"{site_url}/w/{w['id']}/" if site_url else f"w/{w['id']}/"
-    badges = [f'<span class="badge">Public runs: {esc(w["coverage"] or "not graded")}</span>',
-              f'<span class="badge">{esc(w["autonomy"])}</span>',
-              f'<span class="badge">evidence {esc(w["evidence"])}</span>',
-              f'<span class="badge">{esc(w["status"])}</span>']
-    badges += [f'<span class="badge stop">🛑 {esc(c)}</span>' for c in w["checkpoints"]]
-    kit = ""
-    if w["kit"]:
-        kit = f'<p><a class="cta" href="{esc(link("variants/claude-code.md"))}">Run it: Claude Code kit</a></p>'
+def page(w, data, site_url, css, lang):
+    ui, labels, repo = UI[lang], data["labels"], data["repo"]
+    zh = lang == "zh-CN"
+    depth = 3 if zh else 2  # w/<ID>/ or w/<ID>/zh/
+    up = "../" * depth
+    link = resolver(repo, w["path"], depth)
+    lab = lambda kind, code: labels[kind].get(code, {}).get(lang) or labels[kind].get(code, {}).get("en") or code
+    name = w["nameZh"] if zh and w["nameZh"] else w["name"]
+    summary = w["summaryZh"] if zh and w["summaryZh"] else w["summary"]
+    base = f"{site_url}/w/{w['id']}/" if site_url else ""
+    href_en, href_zh = (base, base + "zh/") if site_url else ("../" if zh else "./", "./" if zh else "zh/")
+    stops = sum(1 for m in w["route"] if m["k"] == "stop")
+    kit = f'<a class="btn primary" href="{esc(link("variants/claude-code.md"))}">{esc(ui["kit"])}</a>' if w["kit"] else ""
     return PAGE.format(
-        title=esc(f"{w['name']} · Agent Workflow Atlas"),
-        desc=esc(description(w)),
-        canonical=esc(canonical),
-        image=esc(f"{site_url}/og.png" if site_url else "../../og.png"),
-        id=esc(w["id"]),
-        place=esc(f"{w['kingdomName']} › {w['phylumName']} › {w['class']}" + (" (unplaced)" if w["unplaced"] else "")),
-        name=esc(w["name"]),
-        badges="".join(badges),
-        shape=esc(w["shape"]),
-        mermaid=esc(w["mermaid"]),
-        kit=kit,
-        intro=markdown(w["intro"], link),
-        steps=markdown(w["steps"], link),
-        runs=markdown(w["publicRuns"], link),
-        sources=markdown(w["sources"], link, sources=True),
-        verified=esc(w["lastVerified"]),
-        source=esc(f"{repo}/blob/main/{w['path']}/README.md" if repo else f"../../../{w['path']}/README.md"),
-        issues=esc(f"{repo}/issues/new?template=correction.yml" if repo else "#"),
+        lang=lang, css=css,
+        title=esc(f"{name} · Agent Workflow Atlas"),
+        desc=esc(ui["desc"].format(name=name, field=lab("phyla", w["phylum"]), summary=summary)),
+        canonical=esc(href_zh if zh else href_en), href_en=esc(href_en), href_zh=esc(href_zh),
+        image=esc(f"{site_url}/og.png" if site_url else up + "og.png"),
+        home=esc(up + ("?lang=zh-CN" if zh else "")), t_home=esc(ui["home"]),
+        other_href=esc(ui["otherHref"]), other_lang="en" if zh else "zh-CN", t_other=esc(ui["other"]),
+        crumb=esc(f"{lab('kingdoms', w['kingdom'])} › {lab('phyla', w['phylum'])} › {lab('classes', w['class'])} · {w['id']}"),
+        name=esc(name), alt=f'<div class="alt-name" lang="en">{esc(w["name"])}</div>' if zh and w["nameZh"] else "",
+        summary=esc(summary), grade="g-" + (w["coverage"] or "").split(" ")[0], cov=esc(ui["cov"].get(w["coverage"], "")),
+        stops=esc(ui["stops"].format(n=stops)), kit=kit,
+        app=esc(up + ("?lang=zh-CN" if zh else "") + "#" + w["id"]), t_open=esc(ui["open"]),
+        source=esc(f"{repo}/blob/main/{w['path']}/README.md" if repo else up + "../" + w["path"] + "/README.md"), t_source=esc(ui["source"]),
+        t_route=esc(ui["route"]), route=route_html(w, ui, big=True),
+        t_delivers=esc(ui["delivers"]), deliverable=esc(w["deliverable"]), t_autonomy=esc(ui["autonomy"]), autonomy=esc(ui["auto"][w["autonomy"]]),
+        note=f'<p class="note" style="margin-top:22px">{esc(ui["note"])}</p>' if ui["note"] else "",
+        t_steps=esc(ui["steps"]), steps=markdown(w["steps"], link), intro=markdown(w["intro"], link) if w["intro"] else "",
+        t_runs=esc(ui["runs"]), runs=markdown(w["publicRuns"], link),
+        t_sources=esc(ui["sources"]), sources=markdown(w["sources"], link, sources=True),
+        t_diagram=esc(ui["diagram"]), shape=esc(w["shape"]), mermaid=esc(w["mermaid"]),
+        verified=esc(ui["verified"].format(v=w["lastVerified"])),
+        issues=esc(f"{repo}/issues/new?template=correction.yml" if repo else "#"), t_report=esc(ui["report"]),
+        t_foot=esc(ui["foot"]), json=esc(up + "catalog.json"), csv=esc(up + "catalog.csv"),
     )
 
 
 def export_rows(workflows, repo, site_url):
     rows = []
     for w in workflows:
-        row = {k: w.get(k) for k in CSV_FIELDS if k in w}
+        row = {k: w[k] for k in CSV_FIELDS if k in w}
         row["url"] = f"{site_url}/w/{w['id']}/" if site_url else f"w/{w['id']}/"
         row["source"] = f"{repo}/blob/main/{w['path']}/README.md" if repo else w["path"] + "/README.md"
         rows.append(row)
@@ -203,26 +251,26 @@ def export_rows(workflows, repo, site_url):
 
 def to_csv(rows):
     buf = io.StringIO()
-    writer = csv.DictWriter(buf, fieldnames=CSV_FIELDS, extrasaction="ignore")
+    writer = csv.DictWriter(buf, fieldnames=CSV_FIELDS)
     writer.writeheader()
     for r in rows:
-        writer.writerow({k: "; ".join(v) if isinstance(v, list) else v for k, v in r.items()})
+        writer.writerow({k: "; ".join(map(str, v)) if isinstance(v, list) else v for k, v in r.items()})
     return buf.getvalue()
 
 
-def write_all(out, data, site_url):
+def write_all(out, data, site_url, css):
     repo, workflows = data["repo"], data["workflows"]
     for w in workflows:
         d = out / "w" / w["id"]
-        d.mkdir(parents=True, exist_ok=True)
-        (d / "index.html").write_text(page(w, repo, site_url))
-    export = [dict(w, **r) for w, r in zip(workflows, export_rows(workflows, repo, site_url))]
-    for w in export:
-        w.pop("mermaid", None)
-    (out / "catalog.json").write_text(json.dumps({"taxonomy": data["taxonomy"], "workflows": export}, ensure_ascii=False, indent=1))
-    (out / "catalog.csv").write_text(to_csv(export))
+        (d / "zh").mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(page(w, data, site_url, css, "en"))
+        (d / "zh" / "index.html").write_text(page(w, data, site_url, css, "zh-CN"))
+    rows = export_rows(workflows, repo, site_url)
+    full = [dict({k: v for k, v in w.items() if k != "mermaid"}, url=r["url"], source=r["source"]) for w, r in zip(workflows, rows)]
+    (out / "catalog.json").write_text(json.dumps({"taxonomy": data["taxonomy"], "labels": data["labels"], "workflows": full}, ensure_ascii=False, indent=1))
+    (out / "catalog.csv").write_text(to_csv(rows))
     if site_url:
-        urls = [f"{site_url}/"] + [f"{site_url}/w/{w['id']}/" for w in workflows]
+        urls = [f"{site_url}/"] + [u for w in workflows for u in (f"{site_url}/w/{w['id']}/", f"{site_url}/w/{w['id']}/zh/")]
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                          + "".join(f"  <url><loc>{esc(u)}</loc></url>\n" for u in urls) + "</urlset>\n")
         (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n")

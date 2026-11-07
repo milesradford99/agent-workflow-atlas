@@ -1,6 +1,7 @@
 ---
 id: AWF-0036
 name: Obligations register build
+summary: "Scrapes regulations into a structured register of obligations and controls; lawyers check the outputs and sign off on adequacy."
 kingdom: PRO
 phylum: LEG
 class: REG

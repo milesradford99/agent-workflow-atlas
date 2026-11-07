@@ -1,6 +1,7 @@
 ---
 id: AWF-0089
 name: Routed inbox reply drafts
+summary: "Classifies patient messages and drafts replies in the EHR inbox; the clinician edits and sends every reply."
 kingdom: PRO
 phylum: HLT
 class: CLINDOC

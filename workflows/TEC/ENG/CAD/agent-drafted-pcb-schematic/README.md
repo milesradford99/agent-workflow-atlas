@@ -1,6 +1,7 @@
 ---
 id: AWF-0116
 name: Agent-drafted PCB schematic
+summary: "Builds a KiCad schematic and fab kit from a sketch; the designer approves the plan and each step, a second engineer reviews."
 kingdom: TEC
 phylum: ENG
 class: CAD

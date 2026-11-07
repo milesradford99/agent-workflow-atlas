@@ -1,6 +1,7 @@
 ---
 id: AWF-0069
 name: Filtered test augmentation
+summary: "Generates extra unit tests, keeps only those passing filters, and submits them as diffs; the owning engineer accepts or rejects each."
 kingdom: TEC
 phylum: SWE
 class: TEST

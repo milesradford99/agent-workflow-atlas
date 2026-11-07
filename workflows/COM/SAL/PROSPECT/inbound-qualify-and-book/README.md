@@ -1,6 +1,7 @@
 ---
 id: AWF-0109
 name: Inbound qualify-and-book agent
+summary: "Qualifies inbound sales leads in live chat and books meetings; people review every conversation daily and reps run the meetings."
 kingdom: COM
 phylum: SAL
 class: PROSPECT

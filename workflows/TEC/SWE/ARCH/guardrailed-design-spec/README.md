@@ -1,6 +1,7 @@
 ---
 id: AWF-0072
 name: Guardrailed design spec
+summary: "Generates a design spec checked against guardrail files from a concept doc; engineers review it and Legal, Privacy and Security sign off."
 kingdom: TEC
 phylum: SWE
 class: ARCH

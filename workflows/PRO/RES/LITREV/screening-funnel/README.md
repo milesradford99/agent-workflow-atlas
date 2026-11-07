@@ -1,6 +1,7 @@
 ---
 id: AWF-0009
 name: Screening funnel
+summary: "Searches databases for a PICO question and screens records with two independent screeners; people approve, sample, review and sign off."
 kingdom: PRO
 phylum: RES
 class: LITREV

@@ -1,6 +1,7 @@
 ---
 id: AWF-0077
 name: Transcript-first video edit
+summary: "Edits a recording from its transcript and builds captions and overlays; the author reviews cuts and preview, then signs off."
 kingdom: CRE
 phylum: MED
 class: POST

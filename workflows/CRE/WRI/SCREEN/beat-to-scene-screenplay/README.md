@@ -1,6 +1,7 @@
 ---
 id: AWF-0013
 name: Beat-to-scene screenplay
+summary: "Develops a screenplay from logline to treatment, beats and scenes with coverage notes; a person approves plans and signs off."
 kingdom: CRE
 phylum: WRI
 class: SCREEN

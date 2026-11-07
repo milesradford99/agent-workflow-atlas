@@ -1,6 +1,7 @@
 ---
 id: AWF-0088
 name: Pre-drafted radiograph reports
+summary: "Generates a draft radiograph report in the dictation system once images are in; the radiologist verifies and edits it as with a trainee draft."
 kingdom: PRO
 phylum: HLT
 class: CLINDOC

@@ -1,6 +1,7 @@
 ---
 id: AWF-0098
 name: Underwriter-finalized credit memo
+summary: "Extracts deal documents and drafts each credit memo section; the underwriter finalizes it and the bank's credit approval process signs off."
 kingdom: PRO
 phylum: FIN
 class: INVEST

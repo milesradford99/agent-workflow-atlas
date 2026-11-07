@@ -1,6 +1,7 @@
 ---
 id: AWF-0000                 # use the "next free id" printed by: python scripts/validate.py
 name: Short plain name       # what a practitioner would call it
+summary: "One sentence: what it produces and where a person approves (max 200 characters)."
 kingdom: TEC                 # TAXONOMY.md §4, first matching row
 phylum: SWE
 class: FEAT

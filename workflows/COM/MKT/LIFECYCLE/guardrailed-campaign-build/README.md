@@ -1,6 +1,7 @@
 ---
 id: AWF-0054
 name: Guardrailed campaign build
+summary: "Builds email journeys with segment specs, UTM registry and template HTML; a person approves the plan and reviews before ESP export."
 kingdom: COM
 phylum: MKT
 class: LIFECYCLE

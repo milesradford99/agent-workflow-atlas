@@ -1,6 +1,7 @@
 ---
 id: AWF-0102
 name: Guardrailed course tutor
+summary: "A course tutor gives guided answers instead of solutions; staff endorse, amend or delete forum answers and sample prompt changes."
 kingdom: PRO
 phylum: EDU
 class: TUTOR

@@ -1,6 +1,7 @@
 ---
 id: AWF-0040
 name: Full-population control testing
+summary: "Tests every control across the full population with cited evidence and conclusions; an auditor reviews each conclusion and exception."
 kingdom: PRO
 phylum: FIN
 class: AUDIT

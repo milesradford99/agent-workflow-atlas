@@ -1,6 +1,7 @@
 ---
 id: AWF-0086
 name: Template-driven meeting minutes
+summary: "Transcribes meeting audio with speaker labels and generates minutes from a chosen template; an officer corrects them before circulation."
 kingdom: ORG
 phylum: XFN
 class: MEET

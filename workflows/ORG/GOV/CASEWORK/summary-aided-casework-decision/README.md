@@ -1,6 +1,7 @@
 ---
 id: AWF-0081
 name: Summary-aided casework decision
+summary: "Summarises interview transcripts and finds policy references; the decision-maker checks the summary and makes and signs the decision."
 kingdom: ORG
 phylum: GOV
 class: CASEWORK

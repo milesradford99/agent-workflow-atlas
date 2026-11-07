@@ -1,6 +1,7 @@
 ---
 id: AWF-0111
 name: Catalog copy factory
+summary: "Drafts product-detail copy per SKU from catalog data and text rules; a screening queue reviews it before bulk publishing."
 kingdom: COM
 phylum: RET
 class: CATALOG

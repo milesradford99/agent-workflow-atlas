@@ -1,6 +1,7 @@
 ---
 id: AWF-0106
 name: Submission intake screen
+summary: "Screens submissions for plagiarism, image integrity, conflicts and papermill signals; editors decide on flagged ones before peer review."
 kingdom: PRO
 phylum: RES
 class: PEER

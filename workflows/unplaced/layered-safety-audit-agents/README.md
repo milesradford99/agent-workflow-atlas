@@ -1,6 +1,7 @@
 ---
 id: AWF-0152
 name: Layered safety audit agents
+summary: "Compiles safety documentation into an audit report using layered document, task and report agents; a human reviews the process."
 kingdom: ORG
 phylum: BIZ
 class: EHS

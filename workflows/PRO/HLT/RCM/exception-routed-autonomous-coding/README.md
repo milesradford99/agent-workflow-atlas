@@ -1,6 +1,7 @@
 ---
 id: AWF-0090
 name: Exception-routed autonomous coding
+summary: "Assigns ICD/CPT codes with rationale per chart and sends low-confidence or conflicting charts to a coder; regular audits sample the rest."
 kingdom: PRO
 phylum: HLT
 class: RCM

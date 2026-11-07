@@ -1,6 +1,7 @@
 ---
 id: AWF-0124
 name: Summoned dbt debugger
+summary: "Diagnoses a dbt failure in Slack when an engineer tags it; the engineer decides on remediation and approves and merges the fix PR."
 kingdom: TEC
 phylum: DAT
 class: DATAENG

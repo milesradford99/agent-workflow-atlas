@@ -1,6 +1,7 @@
 ---
 id: AWF-0130
 name: Profile-led perf fixes
+summary: "Finds performance antipatterns in hot functions from profiles and suggests scored fixes; developers review before merge."
 kingdom: TEC
 phylum: SWE
 class: MAINT

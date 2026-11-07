@@ -1,6 +1,7 @@
 ---
 id: AWF-0025
 name: Grounded legal memo
+summary: "Drafts an IRAC memo from a grounded legal database and verifies each citation; a lawyer approves the plan and signs off."
 kingdom: PRO
 phylum: LEG
 class: RESEARCH

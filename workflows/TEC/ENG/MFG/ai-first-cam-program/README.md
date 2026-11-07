@@ -1,6 +1,7 @@
 ---
 id: AWF-0119
 name: AI-first CAM program
+summary: "Generates CNC operations, toolpaths and speeds and feeds in CAM; a programmer tunes each program and staff inspect the first parts."
 kingdom: TEC
 phylum: ENG
 class: MFG

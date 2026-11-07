@@ -1,6 +1,7 @@
 ---
 id: AWF-0133
 name: Comment-to-edit suggestions
+summary: "Drafts suggested code edits from reviewer comments; the author previews each one and decides whether to apply it."
 kingdom: TEC
 phylum: SWE
 class: REVIEW

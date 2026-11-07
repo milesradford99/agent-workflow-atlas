@@ -1,6 +1,7 @@
 ---
 id: AWF-0100
 name: Section-gated lesson build
+summary: "Drafts a lesson plan, slides and quizzes section by section from a chosen base lesson; the teacher approves each section."
 kingdom: PRO
 phylum: EDU
 class: COURSE

@@ -1,6 +1,7 @@
 ---
 id: AWF-0061
 name: Quote-verified synthesis
+summary: "Drafts a research insights report from retrieved quotes and themes; the researcher verifies every quote against source and signs off."
 kingdom: TEC
 phylum: PRD
 class: UXR

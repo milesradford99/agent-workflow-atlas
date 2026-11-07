@@ -1,6 +1,7 @@
 ---
 id: AWF-0042
 name: Tutor-approved AI turns
+summary: "Drafts a tutoring reply when a student answers wrong; an on-call tutor approves, edits or replaces every message before it is sent."
 kingdom: PRO
 phylum: EDU
 class: TUTOR

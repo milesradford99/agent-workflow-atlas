@@ -1,6 +1,7 @@
 ---
 id: AWF-0154
 name: Plot-registered agronomy advice
+summary: "Produces a nutrient plan and in-season advice for a registered plot; the farmer verifies the plot map, technicians help implement."
 kingdom: ORG
 phylum: AGR
 class: ADVISORY

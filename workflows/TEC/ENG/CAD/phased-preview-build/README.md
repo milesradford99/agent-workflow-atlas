@@ -1,6 +1,7 @@
 ---
 id: AWF-0056
 name: Phased preview build
+summary: "Builds a parametric CAD model in three previewed phases; the maker reviews each preview and the slicer result before printing."
 kingdom: TEC
 phylum: ENG
 class: CAD

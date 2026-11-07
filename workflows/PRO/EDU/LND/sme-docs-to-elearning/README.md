@@ -1,6 +1,7 @@
 ---
 id: AWF-0043
 name: SME-docs to e-learning
+summary: "Turns subject-expert sources into an outline and e-learning lessons; an instructional designer and the expert review before publishing."
 kingdom: PRO
 phylum: EDU
 class: LND

@@ -1,6 +1,7 @@
 ---
 id: AWF-0006
 name: Governed query
+summary: "Answers a business question with governed-metric SQL and a chart; an analyst reviews and sign-off is required before execs see it."
 kingdom: TEC
 phylum: DAT
 class: ANALYTICS

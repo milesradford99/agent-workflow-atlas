@@ -1,6 +1,7 @@
 ---
 id: AWF-0096
 name: Policy-grounded claim letters
+summary: "Drafts claim letters citing policy language and blocks when none supports them; a desk adjuster reviews and the carrier approves."
 kingdom: PRO
 phylum: INS
 class: CLAIMS

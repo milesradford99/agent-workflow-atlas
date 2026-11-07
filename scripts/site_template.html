@@ -4,348 +4,465 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agent Workflow Atlas</title>
-<meta name="description" content="A catalog of how professionals run AI agents in production work, as copyable SOPs.">
+<meta name="description" content="How professionals run AI agents in real work: step-by-step workflows with the human checkpoints, tools and sources.">
+<meta property="og:title" content="Agent Workflow Atlas">
+<meta property="og:description" content="How professionals run AI agents in real work: step-by-step workflows with the human checkpoints, tools and sources.">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap">
 <style>
-:root {
-  --bg: #f7f6f2; --panel: #ffffff; --ink: #1d2433; --muted: #5b6475; --line: #e3e1d9;
-  --accent: #2f5bd3; --accent-ink: #ffffff; --chip: #eef0f5;
-  --stop-bg: #fde2e1; --stop-ink: #8a1c13;
-  --strong: #1f7a4d; --strong-bg: #dff3e7; --partial: #8a5a00; --partial-bg: #fbefd2;
-  --weak: #6b5b8a; --weak-bg: #ebe6f4; --none: #6b7280; --none-bg: #eceef1;
-  --shadow: 0 1px 2px rgba(20, 24, 33, .06), 0 4px 14px rgba(20, 24, 33, .06);
+/*__CSS__*/
+/* --- app layout --- */
+.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+.top-in { max-width: 1320px; margin: 0 auto; padding: 12px 24px; display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font: 700 17px/1 var(--f-head); white-space: nowrap; }
+.brand svg { flex: none; }
+.search { position: relative; max-width: 620px; width: 100%; justify-self: center; }
+.search input { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 44px 10px 14px; }
+.search input:focus { outline: none; border-color: var(--route); box-shadow: 0 0 0 3px var(--route-soft); }
+.search kbd { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font: 500 12px var(--f-mono); color: var(--slate); border: 1px solid var(--rule); border-radius: 5px; padding: 1px 6px; background: var(--paper); }
+.right { display: flex; gap: 10px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 9px; padding: 2px; background: var(--sheet); }
+.seg button { border: 0; background: transparent; padding: 6px 12px; border-radius: 7px; cursor: pointer; font-size: 14px; color: var(--slate); white-space: nowrap; }
+.seg button[aria-pressed="true"], .seg button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.hero { padding: 44px 0 26px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+.hero h1 { font-size: clamp(30px, 4.2vw, 50px); margin: 0 0 14px; max-width: 16ch; font-weight: 600; }
+.hero p { margin: 0; color: var(--slate); font-size: 17px; max-width: 54ch; }
+.legend { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r); padding: 18px 20px; }
+.legend > .route { margin: 10px 0 16px; }
+.legend dl { margin: 0; display: grid; grid-template-columns: 22px 1fr; gap: 8px 10px; font-size: 14px; align-items: center; }
+.legend dt { display: flex; justify-content: center; }
+.legend dd { margin: 0; color: var(--slate); }
+.legend dt.route { margin: 0; min-height: 0; }
+.legend dt.route::before { display: none; }
+.views { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); margin-bottom: 22px; flex-wrap: wrap; }
+.views .count { color: var(--slate); font-size: 14px; }
+.body { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 36px; padding-bottom: 60px; }
+.filters { position: sticky; top: 84px; align-self: start; max-height: calc(100vh - 100px); overflow: auto; padding-right: 6px; font-size: 14px; }
+.filters details { border-bottom: 1px solid var(--rule); padding: 10px 0; }
+.filters summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; }
+.filters summary::-webkit-details-marker { display: none; }
+.filters summary::after { content: "+"; color: var(--slate); font-weight: 400; }
+.filters details[open] summary::after { content: "–"; }
+.filters label { display: flex; align-items: center; gap: 9px; padding: 4px 0; cursor: pointer; color: var(--ink); }
+.filters label .n { margin-left: auto; color: var(--slate); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.filters label.zero { color: var(--slate); opacity: .55; }
+.filters input[type=checkbox] { accent-color: var(--route); width: 15px; height: 15px; margin: 0; flex: none; }
+.filters .hint { color: var(--slate); font-size: 12.5px; margin: 2px 0 4px; }
+.clear { margin-top: 14px; }
+.sec { margin: 0 0 40px; }
+.sec > h2 { font-size: 20px; margin: 0 0 4px; font-weight: 600; }
+.sec > p { margin: 0 0 16px; color: var(--slate); font-size: 14.5px; max-width: 70ch; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.card { text-align: left; background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r); padding: 16px 18px 15px; cursor: pointer; display: flex; flex-direction: column; gap: 9px; transition: border-color .15s; }
+.card:hover { border-color: var(--route); }
+.card .route { margin: 2px 0 4px; }
+.card h3 { margin: 0; font-size: 17px; font-weight: 600; }
+.card .sub { color: var(--slate); font-size: 13px; }
+.card .sum { margin: 0; font-size: 14.5px; color: var(--ink); }
+.card .facts { margin-top: auto; padding-top: 4px; }
+.kit-tag { font-size: 12px; font-weight: 600; color: var(--route); border: 1px solid var(--route); border-radius: 999px; padding: 1px 8px; }
+.atlas { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px 28px; }
+.kingdom { grid-column: 1 / -1; margin: 18px 0 2px; display: flex; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--ink); padding-bottom: 6px; flex-wrap: wrap; }
+.kingdom h2 { margin: 0; font-size: 22px; font-weight: 600; }
+.kingdom span { color: var(--slate); font-size: 14px; }
+.phylum h3 { font-size: 16px; margin: 6px 0 8px; font-weight: 600; display: flex; justify-content: space-between; gap: 10px; }
+.phylum h3 span { color: var(--slate); font-weight: 400; font-size: 13px; font-family: var(--f-body); }
+.cls { margin: 0 0 10px; }
+.cls-name { font-size: 12.5px; color: var(--slate); margin-bottom: 2px; }
+.wf-link { display: flex; align-items: center; gap: 10px; width: calc(100% + 12px); text-align: left; background: none; border: 0; padding: 4px 6px; margin: 0 -6px; border-radius: 6px; cursor: pointer; font-size: 14.5px; color: var(--ink); }
+.wf-link:hover { background: var(--wash); }
+.wf-link .nm { flex: 1 1 auto; min-width: 0; }
+.wf-link .route { flex: 0 0 70px; min-height: 10px; }
+.wf-link .route i { width: 5px; height: 5px; } .wf-link .route .stop i { width: 8px; height: 8px; } .wf-link .route .loop i { width: 6px; height: 6px; border-width: 1.5px; }
+.rows { border-top: 1px solid var(--rule); }
+.row { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr) 150px 92px; gap: 18px; align-items: center; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--rule); padding: 14px 6px; cursor: pointer; }
+.row:hover { background: var(--wash); }
+.row .t { font-weight: 600; } .row .s { color: var(--slate); font-size: 13.5px; }
+.row .p { font-size: 13.5px; color: var(--slate); }
+.empty { padding: 50px 0; text-align: center; color: var(--slate); }
+.empty .btn { margin-top: 12px; }
+.scrim { position: fixed; inset: 0; background: rgba(8, 14, 20, .38); z-index: 30; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.scrim.on { opacity: 1; pointer-events: auto; }
+.sheet { position: fixed; top: 0; right: 0; bottom: 0; width: min(900px, 100vw); background: var(--paper); z-index: 31; transform: translateX(102%); transition: transform .25s ease; overflow: auto; border-left: 1px solid var(--rule); }
+.sheet.on { transform: none; }
+.sheet-head { position: sticky; top: 0; z-index: 2; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 14px 28px 12px; }
+.sheet-head .crumb { font-size: 13px; color: var(--slate); display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.sheet-head nav { display: flex; gap: 16px; margin-top: 10px; font-size: 14px; overflow-x: auto; }
+.sheet-head nav a { color: var(--slate); text-decoration: none; white-space: nowrap; }
+.sheet-head nav a:hover { color: var(--ink); }
+.sheet-in { padding: 22px 28px 70px; }
+.sheet h1 { font-size: 30px; margin: 0 0 4px; font-weight: 600; }
+.sheet .alt-name { color: var(--slate); font-size: 15px; margin-bottom: 10px; }
+.sheet .lede { font-size: 17px; margin: 8px 0 16px; max-width: 64ch; }
+.sheet h2 { font-size: 18px; margin: 34px 0 10px; font-weight: 600; scroll-margin-top: 110px; }
+.sheet .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
+.route-box { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r); padding: 18px 20px; }
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px 20px; margin: 18px 0 0; font-size: 14px; }
+.meta-grid dt { color: var(--slate); font-size: 12.5px; }
+.meta-grid dd { margin: 2px 0 0; }
+.close { border: 1px solid var(--rule); background: var(--sheet); border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 18px; line-height: 1; flex: none; }
+footer.site { border-top: 1px solid var(--rule); color: var(--slate); font-size: 13.5px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; padding-top: 22px; padding-bottom: 30px; }
+#filters-toggle { display: none; }
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 28px; }
+  .body { grid-template-columns: 1fr; }
+  .filters { display: none; position: static; max-height: none; }
+  .filters.on { display: block; }
+  #filters-toggle { display: inline-flex; }
+  .row { grid-template-columns: minmax(0, 1fr) 96px; }
+  .row .p, .row .r { display: none; }
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #12151c; --panel: #1a1f29; --ink: #e7eaf0; --muted: #a2abbb; --line: #2b3240;
-    --accent: #7c9cff; --accent-ink: #0e1220; --chip: #252c39;
-    --stop-bg: #4a1f1c; --stop-ink: #ffc9c3;
-    --strong: #7fd8a6; --strong-bg: #1c3a2b; --partial: #f2c46d; --partial-bg: #3d3018;
-    --weak: #c6b5ea; --weak-bg: #2f2842; --none: #b3bac6; --none-bg: #2a303b;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
-  }
-}
-* { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--ink); }
-body { font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif; }
-a { color: var(--accent); }
-button { font: inherit; color: inherit; }
-header { position: sticky; top: 0; z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line); }
-.bar { display: flex; gap: 16px; align-items: center; padding: 12px 20px; flex-wrap: wrap; }
-.brand { font-weight: 700; font-size: 18px; margin-right: auto; }
-.brand small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; }
-#q { flex: 1 1 320px; max-width: 560px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font-size: 15px; }
-.tabs { display: flex; gap: 4px; background: var(--chip); padding: 4px; border-radius: 10px; }
-.tabs button { border: 0; background: transparent; padding: 6px 12px; border-radius: 7px; cursor: pointer; }
-.tabs button[aria-selected="true"] { background: var(--panel); box-shadow: var(--shadow); font-weight: 600; }
-#filters-toggle { display: none; border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
-.layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; padding: 20px; max-width: 1500px; margin: 0 auto; }
-aside { position: sticky; top: 84px; align-self: start; max-height: calc(100vh - 100px); overflow: auto; padding-right: 4px; }
-.fgroup { margin-bottom: 18px; }
-.fgroup h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 6px; }
-.fgroup label { display: flex; gap: 8px; align-items: center; padding: 2px 0; cursor: pointer; font-size: 14px; }
-.fgroup label .n { margin-left: auto; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
-.fgroup label.zero { opacity: .45; }
-#clear { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; cursor: pointer; width: 100%; }
-.summary { color: var(--muted); margin: 0 0 14px; }
-.kingdom { margin-bottom: 26px; }
-.kingdom > h2 { font-size: 17px; margin: 0 0 10px; }
-.kingdom > h2 span { color: var(--muted); font-weight: 400; font-size: 14px; }
-.phyla { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
-.phylum { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); }
-.phylum h3 { margin: 0 0 8px; font-size: 15px; }
-.phylum h3 code { font-size: 12px; color: var(--muted); }
-.cls { margin: 8px 0 0; }
-.cls-name { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.chip { border: 1px solid transparent; border-radius: 999px; padding: 3px 10px; font-size: 13px; cursor: pointer; text-align: left; }
-.cov-Strong { background: var(--strong-bg); color: var(--strong); }
-.cov-Partial { background: var(--partial-bg); color: var(--partial); }
-.cov-Weak { background: var(--weak-bg); color: var(--weak); }
-.cov-None, .cov- { background: var(--none-bg); color: var(--none); }
-.chip:hover, .card:hover { border-color: var(--accent); }
-.legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 14px; align-items: center; }
-.legend .chip { cursor: default; }
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); cursor: pointer; text-align: left; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; }
-.card h3 { margin: 0 0 2px; font-size: 16px; }
-.place { color: var(--muted); font-size: 13px; }
-.shape { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: var(--muted); margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.badge { font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--chip); }
-.badge.stop { background: var(--stop-bg); color: var(--stop-ink); }
-.empty { padding: 40px; text-align: center; color: var(--muted); }
-#detail { position: fixed; inset: 0 0 0 auto; width: min(860px, 100vw); background: var(--panel); border-left: 1px solid var(--line); box-shadow: -10px 0 30px rgba(0, 0, 0, .12); transform: translateX(100%); transition: transform .2s ease; z-index: 10; overflow: auto; }
-#detail.open { transform: none; }
-#scrim { position: fixed; inset: 0; background: rgba(10, 12, 18, .35); z-index: 9; display: none; }
-#scrim.open { display: block; }
-.d-head { position: sticky; top: 0; background: var(--panel); border-bottom: 1px solid var(--line); padding: 14px 22px; display: flex; gap: 12px; align-items: start; }
-.d-head h2 { margin: 0; font-size: 21px; }
-.d-head .close { margin-left: auto; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
-.d-body { padding: 18px 22px 40px; }
-.d-body h4 { margin: 22px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.diagram { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow: auto; }
-.diagram svg { max-width: 100%; height: auto; }
-.md p { margin: 6px 0; }
-.md ol, .md ul { padding-left: 22px; margin: 6px 0; }
-.md li { margin: 4px 0; }
-.md code { background: var(--chip); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
-.md sup a { text-decoration: none; }
-.meta { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 14px; }
-.meta dt { color: var(--muted); }
-.meta dd { margin: 0; }
-footer { color: var(--muted); font-size: 13px; text-align: center; padding: 20px; }
-@media (max-width: 860px) {
-  .layout { grid-template-columns: 1fr; padding: 16px; }
-  aside { display: none; position: static; max-height: none; }
-  aside.show { display: block; }
-  #filters-toggle { display: inline-block; }
-  .bar { padding: 10px 16px; }
-  .phyla, .cards { grid-template-columns: 1fr; }
+@media (max-width: 680px) {
+  .search kbd { display: none; }
+  .top-in { grid-template-columns: 1fr auto; padding: 10px 16px; gap: 10px; }
+  .search { grid-column: 1 / -1; grid-row: 2; max-width: none; }
+  .wrap { padding: 0 16px; }
+  .sheet-head, .sheet-in { padding-left: 18px; padding-right: 18px; }
+  .cards, .atlas { grid-template-columns: 1fr; }
+  .sheet h1 { font-size: 25px; }
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="bar">
-    <div class="brand">Agent Workflow Atlas<small id="counts"></small></div>
-    <input id="q" type="search" placeholder="Search workflows, tools, deliverables… (e.g. code review, 短剧, prior auth)" autocomplete="off" aria-label="Search">
-    <div class="tabs" role="tablist">
-      <button role="tab" id="tab-start" aria-selected="true">Start here</button>
-      <button role="tab" id="tab-map" aria-selected="false">Map</button>
-      <button role="tab" id="tab-list" aria-selected="false">List</button>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./">
+      <svg width="30" height="16" viewBox="0 0 30 16" aria-hidden="true"><line x1="2" y1="8" x2="28" y2="8" stroke="var(--route-soft)" stroke-width="2"/><circle cx="4" cy="8" r="3" fill="var(--route)"/><path d="M13 3.6h4l2.8 2.8v3.2L17 12.4h-4l-2.8-2.8V6.4z" fill="var(--stop)"/><circle cx="26" cy="8" r="3" fill="var(--route)"/></svg>
+      <span>Agent Workflow Atlas</span>
+    </a>
+    <div class="search"><input id="q" type="search" autocomplete="off"><kbd aria-hidden="true">/</kbd></div>
+    <div class="right">
+      <div class="seg" role="group" aria-label="Language / 语言"><button data-lang="en" lang="en">EN</button><button data-lang="zh-CN" lang="zh-CN">中文</button></div>
     </div>
-    <button id="filters-toggle" aria-expanded="false">Filters</button>
   </div>
 </header>
-<div class="layout">
-  <aside id="filters" aria-label="Filters"></aside>
-  <main>
-    <p class="summary" id="summary"></p>
-    <div class="legend" id="legend"></div>
-    <div id="view"></div>
-  </main>
-</div>
-<div id="scrim"></div>
-<section id="detail" aria-hidden="true"></section>
-<footer>Generated from the repository by <code>scripts/build_site.py</code>. Download the catalog as <a href="catalog.json">JSON</a> or <a href="catalog.csv">CSV</a>.</footer>
+<main>
+  <div class="wrap">
+    <section class="hero" id="hero"></section>
+    <div class="views">
+      <div class="seg" role="tablist" id="tabs"></div>
+      <div style="display:flex;gap:12px;align-items:center"><span class="count" id="count" aria-live="polite"></span><button class="btn" id="filters-toggle" aria-expanded="false" aria-controls="filters"></button></div>
+    </div>
+    <div class="body">
+      <aside class="filters" id="filters"></aside>
+      <div id="view"></div>
+    </div>
+  </div>
+</main>
+<footer class="site"><div class="wrap" id="foot"></div></footer>
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-hidden="true"></section>
 <script>
 const DATA = /*__DATA__*/null;
-const W = DATA.workflows;
-const byId = Object.fromEntries(W.map(w => [w.id, w]));
+const W = DATA.workflows, L = DATA.labels, byId = Object.fromEntries(W.map(w => [w.id, w]));
+const STR = {
+  en: {
+    search: "Search workflows, tools, professions (code review, 短剧, prior auth)",
+    heroTitle: "How work actually gets done with AI agents",
+    heroText: n => `${n.w} workflows from ${n.p} professions, each written as a step-by-step procedure with the tools, the sources and the exact points where a person has to decide.`,
+    legendTitle: "How to read a route",
+    lStep: "a step the agent runs", lLoop: "a loop the agent repeats until a check passes", lEach: "a step repeated for every item, often in parallel", lStop: "a person must approve before work continues",
+    tabs: {start: "Start here", map: "By field", list: "All workflows"},
+    count: (n, t) => n === t ? `${t} workflows` : `${n} of ${t} workflows`,
+    filters: "Filters", clear: "Clear filters",
+    groups: {kingdom: "Field", coverage: "Public evidence", autonomy: "How much the agent decides", checkpoints: "Human checkpoints", patterns: "Agent pattern", evidence: "Source type", risk: "Risk", status: "Status", region: "Region"},
+    hintAll: "Shows workflows with every checkpoint you select",
+    cov: {Strong: "Strong evidence", Partial: "Partial evidence", Weak: "Weak evidence", "None found": "No public run"},
+    covShort: {Strong: "Strong", Partial: "Partial", Weak: "Weak", "None found": "None found"},
+    covLong: {Strong: "First-hand public runs, well documented", Partial: "First-hand runs covering part of the workflow", Weak: "Only vendor, anonymous or second-hand accounts", "None found": "No public run found yet"},
+    auto: {assist: "Assist: a person reviews each piece", checkpointed: "Checkpointed: runs freely between fixed approvals", sampled: "Sampled: runs end to end while people audit samples"},
+    autoShort: {assist: "Assist", checkpointed: "Checkpointed", sampled: "Sampled"},
+    cp: {plan: "approve the plan", action: "approve an action", review: "review the draft", sample: "check a sample", "sign-off": "sign off", handoff: "take over a hard case"},
+    pat: {chain: "Chain", route: "Router", parallel: "Parallel", "orch-workers": "Orchestrator and workers", "eval-opt": "Generate and critique", "auto-loop": "Autonomous loop", "role-crew": "Role crew", "computer-use": "Computer use"},
+    ev: {A: "First-hand write-up", B: "Vendor material", C: "Community report"},
+    risk: {low: "Low", medium: "Medium", high: "High (regulated)"},
+    status: {accepted: "Accepted", draft: "Draft", merged: "Merged", retired: "Retired"},
+    startKits: "Run one today", startKitsText: n => `${n} workflows come with a copy-paste kit for Claude Code. Each kit stops at the human checkpoints and waits for you.`,
+    startBest: "Best documented", startBestText: n => `${n} more workflows with detailed first-hand public runs. Start here if you want evidence before you try anything.`,
+    kit: "Kit", runs: n => `${n} public run${n === 1 ? "" : "s"}`, stops: n => `${n} human stop${n === 1 ? "" : "s"}`,
+    empty: "No workflows match these filters.", unplaced: "Not yet in a category", unplacedText: "Workflows from fields the catalog doesn't cover yet. Three similar ones open a new category.",
+    close: "Close", share: "Copy link", copied: "Link copied", page: "Open as a page", source: "Source on GitHub", runKit: "Run it with the Claude Code kit",
+    nav: {route: "Route", steps: "Steps", runs: "Public runs", sources: "Sources", diagram: "Diagram"},
+    meta: {delivers: "Delivers", autonomy: "Autonomy", evidence: "Sources", risk: "Risk", verified: "Last checked", tools: "Tools seen in practice", pattern: "Agent pattern"},
+    routeTitle: "The route", stepsTitle: "Steps", runsTitle: "Public runs", sourcesTitle: "Sources", diagramTitle: "Full diagram",
+    contentNote: "",
+    foot: {data: "Download the catalog", json: "JSON", csv: "CSV", license: "Content CC BY 4.0, code MIT", repo: "GitHub repository", contribute: "Add a workflow or a run"},
+  },
+  "zh-CN": {
+    search: "搜索工作流、工具、行业（如：代码评审、短剧、事前授权）",
+    heroTitle: "各行各业如何真正用 AI 智能体干活",
+    heroText: n => `${n.w} 条工作流，来自 ${n.p} 个行业。每条都写成可照做的步骤，标明用到的工具、出处，以及必须由人拍板的节点。`,
+    legendTitle: "如何读路线图",
+    lStep: "智能体执行的一步", lLoop: "智能体反复执行，直到检查通过", lEach: "对每一项重复执行，常为并行", lStop: "必须由人审批后才能继续",
+    tabs: {start: "从这里开始", map: "按领域浏览", list: "全部工作流"},
+    count: (n, t) => n === t ? `共 ${t} 条工作流` : `${t} 条中的 ${n} 条`,
+    filters: "筛选", clear: "清除筛选",
+    groups: {kingdom: "领域", coverage: "公开证据", autonomy: "智能体自主程度", checkpoints: "人工检查点", patterns: "智能体模式", evidence: "来源类型", risk: "风险", status: "状态", region: "地区"},
+    hintAll: "只显示同时包含所选全部检查点的工作流",
+    cov: {Strong: "证据充分", Partial: "证据部分", Weak: "证据薄弱", "None found": "暂无公开实例"},
+    covShort: {Strong: "充分", Partial: "部分", Weak: "薄弱", "None found": "暂无"},
+    covLong: {Strong: "有详细的第一手公开实例", Partial: "第一手实例只覆盖部分流程", Weak: "仅有厂商、匿名或转述材料", "None found": "尚未找到公开实例"},
+    auto: {assist: "辅助：每一步都由人审阅", checkpointed: "分段：在固定审批点之间自动运行", sampled: "抽检：端到端运行，人抽查样本"},
+    autoShort: {assist: "辅助", checkpointed: "分段", sampled: "抽检"},
+    cp: {plan: "审批计划", action: "审批操作", review: "审阅草稿", sample: "抽检样本", "sign-off": "签发", handoff: "人工接手疑难"},
+    pat: {chain: "链式", route: "路由", parallel: "并行", "orch-workers": "编排与子智能体", "eval-opt": "生成与评审", "auto-loop": "自主循环", "role-crew": "角色分工", "computer-use": "操作电脑"},
+    ev: {A: "第一手记录", B: "厂商材料", C: "社区经验"},
+    risk: {low: "低", medium: "中", high: "高（受监管）"},
+    status: {accepted: "已收录", draft: "草稿", merged: "已合并", retired: "已退役"},
+    startKits: "今天就能用", startKitsText: n => `${n} 条工作流附带可直接复制的 Claude Code 套件，到人工检查点会停下来等你确认。`,
+    startBest: "证据最充分", startBestText: n => `另有 ${n} 条工作流有详细的第一手公开实例。想先看证据再动手，从这里开始。`,
+    kit: "套件", runs: n => `${n} 个公开实例`, stops: n => `${n} 个人工节点`,
+    empty: "没有符合这些筛选条件的工作流。", unplaced: "尚未归类", unplacedText: "来自目录尚未覆盖领域的工作流。凑齐三条相似的就会新开一个类别。",
+    close: "关闭", share: "复制链接", copied: "已复制", page: "以独立页面打开", source: "在 GitHub 查看源文件", runKit: "用 Claude Code 套件运行",
+    nav: {route: "路线", steps: "步骤", runs: "公开实例", sources: "来源", diagram: "流程图"},
+    meta: {delivers: "交付物", autonomy: "自主程度", evidence: "来源类型", risk: "风险", verified: "最近核对", tools: "实践中用到的工具", pattern: "智能体模式"},
+    routeTitle: "路线", stepsTitle: "步骤", runsTitle: "公开实例", sourcesTitle: "来源", diagramTitle: "完整流程图",
+    contentNote: "步骤、公开实例和来源保留英文原文，以便与引用的出处逐字对应。",
+    foot: {data: "下载整个目录", json: "JSON", csv: "CSV", license: "内容 CC BY 4.0，代码 MIT", repo: "GitHub 仓库", contribute: "提交工作流或运行记录"},
+  },
+};
 const COV = ["Strong", "Partial", "Weak", "None found"];
-const covClass = c => "cov-" + (c || "").split(" ")[0];
-const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]));
+let lang = (() => {
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q && STR[q]) return q;
+  try { const s = localStorage.getItem("awa-lang"); if (s && STR[s]) return s; } catch (e) {}
+  return /^zh/i.test(navigator.language || "") ? "zh-CN" : "en";
+})();
+const T = () => STR[lang];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const lab = (kind, code) => (L[kind][code] || {})[lang] || (L[kind][code] || {}).en || code;
+const nameOf = w => lang === "zh-CN" && w.nameZh ? w.nameZh : w.name;
+const sumOf = w => lang === "zh-CN" && w.summaryZh ? w.summaryZh : w.summary;
+const gc = c => "g-" + (c || "").split(" ")[0];
+const stopsOf = w => w.route.filter(m => m.k === "stop").length;
 
 const GROUPS = [
-  {key: "kingdom", title: "Field", values: Object.keys(DATA.taxonomy), label: v => DATA.taxonomy[v].name},
-  {key: "coverage", title: "Public runs", values: COV},
-  {key: "autonomy", title: "Autonomy", values: ["assist", "checkpointed", "sampled"]},
-  {key: "checkpoints", title: "Human checkpoints", values: ["plan", "action", "review", "sample", "sign-off", "handoff"], all: true},
-  {key: "patterns", title: "Agent patterns", values: ["chain", "route", "parallel", "orch-workers", "eval-opt", "auto-loop", "role-crew", "computer-use"]},
-  {key: "evidence", title: "Evidence", values: ["A", "B", "C"], label: v => ({A: "A · first-hand", B: "B · vendor", C: "C · community"})[v]},
-  {key: "risk", title: "Risk", values: ["low", "medium", "high"]},
-  {key: "status", title: "Status", values: ["accepted", "draft", "merged", "retired"]},
-  {key: "region", title: "Region", values: [...new Set(W.flatMap(w => w.region))].sort()},
+  {key: "kingdom", values: Object.keys(DATA.taxonomy), label: v => lab("kingdoms", v)},
+  {key: "coverage", values: COV, label: v => T().covShort[v]},
+  {key: "autonomy", values: ["assist", "checkpointed", "sampled"], label: v => T().autoShort[v]},
+  {key: "checkpoints", values: ["plan", "action", "review", "sample", "sign-off", "handoff"], all: true, label: v => T().cp[v]},
+  {key: "patterns", values: ["chain", "route", "parallel", "orch-workers", "eval-opt", "auto-loop", "role-crew", "computer-use"], label: v => T().pat[v]},
+  {key: "evidence", values: ["A", "B", "C"], label: v => T().ev[v]},
+  {key: "risk", values: ["low", "medium", "high"], label: v => T().risk[v]},
+  {key: "status", values: ["accepted", "draft"], label: v => T().status[v]},
+  {key: "region", values: [...new Set(W.flatMap(w => w.region))].sort(), label: v => v},
 ];
-const state = {q: "", view: "start", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()]))};
-
-function haystack(w) {
-  return [w.id, w.name, w.kingdomName, w.phylumName, w.phylum, w.class, w.deliverable, w.shape, w.variants.join(" "), w.intro, w.steps, w.publicRuns].join(" ").toLowerCase();
-}
-const HAY = Object.fromEntries(W.map(w => [w.id, haystack(w)]));
+const state = {q: "", view: "start", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()])), open: {kingdom: true, coverage: true, checkpoints: true}};
+const HAY = Object.fromEntries(W.map(w => [w.id, [w.id, w.name, w.nameZh, w.summary, w.summaryZh,
+  L.phyla[w.phylum]?.en, L.phyla[w.phylum]?.["zh-CN"], L.classes[w.class]?.en, L.classes[w.class]?.["zh-CN"], w.class,
+  w.deliverable, w.shape, w.variants.join(" "), w.steps].join(" ").toLowerCase()]));
 
 function matches(w, skip) {
   const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
   if (terms.some(t => !HAY[w.id].includes(t))) return false;
   for (const g of GROUPS) {
-    if (g.key === skip) continue;
-    const sel = state.f[g.key];
-    if (!sel.size) continue;
-    const val = w[g.key];
-    if (Array.isArray(val)) {
-      if (g.all ? ![...sel].every(v => val.includes(v)) : !val.some(v => sel.has(v))) return false;
-    } else if (!sel.has(val)) return false;
+    if (g.key === skip || !state.f[g.key].size) continue;
+    const sel = state.f[g.key], val = w[g.key];
+    if (Array.isArray(val) ? (g.all ? ![...sel].every(v => val.includes(v)) : !val.some(v => sel.has(v))) : !sel.has(val)) return false;
   }
   return true;
 }
 
+function routeHTML(w, big) {
+  const t = T(), label = m => m.k === "stop" ? "🛑 " + t.cp[m.cp] : m.t;
+  return `<div class="route${big ? " big" : ""}" role="img" aria-label="${esc(w.route.map(label).join(" → "))}">${w.route.map(m =>
+    `<span class="m ${m.k}" title="${esc(m.k === "stop" && m.t && m.t !== m.cp ? label(m) + ": " + m.t : label(m))}"><i></i></span>`).join("")}</div>`;
+}
+function card(w) {
+  const t = T();
+  return `<button class="card" data-id="${w.id}">
+    ${routeHTML(w)}
+    <h3>${esc(nameOf(w))}</h3>
+    <div class="sub">${esc(lab("phyla", w.phylum))}, ${esc(lab("classes", w.class))}</div>
+    <p class="sum">${esc(sumOf(w))}</p>
+    <div class="facts"><span class="grade ${gc(w.coverage)}">${esc(t.cov[w.coverage] || "")}</span><span class="stop-text">${t.stops(stopsOf(w))}</span>${w.kit ? `<span class="kit-tag">${t.kit}</span>` : ""}</div>
+  </button>`;
+}
+function renderStart(list) {
+  const t = T(), kits = list.filter(w => w.kit);
+  const best = list.filter(w => w.coverage === "Strong" && w.evidence === "A" && !w.kit).sort((a, b) => (b.runs - a.runs) || a.id.localeCompare(b.id));
+  let out = "";
+  if (kits.length) out += `<section class="sec"><h2>${t.startKits}</h2><p>${t.startKitsText(kits.length)}</p><div class="cards">${kits.map(card).join("")}</div></section>`;
+  if (best.length) out += `<section class="sec"><h2>${t.startBest}</h2><p>${t.startBestText(best.length)}</p><div class="cards">${best.map(card).join("")}</div></section>`;
+  return out || empty();
+}
+function wfLink(w) {
+  return `<button class="wf-link" data-id="${w.id}"><span class="dot ${gc(w.coverage)}" title="${esc(T().cov[w.coverage] || "")}"></span><span class="nm">${esc(nameOf(w))}</span>${routeHTML(w)}</button>`;
+}
+function renderMap(list) {
+  let out = "";
+  for (const [k, kd] of Object.entries(DATA.taxonomy)) {
+    const inK = list.filter(w => w.kingdom === k && !w.unplaced);
+    if (!inK.length) continue;
+    out += `<div class="kingdom"><h2>${esc(lab("kingdoms", k))}</h2><span>${T().count(inK.length, inK.length)}</span></div>`;
+    for (const [p, pd] of Object.entries(kd.phyla)) {
+      const inP = inK.filter(w => w.phylum === p);
+      if (!inP.length) continue;
+      out += `<div class="phylum"><h3>${esc(lab("phyla", p))}<span>${inP.length}</span></h3>` + pd.classes.map(c => {
+        const ws = inP.filter(w => w.class === c);
+        return ws.length ? `<div class="cls"><div class="cls-name">${esc(lab("classes", c))}</div>${ws.map(wfLink).join("")}</div>` : "";
+      }).join("") + `</div>`;
+    }
+  }
+  const un = list.filter(w => w.unplaced);
+  if (un.length) out += `<div class="kingdom"><h2>${T().unplaced}</h2><span>${esc(T().unplacedText)}</span></div><div class="phylum">${un.map(wfLink).join("")}</div>`;
+  return out ? `<div class="atlas">${out}</div>` : empty();
+}
+function renderList(list) {
+  const t = T();
+  return list.length ? `<div class="rows">${list.map(w => `<button class="row" data-id="${w.id}">
+    <div><div class="t">${esc(nameOf(w))}</div><div class="s">${esc(sumOf(w))}</div></div>
+    <div class="p">${esc(lab("phyla", w.phylum))}<br>${esc(lab("classes", w.class))}</div>
+    <div class="r">${routeHTML(w)}</div>
+    <div><span class="grade ${gc(w.coverage)}">${esc(t.covShort[w.coverage] || "")}</span></div>
+  </button>`).join("")}</div>` : empty();
+}
+function empty() { return `<div class="empty"><p>${T().empty}</p><button class="btn" data-clear>${T().clear}</button></div>`; }
+
 function renderFilters() {
-  const el = document.getElementById("filters");
-  el.innerHTML = GROUPS.filter(g => g.values.length).map(g => {
+  const t = T();
+  document.getElementById("filters").innerHTML = GROUPS.filter(g => g.values.length).map(g => {
     const rows = g.values.map(v => {
       const n = W.filter(w => matches(w, g.key) && (Array.isArray(w[g.key]) ? w[g.key].includes(v) : w[g.key] === v)).length;
       const on = state.f[g.key].has(v);
-      return `<label class="${n || on ? "" : "zero"}"><input type="checkbox" data-g="${g.key}" value="${esc(v)}" ${on ? "checked" : ""}> ${esc(g.label ? g.label(v) : v)}<span class="n">${n}</span></label>`;
+      return `<label class="${n || on ? "" : "zero"}"><input type="checkbox" data-g="${g.key}" value="${esc(v)}" ${on ? "checked" : ""}><span>${esc(g.label(v))}</span><span class="n">${n}</span></label>`;
     }).join("");
-    return `<div class="fgroup"><h3>${g.title}${g.all ? " (all of)" : ""}</h3>${rows}</div>`;
-  }).join("") + `<button id="clear">Clear filters</button>`;
-  el.querySelectorAll("input").forEach(i => i.addEventListener("change", () => {
-    const s = state.f[i.dataset.g];
-    i.checked ? s.add(i.value) : s.delete(i.value);
-    render();
-  }));
-  document.getElementById("clear").onclick = () => { GROUPS.forEach(g => state.f[g.key].clear()); state.q = ""; document.getElementById("q").value = ""; render(); };
-}
-
-function chip(w) {
-  return `<button class="chip ${covClass(w.coverage)}" data-id="${w.id}" title="${esc(w.id + " · " + w.deliverable)}">${esc(w.name)}</button>`;
-}
-
-function renderMap(list) {
-  const ids = new Set(list.map(w => w.id));
-  const out = [];
-  for (const [k, kd] of Object.entries(DATA.taxonomy)) {
-    const phyla = [];
-    for (const [p, pd] of Object.entries(kd.phyla)) {
-      const classes = pd.classes.map(c => {
-        const ws = W.filter(w => !w.unplaced && w.kingdom === k && w.phylum === p && w.class === c && ids.has(w.id));
-        return ws.length ? `<div class="cls"><div class="cls-name">${c}</div><div class="chips">${ws.map(chip).join("")}</div></div>` : "";
-      }).join("");
-      if (classes) phyla.push(`<div class="phylum"><h3>${esc(pd.name)} <code>${p}</code></h3>${classes}</div>`);
-    }
-    if (phyla.length) out.push(`<section class="kingdom"><h2>${esc(kd.name)} <span>${k}</span></h2><div class="phyla">${phyla.join("")}</div></section>`);
-  }
-  const unplaced = list.filter(w => w.unplaced);
-  if (unplaced.length) out.push(`<section class="kingdom"><h2>Unplaced <span>no class yet; three similar ones open a new class</span></h2><div class="chips">${unplaced.map(chip).join("")}</div></section>`);
-  return out.join("") || `<div class="empty">No workflows match. Try fewer filters.</div>`;
-}
-
-function card(w) {
-  const stops = w.checkpoints.map(c => `<span class="badge stop">🛑 ${esc(c)}</span>`).join("");
-  return `<button class="card" data-id="${w.id}">
-    <h3>${esc(w.name)}</h3>
-    <div class="place">${w.id} · ${esc(w.phylumName)} › ${w.class} · ${esc(w.deliverable)}</div>
-    <div class="badges"><span class="badge ${covClass(w.coverage)}">${esc(w.coverage || "no grade")}${w.runs ? " · " + w.runs : ""}</span><span class="badge">${w.autonomy}</span>${stops}<span class="badge">evidence ${w.evidence}</span>${w.kit ? '<span class="badge stop" style="background:var(--strong-bg);color:var(--strong)">kit</span>' : ""}</div>
-    <div class="shape">${esc(w.shape)}</div>
-  </button>`;
-}
-
-function renderList(list) {
-  return list.length ? `<div class="cards">${list.map(card).join("")}</div>` : `<div class="empty">No workflows match. Try fewer filters.</div>`;
-}
-
-// the strongest evidence first: first-hand runs graded Strong, evidence A, most runs; kits pinned on top
-function renderStart(list) {
-  const strong = list.filter(w => w.coverage === "Strong" && w.evidence === "A")
-    .sort((a, b) => (b.kit - a.kit) || (b.runs - a.runs) || a.id.localeCompare(b.id));
-  const kits = list.filter(w => w.kit);
-  return `<section class="kingdom"><h2>Run one today <span>${kits.length} workflows with a Claude Code kit</span></h2><div class="cards">${kits.map(card).join("")}</div></section>
-  <section class="kingdom"><h2>Best documented <span>${strong.length} workflows with strong first-hand public runs</span></h2><div class="cards">${strong.map(card).join("")}</div></section>`;
+    return `<details data-g="${g.key}" ${state.open[g.key] || state.f[g.key].size ? "open" : ""}><summary>${t.groups[g.key]}</summary>${g.all ? `<div class="hint">${t.hintAll}</div>` : ""}${rows}</details>`;
+  }).join("") + `<button class="btn clear" data-clear>${t.clear}</button>`;
 }
 
 function render() {
-  const list = W.filter(w => matches(w));
-  document.getElementById("counts").textContent = `${W.length} workflows · ${Object.keys(DATA.taxonomy).length} fields · ${W.filter(w => w.status === "accepted").length} accepted`;
-  document.getElementById("summary").textContent = list.length === W.length ? `Showing all ${W.length} workflows. Click one for its steps, diagram and sources.` : `${list.length} of ${W.length} workflows match.`;
-  document.getElementById("legend").innerHTML = `Public runs:` + COV.map(c => `<span class="chip ${covClass(c)}">${c}</span>`).join("");
-  document.getElementById("view").innerHTML = state.view === "map" ? renderMap(list) : state.view === "start" ? renderStart(list) : renderList(list);
-  document.querySelectorAll("#view [data-id]").forEach(b => b.addEventListener("click", () => openDetail(b.dataset.id)));
+  const t = T(), list = W.filter(w => matches(w));
+  document.documentElement.lang = lang;
+  document.title = lang === "zh-CN" ? "Agent Workflow Atlas · AI 智能体工作流图谱" : "Agent Workflow Atlas";
+  document.getElementById("q").placeholder = t.search;
+  document.getElementById("q").setAttribute("aria-label", t.search);
+  document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  const professions = Object.values(DATA.taxonomy).reduce((n, k) => n + Object.keys(k.phyla).length, 0);
+  const sample = {route: [{k: "step", t: ""}, {k: "loop", t: ""}, {k: "step", t: ""}, {k: "stop", t: "", cp: "plan"}, {k: "each", t: ""}, {k: "step", t: ""}, {k: "stop", t: "", cp: "review"}]};
+  document.getElementById("hero").innerHTML = `<div><h1>${t.heroTitle}</h1><p>${t.heroText({w: W.length, p: professions})}</p></div>
+    <div class="legend"><strong>${t.legendTitle}</strong>${routeHTML(sample, true)}
+    <dl><dt class="route"><span class="m step"><i></i></span></dt><dd>${t.lStep}</dd><dt class="route"><span class="m loop"><i></i></span></dt><dd>${t.lLoop}</dd><dt class="route"><span class="m each"><i></i></span></dt><dd>${t.lEach}</dd><dt class="route"><span class="m stop"><i></i></span></dt><dd>${t.lStop}</dd></dl></div>`;
+  document.getElementById("hero").style.display = state.view === "start" && !state.q ? "" : "none";
+  document.getElementById("tabs").innerHTML = ["start", "map", "list"].map(v => `<button role="tab" data-view="${v}" aria-selected="${state.view === v}">${t.tabs[v]}</button>`).join("");
+  document.getElementById("count").textContent = t.count(list.length, W.length);
+  document.getElementById("filters-toggle").textContent = t.filters;
+  document.getElementById("view").innerHTML = state.view === "map" ? renderMap(list) : state.view === "list" ? renderList(list) : renderStart(list);
   renderFilters();
+  document.getElementById("foot").innerHTML = `<span>${t.foot.data}: <a href="catalog.json">${t.foot.json}</a>, <a href="catalog.csv">${t.foot.csv}</a></span>${DATA.repo ? `<a href="${DATA.repo}">${t.foot.repo}</a><a href="${DATA.repo}/blob/main/CONTRIBUTING.md">${t.foot.contribute}</a>` : ""}<span>${t.foot.license}</span>`;
 }
 
-// minimal Markdown: paragraphs, lists, bold, italic, code, links, citations
 function inline(s, base) {
   s = esc(s);
   s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
   s = s.replace(/\[\[(\d+)\]\]\(#sources\)/g, '<sup><a href="#src-$1">[$1]</a></sup>');
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => {
-    const href = /^(https?:|#)/.test(u) ? u : linkTo(base, u);
-    return `<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
-  });
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, x, u) => `<a href="${/^(https?:|#)/.test(u) ? u : linkTo(base, u)}" target="_blank" rel="noopener">${x}</a>`);
   s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/(^|[\s(])\*([^*]+)\*/g, "$1<em>$2</em>");
   return s.replace(/(https?:\/\/[^\s<)]+)(?![^<]*>|[^<>]*<\/a>)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
-function md(text, base, anchorSources) {
-  const out = [];
-  let list = null;
+function md(text, base, srcAnchors) {
+  const out = []; let list = null;
   for (const raw of text.split("\n")) {
-    const line = raw.trimEnd();
-    const ol = line.match(/^(\d+)\.\s+(.*)$/), ul = line.match(/^[-*]\s+(.*)$/);
+    const line = raw.trimEnd(), ol = line.match(/^(\d+)\.\s+(.*)$/), ul = line.match(/^[-*]\s+(.*)$/);
     if (ol || ul) {
       const tag = ol ? "ol" : "ul";
       if (list !== tag) { if (list) out.push(`</${list}>`); out.push(`<${tag}>`); list = tag; }
-      const id = anchorSources && ol ? ` id="src-${ol[1]}" value="${ol[1]}"` : (ol ? ` value="${ol[1]}"` : "");
-      out.push(`<li${id}>${inline(ol ? ol[2] : ul[1], base)}</li>`);
+      out.push(`<li${ol ? ` value="${ol[1]}"${srcAnchors ? ` id="src-${ol[1]}"` : ""}` : ""}>${inline(ol ? ol[2] : ul[1], base)}</li>`);
       continue;
     }
     if (list) { out.push(`</${list}>`); list = null; }
     if (line.trim()) out.push(`<p>${inline(line, base)}</p>`);
   }
   if (list) out.push(`</${list}>`);
-  return `<div class="md">${out.join("")}</div>`;
+  return `<div class="prose">${out.join("")}</div>`;
 }
 function linkTo(base, rel) {
-  const parts = (base + "/" + rel).split("/");
-  const stack = [];
-  for (const p of parts) { if (p === "..") stack.pop(); else if (p && p !== ".") stack.push(p); }
-  const path = stack.join("/");
-  return DATA.repo ? `${DATA.repo}/blob/main/${path}` : `../${path}`;
+  const st = [];
+  for (const p of (base + "/" + rel).split("/")) { if (p === "..") st.pop(); else if (p && p !== ".") st.push(p); }
+  return DATA.repo ? `${DATA.repo}/blob/main/${st.join("/")}` : `../${st.join("/")}`;
 }
-
 let mermaidReady = null;
 function loadMermaid() {
-  if (!mermaidReady) mermaidReady = new Promise((res, rej) => {
+  return mermaidReady ||= new Promise((res, rej) => {
     const s = document.createElement("script");
     s.src = "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js";
-    s.onload = () => { mermaid.initialize({startOnLoad: false, securityLevel: "strict", theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default"}); res(); };
-    s.onerror = rej;
-    document.head.appendChild(s);
+    s.onload = () => { mermaid.initialize({startOnLoad: false, securityLevel: "strict", theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "neutral"}); res(); };
+    s.onerror = rej; document.head.appendChild(s);
   });
-  return mermaidReady;
 }
 
+let lastFocus = null;
 async function openDetail(id) {
-  const w = byId[id];
-  if (!w) return;
-  const el = document.getElementById("detail");
-  const repoLink = DATA.repo ? `${DATA.repo}/blob/main/${w.path}/README.md` : `../${w.path}/README.md`;
-  el.innerHTML = `<div class="d-head"><div><div class="place">${w.id} · ${esc(w.kingdomName)} › ${esc(w.phylumName)} › ${w.class}</div><h2>${esc(w.name)}</h2></div><button class="close" aria-label="Close">✕</button></div>
-  <div class="d-body">
-    <div class="badges"><span class="badge ${covClass(w.coverage)}">Public runs: ${esc(w.coverage || "not graded")}</span><span class="badge">${w.autonomy}</span><span class="badge">evidence ${w.evidence}</span><span class="badge">${w.status}</span>${w.risk ? `<span class="badge">risk ${w.risk}</span>` : ""}</div>
-    <h4>Shape</h4><div class="shape" style="-webkit-line-clamp:unset">${esc(w.shape)}</div>
-    <div class="diagram" id="dg">Loading diagram…</div>
-    <h4>At a glance</h4>
-    <dl class="meta"><dt>Delivers</dt><dd>${esc(w.deliverable)}</dd><dt>Checkpoints</dt><dd>${w.checkpoints.map(c => "🛑 " + esc(c)).join(" · ")}</dd><dt>Patterns</dt><dd>${w.patterns.map(esc).join(" · ")}</dd>${w.variants.length ? `<dt>Tools</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd>` : ""}<dt>Share</dt><dd><a href="w/${w.id}/">w/${w.id}/</a></dd>${w.kit ? `<dt>Run it</dt><dd><a href="${linkTo(w.path, "variants/claude-code.md")}" target="_blank" rel="noopener">Claude Code kit</a></dd>` : ""}<dt>Last verified</dt><dd>${esc(w.lastVerified)}</dd><dt>Source file</dt><dd><a href="${repoLink}" target="_blank" rel="noopener">${esc(w.path)}/README.md</a></dd></dl>
-    ${w.intro ? md(w.intro, w.path) : ""}
-    ${w.steps ? `<h4>Steps</h4>${md(w.steps, w.path)}` : ""}
-    ${w.publicRuns ? `<h4>Public runs</h4>${md(w.publicRuns, w.path)}` : ""}
-    ${w.sources ? `<h4 id="sources">Sources</h4>${md(w.sources, w.path, true)}` : ""}
+  const w = byId[id]; if (!w) return;
+  const t = T(), el = document.getElementById("sheet");
+  if (!el.classList.contains("on")) lastFocus = document.activeElement;
+  const altName = lang === "zh-CN" && w.nameZh ? w.name : "";
+  const repoFile = DATA.repo ? `${DATA.repo}/blob/main/${w.path}/README.md` : `../${w.path}/README.md`;
+  el.setAttribute("aria-label", nameOf(w));
+  el.innerHTML = `<div class="sheet-head"><div class="crumb"><span>${esc(lab("kingdoms", w.kingdom))} › ${esc(lab("phyla", w.phylum))} › ${esc(lab("classes", w.class))} · ${w.id}</span><button class="close" aria-label="${t.close}">×</button></div>
+    <nav><a href="#d-route">${t.nav.route}</a><a href="#d-steps">${t.nav.steps}</a><a href="#d-runs">${t.nav.runs}</a><a href="#d-sources">${t.nav.sources}</a><a href="#d-diagram">${t.nav.diagram}</a></nav></div>
+  <div class="sheet-in">
+    <h1>${esc(nameOf(w))}</h1>${altName ? `<div class="alt-name" lang="en">${esc(altName)}</div>` : ""}
+    <p class="lede">${esc(sumOf(w))}</p>
+    <div class="facts"><span class="grade ${gc(w.coverage)}" title="${esc(t.covLong[w.coverage] || "")}">${esc(t.cov[w.coverage] || "")}, ${t.runs(w.runs)}</span><span class="stop-text">${t.stops(stopsOf(w))}</span></div>
+    <div class="actions">${w.kit ? `<a class="btn primary" href="${linkTo(w.path, "variants/claude-code.md")}" target="_blank" rel="noopener">${t.runKit}</a>` : ""}<a class="btn" href="w/${w.id}/${lang === "zh-CN" ? "zh/" : ""}">${t.page}</a><button class="btn" data-copy>${t.share}</button><a class="btn" href="${repoFile}" target="_blank" rel="noopener">${t.source}</a></div>
+    <h2 id="d-route">${t.routeTitle}</h2>
+    <div class="route-box">${routeHTML(w, true)}<ol class="route-labels">${w.route.map(m => `<li class="${m.k === "stop" ? "stop" : ""}">${m.k === "stop" ? "🛑 " + esc(t.cp[m.cp]) + (m.t && m.t !== m.cp ? `<span style="font-weight:400">: ${esc(m.t)}</span>` : "") : esc(m.t)}</li>`).join("")}</ol></div>
+    <dl class="meta-grid"><div><dt>${t.meta.delivers}</dt><dd>${esc(w.deliverable)}</dd></div><div><dt>${t.meta.autonomy}</dt><dd>${esc(t.auto[w.autonomy])}</dd></div><div><dt>${t.meta.pattern}</dt><dd>${w.patterns.map(p => esc(t.pat[p] || p)).join(", ")}</dd></div><div><dt>${t.meta.evidence}</dt><dd>${esc(t.ev[w.evidence])}</dd></div><div><dt>${t.meta.risk}</dt><dd>${esc(t.risk[w.risk] || "")}</dd></div><div><dt>${t.meta.verified}</dt><dd>${esc(w.lastVerified)}</dd></div>${w.variants.length ? `<div style="grid-column:1/-1"><dt>${t.meta.tools}</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd></div>` : ""}</dl>
+    ${t.contentNote ? `<p class="note" style="margin-top:22px">${t.contentNote}</p>` : ""}
+    <h2 id="d-steps">${t.stepsTitle}</h2><div lang="en">${md(w.steps, w.path)}${w.intro ? `<div style="margin-top:14px">${md(w.intro, w.path)}</div>` : ""}</div>
+    <h2 id="d-runs">${t.runsTitle}</h2><div lang="en">${md(w.publicRuns, w.path)}</div>
+    <h2 id="d-sources">${t.sourcesTitle}</h2><div lang="en">${md(w.sources, w.path, true)}</div>
+    <h2 id="d-diagram">${t.diagramTitle}</h2><div class="shape-line">${esc(w.shape)}</div><div class="diagram" id="dg" style="margin-top:12px"></div>
   </div>`;
-  el.classList.add("open"); el.setAttribute("aria-hidden", "false");
-  document.getElementById("scrim").classList.add("open");
+  el.classList.add("on"); el.setAttribute("aria-hidden", "false"); document.getElementById("scrim").classList.add("on");
+  document.body.style.overflow = "hidden";
+  el.scrollTop = 0; el.querySelector(".close").focus();
   el.querySelector(".close").onclick = closeDetail;
-  el.scrollTop = 0;
-  if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
-  try {
-    await loadMermaid();
-    const {svg} = await mermaid.render("m" + id.replace(/\W/g, ""), w.mermaid);
-    const dg = document.getElementById("dg");
-    if (dg && byId[id] === w) dg.innerHTML = svg;
-  } catch (e) {
-    const dg = document.getElementById("dg");
-    if (dg) dg.innerHTML = `<pre style="white-space:pre-wrap;margin:0">${esc(w.mermaid)}</pre>`;
-  }
+  el.querySelector("[data-copy]").onclick = e => { const u = new URL(`w/${w.id}/`, location.href).href; (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => e.target.textContent = t.copied, () => prompt(t.share, u)); };
+  el.querySelectorAll(".sheet-head nav a").forEach(a => a.onclick = ev => { ev.preventDefault(); el.querySelector(a.getAttribute("href")).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"}); });
+  if (location.hash !== "#" + id) history.replaceState(null, "", location.pathname + location.search + "#" + id);
+  try { await loadMermaid(); const {svg} = await mermaid.render("m" + id.replace(/\W/g, "") + Date.now(), w.mermaid); const dg = document.getElementById("dg"); if (dg) dg.innerHTML = svg; }
+  catch (e) { const dg = document.getElementById("dg"); if (dg) dg.innerHTML = `<pre class="shape-line" style="white-space:pre-wrap;margin:0">${esc(w.mermaid)}</pre>`; }
 }
 function closeDetail() {
-  document.getElementById("detail").classList.remove("open");
-  document.getElementById("detail").setAttribute("aria-hidden", "true");
-  document.getElementById("scrim").classList.remove("open");
+  const el = document.getElementById("sheet");
+  if (!el.classList.contains("on")) return;
+  el.classList.remove("on"); el.setAttribute("aria-hidden", "true"); document.getElementById("scrim").classList.remove("on");
+  document.body.style.overflow = "";
   history.replaceState(null, "", location.pathname + location.search);
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
 }
 
-document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+document.addEventListener("click", e => {
+  const id = e.target.closest("[data-id]"); if (id) return openDetail(id.dataset.id);
+  const v = e.target.closest("[data-view]"); if (v) { state.view = v.dataset.view; return render(); }
+  const l = e.target.closest("[data-lang]");
+  if (l) {
+    lang = l.dataset.lang; try { localStorage.setItem("awa-lang", lang); } catch (x) {}
+    const open = document.getElementById("sheet").classList.contains("on") && location.hash.slice(1);
+    render(); if (open) openDetail(open); return;
+  }
+  if (e.target.closest("[data-clear]")) { GROUPS.forEach(g => state.f[g.key].clear()); state.q = ""; document.getElementById("q").value = ""; return render(); }
+});
+document.addEventListener("change", e => {
+  const i = e.target.closest("input[data-g]"); if (!i) return;
+  const s = state.f[i.dataset.g]; i.checked ? s.add(i.value) : s.delete(i.value);
+  state.open[i.dataset.g] = true; render();
+});
+document.addEventListener("toggle", e => { if (e.target.matches && e.target.matches("details[data-g]")) state.open[e.target.dataset.g] = e.target.open; }, true);
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; if (state.q && state.view === "start") state.view = "list"; render(); });
 document.getElementById("scrim").onclick = closeDetail;
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); if (e.key === "/" && document.activeElement.id !== "q") { e.preventDefault(); document.getElementById("q").focus(); } });
-for (const v of ["start", "map", "list"]) document.getElementById("tab-" + v).onclick = () => {
-  state.view = v;
-  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.id === "tab-" + v)));
-  render();
-};
-document.getElementById("filters-toggle").onclick = e => {
-  const a = document.getElementById("filters");
-  a.classList.toggle("show");
-  e.target.setAttribute("aria-expanded", String(a.classList.contains("show")));
-};
+document.getElementById("filters-toggle").onclick = e => { const f = document.getElementById("filters"); f.classList.toggle("on"); e.currentTarget.setAttribute("aria-expanded", String(f.classList.contains("on"))); };
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeDetail();
+  if (e.key === "/" && !/input|textarea/i.test(document.activeElement.tagName)) { e.preventDefault(); document.getElementById("q").focus(); }
+});
 render();
 if (location.hash.length > 1) openDetail(decodeURIComponent(location.hash.slice(1)));
 </script>

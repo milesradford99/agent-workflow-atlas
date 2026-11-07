@@ -1,6 +1,7 @@
 ---
 id: AWF-0082
 name: Model-triaged records release
+summary: "Scores records for declassification or exemption with a trained model; humans review unsure ones and sample-check its calls before release."
 kingdom: ORG
 phylum: GOV
 class: CIVIC

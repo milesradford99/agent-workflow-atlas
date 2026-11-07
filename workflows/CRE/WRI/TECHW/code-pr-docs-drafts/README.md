@@ -1,6 +1,7 @@
 ---
 id: AWF-0075
 name: Code-PR docs drafts
+summary: "Drafts a docs pull request from a code PR; the code author checks accuracy and the docs team checks style before merge."
 kingdom: CRE
 phylum: WRI
 class: TECHW

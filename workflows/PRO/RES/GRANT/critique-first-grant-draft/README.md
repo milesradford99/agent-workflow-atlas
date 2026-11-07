@@ -1,6 +1,7 @@
 ---
 id: AWF-0045
 name: Critique-first grant draft
+summary: "Drafts a grant, simulates a study-section critique without rewriting, then integrates only the concerns the PI accepts; the PI signs off."
 kingdom: PRO
 phylum: RES
 class: GRANT

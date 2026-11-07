@@ -1,6 +1,7 @@
 ---
 id: AWF-0112
 name: Confidence-sampled attribute extraction
+summary: "Extracts catalog attribute values and scores confidence; auditors correct low-confidence items and sample periodically for drift."
 kingdom: COM
 phylum: RET
 class: CATALOG

@@ -1,6 +1,7 @@
 ---
 id: AWF-0014
 name: Hook-cadence drama script
+summary: "Drafts a 60 to 100 episode short-drama script paced by hooks and cliffhangers; the head writer rewrites the opening and paywall episodes."
 kingdom: CRE
 phylum: WRI
 class: SCREEN

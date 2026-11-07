@@ -1,6 +1,7 @@
 ---
 id: AWF-0099
 name: Data-informed IEP draft
+summary: "Pulls student data into an IEP template and leaves unknown fields blank; a special educator sets goals and the IEP team signs off."
 kingdom: PRO
 phylum: EDU
 class: COURSE

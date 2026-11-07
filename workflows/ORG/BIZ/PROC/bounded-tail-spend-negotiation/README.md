@@ -1,6 +1,7 @@
 ---
 id: AWF-0083
 name: Bounded tail-spend negotiation
+summary: "Negotiates tail-spend supplier terms within buyer-set limits; out-of-limit cases go to a buyer, and agreed terms go to the ERP."
 kingdom: ORG
 phylum: BIZ
 class: PROC

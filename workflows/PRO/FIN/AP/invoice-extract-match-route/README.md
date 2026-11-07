@@ -1,6 +1,7 @@
 ---
 id: AWF-0022
 name: Invoice extract-match-route
+summary: "Extracts invoice fields, checks vendor and duplicates, matches and codes them; exceptions go to a person and payment runs need sign-off."
 kingdom: PRO
 phylum: FIN
 class: AP

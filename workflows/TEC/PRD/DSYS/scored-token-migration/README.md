@@ -1,6 +1,7 @@
 ---
 id: AWF-0122
 name: Scored token migration
+summary: "Migrates a codebase to new design tokens by scored matching; engineering and UX review pilot slices, people click through every screen."
 kingdom: TEC
 phylum: PRD
 class: DSYS

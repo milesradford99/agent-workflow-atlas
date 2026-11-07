@@ -1,6 +1,7 @@
 ---
 id: AWF-0135
 name: Release-cycle docs skill
+summary: "Regenerates API reference and drafts release notes each release with automated checks; a writer reviews before publishing."
 kingdom: CRE
 phylum: WRI
 class: TECHW

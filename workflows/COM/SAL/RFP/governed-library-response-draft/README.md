@@ -1,6 +1,7 @@
 ---
 id: AWF-0051
 name: Governed-library response draft
+summary: "Drafts RFP answers from a verified library with source traces; SME or GRC reviewers check flagged items and someone signs off."
 kingdom: COM
 phylum: SAL
 class: RFP

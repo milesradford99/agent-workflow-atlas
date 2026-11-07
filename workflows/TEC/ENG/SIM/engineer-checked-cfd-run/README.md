@@ -1,6 +1,7 @@
 ---
 id: AWF-0057
 name: Engineer-checked CFD run
+summary: "Sets up and runs an OpenFOAM CFD case from a brief and reports validation results; an engineer checks the assumptions and the physics."
 kingdom: TEC
 phylum: ENG
 class: SIM

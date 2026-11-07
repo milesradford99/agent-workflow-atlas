@@ -1,6 +1,7 @@
 ---
 id: AWF-0104
 name: Hypothesis tournament
+summary: "Agents generate, debate and rank research hypotheses by tournament; scientists set the goal, assess the top ones and validate in the lab."
 kingdom: PRO
 phylum: RES
 class: LITREV

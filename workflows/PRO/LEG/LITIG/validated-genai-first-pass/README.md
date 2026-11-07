@@ -1,6 +1,7 @@
 ---
 id: AWF-0035
 name: Validated GenAI first-pass
+summary: "Attorneys tune a review prompt on a sample, run it on all documents and validate precision and elusion; a responsible attorney signs off."
 kingdom: PRO
 phylum: LEG
 class: LITIG

@@ -1,6 +1,7 @@
 ---
 id: AWF-0150
 name: Email-to-order freight agents
+summary: "Turns customer emails into freight quotes, orders and appointments; managers handle exceptions and humans sample the classification."
 kingdom: ORG
 phylum: LOG
 class: FREIGHT

@@ -1,6 +1,7 @@
 ---
 id: AWF-0041
 name: Review-ready 1040 prep
+summary: "Extracts source-document fields into a 1040 workpaper and tax software; the preparer validates, then a senior reviewer signs and files."
 kingdom: PRO
 phylum: FIN
 class: TAX

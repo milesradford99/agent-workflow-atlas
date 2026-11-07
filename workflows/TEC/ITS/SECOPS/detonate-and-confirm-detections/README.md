@@ -1,6 +1,7 @@
 ---
 id: AWF-0128
 name: Detonate-and-confirm detections
+summary: "Writes and runs attack simulations in a lab to confirm detection rules fire; a human reviews every TTP before it enters the catalogue."
 kingdom: TEC
 phylum: ITS
 class: SECOPS

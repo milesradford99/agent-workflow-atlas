@@ -1,6 +1,7 @@
 ---
 id: AWF-0058
 name: Cited pre-screen checks
+summary: "Checks uploaded plan sets against configured code rules with citations; a City reviewer approves or flags each check result."
 kingdom: TEC
 phylum: ENG
 class: CODECOMP

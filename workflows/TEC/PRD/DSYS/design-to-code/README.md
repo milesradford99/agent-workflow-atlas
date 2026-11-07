@@ -1,6 +1,7 @@
 ---
 id: AWF-0008
 name: Design to code
+summary: "Turns a Figma frame into UI component code using mapped components and tokens; a designer reviews it in a preview build."
 kingdom: TEC
 phylum: PRD
 class: DSYS

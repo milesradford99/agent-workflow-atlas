@@ -1,6 +1,7 @@
 ---
 id: AWF-0020
 name: Research-then-personalize outbound
+summary: "Builds a target list, researches accounts and writes personalised first lines; people check samples before the sequence launches."
 kingdom: COM
 phylum: SAL
 class: PROSPECT

@@ -12,7 +12,7 @@ It covers software engineering, product design, research, law, finance, healthca
 
 ## Browse
 
-- **The catalog site**: *Start here* (the 10 workflows with agent kits and the best-documented ones), a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk), and a shareable page for each workflow at `w/<ID>/` with its diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is published to GitHub Pages.
+- **The catalog site**, in English and 中文: *Start here* (the 10 workflows with agent kits and the best-documented ones), a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk), and a shareable page for each workflow at `w/<ID>/` (Chinese at `w/<ID>/zh/`) with its route, diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is published to GitHub Pages.
 - **Data**: the whole catalog as `catalog.json` and `catalog.csv`, built next to the site, for anyone building on it.
 - **[INDEX.md](INDEX.md)**: every workflow, by field, by trait and by strength of public evidence.
 - **[workflows/](workflows/)**: one folder per workflow. GitHub renders each one's shape as a diagram.

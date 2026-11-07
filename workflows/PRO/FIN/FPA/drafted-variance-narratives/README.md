@@ -1,6 +1,7 @@
 ---
 id: AWF-0039
 name: Drafted variance narratives
+summary: "Drafts budget-versus-actual narratives in house tone; the finance team edits before an executive summary goes to leadership."
 kingdom: PRO
 phylum: FIN
 class: FPA

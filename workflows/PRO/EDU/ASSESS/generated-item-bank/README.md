@@ -1,6 +1,7 @@
 ---
 id: AWF-0101
 name: Generated item bank
+summary: "Generates reading passages and test items with distractors, filtered automatically; content and fairness reviewers approve before piloting."
 kingdom: PRO
 phylum: EDU
 class: ASSESS

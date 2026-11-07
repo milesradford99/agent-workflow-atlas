@@ -1,6 +1,7 @@
 ---
 id: AWF-0141
 name: Gap-checked benefits form fill
+summary: "Fills a benefits application from agency records after a gap analysis; the caseworker corrects and approves each field before submitting."
 kingdom: ORG
 phylum: GOV
 class: CASEWORK

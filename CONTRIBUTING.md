@@ -37,7 +37,8 @@ If your run differs from the listed steps, check the swap test first: a differen
 1. **Is it new?** Search [INDEX.md](INDEX.md). Apply the swap test (TAXONOMY.md rule 4): if a practitioner could swap your workflow for a listed one without changing the deliverable, the human checkpoints or the autonomy level, it's the same workflow. Add an example instead.
 2. **Place it.** Use the keys in TAXONOMY.md §4: the first matching kingdom row, then the first matching phylum, then the class. If nothing fits, use `workflows/unplaced/`.
 3. **Create it.** Copy [templates/workflow/README.md](templates/workflow/README.md) to `workflows/<KINGDOM>/<PHYLUM>/<CLASS>/<short-name>/README.md`. Use the next free ID printed by `python scripts/validate.py`.
-4. **Fill it in.** Write the shape line first; it forces you to name every step and checkpoint. Then the steps, failure modes and sources.
+4. **Fill it in.** Write the shape line first; it forces you to name every step and checkpoint. Then a one-sentence `summary`, the steps (one for every 🛑 checkpoint in the shape), failure modes and sources.
+   Optional: add a Simplified Chinese `name` and `summary` under the new ID in [i18n/workflows.zh-CN.yaml](i18n/workflows.zh-CN.yaml). The site falls back to English when it's missing.
 5. **Evidence.** Grade honestly: `A` for a public, detailed write-up, `B` for vendor material, `C` for community reports. Link every claim with a number in it to a source.
 6. It stays `draft` until it has an example run. You can include one in the same pull request.
 

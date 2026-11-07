@@ -23,4 +23,5 @@ CI runs `validate.py`, `build_index.py --check` and `build_diagrams.py --check`,
 - `status: accepted` requires `reference_example` pointing at an `examples/YYYY-MM-name/` folder with a README.md.
 - Don't invent example runs, numbers or sources. Example folders hold real runs from contributors only.
 - Entries mix English and Chinese (短剧, 网文 terms); keep the Chinese terms as written.
+- Every workflow needs a one-sentence `summary` (≤200 chars). Display names for taxonomy codes live in `i18n/labels.yaml` (both `en` and `zh-CN` required); Chinese workflow names and summaries in `i18n/workflows.zh-CN.yaml` (optional per entry). Steps and sources stay in English.
 - `research/` is a dated report, not live data. Don't edit it to match catalog changes.

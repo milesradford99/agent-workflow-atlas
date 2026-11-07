@@ -1,6 +1,7 @@
 ---
 id: AWF-0029
 name: Source-screen-schedule hiring
+summary: "Sources candidates, summarises evidence per candidate, schedules interviews and builds kits; the agent never rejects and a person decides."
 kingdom: ORG
 phylum: BIZ
 class: HR

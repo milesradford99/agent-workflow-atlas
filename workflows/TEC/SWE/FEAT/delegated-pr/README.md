@@ -1,6 +1,7 @@
 ---
 id: AWF-0003
 name: Delegated PR
+summary: "Implements labeled issues as draft pull requests; a human approves CI runs and reviews and merges each PR."
 kingdom: TEC
 phylum: SWE
 class: FEAT

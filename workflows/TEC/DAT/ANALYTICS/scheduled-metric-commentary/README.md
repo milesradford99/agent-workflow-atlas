@@ -1,6 +1,7 @@
 ---
 id: AWF-0123
 name: Scheduled metric commentary
+summary: "Publishes commentary on metric and OKR moves on a schedule and tags the analytics owner, who reviews and edits the published report."
 kingdom: TEC
 phylum: DAT
 class: ANALYTICS

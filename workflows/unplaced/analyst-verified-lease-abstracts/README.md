@@ -1,6 +1,7 @@
 ---
 id: AWF-0147
 name: Analyst-verified lease abstracts
+summary: "Abstracts leases and amendments into cited data fields; an analyst checks them against the source and resolves judgment calls."
 kingdom: ORG
 phylum: RE
 class: LEASEADMIN
