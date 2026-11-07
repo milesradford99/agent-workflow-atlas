@@ -12,7 +12,8 @@
 
 ## 怎么看
 
-- **目录网站**：按领域的全景图、搜索（支持中文，如“短剧”“网文”“事前授权”），以及按自主程度、人工检查点、智能体模式、证据、风险筛选。每条工作流有一个详情页，含流程图、步骤和来源。运行 `python scripts/build_site.py` 后打开 `site/index.html`。仓库公开后会自动发布到 GitHub Pages。
+- **目录网站**：“Start here”页列出 10 条带套件的工作流和证据最强的工作流；另有按领域的全景图、搜索（支持中文，如“短剧”“网文”“事前授权”），以及按自主程度、人工检查点、智能体模式、证据、风险筛选。每条工作流在 `w/<ID>/` 有一个可分享的独立页面，含流程图、步骤和来源。运行 `python scripts/build_site.py` 后打开 `site/index.html`。仓库公开后会自动发布到 GitHub Pages。
+- **数据**：整个目录可导出为 `catalog.json` 和 `catalog.csv`，与网站一起生成，方便二次开发。
 - **[INDEX.md](INDEX.md)**：按领域、特征和公开证据强度列出全部工作流。
 - **[workflows/](workflows/)**：每条工作流一个文件夹。GitHub 会把它的流程（shape）渲染成图。
 
@@ -79,7 +80,7 @@ AI 的做法每几个月就会变，所以目录有三个维护循环，详见 [
 
 ## 参与贡献
 
-请读 [CONTRIBUTING.md](CONTRIBUTING.md)（英文）。最有价值的三种贡献：
+可以从标有 [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 的 issue 开始，例如运行一个套件并提交运行记录，或为证据薄弱的工作流找到第一手来源。完整说明见 [CONTRIBUTING.md](CONTRIBUTING.md)（英文）。最有价值的三种贡献：
 1. 为已有工作流提交一次真实运行记录。
 2. 按模板新增一条工作流。
 3. 修正归类或过时的信息。

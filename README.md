@@ -12,7 +12,8 @@ It covers software engineering, product design, research, law, finance, healthca
 
 ## Browse
 
-- **The catalog site**: a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk) and a page for each workflow with its diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is also published to GitHub Pages.
+- **The catalog site**: *Start here* (the 10 workflows with agent kits and the best-documented ones), a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk), and a shareable page for each workflow at `w/<ID>/` with its diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is published to GitHub Pages.
+- **Data**: the whole catalog as `catalog.json` and `catalog.csv`, built next to the site, for anyone building on it.
 - **[INDEX.md](INDEX.md)**: every workflow, by field, by trait and by strength of public evidence.
 - **[workflows/](workflows/)**: one folder per workflow. GitHub renders each one's shape as a diagram.
 
@@ -75,7 +76,7 @@ Catalog-level changes are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Contribute
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md). In short: add an example run of a listed workflow, add a new workflow from the template, or fix a placement. `python scripts/validate.py` checks your entry before you open a pull request.
+Good places to start: issues labelled [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22). They include running a kit and adding your run, or finding a first-hand source for a workflow with weak evidence. Read [CONTRIBUTING.md](CONTRIBUTING.md). In short: add an example run of a listed workflow, add a new workflow from the template, or fix a placement. `python scripts/validate.py` checks your entry before you open a pull request.
 
 ## Research
 

@@ -5,6 +5,9 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 ## 2026-11
 
 ### Added
+- A shareable static page per workflow (`w/<ID>/`) with a preview image, a sitemap, and catalog exports (`catalog.json`, `catalog.csv`) built by `scripts/build_site.py`.
+- A *Start here* view on the site with the workflows that have kits and the best-documented ones.
+- 15 starter issues labelled `good first issue`: wanted sources, kit runs to add as examples, and weak entries to strengthen.
 - Claude Code agent kits (`variants/claude-code.md`) for 10 workflows, linked from each entry and from both READMEs.
 - Full steps, output and failure modes for the 16 seed workflows that had only a shape line. `validate.py` now requires a Steps section and a step for every 🛑 checkpoint.
 - A Chinese README (`README.zh-CN.md`), a screenshot at the top of the README, and repository topics.

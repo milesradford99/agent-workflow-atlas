@@ -5,16 +5,19 @@ Usage:
   python scripts/build_site.py --out DIR            write DIR/index.html
   python scripts/build_site.py --repo-url URL       link each entry to its file at URL/blob/main/...
 
-The page needs no server: open site/index.html in a browser. The Pages workflow
-publishes the same file.
+The page needs no server: open site/index.html in a browser. Alongside it go one
+static page per workflow (w/<ID>/), catalog.json and catalog.csv, and with --site-url
+a sitemap. The Pages workflow publishes all of it.
 """
 import argparse
 import json
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
 from catalog import ROOT, load_taxonomy, read_front_matter, species_files
+import site_pages
 from shapes import to_mermaid
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
@@ -70,19 +73,21 @@ def records(tax):
             "runs": len(re.findall(r"^- \[", runs, re.M)),
             "path": path.parent.relative_to(ROOT).as_posix(),
             "unplaced": path.parent.parent.name == "unplaced",
+            "kit": (path.parent / "variants" / "claude-code.md").is_file(),
             "mermaid": to_mermaid(fm["shape"]),
             "intro": intro(body),
             "steps": section(body, "Steps"),
             "publicRuns": runs,
             "sources": section(body, "Sources"),
         })
-    return out
+    return sorted(out, key=lambda w: w["id"])
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT / "site"))
     ap.add_argument("--repo-url", default=None)
+    ap.add_argument("--site-url", default="", help="published base URL, for canonical links, previews and the sitemap")
     args = ap.parse_args()
     tax = load_taxonomy()
     data = {
@@ -96,7 +101,10 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html)
-    print(f"Wrote {out / 'index.html'} ({len(data['workflows'])} workflows)")
+    site_url = args.site_url.rstrip("/")
+    site_pages.write_all(out, data, site_url)
+    shutil.copyfile(ROOT / "docs" / "images" / "og.png", out / "og.png")
+    print(f"Wrote {out}/: index.html, {len(data['workflows'])} workflow pages, catalog.json, catalog.csv")
 
 
 if __name__ == "__main__":

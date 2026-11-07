@@ -66,7 +66,7 @@ aside { position: sticky; top: 84px; align-self: start; max-height: calc(100vh -
 .legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 14px; align-items: center; }
 .legend .chip { cursor: default; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); cursor: pointer; text-align: left; width: 100%; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); cursor: pointer; text-align: left; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; }
 .card h3 { margin: 0 0 2px; font-size: 16px; }
 .place { color: var(--muted); font-size: 13px; }
 .shape { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: var(--muted); margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
@@ -110,7 +110,8 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 20px
     <div class="brand">Agent Workflow Atlas<small id="counts"></small></div>
     <input id="q" type="search" placeholder="Search workflows, tools, deliverables… (e.g. code review, 短剧, prior auth)" autocomplete="off" aria-label="Search">
     <div class="tabs" role="tablist">
-      <button role="tab" id="tab-map" aria-selected="true">Map</button>
+      <button role="tab" id="tab-start" aria-selected="true">Start here</button>
+      <button role="tab" id="tab-map" aria-selected="false">Map</button>
       <button role="tab" id="tab-list" aria-selected="false">List</button>
     </div>
     <button id="filters-toggle" aria-expanded="false">Filters</button>
@@ -126,7 +127,7 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 20px
 </div>
 <div id="scrim"></div>
 <section id="detail" aria-hidden="true"></section>
-<footer>Generated from the repository by <code>scripts/build_site.py</code>. Each entry links to its source file.</footer>
+<footer>Generated from the repository by <code>scripts/build_site.py</code>. Download the catalog as <a href="catalog.json">JSON</a> or <a href="catalog.csv">CSV</a>.</footer>
 <script>
 const DATA = /*__DATA__*/null;
 const W = DATA.workflows;
@@ -146,7 +147,7 @@ const GROUPS = [
   {key: "status", title: "Status", values: ["accepted", "draft", "merged", "retired"]},
   {key: "region", title: "Region", values: [...new Set(W.flatMap(w => w.region))].sort()},
 ];
-const state = {q: "", view: "map", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()]))};
+const state = {q: "", view: "start", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()]))};
 
 function haystack(w) {
   return [w.id, w.name, w.kingdomName, w.phylumName, w.phylum, w.class, w.deliverable, w.shape, w.variants.join(" "), w.intro, w.steps, w.publicRuns].join(" ").toLowerCase();
@@ -214,7 +215,7 @@ function card(w) {
   return `<button class="card" data-id="${w.id}">
     <h3>${esc(w.name)}</h3>
     <div class="place">${w.id} · ${esc(w.phylumName)} › ${w.class} · ${esc(w.deliverable)}</div>
-    <div class="badges"><span class="badge ${covClass(w.coverage)}">${esc(w.coverage || "no grade")}${w.runs ? " · " + w.runs : ""}</span><span class="badge">${w.autonomy}</span>${stops}<span class="badge">evidence ${w.evidence}</span></div>
+    <div class="badges"><span class="badge ${covClass(w.coverage)}">${esc(w.coverage || "no grade")}${w.runs ? " · " + w.runs : ""}</span><span class="badge">${w.autonomy}</span>${stops}<span class="badge">evidence ${w.evidence}</span>${w.kit ? '<span class="badge stop" style="background:var(--strong-bg);color:var(--strong)">kit</span>' : ""}</div>
     <div class="shape">${esc(w.shape)}</div>
   </button>`;
 }
@@ -223,12 +224,21 @@ function renderList(list) {
   return list.length ? `<div class="cards">${list.map(card).join("")}</div>` : `<div class="empty">No workflows match. Try fewer filters.</div>`;
 }
 
+// the strongest evidence first: first-hand runs graded Strong, evidence A, most runs; kits pinned on top
+function renderStart(list) {
+  const strong = list.filter(w => w.coverage === "Strong" && w.evidence === "A")
+    .sort((a, b) => (b.kit - a.kit) || (b.runs - a.runs) || a.id.localeCompare(b.id));
+  const kits = list.filter(w => w.kit);
+  return `<section class="kingdom"><h2>Run one today <span>${kits.length} workflows with a Claude Code kit</span></h2><div class="cards">${kits.map(card).join("")}</div></section>
+  <section class="kingdom"><h2>Best documented <span>${strong.length} workflows with strong first-hand public runs</span></h2><div class="cards">${strong.map(card).join("")}</div></section>`;
+}
+
 function render() {
   const list = W.filter(w => matches(w));
   document.getElementById("counts").textContent = `${W.length} workflows · ${Object.keys(DATA.taxonomy).length} fields · ${W.filter(w => w.status === "accepted").length} accepted`;
   document.getElementById("summary").textContent = list.length === W.length ? `Showing all ${W.length} workflows. Click one for its steps, diagram and sources.` : `${list.length} of ${W.length} workflows match.`;
   document.getElementById("legend").innerHTML = `Public runs:` + COV.map(c => `<span class="chip ${covClass(c)}">${c}</span>`).join("");
-  document.getElementById("view").innerHTML = state.view === "map" ? renderMap(list) : renderList(list);
+  document.getElementById("view").innerHTML = state.view === "map" ? renderMap(list) : state.view === "start" ? renderStart(list) : renderList(list);
   document.querySelectorAll("#view [data-id]").forEach(b => b.addEventListener("click", () => openDetail(b.dataset.id)));
   renderFilters();
 }
@@ -295,7 +305,7 @@ async function openDetail(id) {
     <h4>Shape</h4><div class="shape" style="-webkit-line-clamp:unset">${esc(w.shape)}</div>
     <div class="diagram" id="dg">Loading diagram…</div>
     <h4>At a glance</h4>
-    <dl class="meta"><dt>Delivers</dt><dd>${esc(w.deliverable)}</dd><dt>Checkpoints</dt><dd>${w.checkpoints.map(c => "🛑 " + esc(c)).join(" · ")}</dd><dt>Patterns</dt><dd>${w.patterns.map(esc).join(" · ")}</dd>${w.variants.length ? `<dt>Tools</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd>` : ""}<dt>Last verified</dt><dd>${esc(w.lastVerified)}</dd><dt>Source file</dt><dd><a href="${repoLink}" target="_blank" rel="noopener">${esc(w.path)}/README.md</a></dd></dl>
+    <dl class="meta"><dt>Delivers</dt><dd>${esc(w.deliverable)}</dd><dt>Checkpoints</dt><dd>${w.checkpoints.map(c => "🛑 " + esc(c)).join(" · ")}</dd><dt>Patterns</dt><dd>${w.patterns.map(esc).join(" · ")}</dd>${w.variants.length ? `<dt>Tools</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd>` : ""}<dt>Share</dt><dd><a href="w/${w.id}/">w/${w.id}/</a></dd>${w.kit ? `<dt>Run it</dt><dd><a href="${linkTo(w.path, "variants/claude-code.md")}" target="_blank" rel="noopener">Claude Code kit</a></dd>` : ""}<dt>Last verified</dt><dd>${esc(w.lastVerified)}</dd><dt>Source file</dt><dd><a href="${repoLink}" target="_blank" rel="noopener">${esc(w.path)}/README.md</a></dd></dl>
     ${w.intro ? md(w.intro, w.path) : ""}
     ${w.steps ? `<h4>Steps</h4>${md(w.steps, w.path)}` : ""}
     ${w.publicRuns ? `<h4>Public runs</h4>${md(w.publicRuns, w.path)}` : ""}
@@ -326,7 +336,7 @@ function closeDetail() {
 document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
 document.getElementById("scrim").onclick = closeDetail;
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); if (e.key === "/" && document.activeElement.id !== "q") { e.preventDefault(); document.getElementById("q").focus(); } });
-for (const v of ["map", "list"]) document.getElementById("tab-" + v).onclick = () => {
+for (const v of ["start", "map", "list"]) document.getElementById("tab-" + v).onclick = () => {
   state.view = v;
   document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.id === "tab-" + v)));
   render();
