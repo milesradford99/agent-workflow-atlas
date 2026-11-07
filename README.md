@@ -4,12 +4,13 @@
 
 It covers software engineering, product design, research, law, finance, healthcare, education, marketing, sales, support, fiction and screenwriting, and industrialized short-drama production (短剧). Each workflow lists its sources and how strong its evidence is.
 
-**Status:** early. 87 workflows cover every category in the taxonomy: 31 from [the research report](research/phase1-report.md) and 56 [collected for the empty categories](research/2026-11-new-workflows.md). One is `accepted` ([Issue-tree research](workflows/ORG/BIZ/STRAT/issue-tree-research/)); the rest stay `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)). [Where are the real runs?](research/2026-11-real-runs.md) lists public runs that could become examples.
+**Status:** 155 workflows across 5 fields, 20 professions and 87 categories. Every category has at least one workflow, and 9 more from new fields wait in [unplaced](workflows/unplaced/). Each entry lists its public runs, re-checked against their sources in November 2026. One is `accepted`; the rest stay `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)).
 
 ## Browse
 
-- **[INDEX.md](INDEX.md)**: every workflow, by field and by trait.
-- **[workflows/](workflows/)**: one folder per workflow, organized like a biological tree.
+- **The catalog site**: a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk) and a page for each workflow with its diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is also published to GitHub Pages.
+- **[INDEX.md](INDEX.md)**: every workflow, by field, by trait and by strength of public evidence.
+- **[workflows/](workflows/)**: one folder per workflow. GitHub renders each one's shape as a diagram.
 
 A sample entry, [AI shot factory](workflows/CRE/MED/AIGCVIDEO/ai-shot-factory/) (`AWF-0015`), turns a short-drama script into a finished AI-generated episode:
 
@@ -41,13 +42,25 @@ workflows/
 
 The full rules fit on one page: [TAXONOMY.md](TAXONOMY.md).
 
+## Keeping it current
+
+AI practice changes every few months, so the catalog has three upkeep loops, described in [MAINTAINING.md](MAINTAINING.md):
+
+- **Monthly freshness report:** an automatic issue listing entries not re-checked in 6 months and source links that broke.
+- **Re-checking:** each entry is re-checked against its sources, and its `last_verified` month is updated.
+- **Quarterly collection sweep:** parallel research agents look for workflows the catalog is missing, and separate agents re-check every source they cite.
+
+Catalog-level changes are listed in [CHANGELOG.md](CHANGELOG.md).
+
 ## Contribute
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md). In short: add an example run of a listed workflow, add a new workflow from the template, or fix a placement. `python scripts/validate.py` checks your entry before you open a pull request.
 
 ## Research
 
-[research/phase1-report.md](research/phase1-report.md) is the study this catalog started from: the landscape across industries, the classification design, and a log of 31 claims checked against sources in November 2026.
+- [research/phase1-report.md](research/phase1-report.md): the study this catalog started from, covering the landscape across industries, the classification design, and a log of 31 claims checked against sources.
+- [research/2026-11-real-runs.md](research/2026-11-real-runs.md): which workflows have public, first-hand runs, and who to invite to contribute.
+- [research/2026-11-new-workflows.md](research/2026-11-new-workflows.md) and [research/2026-11-second-pass.md](research/2026-11-second-pass.md): how workflows 32–155 were collected and checked.
 
 ## License
 
