@@ -35,6 +35,8 @@
 | AWF-0045 | [Critique-first grant draft](workflows/PRO/RES/GRANT/critique-first-grant-draft/) | RES · Research & academia | GRANT | checkpointed | B | weak · 1 | draft |
 | AWF-0046 | [Review-of-review feedback](workflows/PRO/RES/PEER/review-of-review-feedback/) | RES · Research & academia | PEER | checkpointed | A | strong · 1 | draft |
 
+No workflows yet in `INS`.
+
 ### COM · Commerce & customers
 
 | ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |
@@ -52,6 +54,8 @@
 | AWF-0053 | [Plan-to-calendar drafting](workflows/COM/MKT/SOCIAL/plan-to-calendar-drafting/) | MKT · Marketing & growth | SOCIAL | checkpointed | A | partial · 3 | draft |
 | AWF-0054 | [Guardrailed campaign build](workflows/COM/MKT/LIFECYCLE/guardrailed-campaign-build/) | MKT · Marketing & growth | LIFECYCLE | checkpointed | A | partial · 2 | draft |
 | AWF-0055 | [Routed competitive digest](workflows/COM/MKT/MKTRES/routed-competitive-digest/) | MKT · Marketing & growth | MKTRES | checkpointed | A | partial · 1 | draft |
+
+No workflows yet in `RET`.
 
 ### TEC · Technology & product
 

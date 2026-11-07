@@ -1,0 +1,42 @@
+name: freshness
+
+# Monthly: list workflows due for re-checking and links that stopped working,
+# and keep one open "Freshness report" issue up to date with the result.
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: freshness
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/freshness.py --links > report.md
+      - name: Post or update the report issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api "repos/$GH_REPO/labels" -f name=freshness -f color=C5DEF5 \
+            -f description="Monthly freshness report" >/dev/null 2>&1 || true
+          number=$(gh api "repos/$GH_REPO/issues?labels=freshness&state=open" --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh api -X PATCH "repos/$GH_REPO/issues/$number" -F body=@report.md >/dev/null
+          else
+            gh api "repos/$GH_REPO/issues" -f title="Freshness report" -f "labels[]=freshness" -F body=@report.md >/dev/null
+          fi

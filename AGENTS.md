@@ -6,9 +6,14 @@
 pip install -r scripts/requirements.txt
 python scripts/validate.py        # rule checks; prints the next free AWF id
 python scripts/build_index.py     # regenerate INDEX.md after any change under workflows/
+python scripts/build_diagrams.py  # redraw the Mermaid diagram under each `shape` line
+python scripts/build_site.py      # build the browsable site into site/ (git-ignored)
+python scripts/freshness.py --links   # entries due for re-checking + broken links (network)
 ```
 
-CI runs `validate.py` and `build_index.py --check`, so commit the regenerated INDEX.md.
+Re-checking an entry or running a collection sweep: follow MAINTAINING.md. Set `last_verified` to the current month only after actually re-opening the entry's sources.
+
+CI runs `validate.py`, `build_index.py --check` and `build_diagrams.py --check`, so commit the regenerated INDEX.md and diagrams. Never edit a diagram by hand; change the `shape` line and rerun.
 
 ## Gotchas
 

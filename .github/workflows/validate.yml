@@ -21,3 +21,5 @@ jobs:
       - run: pip install -r scripts/requirements.txt
       - run: python scripts/validate.py
       - run: python scripts/build_index.py --check
+      - run: python scripts/build_diagrams.py --check
+      - run: python scripts/build_site.py --out /tmp/site

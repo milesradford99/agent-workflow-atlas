@@ -7,6 +7,7 @@ kingdoms:
     phyla:
       HLT: {name: Healthcare & life sciences, classes: [CLINDOC, RCM, CLINTRIAL, DRUGDISC]}
       LEG: {name: Legal & compliance, classes: [CONTRACT, RESEARCH, LITIG, REG, DD]}
+      INS: {name: Insurance, classes: [CLAIMS]}
       FIN: {name: Finance & accounting, classes: [AP, CLOSE, FPA, INVEST, AUDIT, TAX]}
       EDU: {name: Education & training, classes: [COURSE, ASSESS, TUTOR, LND]}
       RES: {name: Research & academia, classes: [LITREV, WRITE, ANALYSIS, GRANT, PEER]}
@@ -15,6 +16,7 @@ kingdoms:
     phyla:
       CSX: {name: Customer support & success, classes: [RESOLVE, QA, KB, CS]}
       SAL: {name: Sales & revenue, classes: [PROSPECT, DEAL, RFP, REVOPS]}
+      RET: {name: Retail & e-commerce operations, classes: [CATALOG]}
       MKT: {name: Marketing & growth, classes: [CONTENT, ADS, SOCIAL, LIFECYCLE, MKTRES]}
   TEC:
     name: Technology & product

@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Workflow Atlas</title>
+<meta name="description" content="A catalog of how professionals run AI agents in production work, as copyable SOPs.">
+<style>
+:root {
+  --bg: #f7f6f2; --panel: #ffffff; --ink: #1d2433; --muted: #5b6475; --line: #e3e1d9;
+  --accent: #2f5bd3; --accent-ink: #ffffff; --chip: #eef0f5;
+  --stop-bg: #fde2e1; --stop-ink: #8a1c13;
+  --strong: #1f7a4d; --strong-bg: #dff3e7; --partial: #8a5a00; --partial-bg: #fbefd2;
+  --weak: #6b5b8a; --weak-bg: #ebe6f4; --none: #6b7280; --none-bg: #eceef1;
+  --shadow: 0 1px 2px rgba(20, 24, 33, .06), 0 4px 14px rgba(20, 24, 33, .06);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151c; --panel: #1a1f29; --ink: #e7eaf0; --muted: #a2abbb; --line: #2b3240;
+    --accent: #7c9cff; --accent-ink: #0e1220; --chip: #252c39;
+    --stop-bg: #4a1f1c; --stop-ink: #ffc9c3;
+    --strong: #7fd8a6; --strong-bg: #1c3a2b; --partial: #f2c46d; --partial-bg: #3d3018;
+    --weak: #c6b5ea; --weak-bg: #2f2842; --none: #b3bac6; --none-bg: #2a303b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif; }
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+header { position: sticky; top: 0; z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line); }
+.bar { display: flex; gap: 16px; align-items: center; padding: 12px 20px; flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 18px; margin-right: auto; }
+.brand small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; }
+#q { flex: 1 1 320px; max-width: 560px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font-size: 15px; }
+.tabs { display: flex; gap: 4px; background: var(--chip); padding: 4px; border-radius: 10px; }
+.tabs button { border: 0; background: transparent; padding: 6px 12px; border-radius: 7px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--panel); box-shadow: var(--shadow); font-weight: 600; }
+#filters-toggle { display: none; border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; padding: 20px; max-width: 1500px; margin: 0 auto; }
+aside { position: sticky; top: 84px; align-self: start; max-height: calc(100vh - 100px); overflow: auto; padding-right: 4px; }
+.fgroup { margin-bottom: 18px; }
+.fgroup h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 6px; }
+.fgroup label { display: flex; gap: 8px; align-items: center; padding: 2px 0; cursor: pointer; font-size: 14px; }
+.fgroup label .n { margin-left: auto; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.fgroup label.zero { opacity: .45; }
+#clear { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; cursor: pointer; width: 100%; }
+.summary { color: var(--muted); margin: 0 0 14px; }
+.kingdom { margin-bottom: 26px; }
+.kingdom > h2 { font-size: 17px; margin: 0 0 10px; }
+.kingdom > h2 span { color: var(--muted); font-weight: 400; font-size: 14px; }
+.phyla { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.phylum { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); }
+.phylum h3 { margin: 0 0 8px; font-size: 15px; }
+.phylum h3 code { font-size: 12px; color: var(--muted); }
+.cls { margin: 8px 0 0; }
+.cls-name { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chip { border: 1px solid transparent; border-radius: 999px; padding: 3px 10px; font-size: 13px; cursor: pointer; text-align: left; }
+.cov-Strong { background: var(--strong-bg); color: var(--strong); }
+.cov-Partial { background: var(--partial-bg); color: var(--partial); }
+.cov-Weak { background: var(--weak-bg); color: var(--weak); }
+.cov-None, .cov- { background: var(--none-bg); color: var(--none); }
+.chip:hover, .card:hover { border-color: var(--accent); }
+.legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 14px; align-items: center; }
+.legend .chip { cursor: default; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); cursor: pointer; text-align: left; width: 100%; }
+.card h3 { margin: 0 0 2px; font-size: 16px; }
+.place { color: var(--muted); font-size: 13px; }
+.shape { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: var(--muted); margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.badge { font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--chip); }
+.badge.stop { background: var(--stop-bg); color: var(--stop-ink); }
+.empty { padding: 40px; text-align: center; color: var(--muted); }
+#detail { position: fixed; inset: 0 0 0 auto; width: min(860px, 100vw); background: var(--panel); border-left: 1px solid var(--line); box-shadow: -10px 0 30px rgba(0, 0, 0, .12); transform: translateX(100%); transition: transform .2s ease; z-index: 10; overflow: auto; }
+#detail.open { transform: none; }
+#scrim { position: fixed; inset: 0; background: rgba(10, 12, 18, .35); z-index: 9; display: none; }
+#scrim.open { display: block; }
+.d-head { position: sticky; top: 0; background: var(--panel); border-bottom: 1px solid var(--line); padding: 14px 22px; display: flex; gap: 12px; align-items: start; }
+.d-head h2 { margin: 0; font-size: 21px; }
+.d-head .close { margin-left: auto; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+.d-body { padding: 18px 22px 40px; }
+.d-body h4 { margin: 22px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.diagram { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow: auto; }
+.diagram svg { max-width: 100%; height: auto; }
+.md p { margin: 6px 0; }
+.md ol, .md ul { padding-left: 22px; margin: 6px 0; }
+.md li { margin: 4px 0; }
+.md code { background: var(--chip); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+.md sup a { text-decoration: none; }
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 14px; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; }
+footer { color: var(--muted); font-size: 13px; text-align: center; padding: 20px; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; padding: 16px; }
+  aside { display: none; position: static; max-height: none; }
+  aside.show { display: block; }
+  #filters-toggle { display: inline-block; }
+  .bar { padding: 10px 16px; }
+  .phyla, .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">Agent Workflow Atlas<small id="counts"></small></div>
+    <input id="q" type="search" placeholder="Search workflows, tools, deliverables… (e.g. code review, 短剧, prior auth)" autocomplete="off" aria-label="Search">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-map" aria-selected="true">Map</button>
+      <button role="tab" id="tab-list" aria-selected="false">List</button>
+    </div>
+    <button id="filters-toggle" aria-expanded="false">Filters</button>
+  </div>
+</header>
+<div class="layout">
+  <aside id="filters" aria-label="Filters"></aside>
+  <main>
+    <p class="summary" id="summary"></p>
+    <div class="legend" id="legend"></div>
+    <div id="view"></div>
+  </main>
+</div>
+<div id="scrim"></div>
+<section id="detail" aria-hidden="true"></section>
+<footer>Generated from the repository by <code>scripts/build_site.py</code>. Each entry links to its source file.</footer>
+<script>
+const DATA = /*__DATA__*/null;
+const W = DATA.workflows;
+const byId = Object.fromEntries(W.map(w => [w.id, w]));
+const COV = ["Strong", "Partial", "Weak", "None found"];
+const covClass = c => "cov-" + (c || "").split(" ")[0];
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]));
+
+const GROUPS = [
+  {key: "kingdom", title: "Field", values: Object.keys(DATA.taxonomy), label: v => DATA.taxonomy[v].name},
+  {key: "coverage", title: "Public runs", values: COV},
+  {key: "autonomy", title: "Autonomy", values: ["assist", "checkpointed", "sampled"]},
+  {key: "checkpoints", title: "Human checkpoints", values: ["plan", "action", "review", "sample", "sign-off", "handoff"], all: true},
+  {key: "patterns", title: "Agent patterns", values: ["chain", "route", "parallel", "orch-workers", "eval-opt", "auto-loop", "role-crew", "computer-use"]},
+  {key: "evidence", title: "Evidence", values: ["A", "B", "C"], label: v => ({A: "A · first-hand", B: "B · vendor", C: "C · community"})[v]},
+  {key: "risk", title: "Risk", values: ["low", "medium", "high"]},
+  {key: "status", title: "Status", values: ["accepted", "draft", "merged", "retired"]},
+  {key: "region", title: "Region", values: [...new Set(W.flatMap(w => w.region))].sort()},
+];
+const state = {q: "", view: "map", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()]))};
+
+function haystack(w) {
+  return [w.id, w.name, w.kingdomName, w.phylumName, w.phylum, w.class, w.deliverable, w.shape, w.variants.join(" "), w.intro, w.steps, w.publicRuns].join(" ").toLowerCase();
+}
+const HAY = Object.fromEntries(W.map(w => [w.id, haystack(w)]));
+
+function matches(w, skip) {
+  const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+  if (terms.some(t => !HAY[w.id].includes(t))) return false;
+  for (const g of GROUPS) {
+    if (g.key === skip) continue;
+    const sel = state.f[g.key];
+    if (!sel.size) continue;
+    const val = w[g.key];
+    if (Array.isArray(val)) {
+      if (g.all ? ![...sel].every(v => val.includes(v)) : !val.some(v => sel.has(v))) return false;
+    } else if (!sel.has(val)) return false;
+  }
+  return true;
+}
+
+function renderFilters() {
+  const el = document.getElementById("filters");
+  el.innerHTML = GROUPS.filter(g => g.values.length).map(g => {
+    const rows = g.values.map(v => {
+      const n = W.filter(w => matches(w, g.key) && (Array.isArray(w[g.key]) ? w[g.key].includes(v) : w[g.key] === v)).length;
+      const on = state.f[g.key].has(v);
+      return `<label class="${n || on ? "" : "zero"}"><input type="checkbox" data-g="${g.key}" value="${esc(v)}" ${on ? "checked" : ""}> ${esc(g.label ? g.label(v) : v)}<span class="n">${n}</span></label>`;
+    }).join("");
+    return `<div class="fgroup"><h3>${g.title}${g.all ? " (all of)" : ""}</h3>${rows}</div>`;
+  }).join("") + `<button id="clear">Clear filters</button>`;
+  el.querySelectorAll("input").forEach(i => i.addEventListener("change", () => {
+    const s = state.f[i.dataset.g];
+    i.checked ? s.add(i.value) : s.delete(i.value);
+    render();
+  }));
+  document.getElementById("clear").onclick = () => { GROUPS.forEach(g => state.f[g.key].clear()); state.q = ""; document.getElementById("q").value = ""; render(); };
+}
+
+function chip(w) {
+  return `<button class="chip ${covClass(w.coverage)}" data-id="${w.id}" title="${esc(w.id + " · " + w.deliverable)}">${esc(w.name)}</button>`;
+}
+
+function renderMap(list) {
+  const ids = new Set(list.map(w => w.id));
+  const out = [];
+  for (const [k, kd] of Object.entries(DATA.taxonomy)) {
+    const phyla = [];
+    for (const [p, pd] of Object.entries(kd.phyla)) {
+      const classes = pd.classes.map(c => {
+        const ws = W.filter(w => !w.unplaced && w.kingdom === k && w.phylum === p && w.class === c && ids.has(w.id));
+        return ws.length ? `<div class="cls"><div class="cls-name">${c}</div><div class="chips">${ws.map(chip).join("")}</div></div>` : "";
+      }).join("");
+      if (classes) phyla.push(`<div class="phylum"><h3>${esc(pd.name)} <code>${p}</code></h3>${classes}</div>`);
+    }
+    if (phyla.length) out.push(`<section class="kingdom"><h2>${esc(kd.name)} <span>${k}</span></h2><div class="phyla">${phyla.join("")}</div></section>`);
+  }
+  const unplaced = list.filter(w => w.unplaced);
+  if (unplaced.length) out.push(`<section class="kingdom"><h2>Unplaced <span>no class yet; three similar ones open a new class</span></h2><div class="chips">${unplaced.map(chip).join("")}</div></section>`);
+  return out.join("") || `<div class="empty">No workflows match. Try fewer filters.</div>`;
+}
+
+function card(w) {
+  const stops = w.checkpoints.map(c => `<span class="badge stop">🛑 ${esc(c)}</span>`).join("");
+  return `<button class="card" data-id="${w.id}">
+    <h3>${esc(w.name)}</h3>
+    <div class="place">${w.id} · ${esc(w.phylumName)} › ${w.class} · ${esc(w.deliverable)}</div>
+    <div class="badges"><span class="badge ${covClass(w.coverage)}">${esc(w.coverage || "no grade")}${w.runs ? " · " + w.runs : ""}</span><span class="badge">${w.autonomy}</span>${stops}<span class="badge">evidence ${w.evidence}</span></div>
+    <div class="shape">${esc(w.shape)}</div>
+  </button>`;
+}
+
+function renderList(list) {
+  return list.length ? `<div class="cards">${list.map(card).join("")}</div>` : `<div class="empty">No workflows match. Try fewer filters.</div>`;
+}
+
+function render() {
+  const list = W.filter(w => matches(w));
+  document.getElementById("counts").textContent = `${W.length} workflows · ${Object.keys(DATA.taxonomy).length} fields · ${W.filter(w => w.status === "accepted").length} accepted`;
+  document.getElementById("summary").textContent = list.length === W.length ? `Showing all ${W.length} workflows. Click one for its steps, diagram and sources.` : `${list.length} of ${W.length} workflows match.`;
+  document.getElementById("legend").innerHTML = `Public runs:` + COV.map(c => `<span class="chip ${covClass(c)}">${c}</span>`).join("");
+  document.getElementById("view").innerHTML = state.view === "map" ? renderMap(list) : renderList(list);
+  document.querySelectorAll("#view [data-id]").forEach(b => b.addEventListener("click", () => openDetail(b.dataset.id)));
+  renderFilters();
+}
+
+// minimal Markdown: paragraphs, lists, bold, italic, code, links, citations
+function inline(s, base) {
+  s = esc(s);
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+  s = s.replace(/\[\[(\d+)\]\]\(#sources\)/g, '<sup><a href="#src-$1">[$1]</a></sup>');
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => {
+    const href = /^(https?:|#)/.test(u) ? u : linkTo(base, u);
+    return `<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
+  });
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/(^|[\s(])\*([^*]+)\*/g, "$1<em>$2</em>");
+  return s.replace(/(https?:\/\/[^\s<)]+)(?![^<]*>|[^<>]*<\/a>)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+function md(text, base, anchorSources) {
+  const out = [];
+  let list = null;
+  for (const raw of text.split("\n")) {
+    const line = raw.trimEnd();
+    const ol = line.match(/^(\d+)\.\s+(.*)$/), ul = line.match(/^[-*]\s+(.*)$/);
+    if (ol || ul) {
+      const tag = ol ? "ol" : "ul";
+      if (list !== tag) { if (list) out.push(`</${list}>`); out.push(`<${tag}>`); list = tag; }
+      const id = anchorSources && ol ? ` id="src-${ol[1]}" value="${ol[1]}"` : (ol ? ` value="${ol[1]}"` : "");
+      out.push(`<li${id}>${inline(ol ? ol[2] : ul[1], base)}</li>`);
+      continue;
+    }
+    if (list) { out.push(`</${list}>`); list = null; }
+    if (line.trim()) out.push(`<p>${inline(line, base)}</p>`);
+  }
+  if (list) out.push(`</${list}>`);
+  return `<div class="md">${out.join("")}</div>`;
+}
+function linkTo(base, rel) {
+  const parts = (base + "/" + rel).split("/");
+  const stack = [];
+  for (const p of parts) { if (p === "..") stack.pop(); else if (p && p !== ".") stack.push(p); }
+  const path = stack.join("/");
+  return DATA.repo ? `${DATA.repo}/blob/main/${path}` : `../${path}`;
+}
+
+let mermaidReady = null;
+function loadMermaid() {
+  if (!mermaidReady) mermaidReady = new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js";
+    s.onload = () => { mermaid.initialize({startOnLoad: false, securityLevel: "strict", theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default"}); res(); };
+    s.onerror = rej;
+    document.head.appendChild(s);
+  });
+  return mermaidReady;
+}
+
+async function openDetail(id) {
+  const w = byId[id];
+  if (!w) return;
+  const el = document.getElementById("detail");
+  const repoLink = DATA.repo ? `${DATA.repo}/blob/main/${w.path}/README.md` : `../${w.path}/README.md`;
+  el.innerHTML = `<div class="d-head"><div><div class="place">${w.id} · ${esc(w.kingdomName)} › ${esc(w.phylumName)} › ${w.class}</div><h2>${esc(w.name)}</h2></div><button class="close" aria-label="Close">✕</button></div>
+  <div class="d-body">
+    <div class="badges"><span class="badge ${covClass(w.coverage)}">Public runs: ${esc(w.coverage || "not graded")}</span><span class="badge">${w.autonomy}</span><span class="badge">evidence ${w.evidence}</span><span class="badge">${w.status}</span>${w.risk ? `<span class="badge">risk ${w.risk}</span>` : ""}</div>
+    <h4>Shape</h4><div class="shape" style="-webkit-line-clamp:unset">${esc(w.shape)}</div>
+    <div class="diagram" id="dg">Loading diagram…</div>
+    <h4>At a glance</h4>
+    <dl class="meta"><dt>Delivers</dt><dd>${esc(w.deliverable)}</dd><dt>Checkpoints</dt><dd>${w.checkpoints.map(c => "🛑 " + esc(c)).join(" · ")}</dd><dt>Patterns</dt><dd>${w.patterns.map(esc).join(" · ")}</dd>${w.variants.length ? `<dt>Tools</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd>` : ""}<dt>Last verified</dt><dd>${esc(w.lastVerified)}</dd><dt>Source file</dt><dd><a href="${repoLink}" target="_blank" rel="noopener">${esc(w.path)}/README.md</a></dd></dl>
+    ${w.intro ? md(w.intro, w.path) : ""}
+    ${w.steps ? `<h4>Steps</h4>${md(w.steps, w.path)}` : ""}
+    ${w.publicRuns ? `<h4>Public runs</h4>${md(w.publicRuns, w.path)}` : ""}
+    ${w.sources ? `<h4 id="sources">Sources</h4>${md(w.sources, w.path, true)}` : ""}
+  </div>`;
+  el.classList.add("open"); el.setAttribute("aria-hidden", "false");
+  document.getElementById("scrim").classList.add("open");
+  el.querySelector(".close").onclick = closeDetail;
+  el.scrollTop = 0;
+  if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+  try {
+    await loadMermaid();
+    const {svg} = await mermaid.render("m" + id.replace(/\W/g, ""), w.mermaid);
+    const dg = document.getElementById("dg");
+    if (dg && byId[id] === w) dg.innerHTML = svg;
+  } catch (e) {
+    const dg = document.getElementById("dg");
+    if (dg) dg.innerHTML = `<pre style="white-space:pre-wrap;margin:0">${esc(w.mermaid)}</pre>`;
+  }
+}
+function closeDetail() {
+  document.getElementById("detail").classList.remove("open");
+  document.getElementById("detail").setAttribute("aria-hidden", "true");
+  document.getElementById("scrim").classList.remove("open");
+  history.replaceState(null, "", location.pathname + location.search);
+}
+
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+document.getElementById("scrim").onclick = closeDetail;
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); if (e.key === "/" && document.activeElement.id !== "q") { e.preventDefault(); document.getElementById("q").focus(); } });
+for (const v of ["map", "list"]) document.getElementById("tab-" + v).onclick = () => {
+  state.view = v;
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.id === "tab-" + v)));
+  render();
+};
+document.getElementById("filters-toggle").onclick = e => {
+  const a = document.getElementById("filters");
+  a.classList.toggle("show");
+  e.target.setAttribute("aria-expanded", String(a.classList.contains("show")));
+};
+render();
+if (location.hash.length > 1) openDetail(decodeURIComponent(location.hash.slice(1)));
+</script>
+</body>
+</html>

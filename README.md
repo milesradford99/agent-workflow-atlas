@@ -27,7 +27,7 @@ Workflows are classified the way biology classifies animals: by **ancestry**, no
 ```
 workflows/
   CRE/                     Kingdom: broad field (5)
-    MED/                   Phylum: profession (18)
+    MED/                   Phylum: profession (20)
       AIGCVIDEO/           Class: discipline
         ai-shot-factory/   Species: one workflow, with a permanent ID (AWF-0015)
           README.md        the SOP and its metadata
