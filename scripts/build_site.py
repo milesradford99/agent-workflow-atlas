@@ -16,11 +16,16 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from catalog import ROOT, load_taxonomy, read_front_matter, species_files
+import yaml
+
 import site_pages
-from shapes import to_mermaid
+from catalog import ROOT, load_taxonomy, read_front_matter, species_files
+from shapes import to_mermaid, to_route
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
+STYLE = Path(__file__).with_name("site_style.css")
+LABELS = ROOT / "i18n" / "labels.yaml"
+ZH = ROOT / "i18n" / "workflows.zh-CN.yaml"
 DIAGRAM_RE = re.compile(r"\n*<!-- shape diagram:.*?<!-- end shape diagram -->\n*", re.S)
 
 
@@ -34,6 +39,8 @@ def intro(body):
     body = DIAGRAM_RE.sub("\n\n", body)
     m = re.search(r"^# .*?\n(.*?)(?=^## |\Z)", body, re.M | re.S)
     lines = (m.group(1) if m else "").strip().split("\n")
+    # the shape and kit lines are drawn by the page itself (route, diagram, kit button)
+    lines = [ln for ln in lines if not ln.startswith(("**Shape:**", "**Agent kit:**"))]
     # the first line repeats the place, autonomy and status, which the page shows as badges
     return "\n".join(lines[1:]).strip() if lines and lines[0].startswith("`") else "\n".join(lines).strip()
 
@@ -47,7 +54,7 @@ def repo_url():
     return re.sub(r"\.git$", "", url) if url.startswith("https://") else ""
 
 
-def records(tax):
+def records(tax, zh):
     out = []
     for path in species_files():
         fm, problem = read_front_matter(path)
@@ -61,7 +68,8 @@ def records(tax):
         phylum = kingdom.get("phyla", {}).get(fm["phylum"], {})
         tags = fm.get("tags") or {}
         out.append({
-            "id": fm["id"], "name": fm["name"],
+            "id": fm["id"], "name": fm["name"], "summary": fm.get("summary") or "",
+            "nameZh": (zh.get(fm["id"]) or {}).get("name", ""), "summaryZh": (zh.get(fm["id"]) or {}).get("summary", ""),
             "kingdom": fm["kingdom"], "kingdomName": kingdom.get("name", ""),
             "phylum": fm["phylum"], "phylumName": phylum.get("name", ""),
             "class": fm["class"], "deliverable": fm["deliverable"], "shape": fm["shape"],
@@ -75,6 +83,7 @@ def records(tax):
             "unplaced": path.parent.parent.name == "unplaced",
             "kit": (path.parent / "variants" / "claude-code.md").is_file(),
             "mermaid": to_mermaid(fm["shape"]),
+            "route": to_route(fm["shape"]),
             "intro": intro(body),
             "steps": section(body, "Steps"),
             "publicRuns": runs,
@@ -94,15 +103,16 @@ def main():
         "repo": args.repo_url if args.repo_url is not None else repo_url(),
         "taxonomy": {k: {"name": v["name"], "phyla": {p: {"name": ph["name"], "classes": ph["classes"]} for p, ph in v["phyla"].items()}}
                      for k, v in tax["kingdoms"].items()},
-        "workflows": records(tax),
+        "labels": yaml.safe_load(LABELS.read_text()),
+        "workflows": records(tax, yaml.safe_load(ZH.read_text()) or {}),
     }
     blob = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    html = TEMPLATE.read_text().replace("/*__DATA__*/null", blob)
+    html = TEMPLATE.read_text().replace("/*__CSS__*/", STYLE.read_text()).replace("/*__DATA__*/null", blob)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html)
     site_url = args.site_url.rstrip("/")
-    site_pages.write_all(out, data, site_url)
+    site_pages.write_all(out, data, site_url, STYLE.read_text())
     shutil.copyfile(ROOT / "docs" / "images" / "og.png", out / "og.png")
     print(f"Wrote {out}/: index.html, {len(data['workflows'])} workflow pages, catalog.json, catalog.csv")
 

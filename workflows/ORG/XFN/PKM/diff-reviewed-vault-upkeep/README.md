@@ -1,6 +1,7 @@
 ---
 id: AWF-0087
 name: Diff-reviewed vault upkeep
+summary: "An agent files notes and syncs transcripts in a personal vault from dictated instructions; the owner reviews the git diff before each commit."
 kingdom: ORG
 phylum: XFN
 class: PKM

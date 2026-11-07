@@ -1,6 +1,7 @@
 ---
 id: AWF-0016
 name: Live-action assist
+summary: "Plans a live-action short drama shoot and post-production and tests ad cuts; a person approves the plan and reviews before sign-off."
 kingdom: CRE
 phylum: MED
 class: SHORTDRAMA

@@ -1,6 +1,7 @@
 ---
 id: AWF-0046
 name: Review-of-review feedback
+summary: "Checks a submitted review for vague comments and misreadings and sends private feedback; the reviewer accepts, edits or ignores it."
 kingdom: PRO
 phylum: RES
 class: PEER

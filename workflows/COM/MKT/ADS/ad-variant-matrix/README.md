@@ -1,6 +1,7 @@
 ---
 id: AWF-0019
 name: Ad variant matrix
+summary: "Builds a matrix of ad variants (copy, static, avatar video) and checks claims; a person approves the plan and reviews before bulk upload."
 kingdom: COM
 phylum: MKT
 class: ADS

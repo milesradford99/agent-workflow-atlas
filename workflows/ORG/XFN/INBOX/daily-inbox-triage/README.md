@@ -1,6 +1,7 @@
 ---
 id: AWF-0031
 name: Daily inbox triage
+summary: "Sorts email, calendar and DMs each morning into draft replies, slot proposals and a top-five brief; a person sends every message."
 kingdom: ORG
 phylum: XFN
 class: INBOX

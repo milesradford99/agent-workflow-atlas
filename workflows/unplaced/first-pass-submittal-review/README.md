@@ -1,6 +1,7 @@
 ---
 id: AWF-0151
 name: First-pass submittal review
+summary: "Checks a submittal against specs and prior approvals and recommends a response; the PM or engineer reviews, the reviewer of record approves."
 kingdom: TEC
 phylum: ENG
 class: SUBMITTAL

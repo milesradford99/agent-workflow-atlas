@@ -1,6 +1,7 @@
 ---
 id: AWF-0129
 name: AI fuzz-target hunting
+summary: "Drafts and runs fuzz targets and triages crashes into vulnerability reports; humans confirm triage and maintainers fix confirmed bugs."
 kingdom: TEC
 phylum: ITS
 class: APPSEC

@@ -1,6 +1,7 @@
 ---
 id: AWF-0050
 name: Call-to-CRM diff approval
+summary: "Turns a sales call into proposed CRM field changes and a follow-up draft; the rep approves the diff and sends the follow-up."
 kingdom: COM
 phylum: SAL
 class: DEAL

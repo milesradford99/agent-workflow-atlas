@@ -1,6 +1,7 @@
 ---
 id: AWF-0139
 name: Directed AI audiobook
+summary: "Produces audiobook masters with directed AI voices; a person approves voice casting and reviews, and the author signs off."
 kingdom: CRE
 phylum: MED
 class: AUDIO

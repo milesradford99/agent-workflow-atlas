@@ -1,6 +1,7 @@
 ---
 id: AWF-0078
 name: Episode post-production chain
+summary: "Edits and captions a recorded podcast and drafts show assets; a person reviews captions, the full listen and assets before publishing."
 kingdom: CRE
 phylum: MED
 class: AUDIO

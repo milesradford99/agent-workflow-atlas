@@ -1,6 +1,7 @@
 ---
 id: AWF-0107
 name: Human-sent reply drafting
+summary: "Drafts replies to customer cases from history, CRM and KB; the advisor edits and sends every reply."
 kingdom: COM
 phylum: CSX
 class: RESOLVE

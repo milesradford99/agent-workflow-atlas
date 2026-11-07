@@ -1,6 +1,7 @@
 ---
 id: AWF-0113
 name: Copilot attribute suggestions
+summary: "Suggests product attribute values at onboarding; a content expert accepts or edits each value before publishing."
 kingdom: COM
 phylum: RET
 class: CATALOG

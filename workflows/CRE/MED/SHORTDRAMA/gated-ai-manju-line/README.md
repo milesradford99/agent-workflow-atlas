@@ -1,6 +1,7 @@
 ---
 id: AWF-0137
 name: Gated AI 漫剧 line
+summary: "Runs an AI 漫剧 series from greenlight review through script, assets, storyboard and shots; people review at each stage."
 kingdom: CRE
 phylum: MED
 class: SHORTDRAMA

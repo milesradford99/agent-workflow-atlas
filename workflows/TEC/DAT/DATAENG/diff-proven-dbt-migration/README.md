@@ -1,6 +1,7 @@
 ---
 id: AWF-0063
 name: Diff-proven dbt migration
+summary: "Migrates legacy code to dbt, proving each model by data diff against production; data owners approve each table, then sign off cutover."
 kingdom: TEC
 phylum: DAT
 class: DATAENG

@@ -1,6 +1,7 @@
 ---
 id: AWF-0027
 name: Backward-design course
+summary: "Builds a course from standards through objectives, assessments and lessons; educators approve at each plan stage before LMS import."
 kingdom: PRO
 phylum: EDU
 class: COURSE

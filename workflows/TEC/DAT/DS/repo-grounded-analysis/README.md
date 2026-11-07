@@ -1,6 +1,7 @@
 ---
 id: AWF-0064
 name: Repo-grounded analysis
+summary: "Drafts an analysis memo grounded in the team repo and verified tables; an analyst signs off any unverified table and verifies the draft."
 kingdom: TEC
 phylum: DAT
 class: DS

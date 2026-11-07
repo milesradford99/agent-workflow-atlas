@@ -1,6 +1,7 @@
 ---
 id: AWF-0076
 name: Glossary-backed MTPE serial
+summary: "Machine-translates new web-novel chapters using a genre glossary; a human post-editor checks each chapter before overseas publishing."
 kingdom: CRE
 phylum: WRI
 class: TRANS

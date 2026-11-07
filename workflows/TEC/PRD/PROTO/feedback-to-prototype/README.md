@@ -1,6 +1,7 @@
 ---
 id: AWF-0007
 name: Feedback to prototype
+summary: "Turns customer feedback into a PRD and prototype variants; the PM picks the problem and a design review precedes user tests."
 kingdom: TEC
 phylum: PRD
 class: PROTO

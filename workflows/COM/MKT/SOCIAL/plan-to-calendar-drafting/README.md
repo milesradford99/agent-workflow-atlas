@@ -1,6 +1,7 @@
 ---
 id: AWF-0053
 name: Plan-to-calendar drafting
+summary: "Drafts social posts per channel into a scheduler calendar; a person approves the plan, reviews each post and approves publishing."
 kingdom: COM
 phylum: MKT
 class: SOCIAL

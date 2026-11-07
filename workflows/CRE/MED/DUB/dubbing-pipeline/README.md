@@ -1,6 +1,7 @@
 ---
 id: AWF-0017
 name: Dubbing pipeline
+summary: "Translates and re-voices an episode into other languages with lip-sync and subtitles; native QA samples the output and a person signs off."
 kingdom: CRE
 phylum: MED
 class: DUB

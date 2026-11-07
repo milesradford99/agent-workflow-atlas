@@ -1,6 +1,7 @@
 ---
 id: AWF-0047
 name: Calibrated conversation scoring
+summary: "Scores support conversations with criterion classifiers and clusters failures by root cause; people audit samples and review the clusters."
 kingdom: COM
 phylum: CSX
 class: QA

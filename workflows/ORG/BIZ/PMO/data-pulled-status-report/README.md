@@ -1,6 +1,7 @@
 ---
 id: AWF-0084
 name: Data-pulled status report
+summary: "Pulls project data into a status report with risk flags and a Gantt; the project manager edits it before it goes out."
 kingdom: ORG
 phylum: BIZ
 class: PMO

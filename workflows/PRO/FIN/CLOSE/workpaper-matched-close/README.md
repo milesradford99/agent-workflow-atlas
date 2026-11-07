@@ -1,6 +1,7 @@
 ---
 id: AWF-0038
 name: Workpaper-matched close agents
+summary: "Prepares month-end workpapers, draft journal entries and flux from prior workpapers; the controller reviews all and signs off the close."
 kingdom: PRO
 phylum: FIN
 class: CLOSE

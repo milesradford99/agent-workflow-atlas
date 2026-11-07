@@ -1,6 +1,7 @@
 ---
 id: AWF-0079
 name: Concept-led SD asset stream
+summary: "Produces game art from artist concepts using custom-trained image models; the artist tweaks and approves each asset."
 kingdom: CRE
 phylum: MED
 class: GAMEART

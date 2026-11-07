@@ -1,6 +1,7 @@
 ---
 id: AWF-0048
 name: Gap-match knowledge upkeep
+summary: "Turns resolved tickets into KB article drafts (create, update or skip); an editor or SME reviews and the product owner signs off."
 kingdom: COM
 phylum: CSX
 class: KB

@@ -1,6 +1,7 @@
 ---
 id: AWF-0015
 name: AI shot factory
+summary: "Turns a script into an AI-generated video episode shot by shot; a person approves the plan, reviews the edit and signs off."
 kingdom: CRE
 phylum: MED
 class: AIGCVIDEO

@@ -1,6 +1,7 @@
 ---
 id: AWF-0034
 name: Chemist-gated DMTA loop
+summary: "Proposes and ranks compounds, then writes experiment grids; chemists pick the shortlist, correct procedures and repeat results at bench scale."
 kingdom: PRO
 phylum: HLT
 class: DRUGDISC

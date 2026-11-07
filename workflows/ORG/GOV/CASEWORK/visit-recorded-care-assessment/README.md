@@ -1,6 +1,7 @@
 ---
 id: AWF-0142
 name: Visit-recorded care assessment
+summary: "Records and transcribes a care visit or call, then drafts the assessment or case note; the practitioner checks and edits before filing."
 kingdom: ORG
 phylum: GOV
 class: CASEWORK

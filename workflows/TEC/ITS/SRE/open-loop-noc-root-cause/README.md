@@ -1,6 +1,7 @@
 ---
 id: AWF-0127
 name: Open-loop NOC root cause
+summary: "Annotates network fault tickets with root cause and recommended action; a NOC engineer accepts or edits, complex cases go to Tier-2."
 kingdom: TEC
 phylum: ITS
 class: SRE

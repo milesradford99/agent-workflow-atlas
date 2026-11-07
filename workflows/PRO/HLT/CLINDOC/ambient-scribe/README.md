@@ -1,6 +1,7 @@
 ---
 id: AWF-0026
 name: Ambient scribe
+summary: "Records a consented visit and drafts the note, codes and patient summary linked to the transcript; the clinician reviews and signs off."
 kingdom: PRO
 phylum: HLT
 class: CLINDOC

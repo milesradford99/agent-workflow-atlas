@@ -1,6 +1,7 @@
 ---
 id: AWF-0093
 name: Calibrated privilege log
+summary: "Drafts privilege log descriptions on a sample and refines the prompt with outside counsel feedback before running the full population."
 kingdom: PRO
 phylum: LEG
 class: LITIG

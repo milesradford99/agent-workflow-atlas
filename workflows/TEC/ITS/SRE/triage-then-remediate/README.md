@@ -1,6 +1,7 @@
 ---
 id: AWF-0004
 name: Triage then remediate
+summary: "Investigates an alert, proposes ranked hypotheses and drafts a postmortem; the on-call engineer approves any runbook command."
 kingdom: TEC
 phylum: ITS
 class: SRE

@@ -1,6 +1,7 @@
 ---
 id: AWF-0121
 name: Routed accessibility PR agent
+summary: "Suggests accessibility fixes on front-end PRs, handing complex cases to the accessibility team; a human decides whether to commit each fix."
 kingdom: TEC
 phylum: PRD
 class: UI

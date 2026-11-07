@@ -1,6 +1,7 @@
 ---
 id: AWF-0143
 name: Officer-checked planning data extraction
+summary: "Extracts fields and map boundaries from scanned planning records; a planning officer checks every output before national export."
 kingdom: ORG
 phylum: GOV
 class: CIVIC

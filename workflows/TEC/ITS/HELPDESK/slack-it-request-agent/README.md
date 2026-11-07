@@ -1,6 +1,7 @@
 ---
 id: AWF-0068
 name: Slack IT request agent
+summary: "Resolves IT how-to and access requests in Slack; a designated approver approves access and unsupported requests become tickets for humans."
 kingdom: TEC
 phylum: ITS
 class: HELPDESK

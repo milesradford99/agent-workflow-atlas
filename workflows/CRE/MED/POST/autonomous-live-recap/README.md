@@ -1,6 +1,7 @@
 ---
 id: AWF-0138
 name: Autonomous live recap
+summary: "Detects key moments in live match streams and publishes highlight recaps with no per-item approval; a team monitors output by sampling."
 kingdom: CRE
 phylum: MED
 class: POST

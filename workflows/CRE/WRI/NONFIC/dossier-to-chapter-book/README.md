@@ -1,6 +1,7 @@
 ---
 id: AWF-0073
 name: Dossier-to-chapter book
+summary: "Drafts a cited nonfiction book chapter by chapter; the author reviews each brief, dossier and chapter and makes the final calls."
 kingdom: CRE
 phylum: WRI
 class: NONFIC

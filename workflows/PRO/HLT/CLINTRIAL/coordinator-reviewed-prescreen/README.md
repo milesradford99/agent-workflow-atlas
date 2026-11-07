@@ -1,6 +1,7 @@
 ---
 id: AWF-0033
 name: Coordinator-reviewed prescreen
+summary: "Labels each trial criterion per patient with rationale and source note, then ranks patients; a coordinator rules on each criterion."
 kingdom: PRO
 phylum: HLT
 class: CLINTRIAL

@@ -1,6 +1,7 @@
 ---
 id: AWF-0126
 name: Calibrated-judge quality loop
+summary: "Scores production agent sessions with a human-calibrated judge and drafts fixes; humans write rubrics, label sessions and review fixes."
 kingdom: TEC
 phylum: DAT
 class: MLOPS

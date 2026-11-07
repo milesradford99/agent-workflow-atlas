@@ -1,6 +1,7 @@
 ---
 id: AWF-0024
 name: Playbook contract review
+summary: "Compares each clause to a playbook rated green, yellow or red and adds tracked changes; a lawyer reviews and signs off before sending."
 kingdom: PRO
 phylum: LEG
 class: CONTRACT

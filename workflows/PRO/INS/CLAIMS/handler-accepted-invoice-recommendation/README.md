@@ -1,6 +1,7 @@
 ---
 id: AWF-0095
 name: Handler-accepted invoice recommendation
+summary: "Recommends pay or exclude per line on vet invoices; the claims handler accepts, edits or sends it to manual handling."
 kingdom: PRO
 phylum: INS
 class: CLAIMS

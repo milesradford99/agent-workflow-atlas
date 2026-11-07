@@ -1,6 +1,7 @@
 ---
 id: AWF-0115
 name: Tiered-permission ads optimizer
+summary: "Reviews ad account data and makes changes by permission tier; low-risk edits run automatically, budget and structure changes need approval."
 kingdom: COM
 phylum: MKT
 class: ADS

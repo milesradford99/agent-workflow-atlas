@@ -1,6 +1,7 @@
 ---
 id: AWF-0085
 name: Policy-checked expense audit
+summary: "Checks expense reports against policy; clean ones go to manager sign-off, violations to a T&E specialist, with feedback to the employee."
 kingdom: ORG
 phylum: BIZ
 class: ADMIN

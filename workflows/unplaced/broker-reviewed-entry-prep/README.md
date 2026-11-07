@@ -1,6 +1,7 @@
 ---
 id: AWF-0148
 name: Broker-reviewed entry prep
+summary: "Prepares customs entries from importer documents with per-field confidence and source; an entry writer reviews, the broker signs off."
 kingdom: ORG
 phylum: LOG
 class: CUSTOMS

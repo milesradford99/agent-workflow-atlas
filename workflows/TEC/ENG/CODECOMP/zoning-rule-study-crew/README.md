@@ -1,6 +1,7 @@
 ---
 id: AWF-0118
 name: Zoning-rule study crew
+summary: "Drafts a zoning compliance study by checking a project against local rules; an architect validates and signs before the permit application."
 kingdom: TEC
 phylum: ENG
 class: CODECOMP

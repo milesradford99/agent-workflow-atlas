@@ -1,6 +1,7 @@
 ---
 id: AWF-0108
 name: Resident maintenance triage
+summary: "Triages resident maintenance requests into prioritised work orders and dispatches them; emergencies are handed to on-call staff."
 kingdom: COM
 phylum: CSX
 class: RESOLVE

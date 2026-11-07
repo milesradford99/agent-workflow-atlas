@@ -1,0 +1,121 @@
+# Display names for the taxonomy codes, used by the site. taxonomy.yaml stays the source of
+# truth for which codes exist; scripts/validate.py checks every code here has both languages.
+# Keys: kingdom, phylum or class code → {en, zh-CN}.
+
+kingdoms:
+  PRO: {en: Professional services, zh-CN: 专业服务}
+  COM: {en: Commerce & customers, zh-CN: 商业与客户}
+  TEC: {en: Technology & product, zh-CN: 技术与产品}
+  CRE: {en: Creative & media, zh-CN: 创意与媒体}
+  ORG: {en: Organization & public, zh-CN: 组织与公共}
+
+phyla:
+  HLT: {en: Healthcare & life sciences, zh-CN: 医疗与生命科学}
+  LEG: {en: Legal & compliance, zh-CN: 法律与合规}
+  INS: {en: Insurance, zh-CN: 保险}
+  FIN: {en: Finance & accounting, zh-CN: 财务与金融}
+  EDU: {en: Education & training, zh-CN: 教育与培训}
+  RES: {en: Research & academia, zh-CN: 科研与学术}
+  CSX: {en: Customer support & success, zh-CN: 客服与客户成功}
+  SAL: {en: Sales & revenue, zh-CN: 销售与营收}
+  RET: {en: Retail & e-commerce operations, zh-CN: 零售与电商运营}
+  MKT: {en: Marketing & growth, zh-CN: 营销与增长}
+  ENG: {en: Physical engineering & AEC, zh-CN: 工程与建筑}
+  PRD: {en: Product & design, zh-CN: 产品与设计}
+  DAT: {en: Data & ML, zh-CN: 数据与机器学习}
+  ITS: {en: IT, infrastructure & security, zh-CN: IT、基础设施与安全}
+  SWE: {en: Software engineering, zh-CN: 软件工程}
+  WRI: {en: Writing & publishing, zh-CN: 写作与出版}
+  MED: {en: Media production, zh-CN: 影音制作}
+  GOV: {en: Public sector, zh-CN: 公共部门}
+  BIZ: {en: Business operations & people, zh-CN: 企业运营与人力}
+  XFN: {en: Personal knowledge work, zh-CN: 个人知识工作}
+
+classes:
+  CLINDOC: {en: Clinical documentation, zh-CN: 临床文书}
+  RCM: {en: Revenue cycle, zh-CN: 医疗收入周期}
+  CLINTRIAL: {en: Clinical trials, zh-CN: 临床试验}
+  DRUGDISC: {en: Drug discovery, zh-CN: 药物发现}
+  CONTRACT: {en: Contracts, zh-CN: 合同}
+  RESEARCH: {en: Legal research, zh-CN: 法律检索}
+  LITIG: {en: Litigation, zh-CN: 诉讼}
+  REG: {en: Regulatory compliance, zh-CN: 监管合规}
+  DD: {en: Due diligence, zh-CN: 尽职调查}
+  CLAIMS: {en: Claims, zh-CN: 理赔}
+  AP: {en: Accounts payable, zh-CN: 应付账款}
+  CLOSE: {en: Month-end close, zh-CN: 月末结账}
+  FPA: {en: Planning & analysis, zh-CN: 财务计划与分析}
+  INVEST: {en: Investment & credit research, zh-CN: 投资与信贷研究}
+  AUDIT: {en: Audit, zh-CN: 审计}
+  TAX: {en: Tax, zh-CN: 税务}
+  COURSE: {en: Course design, zh-CN: 课程设计}
+  ASSESS: {en: Assessment, zh-CN: 测评}
+  TUTOR: {en: Tutoring, zh-CN: 辅导}
+  LND: {en: Learning & development, zh-CN: 企业培训}
+  LITREV: {en: Literature review, zh-CN: 文献综述}
+  WRITE: {en: Academic writing, zh-CN: 学术写作}
+  ANALYSIS: {en: Research analysis, zh-CN: 研究分析}
+  GRANT: {en: Grants, zh-CN: 基金申请}
+  PEER: {en: Peer review, zh-CN: 同行评审}
+  RESOLVE: {en: Resolving requests, zh-CN: 问题解决}
+  QA: {en: Quality assurance, zh-CN: 质检}
+  KB: {en: Knowledge base, zh-CN: 知识库}
+  CS: {en: Customer success, zh-CN: 客户成功}
+  PROSPECT: {en: Prospecting, zh-CN: 获客}
+  DEAL: {en: Deals, zh-CN: 商机推进}
+  RFP: {en: RFPs & questionnaires, zh-CN: 招标与问卷应答}
+  REVOPS: {en: Revenue operations, zh-CN: 营收运营}
+  CATALOG: {en: Product catalog, zh-CN: 商品目录}
+  CONTENT: {en: Content, zh-CN: 内容}
+  ADS: {en: Advertising, zh-CN: 广告投放}
+  SOCIAL: {en: Social media, zh-CN: 社交媒体}
+  LIFECYCLE: {en: Lifecycle marketing, zh-CN: 用户生命周期营销}
+  MKTRES: {en: Market research, zh-CN: 市场研究}
+  CAD: {en: CAD & design, zh-CN: CAD 与设计}
+  SIM: {en: Simulation, zh-CN: 仿真}
+  CODECOMP: {en: Code compliance, zh-CN: 规范审查}
+  MFG: {en: Manufacturing, zh-CN: 制造}
+  PM: {en: Product management, zh-CN: 产品管理}
+  UXR: {en: User research, zh-CN: 用户研究}
+  UI: {en: Interface design, zh-CN: 界面设计}
+  PROTO: {en: Prototyping, zh-CN: 原型}
+  DSYS: {en: Design systems, zh-CN: 设计系统}
+  ANALYTICS: {en: Analytics, zh-CN: 数据分析}
+  DATAENG: {en: Data engineering, zh-CN: 数据工程}
+  DS: {en: Data science, zh-CN: 数据科学}
+  MLOPS: {en: ML operations, zh-CN: 机器学习运维}
+  SRE: {en: Incident response, zh-CN: 故障响应}
+  INFRA: {en: Infrastructure, zh-CN: 基础设施}
+  SECOPS: {en: Security operations, zh-CN: 安全运营}
+  APPSEC: {en: Application security, zh-CN: 应用安全}
+  HELPDESK: {en: IT help desk, zh-CN: IT 服务台}
+  FEAT: {en: Feature work, zh-CN: 功能开发}
+  MAINT: {en: Maintenance & migrations, zh-CN: 维护与迁移}
+  TEST: {en: Testing, zh-CN: 测试}
+  REVIEW: {en: Code review, zh-CN: 代码评审}
+  DEBUG: {en: Debugging, zh-CN: 调试修复}
+  ARCH: {en: Architecture, zh-CN: 架构设计}
+  FICTION: {en: Fiction, zh-CN: 小说}
+  SERIAL: {en: Web serials, zh-CN: 网文连载}
+  SCREEN: {en: Screenwriting, zh-CN: 编剧}
+  NONFIC: {en: Nonfiction, zh-CN: 非虚构}
+  JOURN: {en: Journalism, zh-CN: 新闻}
+  TECHW: {en: Technical writing, zh-CN: 技术写作}
+  TRANS: {en: Translation, zh-CN: 翻译}
+  SHORTDRAMA: {en: Short drama, zh-CN: 短剧}
+  AIGCVIDEO: {en: AI video, zh-CN: AI 视频}
+  POST: {en: Post-production, zh-CN: 后期制作}
+  DUB: {en: Dubbing, zh-CN: 配音译制}
+  AUDIO: {en: Audio, zh-CN: 音频}
+  GAMEART: {en: Game art, zh-CN: 游戏美术}
+  POLICY: {en: Policy, zh-CN: 政策}
+  CASEWORK: {en: Casework, zh-CN: 个案办理}
+  CIVIC: {en: Civic services, zh-CN: 公共服务}
+  HR: {en: Hiring & people, zh-CN: 招聘与人事}
+  PROC: {en: Procurement, zh-CN: 采购}
+  PMO: {en: Project management, zh-CN: 项目管理}
+  STRAT: {en: Strategy research, zh-CN: 战略研究}
+  ADMIN: {en: Administration, zh-CN: 行政}
+  INBOX: {en: Inbox, zh-CN: 邮件收件箱}
+  MEET: {en: Meetings, zh-CN: 会议}
+  PKM: {en: Personal knowledge, zh-CN: 个人知识管理}

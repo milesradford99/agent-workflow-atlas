@@ -1,6 +1,7 @@
 ---
 id: AWF-0052
 name: Propose-confirm pipeline sweep
+summary: "Sweeps the CRM pipeline daily for stale or missing next steps and publishes an exceptions view; a human confirms each write-back."
 kingdom: COM
 phylum: SAL
 class: REVOPS

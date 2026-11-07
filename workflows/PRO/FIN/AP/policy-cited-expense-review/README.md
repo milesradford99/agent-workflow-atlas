@@ -1,6 +1,7 @@
 ---
 id: AWF-0097
 name: Policy-cited expense review
+summary: "Checks each expense against policy with citations and approves low-risk ones; outliers go to an approver, who also decides policy changes."
 kingdom: PRO
 phylum: FIN
 class: AP

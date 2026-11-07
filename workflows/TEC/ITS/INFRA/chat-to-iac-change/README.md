@@ -1,6 +1,7 @@
 ---
 id: AWF-0066
 name: Chat-to-IaC change
+summary: "Turns a Slack request or alert into an infrastructure-as-code PR with plan output; CODEOWNERS reviewers approve before it applies on merge."
 kingdom: TEC
 phylum: ITS
 class: INFRA

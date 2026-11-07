@@ -1,6 +1,7 @@
 ---
 id: AWF-0117
 name: Pre-submittal plan check
+summary: "Produces a ranked issue list for a permit drawing set before submission; the design firm triages real issues from non-issues."
 kingdom: TEC
 phylum: ENG
 class: CODECOMP

@@ -110,3 +110,26 @@ def to_mermaid(shape):
     g = Graph()
     build(g, shape, [])
     return "\n".join(["flowchart TD", *g.lines, *g.edges, "  classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610"])
+
+
+def to_route(shape):
+    """Flatten a shape line into the marks of a route strip: one per top-level step.
+
+    Each mark is {"k": kind, "t": text}, kind being step, loop (a ⟲ group), each (done for
+    every item), alt (a routing fork) or stop (a 🛑 checkpoint, with "cp" set to its type).
+    """
+    marks = []
+    for seg in split_top(shape, "→"):
+        text = unwrap(seg)
+        cp = re.search(r"🛑 ([a-z-]+)", text)
+        if cp:
+            marks.append({"k": "stop", "t": text.replace("🛑", "").strip(), "cp": cp.group(1)})
+        elif re.match(r"^each [^:()]+:", text):
+            marks.append({"k": "each", "t": text})
+        elif len(split_top(text, "⟲")) > 1:
+            marks.append({"k": "loop", "t": text})
+        elif len(split_top(text, "|")) > 1:
+            marks.append({"k": "alt", "t": text})
+        else:
+            marks.append({"k": "step", "t": text})
+    return marks

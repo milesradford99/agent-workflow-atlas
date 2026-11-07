@@ -1,6 +1,7 @@
 ---
 id: AWF-0062
 name: Spec-bound screen options
+summary: "Produces greyscale options and hi-fi Figma screens bound to a ticket's sources; the designer picks the option and inspects the result."
 kingdom: TEC
 phylum: PRD
 class: UI

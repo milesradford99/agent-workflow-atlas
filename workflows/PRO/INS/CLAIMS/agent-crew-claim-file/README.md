@@ -1,6 +1,7 @@
 ---
 id: AWF-0094
 name: Agent-crew claim file
+summary: "Specialised agents check coverage, weather and fraud and propose a payout; a claims professional decides payment after an audit summary."
 kingdom: PRO
 phylum: INS
 class: CLAIMS

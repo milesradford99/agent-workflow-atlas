@@ -1,6 +1,7 @@
 ---
 id: AWF-0059
 name: Drawing-to-route draft
+summary: "Drafts a manufacturing route with workstations and labour hours from BOM and drawings; a team leader adjusts and releases it to production."
 kingdom: TEC
 phylum: ENG
 class: MFG

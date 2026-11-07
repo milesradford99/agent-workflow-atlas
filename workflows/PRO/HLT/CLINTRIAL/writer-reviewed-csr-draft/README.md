@@ -1,6 +1,7 @@
 ---
 id: AWF-0091
 name: Writer-reviewed CSR draft
+summary: "Generates a first draft of a clinical study report from data tables; qualified medical writers fully review it."
 kingdom: PRO
 phylum: HLT
 class: CLINTRIAL

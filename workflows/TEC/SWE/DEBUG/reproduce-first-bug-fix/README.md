@@ -1,6 +1,7 @@
 ---
 id: AWF-0071
 name: Reproduce-first bug fix
+summary: "Reproduces a bug first, then opens a fix PR and a regression-test PR; unreproducible bugs go to a human and engineers review before merge."
 kingdom: TEC
 phylum: SWE
 class: DEBUG

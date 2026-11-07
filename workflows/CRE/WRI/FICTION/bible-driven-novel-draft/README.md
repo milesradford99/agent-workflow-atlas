@@ -1,6 +1,7 @@
 ---
 id: AWF-0011
 name: Bible-driven novel draft
+summary: "Drafts a novel scene by scene from a story bible with continuity and style checks; the author approves plans and reviews."
 kingdom: CRE
 phylum: WRI
 class: FICTION

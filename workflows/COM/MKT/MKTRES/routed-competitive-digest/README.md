@@ -1,6 +1,7 @@
 ---
 id: AWF-0055
 name: Routed competitive digest
+summary: "Compiles a weekly competitive digest from deal and news channels, tagged to owners; the CI lead reviews and PMMs update battlecards."
 kingdom: COM
 phylum: MKT
 class: MKTRES

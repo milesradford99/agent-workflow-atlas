@@ -1,6 +1,7 @@
 ---
 id: AWF-0032
 name: Criteria-gated prior auth
+summary: "Checks chart data against payer criteria and drafts the checklist and cover letter; staff edit and submit the request or appeal."
 kingdom: PRO
 phylum: HLT
 class: RCM

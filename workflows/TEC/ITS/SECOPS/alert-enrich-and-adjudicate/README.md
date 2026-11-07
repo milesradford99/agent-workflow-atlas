@@ -1,6 +1,7 @@
 ---
 id: AWF-0005
 name: Alert enrich and adjudicate
+summary: "Enriches security alerts and returns a verdict with evidence; benign ones auto-close, the rest go to tier 2, and QA samples closures weekly."
 kingdom: TEC
 phylum: ITS
 class: SECOPS

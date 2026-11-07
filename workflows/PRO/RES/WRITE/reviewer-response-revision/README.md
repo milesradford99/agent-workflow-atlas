@@ -1,6 +1,7 @@
 ---
 id: AWF-0010
 name: Reviewer-response revision
+summary: "Revises a manuscript and drafts the response letter per reviewer comment; authors approve the plan, review rebuttals and sign off."
 kingdom: PRO
 phylum: RES
 class: WRITE

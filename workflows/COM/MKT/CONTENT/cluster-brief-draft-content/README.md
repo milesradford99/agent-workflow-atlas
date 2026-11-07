@@ -1,6 +1,7 @@
 ---
 id: AWF-0018
 name: Cluster-brief-draft content
+summary: "Clusters keywords into SEO article briefs and drafts with SME input; a person approves the plan and reviews each article."
 kingdom: COM
 phylum: MKT
 class: CONTENT

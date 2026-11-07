@@ -1,6 +1,7 @@
 ---
 id: AWF-0044
 name: Gated replication run
+summary: "Runs a replication package and matches coefficients to the paper; the researcher approves the plan and reviews discrepancies."
 kingdom: PRO
 phylum: RES
 class: ANALYSIS

@@ -1,6 +1,7 @@
 ---
 id: AWF-0149
 name: Decision-ready submission triage
+summary: "Digitises broker submissions into a scored underwriting queue; low-confidence ones get a human check and the underwriter decides."
 kingdom: PRO
 phylum: INS
 class: UW

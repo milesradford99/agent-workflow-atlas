@@ -1,6 +1,7 @@
 ---
 id: AWF-0023
 name: Event-driven model update
+summary: "Updates a financial model's drivers from new releases and filings with per-cell citations; an analyst reviews and compliance signs off."
 kingdom: PRO
 phylum: FIN
 class: INVEST

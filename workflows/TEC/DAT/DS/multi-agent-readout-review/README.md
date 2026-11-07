@@ -1,6 +1,7 @@
 ---
 id: AWF-0125
 name: Multi-agent readout review
+summary: "Posts structured review comments on an experiment readout from three reviewer agents; an independent data scientist reviews before shipping."
 kingdom: TEC
 phylum: DAT
 class: DS

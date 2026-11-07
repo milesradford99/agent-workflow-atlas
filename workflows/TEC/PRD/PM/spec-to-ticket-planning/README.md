@@ -1,6 +1,7 @@
 ---
 id: AWF-0060
 name: Spec-to-ticket planning
+summary: "Breaks a spec into a ticketed project plan in the tracker; a human iterates on the breakdown and PM and engineering review the tickets."
 kingdom: TEC
 phylum: PRD
 class: PM

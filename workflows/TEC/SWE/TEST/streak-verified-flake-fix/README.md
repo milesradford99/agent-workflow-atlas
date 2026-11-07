@@ -1,6 +1,7 @@
 ---
 id: AWF-0132
 name: Streak-verified flake fix
+summary: "Fixes a flaky test and opens a PR once reruns stay clean over a set streak; a human reviews before merge."
 kingdom: TEC
 phylum: SWE
 class: TEST

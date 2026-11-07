@@ -1,6 +1,7 @@
 ---
 id: AWF-0028
 name: Anchor-calibrated grader
+summary: "Grades submissions with evidence quotes, calibrated on human-graded anchors; low-confidence grades are sampled and signed off by a person."
 kingdom: PRO
 phylum: EDU
 class: ASSESS

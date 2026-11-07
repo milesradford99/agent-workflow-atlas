@@ -1,6 +1,7 @@
 ---
 id: AWF-0012
 name: Daily web serial
+summary: "Writes one web-serial chapter a day from the 细纲 and character sheet; a person reviews each chapter and reader comments shape later ones."
 kingdom: CRE
 phylum: WRI
 class: SERIAL

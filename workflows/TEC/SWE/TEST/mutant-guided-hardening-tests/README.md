@@ -1,6 +1,7 @@
 ---
 id: AWF-0131
 name: Mutant-guided hardening tests
+summary: "Generates tests that catch faults for a stated concern such as privacy by using mutants; engineers review and accept or reject each test."
 kingdom: TEC
 phylum: SWE
 class: TEST

@@ -1,6 +1,7 @@
 ---
 id: AWF-0030
 name: Issue-tree research
+summary: "Builds a research deck from a MECE issue tree with a sourced claims table; a person approves the plan and reviews before the deck is made."
 kingdom: ORG
 phylum: BIZ
 class: STRAT

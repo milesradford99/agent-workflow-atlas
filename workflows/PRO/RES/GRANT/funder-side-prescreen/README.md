@@ -1,6 +1,7 @@
 ---
 id: AWF-0105
 name: Funder-side prescreen
+summary: "Three classifiers flag likely bottom-class proposals; two eligibility reviewers per flag confirm removal or rescue it for peer review."
 kingdom: PRO
 phylum: RES
 class: GRANT

@@ -1,6 +1,7 @@
 ---
 id: AWF-0049
 name: Renewal-window risk brief
+summary: "Scans renewals due and drafts evidence-backed risk briefs and save plans; a CSM validates flags and approves outreach."
 kingdom: COM
 phylum: CSX
 class: CS

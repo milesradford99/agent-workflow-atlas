@@ -1,6 +1,7 @@
 ---
 id: AWF-0037
 name: Data-room red-flag review
+summary: "Reviews data-room documents against a playbook with citations and flags red items; lawyers validate and categorise the flags."
 kingdom: PRO
 phylum: LEG
 class: DD

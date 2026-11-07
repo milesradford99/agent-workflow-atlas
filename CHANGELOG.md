@@ -5,6 +5,8 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 ## 2026-11
 
 ### Added
+- Redesigned catalog site: a route strip for every workflow (agent steps in teal, human checkpoints in red), a calmer field directory, a detail sheet with section navigation, and full English and Simplified Chinese support (UI, field, profession and category names, workflow names and summaries; steps and sources stay in English). Chinese static pages at `w/<ID>/zh/`.
+- A one-sentence `summary` on every workflow, required by `validate.py`; display labels in `i18n/labels.yaml` and Chinese names and summaries in `i18n/workflows.zh-CN.yaml`.
 - A shareable static page per workflow (`w/<ID>/`) with a preview image, a sitemap, and catalog exports (`catalog.json`, `catalog.csv`) built by `scripts/build_site.py`.
 - A *Start here* view on the site with the workflows that have kits and the best-documented ones.
 - 15 starter issues labelled `good first issue`: wanted sources, kit runs to add as examples, and weak entries to strengthen.

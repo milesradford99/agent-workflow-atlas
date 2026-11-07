@@ -1,6 +1,7 @@
 ---
 id: AWF-0092
 name: Business self-serve drafting
+summary: "Business users fill a guided form and an agent populates a legal-approved template; out-of-scope requests go to expedited legal review."
 kingdom: PRO
 phylum: LEG
 class: CONTRACT

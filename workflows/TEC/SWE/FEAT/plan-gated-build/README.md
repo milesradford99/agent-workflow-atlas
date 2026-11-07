@@ -1,6 +1,7 @@
 ---
 id: AWF-0001
 name: Plan-gated build
+summary: "Builds a pull request from an issue, starting from a plan and failing tests; a human approves the plan, the PR action and the final review."
 kingdom: TEC
 phylum: SWE
 class: FEAT

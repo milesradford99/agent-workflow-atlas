@@ -1,6 +1,7 @@
 ---
 id: AWF-0065
 name: Overnight experiment ratchet
+summary: "Loops code change, training and evaluation overnight to yield a better model; a human sets the protocol, scientists audit before promotion."
 kingdom: TEC
 phylum: DAT
 class: MLOPS

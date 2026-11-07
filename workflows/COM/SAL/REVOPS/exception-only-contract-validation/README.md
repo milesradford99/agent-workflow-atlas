@@ -1,6 +1,7 @@
 ---
 id: AWF-0110
 name: Exception-only contract validation
+summary: "Checks signed contracts against the quote and writes clean ones to the CRM; a deal desk specialist handles any doubtful case."
 kingdom: COM
 phylum: SAL
 class: REVOPS

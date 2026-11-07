@@ -1,6 +1,7 @@
 ---
 id: AWF-0155
 name: Underwriter-reviewed broker quote
+summary: "Drafts a broker quote email with pricing for in-scope renewals; an underwriter reviews it before it is sent."
 kingdom: PRO
 phylum: INS
 class: UW

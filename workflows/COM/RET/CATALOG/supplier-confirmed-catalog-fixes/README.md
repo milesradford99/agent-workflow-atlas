@@ -1,6 +1,7 @@
 ---
 id: AWF-0114
 name: Supplier-confirmed catalog fixes
+summary: "Fixes product listings against a label guide; high-confidence changes go live, risky ones need supplier confirmation and associate sampling."
 kingdom: COM
 phylum: RET
 class: CATALOG

@@ -1,6 +1,7 @@
 ---
 id: AWF-0021
 name: Procedure agent
+summary: "Resolves customer chats from KB and procedures, with limits set in code; sensitive cases go to a human and QA samples the rest."
 kingdom: COM
 phylum: CSX
 class: RESOLVE

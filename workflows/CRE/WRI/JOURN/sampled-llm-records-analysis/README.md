@@ -1,6 +1,7 @@
 ---
 id: AWF-0134
 name: Sampled LLM records analysis
+summary: "Analyses many documents with structured LLM queries for a data story; a committee approves use and reporters double-check samples."
 kingdom: CRE
 phylum: WRI
 class: JOURN

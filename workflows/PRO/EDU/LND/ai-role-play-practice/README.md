@@ -1,6 +1,7 @@
 ---
 id: AWF-0103
 name: AI role-play practice
+summary: "Learners practise voice role-plays with an AI customer based on real conversations; trainers approve scenarios and observe and coach."
 kingdom: PRO
 phylum: EDU
 class: LND

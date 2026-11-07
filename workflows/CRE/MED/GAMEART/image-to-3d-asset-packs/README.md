@@ -1,6 +1,7 @@
 ---
 id: AWF-0140
 name: Image-to-3D asset packs
+summary: "Generates engine-ready 3D asset packs from concept images; an artist keeps or rejects generations and finishes topology, UV and look."
 kingdom: CRE
 phylum: MED
 class: GAMEART

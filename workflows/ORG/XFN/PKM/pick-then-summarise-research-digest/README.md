@@ -1,6 +1,7 @@
 ---
 id: AWF-0146
 name: Pick-then-summarise research digest
+summary: "Searches arXiv and Scholar into a daily digest, then summarises the papers the reader saves; the reader checks the summaries."
 kingdom: ORG
 phylum: XFN
 class: PKM

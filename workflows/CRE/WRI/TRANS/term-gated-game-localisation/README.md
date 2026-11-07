@@ -1,6 +1,7 @@
 ---
 id: AWF-0136
 name: Term-gated game localisation
+summary: "Translates game strings with term retrieval and rule checks; a language expert confirms terms and an LQA expert checks before shipping."
 kingdom: CRE
 phylum: WRI
 class: TRANS

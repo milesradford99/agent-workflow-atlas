@@ -1,6 +1,7 @@
 ---
 id: AWF-0074
 name: Reporter-notes rewrite desk
+summary: "Drafts news stories from reporter notes; a rewrite editor reviews and the reporter does a final read before publishing."
 kingdom: CRE
 phylum: WRI
 class: JOURN

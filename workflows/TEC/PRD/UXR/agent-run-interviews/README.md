@@ -1,6 +1,7 @@
 ---
 id: AWF-0120
 name: Agent-run interviews
+summary: "Runs adaptive research interviews and summarises themes with quotes; researchers finalize the plan and review findings before publication."
 kingdom: TEC
 phylum: PRD
 class: UXR
