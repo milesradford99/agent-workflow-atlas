@@ -31,6 +31,13 @@ last_verified: 2026-11
 
 Keeping the agent at *evidence*, never *verdict*, reduces exposure to both.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [YC software team, yc-software/recruiting](https://github.com/yc-software/recruiting). Claude Code commands for triage, outreach, scheduling and candidate briefs; the manager approves each step, **including rejections**. "27 inbox emails, 38 active candidates"; 8 applicants rated, "about 2 minutes". *First-hand: yes; confidence: med.*
+- [LinkedIn, Infinite Resource Solutions story](https://business.linkedin.com/hire/customer-stories/infinite-resource-solutions) (undated). Sourcing → export to the ATS → scoring against recruiter criteria. "2–3 hours per day"; "48 hours to less than a day". *First-hand: vendor; confidence: low.*
+
 ## Sources
 
 27. NYC DCWP, *AEDT FAQ*. https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf

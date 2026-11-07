@@ -34,6 +34,12 @@ last_verified: 2026-11
 
 **Output:** a PR. Token gaps are reported back to the design-system team.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Jenny Xie, Figma blog, on Coinbase](https://www.figma.com/blog/how-coinbase-used-code-connect-to-shrink-token-costs/) (2026-09-02). Frame link → MCP + Code Connect → agent implements; a designer checks components. "cost by 22.5%"; "time to implementation by 22.3%"; three runs. *First-hand: vendor; confidence: med.*
+
 ## Sources
 
 7. Figma, *MCP server guide*. https://github.com/figma/mcp-server-guide

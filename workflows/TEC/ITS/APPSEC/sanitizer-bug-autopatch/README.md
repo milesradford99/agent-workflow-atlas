@@ -1,0 +1,50 @@
+---
+id: AWF-0067
+name: Sanitizer-bug autopatch
+kingdom: TEC
+phylum: ITS
+class: APPSEC
+deliverable: security-fix-commit
+shape: "sanitizer finding from unit tests → reproduce + isolate (stack trace, target file) → each model: generate fix → build + rerun tests + sanitizer → pick best fix → 🛑 review (security engineers filter) → 🛑 sign-off (code owner) → submit"
+autonomy: checkpointed
+checkpoints: [review, sign-off]
+patterns: [chain, parallel, eval-opt]
+variants: [gemini-internal-pipeline, github-copilot-autofix, snyk-agent-fix]
+tags: {risk: medium}
+evidence: A
+status: draft
+reference_example: null
+inputs_from: []
+merged_into: null
+last_verified: 2026-11
+---
+
+# Sanitizer-bug autopatch
+
+`TEC › ITS › APPSEC` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+
+**Shape:** `sanitizer finding from unit tests → reproduce + isolate (stack trace, target file) → each model: generate fix → build + rerun tests + sanitizer → pick best fix → 🛑 review (security engineers filter) → 🛑 sign-off (code owner) → submit`
+**How it differs:** AWF-0005 Alert enrich and adjudicate ends with a verdict on a security alert. This workflow ends with a code patch. AWF-0003 Delegated PR has no repro or sanitizer gate and no two-stage human filter.
+**Variants:** `gemini-internal-pipeline` · `github-copilot-autofix` · `snyk-agent-fix`
+
+## Steps
+1. Collect sanitizer bugs (memory-safety and similar) found while unit tests run, in C/C++, Java and Go. Keep all the information from the test run, especially the stack trace [[1]](#sources).
+2. Reproduce and isolate each bug so the test can be rerun. Pick the file to change from the stack trace; the team also tried letting the LLM choose it [[1]](#sources).
+3. Prompt LLMs (Gemini) for a fix. Models are tried in sequence, because different models fixed different bug types [[1]](#sources).
+4. Test each candidate automatically: build, rerun the tests and rerun the sanitizer on the modified code. This catches fake fixes such as deleting the failing test [[1]](#sources).
+5. Show the best fix for human review [[1]](#sources).
+6. 🛑 **Review**: in a first human round, the team rejected 'approximately 10-20%' of generated commits as false positives or as changes that hurt code quality [[1]](#sources).
+7. 🛑 **Sign-off**: the remaining commits go to code owners for final validation and submission [[1]](#sources).
+
+**Output:** A reviewed fix commit for each vulnerability, landed by the code owner.
+**Failure modes → guards:** The model 'fixes' the bug by removing the failing test, or by serializing code with a misleading comment → rerun the tests and sanitizer on the patched code, and keep a human filter before code owners see it. Reviewers may trust machine fixes too much → tell developers the fix is AI-generated and keep the double human filter [[1]](#sources).
+
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+
+- [Google, AI-powered patching](https://storage.googleapis.com/gweb-research2023-media/pubtools/7563.pdf) (2024-01-05). Gemini pipeline patches sanitizer bugs found in unit tests; two human filters, then code owners accept. "Approximately 95% of the commits sent to code owners were accepted without discussion"; fixed "15% of sanitizer bugs". *First-hand: yes; confidence: med.*
+
+## Sources
+
+1. Jan Keller, Jan Nowakowski (Google), AI-powered patching: the future of automated vulnerability fixes, Google Security Engineering Technical Report, 2024 (PDF created 2024-01-05). https://research.google/pubs/ai-powered-patching-the-future-of-automated-vulnerability-fixes/ ; PDF https://storage.googleapis.com/gweb-research2023-media/pubtools/7563.pdf

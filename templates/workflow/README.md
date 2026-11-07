@@ -38,6 +38,12 @@ One or two sentences: who does this, and what it produces.
 **Failure modes → guards:** what goes wrong in practice, and what prevents it.
 **How it differs from [nearest workflow](../path/):** the deliverable, checkpoint or autonomy difference that makes this its own entry (the swap test, TAXONOMY.md rule 4).
 
+## Public runs
+
+Coverage: **Strong**, **Partial**, **Weak** or **None found** (grades as in `research/2026-11-real-runs.md`). One line per first-hand public run of this workflow; leave the list empty if there are none yet.
+
+- [Who, where](URL) (date). What the run shows. "A number, in the page's own words". *First-hand: yes, vendor, interview, anon or no; confidence: high, med or low.*
+
 ## Sources
 
 1. Title, publisher, date. URL

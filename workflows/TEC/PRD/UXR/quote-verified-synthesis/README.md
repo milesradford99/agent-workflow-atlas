@@ -1,0 +1,53 @@
+---
+id: AWF-0061
+name: Quote-verified synthesis
+kingdom: TEC
+phylum: PRD
+class: UXR
+deliverable: research-insights-report
+shape: "transcripts in one store → each research question: retrieve quotes with participant IDs → recurring themes → 🛑 review (verify every theme + quote against source) → human synthesis + prioritisation → draft report → 🛑 sign-off (researcher) → publish + stakeholder TL;DR"
+autonomy: assist
+checkpoints: [review, sign-off]
+patterns: [chain, parallel]
+variants: [claude-code-skill, notebooklm, dovetail, otter-ai]
+tags: {risk: low}
+evidence: A
+status: draft
+reference_example: null
+inputs_from: []
+merged_into: null
+last_verified: 2026-11
+---
+
+# Quote-verified synthesis
+
+`TEC › PRD › UXR` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+
+**Shape:** `transcripts in one store → each research question: retrieve quotes with participant IDs → recurring themes → 🛑 review (verify every theme + quote against source) → human synthesis + prioritisation → draft report → 🛑 sign-off (researcher) → publish + stakeholder TL;DR`
+**How it differs:** AWF-0007 feedback to prototype: that one turns feedback into a prototype. This stops at a verified insights report, with no build.
+**Variants:** `claude-code-skill` · `notebooklm` · `dovetail` · `otter-ai`
+
+## Steps
+1. Put all recordings and transcripts in a single evidence store, such as Dovetail or a notebook per study [[2]](#sources)[[3]](#sources).
+2. For each research question, ask the agent for matching quotes with participant IDs and timestamps or source links. Ask one question at a time and keep asking until results are exhausted [[2]](#sources)[[3]](#sources).
+3. Ask for themes mentioned by 3+ participants, with direct quotes, and tell it not to interpret sentiment [[1]](#sources).
+4. 🛑 **Review**: the researcher checks every theme and quote against the original audio or transcript. In one run this caught 'checks dashboard daily' being a workaround for broken alerts, not engagement [[1]](#sources).
+5. Humans cluster and prioritise insights (affinity mapping in Miro). AI is used only as a devil's advocate to check for gaps or bias [[2]](#sources).
+6. The agent drafts the report from verified insights [[3]](#sources).
+7. 🛑 **Sign-off**: the researcher approves the report. It is then published to Confluence, with a TL;DR posted to Slack channels [[3]](#sources).
+
+**Output:** A verified insights report with traceable quotes, published to Confluence or slides, feeding design and product decisions.
+**Failure modes → guards:** Invented quotes (seen with ChatGPT even at temperature 0.1) → grounded retrieval plus 100% quote checks [[3]](#sources). Sentiment misread from literal words → no-sentiment prompting plus human re-listening [[1]](#sources).
+
+## Public runs
+
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+
+- [Tanya Donska, Using AI for UX Research](https://dnsk.work/blog/using-ai-for-ux-research-workflow) (2025-10-08). Deutsche Telekom study: 8 interviews; AI themes checked against audio. "45-minute interview uploaded. 5 minutes later, transcript ready. 90% accurate.". *First-hand: yes; confidence: high.*
+- [Lana Hung, How we transformed qualitative synthesis](https://medium.com/@LanaHung/how-we-transformed-qualitative-synthesize-with-ai-chatgpt-notebooklm-claude-code-0b4df664a15f) (2026-06-14). ShopBack UXR team moved to a Claude Code synthesis skill publishing to Confluence/Slack. "The entire process typically took 3 — 5 days." → "we were able to complete most reports within a single day". *First-hand: yes; confidence: high.*
+
+## Sources
+
+1. Tanya Donska, Using AI for UX Research: The Workflow I Actually Use, 2025-10-08 (updated 2026-04-14). https://dnsk.work/blog/using-ai-for-ux-research-workflow
+2. Cori Widen (Photoroom), Working smarter with AI-led qualitative analysis at Photoroom, 2025-06-10. https://www.photoroom.com/inside-photoroom/ai-qualitative-analysis
+3. Lana Hung (ShopBack), How we transformed qualitative synthesize with AI: ChatGPT, NotebookLM, Claude Code, Medium, 2026-06-14. https://medium.com/@LanaHung/how-we-transformed-qualitative-synthesize-with-ai-chatgpt-notebooklm-claude-code-0b4df664a15f

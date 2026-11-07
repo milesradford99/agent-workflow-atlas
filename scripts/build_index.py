@@ -4,6 +4,7 @@ Usage:
   python scripts/build_index.py          write INDEX.md
   python scripts/build_index.py --check  exit 1 if INDEX.md is out of date
 """
+import re
 import sys
 from collections import defaultdict
 
@@ -19,8 +20,29 @@ def load():
         if problem:
             sys.exit(f"{path.relative_to(ROOT)}: {problem} (run scripts/validate.py)")
         fm["_path"] = path.parent.relative_to(ROOT).as_posix()
+        fm["_coverage"], fm["_runs"] = public_runs(path.read_text())
         records.append(fm)
     return sorted(records, key=lambda r: r["id"])
+
+
+COVERAGE = ["Strong", "Partial", "Weak", "None found"]
+
+
+def public_runs(text):
+    """Coverage grade and number of linked runs from the README's "## Public runs" section."""
+    m = re.search(r"^## Public runs\n(.*?)(?=^## |\Z)", text, re.M | re.S)
+    if not m:
+        return None, 0
+    grade = re.search(r"\*\*(Strong|Partial|Weak|None found)\*\*", m.group(1))
+    return (grade.group(1) if grade else None), len(re.findall(r"^- \[", m.group(1), re.M))
+
+
+def runs_cell(r):
+    if not r["_coverage"]:
+        return "—"
+    if r["_coverage"] == "None found":
+        return "none found"
+    return f"{r['_coverage'].lower()} · {r['_runs']}"
 
 
 def link(r):
@@ -51,15 +73,28 @@ def render(records, tax):
         for p, phylum in kingdom["phyla"].items():
             for r in records:
                 if r["kingdom"] == k and r["phylum"] == p:
-                    rows.append(f"| {r['id']} | {link(r)} | {p} · {phylum['name']} | {r['class']} | {r['autonomy']} | {r['evidence']} | {r['status']} |")
+                    rows.append(f"| {r['id']} | {link(r)} | {p} · {phylum['name']} | {r['class']} | {r['autonomy']} | {r['evidence']} | {runs_cell(r)} | {r['status']} |")
         empty = [f"`{p}`" for p in kingdom["phyla"] if not any(r["phylum"] == p for r in records)]
         if rows:
-            lines += ["| ID | Workflow | Phylum | Class | Autonomy | Evidence | Status |", "|---|---|---|---|---|---|---|", *rows, ""]
+            lines += ["| ID | Workflow | Phylum | Class | Autonomy | Evidence | Public runs | Status |", "|---|---|---|---|---|---|---|---|", *rows, ""]
         if empty:
             lines += [f"No workflows yet in {', '.join(empty)}.", ""]
     unplaced = [r for r in records if r["_path"].startswith("workflows/unplaced/")]
     if unplaced:
         lines += ["### Unplaced", "", *[f"- {r['id']} {link(r)}" for r in unplaced], ""]
+
+    lines += [
+        "## By public evidence",
+        "",
+        "From each workflow's Public runs section: how well public, first-hand runs cover it. "
+        "The number after the grade in the tables above is how many runs are linked.",
+        "",
+    ]
+    for grade in COVERAGE:
+        hits = [r for r in records if r["_coverage"] == grade]
+        if hits:
+            lines.append(f"- **{grade}** ({len(hits)}): {ids(hits)}")
+    lines.append("")
 
     lines += ["## By trait", "", "Each number links to the workflow.", ""]
     for field in ["autonomy", "checkpoints", "patterns"]:

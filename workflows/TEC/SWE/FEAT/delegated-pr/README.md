@@ -37,6 +37,13 @@ last_verified: 2026-11
 
 **Output:** merged PRs. Track the merge rate per issue label to tune what gets dispatched.
 
+## Public runs
+
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Charas & Bruggmann, Spotify Engineering](https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1) (2025-11-06). Fleet migrations in containers with an LLM judge; teams review the PRs. "merged more than 1500 pull requests"; "60–90%" time saving. *First-hand: yes; confidence: high.*
+- [Stephen Toub, .NET Blog](https://devblogs.microsoft.com/dotnet/ten-months-with-cca-in-dotnet-runtime/) (2026-03-23). Maintainers assign issues → agent PR → bot review → humans steer and merge. "all 878 CCA PRs"; "67.9% success rate"; "3 were reverted (0.6%)". *First-hand: yes; confidence: high.*
+
 ## Sources
 
 3. Claude Code docs, *GitHub Actions*. https://code.claude.com/docs/en/github-actions

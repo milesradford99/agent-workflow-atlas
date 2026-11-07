@@ -1,0 +1,52 @@
+---
+id: AWF-0032
+name: Criteria-gated prior auth
+kingdom: PRO
+phylum: HLT
+class: RCM
+deliverable: prior-auth-packet
+shape: "MRN + drug + payer criteria → pull chart data → check each criterion → met | not met (stop, list unmet) → documentation checklist + cover letter → 🛑 review (PA staff select records, edit letter) → 🛑 action (staff submit request or appeal)"
+autonomy: assist
+checkpoints: [review, action]
+patterns: [chain, route]
+variants: [epic-maestro-care-llm, nds-appeals-ai]
+tags: {risk: high}
+evidence: A
+status: draft
+reference_example: null
+inputs_from: []
+merged_into: null
+last_verified: 2026-11
+---
+
+# Criteria-gated prior auth
+
+`PRO › HLT › RCM` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+
+**Shape:** `MRN + drug + payer criteria → pull chart data → check each criterion → met | not met (stop, list unmet) → documentation checklist + cover letter → 🛑 review (PA staff select records, edit letter) → 🛑 action (staff submit request or appeal)`
+**How it differs:** AWF-0026 Ambient scribe (CLINDOC) produces a visit note from a conversation. This produces a payer submission, can stop when criteria are unmet, and is submitted by a human.
+**Variants:** `epic-maestro-care-llm` · `nds-appeals-ai`
+
+## Steps
+1. Setup per medication: build ground-truth files from retrospective approvals and denials. Compare the LLM's per-criterion output against them. Refine the prompt and source data and retest until outputs match [[1]](#sources).
+2. A staff member enters the patient's MRN, the medication and the date. Changing the date switches the tool from a new authorization to a denial appeal [[1]](#sources).
+3. The tool pulls provider notes, flowsheets, labs, orders, medications and ICD codes from the EHR in real time. It combines them with the payer's prior-auth and medical-necessity criteria [[1]](#sources).
+4. The LLM evaluates each criterion. If any criterion is unmet, the tool tells the user to stop and lists which criteria were met and which were not [[1]](#sources).
+5. When all criteria are met, the tool produces a documentation checklist and drafts a cover letter that cites the supporting clinical information [[1]](#sources).
+6. 🛑 **Review**: Staff on the Medical Necessity & Denials team follow the checklist to select records in the release-of-information workflow and edit the letter [[1]](#sources). In the appeals variant, staff read and edit each AI-drafted appeal and approve or reject it. Physicians review the clinical argument on medical-necessity cases [[2]](#sources).
+7. 🛑 **Action**: Staff submit the packet or appeal to the payer. Complex, high-dollar medical-necessity denials stay with the human team [[2]](#sources).
+
+**Output:** A payer-ready prior-auth or appeal packet (cover letter plus selected records), submitted by staff. Classified denial data goes back to the front-end authorization team.
+**Failure modes → guards:** Supporting-documentation mismatches (7 errors in 970 criteria assessed at Duke) → per-drug ground-truth validation before go-live, and staff pick the records themselves [[1]](#sources). Out-of-scope complex denials → scope them out and route them to humans and physicians [[2]](#sources).
+
+## Public runs
+
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+
+- [Duke DIHI, Medical Prior Authorization Assistant](https://dihi.org/project/using-ai-to-reduce-the-burden-of-prior-authorizations-2/) (2026-04-01). Per-drug LLM criteria check validated on retrospective cases, then live with denials team. "the LLM correctly assessed the authorization status for all 83 cases across the three medications". *First-hand: yes; confidence: high.*
+- [NDS InfoServ, AI-generated appeals case study](https://www.ndsinfo.com/case-studies/appeals) (n.d.). Appeal letters drafted from 835 files and EHR, staff edit and approve before submission. "Reviewing and approving an AI-generated appeal took 8–12 minutes". *First-hand: vendor; confidence: med.*
+
+## Sources
+
+1. Duke Institute for Health Innovation, Using AI to Reduce the Burden of Prior Authorizations, 2024 (updated Apr 2026). https://dihi.org/project/using-ai-to-reduce-the-burden-of-prior-authorizations-2/
+2. NDS InfoServ, How a 350-Bed Community Hospital Turned 1,400 Unworked Denials Into $2.1M in Recovered Revenue, n.d. https://www.ndsinfo.com/case-studies/appeals

@@ -34,3 +34,11 @@ last_verified: 2026-11
 6. 🛑 **Review**: an analyst reviews the logic.
 7. 🛑 **Sign-off**: required before the result goes to execs.
 8. Save the verified query to the golden set for reuse.
+
+## Public runs
+
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
+
+- [Xu, Suresh, Tang, OpenAI, *Inside our in-house data agent*](https://openai.com/index/inside-our-in-house-data-agent) (2026-01-29). Schema, lineage and docs as context; SQL self-check; saved corrections; golden-SQL evals. "more than 3.5k internal users"; "70k datasets". *First-hand: yes; confidence: med.*
+- [Johnson, Busch, Khune, Uber, *QueryGPT*](https://www.uber.com/blog/query-gpt/) (2024-09-19). Curated SQL samples → intent, table and column agents; the user confirms tables. "about 300 daily active users, with about 78%" reporting time saved. *First-hand: yes; confidence: med.*
+
