@@ -15,7 +15,8 @@ Readers can also report a problem at any time with the [correction issue form](.
 On the 1st of each month, [`.github/workflows/freshness.yml`](.github/workflows/freshness.yml) runs `scripts/freshness.py --links` and keeps one open issue labelled `freshness` up to date. The report has two parts:
 
 - **Due for re-checking:** every entry whose `last_verified` month is 6 or more months old.
-- **Broken links:** sources and public runs that return 404, fail DNS or time out. Sites that refuse automated checks (403, 429) are counted but not listed, since they usually work in a browser.
+- **Dead links:** sources and public runs that return 404 or 410, or whose domain no longer exists. Fix these.
+- **Couldn't reach:** timeouts, dropped connections and server errors, listed in a collapsed section. These are usually slow sites or sites that block automated traffic; look only at ones that stay there several months running. Sites that refuse automated checks outright (403, 429) are just counted.
 
 To run it locally:
 
