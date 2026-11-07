@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["weekly: pull last 7 days from deal channels + competitor-…"]
   n2["triage against bar (repeat objection, confirmed public mo…"]
-  n1 --> n2
   n3["drop noise"]
-  n2 --> n3
   n4["structured digest, each item tagged to owning PMM with up…"]
-  n3 --> n4
   n5{{"🛑 review (CI lead)"}}:::stop
-  n4 --> n5
   n6{{"🛑 handoff (owning PMM updates battlecard)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

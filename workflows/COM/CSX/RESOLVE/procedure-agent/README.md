@@ -31,25 +31,25 @@ flowchart TD
   n1["load KB + procedures"]
   subgraph s2["each message"]
   n3["route"]
-  n1 --> n3
   end
   n4["info: answer"]
-  n3 --> n4
   n5["transaction: authenticate"]
-  n3 --> n5
   n6{{"🛑 action (limits in code)"}}:::stop
+  n7["tool call"]
+  n8{{"sensitive: 🛑 handoff"}}:::stop
+  n9{{"🛑 sample (QA)"}}:::stop
+  n10["KB-gap clusters"]
+  n11["new articles"]
+  n1 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["tool call"]
   n6 --> n7
-  n8["sensitive: 🛑 handoff"]
   n6 --> n8
-  n9{{"🛑 sample (QA)"}}:::stop
   n7 --> n9
   n8 --> n9
-  n10["KB-gap clusters"]
   n9 --> n10
-  n11["new articles"]
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

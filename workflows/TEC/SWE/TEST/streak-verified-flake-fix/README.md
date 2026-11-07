@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["flakiness dashboard export"]
   n2["download recent failure logs"]
-  n1 --> n2
   n3["fixer subagent: hypothesis + fix on branch"]
-  n2 --> n3
   n4["verifier subagents rerun CI to N-run streak"]
+  n5["max attempts: report failure"]
+  n6["streak clean: open PR"]
+  n7{{"🛑 review"}}:::stop
+  n8["merge"]
+  n1 --> n2
+  n2 --> n3
   n3 --> n4
   n4 -.->|repeat| n3
-  n5["max attempts: report failure"]
   n4 --> n5
-  n6["streak clean: open PR"]
   n4 --> n6
-  n7{{"🛑 review"}}:::stop
   n5 --> n7
   n6 --> n7
-  n8["merge"]
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

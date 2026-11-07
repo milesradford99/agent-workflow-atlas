@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["pick one high-volume low-risk document type"]
   n2["legal writes templates + playbook + grounded prompt"]
-  n1 --> n2
   n3{{"🛑 plan (pilot with one power-user team)"}}:::stop
-  n2 --> n3
   n4["business user answers guided form step by step"]
-  n3 --> n4
   n5["agent populates approved template (refuses out-of-scope r…"]
-  n4 --> n5
   n6["draft used by business"]
-  n5 --> n6
   n7{{"🛑 handoff (expedited legal review)"}}:::stop
-  n5 --> n7
   n8["replicate for next document type"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n5 --> n7
   n6 --> n8
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610

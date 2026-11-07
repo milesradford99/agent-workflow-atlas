@@ -33,18 +33,18 @@ last_verified: 2026-11
 flowchart TD
   n1["farmer registers plot via WhatsApp"]
   n2{{"🛑 review (farmer verifies plot polygon on map)"}}:::stop
-  n1 --> n2
   n3["soil-map data + management history"]
-  n2 --> n3
   n4["target yield + nutrient plan"]
-  n3 --> n4
   n5["in-season prompts (emergence, pests, disease)"]
-  n4 --> n5
   n6["rule-based advice"]
-  n5 --> n6
   n7{{"🛑 handoff (lead farmer / technician supports implementation)"}}:::stop
-  n6 --> n7
   n8["harvest data"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

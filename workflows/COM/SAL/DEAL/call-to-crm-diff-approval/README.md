@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["call transcript"]
   n2["pull account history + deal record"]
-  n1 --> n2
   n3["extract debrief (people, budget, objections, next steps)"]
-  n2 --> n3
   n4["propose field changes + follow-up draft"]
-  n3 --> n4
   n5{{"🛑 action (rep approves diff)"}}:::stop
-  n4 --> n5
   n6["write CRM + offer rollback"]
-  n5 --> n6
   n7{{"🛑 review (rep edits and sends follow-up)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

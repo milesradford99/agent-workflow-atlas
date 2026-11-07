@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["incoming patient message"]
   n2["exclusion check (non-English, attachment, proxy)"]
-  n1 --> n2
   n3["classify (general | results | medications | paperwork)"]
-  n2 --> n3
   n4["category prompt + structured patient data + last clinic note"]
-  n3 --> n4
   n5["draft shown in EHR inbox"]
-  n4 --> n5
   n6{{"🛑 review (clinician starts from draft or blank, edits)"}}:::stop
-  n5 --> n6
   n7{{"🛑 action (clinician sends reply)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,17 +32,17 @@ last_verified: 2026-11
 flowchart TD
   n1["dictate instructions"]
   n2["agent edits vault via skills (sync transcripts, file notes)"]
-  n1 --> n2
   n3["agent addresses inline comments"]
-  n2 --> n3
   n4{{"🛑 review (git diff)"}}:::stop
+  n5["commit"]
+  n6["mine session logs for friction"]
+  n7["update agent instructions"]
+  n1 --> n2
+  n2 --> n3
   n3 --> n4
   n4 -.->|repeat| n3
-  n5["commit"]
   n4 --> n5
-  n6["mine session logs for friction"]
   n5 --> n6
-  n7["update agent instructions"]
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

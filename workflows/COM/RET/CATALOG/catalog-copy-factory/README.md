@@ -32,23 +32,23 @@ last_verified: 2026-11
 flowchart TD
   n1["product data from shop/PIM + category briefing + text rules"]
   n2["prompt template per category"]
-  n1 --> n2
   subgraph s3["each SKU"]
   n4["draft"]
-  n2 --> n4
   end
   n5["rule check"]
-  n4 --> n5
   n6["regenerate"]
+  n7{{"🛑 review (screening queue)"}}:::stop
+  n8["store approved + bulk publish to product pages"]
+  n9["CTR/CVR feedback"]
+  n10["update templates / retrain"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7{{"🛑 review (screening queue)"}}:::stop
   n6 --> n7
-  n8["store approved + bulk publish to product pages"]
   n7 --> n8
-  n9["CTR/CVR feedback"]
   n8 --> n9
-  n10["update templates / retrain"]
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

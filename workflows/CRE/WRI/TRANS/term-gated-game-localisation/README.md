@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["new version text (by type: system, skill, story, announce…"]
   n2["mine terms from history + new text"]
-  n1 --> n2
   n3{{"🛑 review (language expert confirms term pairs)"}}:::stop
-  n2 --> n3
   subgraph s4["each language"]
   n5["RAG translate (term retrieval + reranked memory retrieval)"]
-  n3 --> n5
   end
   n6["rule post-check: language mix, tags/format, term compliance"]
-  n5 --> n6
   n7["fix"]
+  n8{{"🛑 review (LQA expert pre-delivery check)"}}:::stop
+  n9["ship"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
   n6 --> n7
   n7 -.->|repeat| n6
-  n8{{"🛑 review (LQA expert pre-delivery check)"}}:::stop
   n7 --> n8
-  n9["ship"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

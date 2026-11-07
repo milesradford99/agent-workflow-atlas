@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["expense report submitted"]
   n2["rule checks (amount, date, age, category limits)"]
-  n1 --> n2
   n3["LLM reads receipts against policy"]
-  n2 --> n3
   n4["currency checks"]
-  n3 --> n4
   n5["clean: auto-approve"]
-  n4 --> n5
   n6{{"🛑 sign-off (manager)"}}:::stop
-  n5 --> n6
-  n7["violation: 🛑 handoff (T&E specialist)"]
-  n5 --> n7
+  n7{{"violation: 🛑 handoff (T&E specialist)"}}:::stop
   n8["templated feedback to employee"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n5 --> n7
   n6 --> n8
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610

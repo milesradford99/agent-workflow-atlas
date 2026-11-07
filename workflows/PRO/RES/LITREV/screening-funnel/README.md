@@ -30,34 +30,34 @@ last_verified: 2026-11
 flowchart TD
   n1["PICO question"]
   n2["search strings"]
-  n1 --> n2
   n3{{"🛑 plan"}}:::stop
-  n2 --> n3
   subgraph s4["each database"]
   n5["search"]
-  n3 --> n5
   end
   n6["dedupe"]
-  n5 --> n6
   subgraph s7["each record"]
   n8["two independent screeners"]
-  n6 --> n8
   end
   n9["conflicts and includes"]
-  n8 --> n9
   n10{{"🛑 sample"}}:::stop
-  n9 --> n10
   subgraph s11["each paper"]
   n12["extract with quote + page"]
-  n10 --> n12
   end
   n13{{"🛑 review"}}:::stop
-  n12 --> n13
   n14["synthesis"]
-  n13 --> n14
   n15["check citations"]
-  n14 --> n15
   n16{{"🛑 sign-off"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n8
+  n8 --> n9
+  n9 --> n10
+  n10 --> n12
+  n12 --> n13
+  n13 --> n14
+  n14 --> n15
   n15 --> n16
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

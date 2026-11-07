@@ -32,19 +32,19 @@ last_verified: 2026-11
 flowchart TD
   n1["record or upload meeting audio"]
   n2["transcribe with speaker labels"]
-  n1 --> n2
   n3["choose meeting template"]
-  n2 --> n3
   n4["generate minutes"]
-  n3 --> n4
   n5["AI-chat edits"]
-  n4 --> n5
   n6{{"🛑 review (officer corrects)"}}:::stop
+  n7["export Word"]
+  n8["circulate"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7["export Word"]
   n6 --> n7
-  n8["circulate"]
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

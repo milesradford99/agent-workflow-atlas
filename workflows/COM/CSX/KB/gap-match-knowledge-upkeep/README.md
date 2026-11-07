@@ -32,28 +32,28 @@ last_verified: 2026-11
 flowchart TD
   n1["ingest resolved tickets"]
   n2["structure + cluster"]
-  n1 --> n2
   n3["match vs existing KB"]
-  n2 --> n3
   n4["create"]
-  n3 --> n4
   n5["update"]
-  n3 --> n5
   n6["skip"]
-  n3 --> n6
   n7{{"🛑 plan"}}:::stop
+  n8["collect sources + completeness score"]
+  n9["draft (style guide + template)"]
+  n10{{"🛑 review (editor/SME)"}}:::stop
+  n11{{"🛑 sign-off (product owner)"}}:::stop
+  n12["item-level publish"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
+  n3 --> n6
   n4 --> n7
   n5 --> n7
   n6 --> n7
-  n8["collect sources + completeness score"]
   n7 --> n8
-  n9["draft (style guide + template)"]
   n8 --> n9
-  n10{{"🛑 review (editor/SME)"}}:::stop
   n9 --> n10
-  n11{{"🛑 sign-off (product owner)"}}:::stop
   n10 --> n11
-  n12["item-level publish"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

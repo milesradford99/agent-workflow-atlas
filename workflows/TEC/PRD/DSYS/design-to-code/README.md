@@ -30,15 +30,15 @@ last_verified: 2026-11
 flowchart TD
   n1["frame link"]
   n2["load design context, tokens, component map"]
-  n1 --> n2
   n3["code"]
-  n2 --> n3
   n4["screenshot diff"]
+  n5{{"🛑 review"}}:::stop
+  n6["PR"]
+  n1 --> n2
+  n2 --> n3
   n3 --> n4
   n4 -.->|repeat| n3
-  n5{{"🛑 review"}}:::stop
   n4 --> n5
-  n6["PR"]
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["reviewer writes comment"]
   n2["model drafts suggested edit"]
-  n1 --> n2
   n3["confidence + heuristic filters"]
-  n2 --> n3
   n4["show in review tool / IDE"]
-  n3 --> n4
   n5{{"🛑 action (author previews, applies or ignores)"}}:::stop
-  n4 --> n5
   n6["helpful rating"]
-  n5 --> n6
   n7["aggregate feedback"]
-  n6 --> n7
   n8["new serving filters"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

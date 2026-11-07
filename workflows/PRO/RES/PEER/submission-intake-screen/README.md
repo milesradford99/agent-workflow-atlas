@@ -34,15 +34,15 @@ flowchart TD
   n2["AI checks (language, image integrity, plagiarism, conflic…"]
   end
   n3["up to 20 recommendations"]
-  n2 --> n3
   n4["clean: to editor"]
-  n3 --> n4
-  n5["flagged: 🛑 review (editors decide on peer review)"]
-  n3 --> n5
+  n5{{"flagged: 🛑 review (editors decide on peer review)"}}:::stop
   n6["expert corrections"]
+  n7["retrain models"]
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["retrain models"]
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

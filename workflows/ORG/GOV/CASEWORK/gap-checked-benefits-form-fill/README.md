@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["caseworker opens client case"]
   n2["agent searches agency databases and benefit portals"]
-  n1 --> n2
   n3["upfront gap analysis of the form"]
-  n2 --> n3
   n4["caseworker and client gather missing items"]
-  n3 --> n4
   n5["agent fills fields, flagging each with why it was pulled"]
-  n4 --> n5
   n6{{"🛑 review (caseworker corrects and approves)"}}:::stop
-  n5 --> n6
   n7["caseworker submits"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

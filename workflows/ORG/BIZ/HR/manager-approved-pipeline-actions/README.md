@@ -33,17 +33,17 @@ flowchart TD
   n1["triage: inbox + WAAS + Ashby + calendar"]
   subgraph s2["each applicant"]
   n3["tier against job playbook (archive | ask for examples | a…"]
-  n1 --> n3
   end
   n4["recommendation to manager (terminal or Slack)"]
-  n3 --> n4
   n5{{"🛑 action (manager approves batch, e.g. #quot;reject all o…"}}:::stop
-  n4 --> n5
   n6["stage-calibrated message per candidate"]
-  n5 --> n6
   n7["send + archive in Gmail, WAAS, Ashby"]
-  n6 --> n7
   n8["re-query each system to verify"]
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

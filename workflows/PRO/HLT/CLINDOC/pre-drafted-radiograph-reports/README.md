@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["radiograph acquisition completes"]
   n2["EHR sends current + comparison images and clinical prompt…"]
-  n1 --> n2
   n3["generate draft report"]
-  n2 --> n3
   n4["draft appears as template field in dictation system"]
-  n3 --> n4
   n5{{"🛑 review (radiologist verifies + edits as with a trainee…"}}:::stop
-  n4 --> n5
   n6["final report"]
-  n5 --> n6
   n7["track addenda + peer-review sample"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["session briefing"]
   n2["read repo docs + live metadata"]
-  n1 --> n2
   n3["trust check (verified tables)"]
-  n2 --> n3
-  n4["unverified table? 🛑 action (analyst sign-off, provisional)"]
-  n3 --> n4
+  n4{{"unverified table? 🛑 action (analyst sign-off, provisional)"}}:::stop
   n5["write code"]
-  n4 --> n5
   n6["run + read output"]
+  n7["memo with sources, fact vs inference"]
+  n8{{"🛑 review (analyst verifies)"}}:::stop
+  n9["leave residue (doc, skill fix, log)"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7["memo with sources, fact vs inference"]
   n6 --> n7
-  n8{{"🛑 review (analyst verifies)"}}:::stop
   n7 --> n8
-  n9["leave residue (doc, skill fix, log)"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

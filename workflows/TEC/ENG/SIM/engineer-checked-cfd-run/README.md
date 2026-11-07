@@ -32,22 +32,22 @@ last_verified: 2026-11
 flowchart TD
   n1["physics brief + rough case in git"]
   n2["agent sets up case + assumptions doc"]
-  n1 --> n2
   n3{{"🛑 plan (engineer checks physics choices)"}}:::stop
-  n2 --> n3
   n4["mesh"]
-  n3 --> n4
   n5["mesh check"]
+  n6["solve"]
+  n7["convergence check"]
+  n8["post-process + compare to reference/hand calc"]
+  n9{{"🛑 review (engineer checks physics)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   n5 -.->|repeat| n4
-  n6["solve"]
   n5 --> n6
-  n7["convergence check"]
   n6 --> n7
   n7 -.->|repeat| n6
-  n8["post-process + compare to reference/hand calc"]
   n7 --> n8
-  n9{{"🛑 review (engineer checks physics)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["incoming vet invoice"]
   n2["agent recommends pay / exclude per line"]
-  n1 --> n2
   n3{{"🛑 action (claims handler accepts, edits or sends to manual)"}}:::stop
-  n2 --> n3
   n4["existing payment authorisation + QA"]
-  n3 --> n4
   n5["handler flags missing context"]
-  n4 --> n5
   n6{{"🛑 review (senior verifies before context data updated)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

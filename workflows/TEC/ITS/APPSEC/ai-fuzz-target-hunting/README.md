@@ -33,30 +33,30 @@ flowchart TD
   n1["index project (functions, types, xrefs, unit tests)"]
   subgraph s2["each target function"]
   n3["draft fuzz target"]
-  n1 --> n3
   n4["fix compile errors"]
-  n3 --> n4
-  n4 -.->|repeat| n3
   end
   n5["short run"]
-  n4 --> n5
   n6["fix runtime mistakes"]
-  n5 --> n6
-  n6 -.->|repeat| n5
   n7["long run on fuzzing infra"]
-  n6 --> n7
   subgraph s8["each crash"]
   n9["triage driver bug"]
-  n7 --> n9
   n10["project bug"]
-  n7 --> n10
   end
   n11{{"🛑 review (human confirms triage)"}}:::stop
+  n12["report to maintainers"]
+  n13{{"🛑 handoff (maintainer fixes)"}}:::stop
+  n1 --> n3
+  n3 --> n4
+  n4 -.->|repeat| n3
+  n4 --> n5
+  n5 --> n6
+  n6 -.->|repeat| n5
+  n6 --> n7
+  n7 --> n9
+  n7 --> n10
   n9 --> n11
   n10 --> n11
-  n12["report to maintainers"]
   n11 --> n12
-  n13{{"🛑 handoff (maintainer fixes)"}}:::stop
   n12 --> n13
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

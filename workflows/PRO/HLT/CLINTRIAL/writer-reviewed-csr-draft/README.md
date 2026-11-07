@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["clinical data tables"]
   n2["table pre-processing (mapping, extraction, styling, valid…"]
-  n1 --> n2
   n3["generate CSR first draft"]
-  n2 --> n3
   n4["automated draft checks"]
-  n3 --> n4
   n5{{"🛑 review (qualified medical writers fully review first dr…"}}:::stop
-  n4 --> n5
   n6["human-reviewed first draft"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

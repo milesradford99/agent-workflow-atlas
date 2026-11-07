@@ -32,32 +32,32 @@ last_verified: 2026-11
 flowchart TD
   n1["shared token vocabulary"]
   n2["chunk codebase"]
-  n1 --> n2
   n3["AI migrates chunk"]
-  n2 --> n3
   n4{{"🛑 review (eng + UX audit)"}}:::stop
-  n3 --> n4
   n5["ask AI for reasoning on misses"]
-  n4 --> n5
   n6["update skill file"]
-  n5 --> n6
   n7["until rules stable"]
+  n8["lock 3-axis scoring matrix"]
+  n9["codemod for 1-to-1 mappings"]
+  n10["AI matrix for ambiguous tokens"]
+  n11["light theme first"]
+  n12["lint gate"]
+  n13{{"🛑 review (people click every screen, both themes)"}}:::stop
+  n14["fix remaining bugs by hand"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   n7 -.->|repeat| n3
-  n8["lock 3-axis scoring matrix"]
   n7 --> n8
-  n9["codemod for 1-to-1 mappings"]
   n8 --> n9
-  n10["AI matrix for ambiguous tokens"]
   n8 --> n10
-  n11["light theme first"]
   n9 --> n11
   n10 --> n11
-  n12["lint gate"]
   n11 --> n12
-  n13{{"🛑 review (people click every screen, both themes)"}}:::stop
   n12 --> n13
-  n14["fix remaining bugs by hand"]
   n13 --> n14
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

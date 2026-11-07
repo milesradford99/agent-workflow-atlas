@@ -5,6 +5,9 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 ## 2026-11
 
 ### Added
+- Claude Code agent kits (`variants/claude-code.md`) for 10 workflows, linked from each entry and from both READMEs.
+- Full steps, output and failure modes for the 16 seed workflows that had only a shape line. `validate.py` now requires a Steps section and a step for every 🛑 checkpoint.
+- A Chinese README (`README.zh-CN.md`), a screenshot at the top of the README, and repository topics.
 - Second collection pass, with workflows from new fields and second workflows in busy classes. See [research/2026-11-second-pass.md](research/2026-11-second-pass.md).
 - New phyla `PRO/INS` (insurance, class `CLAIMS`) and `COM/RET` (retail and e-commerce operations, class `CATALOG`), each opened with at least three workflows.
 - First unplaced workflows (logistics, real estate, construction submittals, safety audits, agriculture, insurance underwriting). Each waits for two more similar workflows before a class opens.
@@ -14,6 +17,9 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 - A Public runs section in every workflow, with verified links and a coverage grade.
 - Workflows for all 56 previously empty classes, AWF-0032 to AWF-0087 ([research note](research/2026-11-new-workflows.md)).
 - The first accepted workflow, AWF-0030, with its reference example ([research](research/2026-11-real-runs.md)).
+
+### Fixed
+- Shape diagrams no longer pull the step before an `each X:` box inside the box, and checkpoint nodes are styled red wherever they appear.
 
 ### Started
 - 31 workflows seeded from [the Phase 1 research report](research/phase1-report.md), the taxonomy, validation and index scripts, and contribution templates.

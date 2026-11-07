@@ -33,17 +33,17 @@ flowchart TD
   n1["weekly: list renewals in window"]
   subgraph s2["each account"]
   n3["join usage + tickets + calls + billing signals"]
-  n1 --> n3
   end
   n4["flag with evidence"]
-  n3 --> n4
   n5["brief + draft save plan / QBR draft"]
-  n4 --> n5
   n6{{"🛑 review (CSM validates flags)"}}:::stop
-  n5 --> n6
   n7{{"🛑 action (CSM approves outreach)"}}:::stop
-  n6 --> n7
   n8["track plan actions"]
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

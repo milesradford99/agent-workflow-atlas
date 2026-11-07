@@ -32,28 +32,28 @@ last_verified: 2026-11
 flowchart TD
   n1["contact-sales form"]
   n2["read submission + enrich company"]
-  n1 --> n2
   n3["live voice/text conversation"]
-  n2 --> n3
   n4["qualify against fixed criteria"]
-  n3 --> n4
   n5["not qualified on call: website analysis + grants check be…"]
-  n4 --> n5
   n6["route: book meeting"]
-  n5 --> n6
   n7["self-serve"]
-  n5 --> n7
   n8["support"]
-  n5 --> n8
   n9["write decision + reasons to CRM + notify team"]
+  n10{{"🛑 review (daily, every conversation against human scoring)"}}:::stop
+  n11{{"🛑 handoff (rep runs booked meeting)"}}:::stop
+  n12["tune prompt/criteria"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n5 --> n7
+  n5 --> n8
   n6 --> n9
   n7 --> n9
   n8 --> n9
-  n10{{"🛑 review (daily, every conversation against human scoring)"}}:::stop
   n9 --> n10
-  n11{{"🛑 handoff (rep runs booked meeting)"}}:::stop
   n10 --> n11
-  n12["tune prompt/criteria"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

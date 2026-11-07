@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["deal-context prompt (size, jurisdictions, debt)"]
   n2["index data room + missing-doc check"]
-  n1 --> n2
   n3["request missing items"]
-  n2 --> n3
   subgraph s4["each document"]
   n5["cited review vs playbook + external search"]
-  n3 --> n5
   end
   n6{{"🛑 review (lawyers validate + categorize flags)"}}:::stop
-  n5 --> n6
   n7["red-flag summary + DD report"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

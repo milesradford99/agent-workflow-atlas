@@ -31,22 +31,22 @@ last_verified: 2026-11
 flowchart TD
   n1["customer files claim online"]
   n2["planner agent starts workflow (cyber agent oversees data…"]
-  n1 --> n2
   n3["coverage agent"]
-  n2 --> n3
   n4["weather agent"]
-  n2 --> n4
   n5["fraud agent"]
-  n2 --> n5
   n6["payout agent proposes amount"]
+  n7["audit agent summarises all agent decisions"]
+  n8{{"🛑 sign-off (claims professional makes payment decision)"}}:::stop
+  n9["pay"]
+  n1 --> n2
+  n2 --> n3
+  n2 --> n4
+  n2 --> n5
   n3 --> n6
   n4 --> n6
   n5 --> n6
-  n7["audit agent summarises all agent decisions"]
   n6 --> n7
-  n8{{"🛑 sign-off (claims professional makes payment decision)"}}:::stop
   n7 --> n8
-  n9["pay"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

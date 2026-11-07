@@ -30,17 +30,17 @@ last_verified: 2026-11
 flowchart TD
   n1["issue + jurisdiction"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   n3["search grounded database"]
-  n2 --> n3
   n4["draft IRAC memo"]
-  n3 --> n4
-  n4 -.->|repeat| n3
   subgraph s5["each citation"]
   n6["verify exists, quote, holding, still good law"]
-  n4 --> n6
   end
   n7{{"🛑 sign-off"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 -.->|repeat| n3
+  n4 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

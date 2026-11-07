@@ -32,28 +32,28 @@ last_verified: 2026-11
 flowchart TD
   n1["multitrack record"]
   n2["filler/pause removal + jump cuts"]
-  n1 --> n2
   n3["generative audio cleanup"]
-  n2 --> n3
   n4["Whisper SRT captions"]
-  n3 --> n4
   n5{{"🛑 review (caption fixes)"}}:::stop
-  n4 --> n5
   n6{{"🛑 review (full listen, take choices)"}}:::stop
-  n5 --> n6
   subgraph s7["each asset"]
   n8["summary/tags"]
-  n6 --> n8
   n9["transcript cleanup"]
-  n6 --> n9
   n10["social posts"]
-  n6 --> n10
   end
   n11{{"🛑 review (before publish)"}}:::stop
+  n12["publish"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n8
+  n6 --> n9
+  n6 --> n10
   n8 --> n11
   n9 --> n11
   n10 --> n11
-  n12["publish"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

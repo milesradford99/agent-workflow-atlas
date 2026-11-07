@@ -32,12 +32,12 @@ last_verified: 2026-11
 flowchart TD
   n1["pull student data from district systems (attendance, stru…"]
   n2["find strengths + weaknesses"]
-  n1 --> n2
   n3["fill IEP template, flag blank fields (no invented content)"]
-  n2 --> n3
   n4{{"🛑 review (special educator decides goals + services)"}}:::stop
-  n3 --> n4
   n5{{"🛑 sign-off (IEP team)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -30,20 +30,20 @@ last_verified: 2026-11
 flowchart TD
   n1{{"🛑 plan (patient consent)"}}:::stop
   n2["record visit"]
-  n1 --> n2
   n3["diarized transcript"]
-  n2 --> n3
   n4["load EHR context"]
-  n3 --> n4
   n5["note + codes + patient summary"]
-  n4 --> n5
   n6["link each sentence to transcript"]
-  n5 --> n6
   n7{{"🛑 review"}}:::stop
-  n6 --> n7
   n8{{"🛑 sign-off"}}:::stop
-  n7 --> n8
   n9["file to EHR"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

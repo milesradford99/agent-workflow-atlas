@@ -33,20 +33,20 @@ last_verified: 2026-11
 flowchart TD
   n1["submittal received"]
   n2["match to governing spec section + RFIs + prior approvals"]
-  n1 --> n2
   n3["check each requirement"]
-  n2 --> n3
   n4["flag non-compliant / missing items"]
-  n3 --> n4
   n5["structured recommendation"]
-  n4 --> n5
   n6{{"🛑 review (PM/PE confirms, edits)"}}:::stop
-  n5 --> n6
   n7["response to subcontractor"]
-  n6 --> n7
   n8["forward to architect"]
-  n6 --> n8
   n9{{"🛑 sign-off (architect/engineer of record dispositions)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n6 --> n8
   n7 --> n9
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610

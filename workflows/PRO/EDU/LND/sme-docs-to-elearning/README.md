@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["gather SME sources (docs, videos, demos, job aids)"]
   n2["AI outline + objectives"]
-  n1 --> n2
   n3{{"🛑 review (instructional designer shapes structure)"}}:::stop
-  n2 --> n3
   n4["draft lessons + assessments"]
-  n3 --> n4
   n5{{"🛑 review (SME + peer)"}}:::stop
-  n4 --> n5
   n6["build in authoring tool"]
-  n5 --> n6
   n7["publish"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

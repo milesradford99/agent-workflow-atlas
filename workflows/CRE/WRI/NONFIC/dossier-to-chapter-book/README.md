@@ -32,30 +32,30 @@ last_verified: 2026-11
 flowchart TD
   n1["scaffold book repo"]
   n2["gap analysis + research plan"]
-  n1 --> n2
   n3{{"🛑 plan"}}:::stop
-  n2 --> n3
   subgraph s4["each chapter"]
   n5["research brief"]
-  n3 --> n5
   end
   n6{{"🛑 review (brief)"}}:::stop
-  n5 --> n6
   subgraph s7["each chapter"]
   n8["web-research dossier"]
-  n6 --> n8
   end
   n9{{"🛑 review (dossier)"}}:::stop
-  n8 --> n9
   subgraph s10["each chapter"]
   n11["draft prose + citations + BibTeX"]
-  n9 --> n11
   end
   n12{{"🛑 review (chapter)"}}:::stop
-  n11 --> n12
   n13["audit for unsupported claims"]
-  n12 --> n13
   n14{{"🛑 sign-off (author final calls)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n8
+  n8 --> n9
+  n9 --> n11
+  n11 --> n12
+  n12 --> n13
   n13 --> n14
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

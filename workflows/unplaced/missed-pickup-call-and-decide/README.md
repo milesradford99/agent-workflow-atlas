@@ -33,15 +33,15 @@ flowchart TD
   n1["missed LTL pickup notification"]
   subgraph s2["each shipment"]
   n3["caller agent contacts carrier"]
-  n1 --> n3
   end
   n4["decision agent picks next action (reschedule | retender |…"]
-  n3 --> n4
   n5["update systems + notify customer"]
-  n4 --> n5
-  n6["unresolved: 🛑 handoff (LTL team)"]
-  n5 --> n6
+  n6{{"unresolved: 🛑 handoff (LTL team)"}}:::stop
   n7["daily: share missed-pickup data with carriers"]
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

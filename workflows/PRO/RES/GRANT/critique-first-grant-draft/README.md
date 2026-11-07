@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["PI supplies paper, aims, prior work"]
   n2["draft v1"]
-  n1 --> n2
   n3["simulated study-section critique (no rewrite)"]
-  n2 --> n3
   n4{{"🛑 review (PI accepts or rejects each concern)"}}:::stop
-  n3 --> n4
   n5["integrate approved changes + change log"]
-  n4 --> n5
   n6["citation check"]
-  n5 --> n6
   n7["critique"]
-  n6 --> n7
   n8["revise"]
+  n9{{"🛑 sign-off (PI scientific audit)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   n8 -.->|repeat| n7
-  n9{{"🛑 sign-off (PI scientific audit)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

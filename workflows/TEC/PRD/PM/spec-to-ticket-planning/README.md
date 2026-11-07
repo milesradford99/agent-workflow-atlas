@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["spec in docs"]
   n2["agent reads spec + codebase"]
-  n1 --> n2
   n3["draft breakdown (tasks, order, deps, touched files)"]
-  n2 --> n3
   n4{{"🛑 plan (push back, iterate)"}}:::stop
-  n3 --> n4
   n5["create project + tickets in tracker via MCP"]
-  n4 --> n5
   n6{{"🛑 review (PM + eng)"}}:::stop
-  n5 --> n6
   n7{{"🛑 handoff (to implementers)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

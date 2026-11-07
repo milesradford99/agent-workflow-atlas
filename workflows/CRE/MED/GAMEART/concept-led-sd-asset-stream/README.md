@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["pick tool + prepare style dataset"]
   n2["train custom models"]
-  n1 --> n2
   n3{{"🛑 plan (artist concept art)"}}:::stop
-  n2 --> n3
   subgraph s4["each asset"]
   n5["img2img/ControlNet from concept, sketch or 3D blockout"]
-  n3 --> n5
   end
   n6["upscale"]
-  n5 --> n6
   n7["artist tweak"]
-  n6 --> n7
   n8["meets target"]
+  n9{{"🛑 review (artist approval)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   n8 -.->|repeat| n7
-  n9{{"🛑 review (artist approval)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

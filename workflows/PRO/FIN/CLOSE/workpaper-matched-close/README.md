@@ -33,19 +33,19 @@ flowchart TD
   n1["prior-month workpaper + rules"]
   subgraph s2["each close area"]
   n3["pull source data"]
-  n1 --> n3
   end
   n4["prep workpaper + checks"]
-  n3 --> n4
   n5["draft JEs + flux"]
-  n4 --> n5
   n6["flag exceptions"]
-  n5 --> n6
   n7{{"🛑 review (controller reviews everything)"}}:::stop
-  n6 --> n7
   n8["lock books"]
-  n7 --> n8
   n9{{"🛑 sign-off (close)"}}:::stop
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

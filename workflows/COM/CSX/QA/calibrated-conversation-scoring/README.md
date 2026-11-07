@@ -33,20 +33,20 @@ flowchart TD
   n1["pull conversations (human + AI agent)"]
   subgraph s2["each conversation"]
   n3["criterion classifiers + rationale"]
-  n1 --> n3
   end
   n4["combine to pass/fail score"]
-  n3 --> n4
   n5["score"]
-  n4 --> n5
   n6{{"🛑 sample"}}:::stop
+  n7["cluster failures by root cause"]
+  n8{{"🛑 review"}}:::stop
+  n9["fix routing/knowledge/coaching"]
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7["cluster failures by root cause"]
   n6 --> n7
-  n8{{"🛑 review"}}:::stop
   n7 --> n8
-  n9["fix routing/knowledge/coaching"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

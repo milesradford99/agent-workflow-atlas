@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["network alarm / fault situation"]
   n2["gather network-element data"]
-  n1 --> n2
   n3["root-cause analysis (retrieve, annotate)"]
-  n2 --> n3
   n4["recommend action"]
-  n3 --> n4
   n5["format into ticket"]
-  n4 --> n5
   n6{{"🛑 review (NOC engineer accepts or edits annotation)"}}:::stop
+  n7{{"complex: 🛑 handoff (Tier-2 operator)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
-  n7["complex: 🛑 handoff (Tier-2 operator)"]
   n5 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

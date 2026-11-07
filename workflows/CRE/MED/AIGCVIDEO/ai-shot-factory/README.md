@@ -30,34 +30,34 @@ last_verified: 2026-11
 flowchart TD
   n1["script"]
   n2["shot list"]
-  n1 --> n2
   n3{{"🛑 plan"}}:::stop
-  n2 --> n3
   n4["character lock"]
-  n3 --> n4
   subgraph s5["each shot"]
   n6["keyframes"]
-  n4 --> n6
   n7["critic"]
-  n6 --> n7
-  n7 -.->|repeat| n6
   end
   n8["video"]
-  n7 --> n8
   n9["check"]
+  n10["voice + lip-sync"]
+  n11["edit"]
+  n12{{"🛑 review"}}:::stop
+  n13["AI label"]
+  n14{{"🛑 sign-off"}}:::stop
+  n15["publish"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n6
+  n6 --> n7
+  n7 -.->|repeat| n6
+  n7 --> n8
   n8 --> n9
   n9 -.->|repeat| n8
-  n10["voice + lip-sync"]
   n9 --> n10
-  n11["edit"]
   n10 --> n11
-  n12{{"🛑 review"}}:::stop
   n11 --> n12
-  n13["AI label"]
   n12 --> n13
-  n14{{"🛑 sign-off"}}:::stop
   n13 --> n14
-  n15["publish"]
   n14 --> n15
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

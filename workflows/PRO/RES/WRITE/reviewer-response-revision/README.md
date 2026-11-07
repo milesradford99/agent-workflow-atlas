@@ -30,21 +30,21 @@ last_verified: 2026-11
 flowchart TD
   n1["reviews"]
   n2["response matrix"]
-  n1 --> n2
   n3{{"🛑 plan"}}:::stop
-  n2 --> n3
   subgraph s4["each comment"]
   n5["edit or reanalysis"]
-  n3 --> n5
   n6["compile, rerun, cite check"]
-  n5 --> n6
-  n6 -.->|repeat| n5
   end
   n7["latexdiff + letter"]
-  n6 --> n7
   n8{{"🛑 review"}}:::stop
-  n7 --> n8
   n9{{"🛑 sign-off"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 -.->|repeat| n5
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```
@@ -58,7 +58,8 @@ flowchart TD
 4. Compile and produce a `latexdiff` version.
 5. Verify that every number matches the regenerated outputs and every citation key resolves.
 6. Draft the response letter.
-7. 🛑 **Review + sign-off**: the authors edit rebuttals for tone and substance.
+7. 🛑 **Review**: the authors edit rebuttals for tone and substance.
+8. 🛑 **Sign-off**: the corresponding author approves the revised manuscript, the `latexdiff` and the letter before resubmission.
 
 ## Public runs
 

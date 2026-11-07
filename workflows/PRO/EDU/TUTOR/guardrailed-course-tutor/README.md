@@ -32,25 +32,25 @@ last_verified: 2026-11
 flowchart TD
   n1["course system prompt + RAG on course materials"]
   n2["strip PII"]
-  n1 --> n2
   subgraph s3["each student query"]
   n4["guided answer, not solution"]
-  n2 --> n4
   end
-  n5["forum answers: 🛑 review (staff endorse, amend or delete)"]
-  n4 --> n5
+  n5{{"forum answers: 🛑 review (staff endorse, amend or delete)"}}:::stop
   n6["log analysis (code blocks, direct-answer phrases)"]
-  n5 --> n6
   n7["candidate prompt or fine-tune"]
-  n6 --> n7
   n8{{"🛑 sample (TFs compare old vs new pairwise)"}}:::stop
-  n7 --> n8
   n9["model-graded eval"]
-  n8 --> n9
   n10["agreement with TF choices"]
+  n11["roll out"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
   n9 --> n10
   n10 -.->|repeat| n9
-  n11["roll out"]
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

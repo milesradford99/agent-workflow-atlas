@@ -32,23 +32,23 @@ last_verified: 2026-11
 flowchart TD
   n1["story idea"]
   n2{{"🛑 plan (AI review committee approves use)"}}:::stop
-  n1 --> n2
   n3["pull + confirm case list, scan source documents"]
-  n2 --> n3
   n4["binary yes/no question set + precise definitions"]
-  n3 --> n4
   n5["prompt test"]
+  n6["bulk structured-output queries"]
+  n7["store answers + query metadata"]
+  n8{{"🛑 sample (≥2 reporters per sampled case, disagreements re…"}}:::stop
+  n9["analysis"]
+  n10["publish story + data methodology section"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   n5 -.->|repeat| n4
-  n6["bulk structured-output queries"]
   n5 --> n6
-  n7["store answers + query metadata"]
   n6 --> n7
-  n8{{"🛑 sample (≥2 reporters per sampled case, disagreements re…"}}:::stop
   n7 --> n8
-  n9["analysis"]
   n8 --> n9
-  n10["publish story + data methodology section"]
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

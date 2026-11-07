@@ -31,13 +31,13 @@ flowchart TD
   n1["alert"]
   subgraph s2["each source"]
   n3["enrich (threat intel, identity, EDR)"]
-  n1 --> n3
   end
   n4["verdict + evidence"]
-  n3 --> n4
   n5["benign: auto-close"]
+  n6{{"suspicious: 🛑 handoff · weekly 🛑 sample"}}:::stop
+  n1 --> n3
+  n3 --> n4
   n4 --> n5
-  n6["suspicious: 🛑 handoff · weekly 🛑 sample"]
   n4 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

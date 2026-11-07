@@ -32,23 +32,23 @@ last_verified: 2026-11
 flowchart TD
   n1["code PR opened"]
   n2["agent drafts docs update across user/dev docs + version b…"]
-  n1 --> n2
   n3["open docs PR as draft"]
-  n2 --> n3
   n4["code PR changes"]
-  n3 --> n4
   n5["agent updates draft"]
+  n6["code PR merged"]
+  n7["mark docs PR ready"]
+  n8{{"🛑 review (code author: accuracy)"}}:::stop
+  n9{{"🛑 review (docs team: style)"}}:::stop
+  n10["merge"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   n5 -.->|repeat| n4
-  n6["code PR merged"]
   n5 --> n6
-  n7["mark docs PR ready"]
   n6 --> n7
-  n8{{"🛑 review (code author: accuracy)"}}:::stop
   n7 --> n8
-  n9{{"🛑 review (docs team: style)"}}:::stop
   n8 --> n9
-  n10["merge"]
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

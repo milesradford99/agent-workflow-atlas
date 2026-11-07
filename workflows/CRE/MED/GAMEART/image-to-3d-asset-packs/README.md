@@ -32,27 +32,27 @@ last_verified: 2026-11
 flowchart TD
   n1["references"]
   n2["sketches (artist + 2D AI)"]
-  n1 --> n2
   n3["multi-view concept with no perspective distortion"]
-  n2 --> n3
   subgraph s4["each asset"]
   n5["image-to-3D hi-poly"]
-  n3 --> n5
   n6["regenerate"]
-  n5 --> n6
-  n6 -.->|repeat| n5
   end
   n7{{"🛑 review (artist keeps or rejects)"}}:::stop
-  n6 --> n7
   n8["ZBrush cleanup"]
-  n7 --> n8
   n9["retopology + UV (AI start, artist finish)"]
-  n8 --> n9
   n10["texture (generated PBR, manual on complex assets)"]
-  n9 --> n10
   n11{{"🛑 review (artist finish of topology/UV/look)"}}:::stop
-  n10 --> n11
   n12["render + Unity/Unreal assembly"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 -.->|repeat| n5
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
+  n10 --> n11
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

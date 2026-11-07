@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["Slack request or monitoring alert"]
   n2["read IaC repo patterns (MCP)"]
-  n1 --> n2
   n3["generate Terragrunt/OpenTofu change"]
-  n2 --> n3
   n4["open PR"]
-  n3 --> n4
   n5["plan runs on PR, posted to PR + Slack"]
-  n4 --> n5
   n6{{"🛑 review (CODEOWNERS approve plan)"}}:::stop
-  n5 --> n6
   n7["apply on merge"]
-  n6 --> n7
   n8["daily drift check"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

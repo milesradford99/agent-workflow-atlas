@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["experiment readout in Notion"]
   n2["pre-filter: pull Statsig config + results, Snowflake expo…"]
-  n1 --> n2
   n3["engineer agent classifies platform, experiment type, version"]
-  n2 --> n3
   n4["each reviewer (statistician, data engineer, business anal…"]
-  n3 --> n4
   n5["synthesize"]
-  n4 --> n5
   n6["post structured Notion comments"]
-  n5 --> n6
   n7{{"🛑 review (independent DS reviewer)"}}:::stop
-  n6 --> n7
   n8{{"🛑 sign-off (ship decision)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

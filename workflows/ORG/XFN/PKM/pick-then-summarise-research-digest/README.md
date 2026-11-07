@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["daily cron: search arXiv (weekly Google Scholar) against…"]
   n2["digest linked from daily note"]
-  n1 --> n2
   n3{{"🛑 plan (reader saves chosen PDFs)"}}:::stop
-  n2 --> n3
   n4["nightly: each saved PDF: agent summary of method, effect…"]
-  n3 --> n4
   n5["summaries in next digest"]
-  n4 --> n5
   n6{{"🛑 review (reader checks before citing or acting)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

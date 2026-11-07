@@ -50,7 +50,8 @@ def label(text):
 
 class Graph:
     def __init__(self):
-        self.lines, self.n = [], 0
+        # edges go after all nodes and boxes: an edge written inside a box pulls its nodes into it
+        self.lines, self.edges, self.n = [], [], 0
 
     def next_id(self, prefix="n"):
         self.n += 1
@@ -58,17 +59,17 @@ class Graph:
 
     def node(self, text):
         nid = self.next_id()
-        if text.startswith("🛑"):
+        if "🛑" in text:
             self.lines.append(f'  {nid}{{{{"{label(text)}"}}}}:::stop')
         else:
             self.lines.append(f'  {nid}["{label(text)}"]')
         return nid
 
     def edge(self, a, b):
-        self.lines.append(f"  {a} --> {b}")
+        self.edges.append(f"  {a} --> {b}")
 
     def back(self, a, b):
-        self.lines.append(f"  {a} -.->|repeat| {b}")
+        self.edges.append(f"  {a} -.->|repeat| {b}")
 
 
 def build(g, text, prev):
@@ -108,4 +109,4 @@ def build(g, text, prev):
 def to_mermaid(shape):
     g = Graph()
     build(g, shape, [])
-    return "\n".join(["flowchart TD", *g.lines, "  classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610"])
+    return "\n".join(["flowchart TD", *g.lines, *g.edges, "  classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610"])

@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["configure controls + evidence formats + review workflow,…"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   subgraph s3["each control"]
   n4["gather evidence"]
-  n2 --> n4
   end
   n5["process data"]
-  n4 --> n5
   n6["test"]
-  n5 --> n6
   n7["conclude with source citations"]
-  n6 --> n7
   n8{{"🛑 review (auditor checks each conclusion + exceptions)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

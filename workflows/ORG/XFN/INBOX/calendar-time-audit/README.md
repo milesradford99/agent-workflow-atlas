@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["weekly: read last two weeks of calendar (read-only)"]
   n2["classify meetings (doc-able, delegable, skippable, double…"]
-  n1 --> n2
   n3["compare time against role expectations"]
-  n2 --> n3
   n4["next week: meetings to cut or hand off"]
-  n3 --> n4
   n5{{"🛑 review (owner accepts or rejects each)"}}:::stop
-  n4 --> n5
   n6{{"🛑 handoff (EA makes calendar changes)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

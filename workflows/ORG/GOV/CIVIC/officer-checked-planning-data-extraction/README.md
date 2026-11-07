@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["upload scanned planning record (TPO, conservation area, A…"]
   n2["extract text fields to schema"]
-  n1 --> n2
   n3["trace map boundaries to polygons"]
-  n2 --> n3
   n4["georeference to Ordnance Survey"]
-  n3 --> n4
   n5{{"🛑 review (planning officer checks and corrects every output)"}}:::stop
-  n4 --> n5
   n6["export standard formats"]
-  n5 --> n6
   n7["national Planning Data Platform"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

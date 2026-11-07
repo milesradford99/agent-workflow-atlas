@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["client uploads source docs"]
   n2["extract fields with confidence"]
-  n1 --> n2
   n3{{"🛑 review (preparer validates low-confidence fields + mapp…"}}:::stop
-  n2 --> n3
   n4["workpaper + push to tax software"]
-  n3 --> n4
   n5["AI second-pass review (missing forms, YoY, firm checks)"]
-  n4 --> n5
   n6{{"🛑 review (preparer resolves flags)"}}:::stop
-  n5 --> n6
   n7{{"🛑 sign-off (senior reviewer signs + files)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

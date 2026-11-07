@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["upload deal documents (thousands of pages, mixed file types)"]
   n2["extract fields (Document AI)"]
-  n1 --> n2
   subgraph s3["each memo section"]
   n4["summarize + draft"]
-  n2 --> n4
   end
   n5["assemble draft memo"]
-  n4 --> n5
   n6{{"🛑 review (underwriter edits + finalizes in Docs)"}}:::stop
-  n5 --> n6
   n7{{"🛑 sign-off (bank's credit approval process)"}}:::stop
-  n6 --> n7
   n8["archive each step to shared Drive"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["buyers set goals, limits and trade-offs per category"]
   n2{{"🛑 plan (buyers with finance, treasury, legal)"}}:::stop
-  n1 --> n2
   n3["upload supplier file"]
-  n2 --> n3
   subgraph s4["each supplier"]
   n5["bot negotiates within limits"]
-  n3 --> n5
   end
-  n6["out of limits: 🛑 handoff (buyer)"]
-  n5 --> n6
+  n6{{"out of limits: 🛑 handoff (buyer)"}}:::stop
   n7["agreed: signed agreement"]
-  n5 --> n7
   n8["push terms to ERP"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n5 --> n7
   n6 --> n8
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610

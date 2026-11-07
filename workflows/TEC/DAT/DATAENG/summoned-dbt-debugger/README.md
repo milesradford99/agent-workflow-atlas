@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["dbt failure alert in Slack"]
   n2{{"🛑 action (engineer tags agent)"}}:::stop
-  n1 --> n2
   n3["classify against known failure signatures"]
-  n2 --> n3
   n4["templated row-count query on layer"]
-  n3 --> n4
   n5["move one layer upstream"]
+  n6["root cause threaded in Slack"]
+  n7{{"🛑 action (engineer decides to remediate)"}}:::stop
+  n8["agent drafts fix PR + Jira ticket"]
+  n9{{"🛑 review (engineer approves + merges)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   n5 -.->|repeat| n4
-  n6["root cause threaded in Slack"]
   n5 --> n6
-  n7{{"🛑 action (engineer decides to remediate)"}}:::stop
   n6 --> n7
-  n8["agent drafts fix PR + Jira ticket"]
   n7 --> n8
-  n9{{"🛑 review (engineer approves + merges)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

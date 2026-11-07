@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["asset inventory + planning doc (ideas + dates)"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   subgraph s3["each post"]
   n4["draft per channel"]
-  n2 --> n4
   end
   n5["place as draft in scheduler"]
-  n4 --> n5
   n6{{"🛑 review (fact-check, voice)"}}:::stop
-  n5 --> n6
   n7{{"🛑 action (approve publish)"}}:::stop
-  n6 --> n7
   n8["scheduled"]
-  n7 --> n8
   n9["metrics digest"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["interview transcript"]
   n2["summarise case"]
-  n1 --> n2
   n3{{"🛑 review (decision-maker checks summary)"}}:::stop
-  n2 --> n3
   n4["policy questions"]
-  n3 --> n4
   n5["search country policy notes with references"]
-  n4 --> n5
   n6["decision-maker reads full source"]
-  n5 --> n6
   n7["draft decision"]
-  n6 --> n7
   n8{{"🛑 sign-off (decision-maker decides)"}}:::stop
-  n7 --> n8
   n9{{"🛑 sample (quality dip-sampling)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -30,24 +30,24 @@ last_verified: 2026-11
 flowchart TD
   n1["feedback"]
   n2["theme clusters + quotes"]
-  n1 --> n2
   n3{{"🛑 plan"}}:::stop
-  n2 --> n3
   n4["PRD"]
-  n3 --> n4
   n5["red-team critique"]
-  n4 --> n5
   subgraph s6["each variant"]
   n7["prototype"]
-  n5 --> n7
   end
   n8["iterate"]
-  n7 --> n8
   n9{{"🛑 review"}}:::stop
-  n8 --> n9
   n10["5 user tests"]
-  n9 --> n10
   n11["back to feedback"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```
