@@ -32,23 +32,23 @@ last_verified: 2026-11
 flowchart TD
   n1["edit ePub for audio (strip TOC/URLs/images, adapt lines)"]
   n2{{"🛑 plan (voice audition: first chapter in 5–6 voices)"}}:::stop
-  n1 --> n2
   n3["import to studio, chapter by chapter"]
-  n2 --> n3
   n4["pronunciation dictionary + emotion tags"]
-  n3 --> n4
   n5["full listen"]
-  n4 --> n5
   n6["direct fixes: pauses, emphasis, regenerate"]
+  n7{{"🛑 review"}}:::stop
+  n8{{"🛑 sign-off (author approves adapted lines)"}}:::stop
+  n9["export 192 kbps"]
+  n10["distribute wide"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7{{"🛑 review"}}:::stop
   n6 --> n7
-  n8{{"🛑 sign-off (author approves adapted lines)"}}:::stop
   n7 --> n8
-  n9["export 192 kbps"]
   n8 --> n9
-  n10["distribute wide"]
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

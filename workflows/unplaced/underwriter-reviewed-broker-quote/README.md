@@ -33,14 +33,14 @@ last_verified: 2026-11
 flowchart TD
   n1["broker submission (renewal, in-scope line)"]
   n2["scope check"]
-  n1 --> n2
   n3["Gemini assesses risk"]
-  n2 --> n3
   n4["pricing + data filled into broker email"]
-  n3 --> n4
   n5{{"🛑 review (underwriter)"}}:::stop
-  n4 --> n5
   n6["send quote"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

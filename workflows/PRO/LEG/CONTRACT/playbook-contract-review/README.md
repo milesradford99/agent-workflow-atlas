@@ -31,22 +31,22 @@ last_verified: 2026-11
 flowchart TD
   n1["contract"]
   n2["classify type"]
-  n1 --> n2
   n3["load playbook"]
-  n2 --> n3
   subgraph s4["each clause"]
   n5["compare to position (green/yellow/red)"]
-  n3 --> n5
   end
   n6["tracked changes + comments"]
-  n5 --> n6
   n7["consistency check"]
-  n6 --> n7
   n8{{"🛑 review"}}:::stop
-  n7 --> n8
   n9{{"🛑 sign-off"}}:::stop
-  n8 --> n9
   n10["send"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -33,18 +33,18 @@ flowchart TD
   n1["upload expense policy PDF"]
   subgraph s2["each expense"]
   n3["check against policy with citations"]
-  n1 --> n3
   end
   n4["low risk: approve + rationale"]
-  n3 --> n4
-  n5["outlier or suspicious receipt: 🛑 handoff (approver)"]
-  n3 --> n5
+  n5{{"outlier or suspicious receipt: 🛑 handoff (approver)"}}:::stop
   n6{{"🛑 action (reviewer marks ready + syncs)"}}:::stop
+  n7["suggest policy edits"]
+  n8{{"🛑 review (finance decides policy changes)"}}:::stop
+  n1 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["suggest policy edits"]
   n6 --> n7
-  n8{{"🛑 review (finance decides policy changes)"}}:::stop
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

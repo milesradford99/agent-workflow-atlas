@@ -32,12 +32,12 @@ last_verified: 2026-11
 flowchart TD
   n1["new article onboarding"]
   n2["prompt generator suggests attributes (marked by source)"]
-  n1 --> n2
   n3{{"🛑 review (content-creation expert accepts or edits each p…"}}:::stop
-  n2 --> n3
   n4["publish"]
-  n3 --> n4
   n5["experts contribute to prompts"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

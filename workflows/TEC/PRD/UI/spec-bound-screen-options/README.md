@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["ticket + linked sources"]
   n2["agent lists source conflicts"]
-  n1 --> n2
   n3{{"🛑 plan (questions to product owner)"}}:::stop
-  n2 --> n3
   n4["2-3 greyscale options from library"]
-  n3 --> n4
   n5{{"🛑 review (designer picks + says why)"}}:::stop
-  n4 --> n5
   n6["hi-fi in working file (new components to library first)"]
-  n5 --> n6
   n7["agent visual QA"]
-  n6 --> n7
   n8{{"🛑 review (designer)"}}:::stop
-  n7 --> n8
   n9["corrections into spec + memory"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

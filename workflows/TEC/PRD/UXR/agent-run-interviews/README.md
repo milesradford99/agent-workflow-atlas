@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["research goal + hypotheses per sample"]
   n2["agent drafts interview rubric + question flow"]
-  n1 --> n2
   n3{{"🛑 plan (researchers edit + finalize)"}}:::stop
-  n2 --> n3
   subgraph s4["each participant"]
   n5["adaptive 10–15 min interview"]
-  n3 --> n5
   end
   n6["clustering tool groups themes + measures how common each is"]
-  n5 --> n6
   n7["agent answers research questions with quotes"]
-  n6 --> n7
   n8{{"🛑 review (researcher co-analyzes)"}}:::stop
-  n7 --> n8
   n9["findings + released data"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,19 +32,19 @@ last_verified: 2026-11
 flowchart TD
   n1["scheduled: pull ad platform + analytics data"]
   n2["agent outputs decisions (action, target, magnitude, confi…"]
-  n1 --> n2
   n3["route by permission tier"]
-  n2 --> n3
   n4["negatives, bids, pacing within bands, asset pauses: auto-…"]
-  n3 --> n4
-  n5["budget raise, campaign on/off, structure, measurement: 🛑…"]
-  n3 --> n5
+  n5{{"budget raise, campaign on/off, structure, measurement: 🛑…"}}:::stop
   n6["anomaly cross-check (ads vs analytics)"]
+  n7["journal + undo record"]
+  n8{{"🛑 review (weekly log + goal number)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["journal + undo record"]
   n6 --> n7
-  n8{{"🛑 review (weekly log + goal number)"}}:::stop
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

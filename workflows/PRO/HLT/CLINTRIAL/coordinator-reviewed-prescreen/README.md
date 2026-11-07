@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["onboard trial (PI amends IRB, criteria chosen)"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   subgraph s3["each patient"]
   n4["label each criterion + rationale + source note"]
-  n2 --> n4
   end
   n5["rank by % met"]
-  n4 --> n5
   n6{{"🛑 review (coordinator rules on each criterion)"}}:::stop
-  n5 --> n6
   n7["update criterion prompt"]
-  n6 --> n7
   n8["coordinator agreement"]
+  n9{{"🛑 handoff (trial team approach + consent)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   n8 -.->|repeat| n7
-  n9{{"🛑 handoff (trial team approach + consent)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

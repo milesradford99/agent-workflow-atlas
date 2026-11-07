@@ -32,22 +32,22 @@ last_verified: 2026-11
 flowchart TD
   n1["project brief + location"]
   n2["lead agent plans"]
-  n1 --> n2
   subgraph s3["each rule area"]
   n4["child agent retrieves local zoning (PLU) provisions"]
-  n2 --> n4
   end
   n5["check project parameters vs each rule"]
-  n4 --> n5
   n6["flag risks"]
-  n5 --> n6
   n7["draft narrative"]
-  n6 --> n7
   n8["assemble in firm format"]
-  n7 --> n8
   n9{{"🛑 sign-off (architect validates + signs)"}}:::stop
-  n8 --> n9
   n10["building-permit application"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

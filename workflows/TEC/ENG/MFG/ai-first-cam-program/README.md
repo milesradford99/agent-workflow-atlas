@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["part model + machine setup + tool database in CAM"]
   n2["AI generates operations, 3+2 toolpaths, speeds and feeds"]
-  n1 --> n2
   n3{{"🛑 review (programmer tunes each program)"}}:::stop
-  n2 --> n3
   n4["post"]
-  n3 --> n4
   n5["run first part or two"]
-  n4 --> n5
   n6{{"🛑 review (inspect part)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

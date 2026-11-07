@@ -32,12 +32,12 @@ last_verified: 2026-11
 flowchart TD
   n1["pull tasks, timelines and project data"]
   n2["classify on track, slipping, risky"]
-  n1 --> n2
   n3["draft summary, metrics, risk flags, Gantt"]
-  n2 --> n3
   n4{{"🛑 review (PM edits)"}}:::stop
-  n3 --> n4
   n5["send to client or stakeholders"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

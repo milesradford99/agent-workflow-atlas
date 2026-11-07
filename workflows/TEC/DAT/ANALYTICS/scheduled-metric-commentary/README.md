@@ -33,17 +33,17 @@ flowchart TD
   n1["schedule fires"]
   subgraph s2["each metric/OKR"]
   n3["test if move is meaningful (vs 6-month std dev, year on y…"]
-  n1 --> n3
   end
   n4["walk metric tree (country, segment, funnel stage)"]
-  n3 --> n4
   n5["correlate operational metrics + scan internal change log…"]
-  n4 --> n5
   n6["publish commentary, tag analytics owner"]
-  n5 --> n6
   n7{{"🛑 review (owner edits after publish)"}}:::stop
-  n6 --> n7
   n8["edits sync back to context"]
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

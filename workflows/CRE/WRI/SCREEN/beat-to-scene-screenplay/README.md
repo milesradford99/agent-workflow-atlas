@@ -30,27 +30,27 @@ last_verified: 2026-11
 flowchart TD
   n1["logline"]
   n2["variants"]
-  n1 --> n2
   n3["critique"]
-  n2 --> n3
   n4{{"🛑 plan"}}:::stop
-  n3 --> n4
   n5["treatment"]
-  n4 --> n5
   n6["beat sheet"]
-  n5 --> n6
   n7["scene list"]
-  n6 --> n7
   n8{{"🛑 plan"}}:::stop
-  n7 --> n8
   n9["draft"]
+  n10{{"coverage notes + TTS table read + 🛑 review"}}:::stop
+  n11{{"🛑 sign-off"}}:::stop
+  n12["Final Draft or Highland"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
-  n10["coverage notes + TTS table read + 🛑 review"]
   n9 --> n10
   n10 -.->|repeat| n9
-  n11{{"🛑 sign-off"}}:::stop
   n10 --> n11
-  n12["Final Draft or Highland"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```
@@ -63,6 +63,20 @@ flowchart TD
 
 Log AI-assisted portions in each example.
 
+## Steps
+1. Write the premise as one or two sentences that hold the core idea and emotional hook, and lock the logline and key characters on day one [[14]](#sources). Have the model generate logline variants and critique them before the writer picks one.
+2. 🛑 **Plan**: the writer locks the concept and logline. Beats are locked early, before any scene generation [[14]](#sources).
+3. Expand into a treatment and a beat sheet. In one run this meant a 40-beat outline across Acts 1–3, with each beat expanded to a short paragraph and the major arcs, emotional through-lines and visual motifs named [[14]](#sources). Then derive a scene list from the beats.
+4. 🛑 **Plan**: the writer approves the beat sheet and scene list. Keep scene briefs simple (objective → conflict → turn) and stylize later [[14]](#sources).
+5. Draft scene by scene, in daily chunks of 5–20 pages. Feed each beat to the scene generator (Saga's "Generate Scene" on the Script page, guided by its Act and Beat tabs), then edit and expand the draft into full sequences. Start each session by rereading yesterday's pages [[14]](#sources).
+6. Loop each sequence through coverage-style notes (structure, character, dialogue, pacing) and a TTS table read, reading aloud for rhythm and dialogue length [[14]](#sources).
+7. 🛑 **Review**: the writer reviews each scene as they go, holding tone, pacing and emotional continuity. Late passes recheck setups against payoffs and fix "geography" (location continuity, transitions) [[14]](#sources).
+8. 🛑 **Sign-off**: after a final read-through to tighten dialogue, cut filler and check tone, the writer signs off the draft and logs which portions were AI-generated, per the WGA terms above [[13]](#sources) [[14]](#sources).
+9. Export a scene-numbered draft to Final Draft or Highland for the next phase (storyboards, animatics, festival submissions) [[14]](#sources).
+
+**Output:** A scene-numbered, export-ready feature draft (about 100 pages in the one documented run), plus a log of AI-generated portions, ready for production prep or a rewrite [[14]](#sources).
+**Failure modes → guards:** Over-prompting drifts the tone → short scene briefs (objective → conflict → turn), with style added later [[14]](#sources). Dialogue inflates in Act II → word limits and read-aloud passes [[14]](#sources). Action geography is unclear → a 10-minute pre-visualization pass, then a rewrite with concrete verbs and clear blocking [[14]](#sources). AI-written material is treated as source material, or used without disclosure → follow the WGA terms and log AI portions [[13]](#sources). Not supported by the sources: how logline variants, coverage notes and TTS table reads perform in practice. The one first-hand run documents none of them as separate tool steps.
+
 ## Public runs
 
 Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. From [Where are the real runs?](../../../../../research/2026-11-real-runs.md); every number was re-checked against its page.
@@ -73,3 +87,4 @@ Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the s
 ## Sources
 
 13. WGA, *Know Your Rights: Artificial Intelligence*. https://www.wga.org/contracts/know-your-rights/artificial-intelligence
+14. Russell S.A. Palmer, *We Wrote a 100-Page Movie Script in 10 Days Using ChatGPT and Saga*, 2025-10-28. https://russellsapalmer.medium.com/we-wrote-a-100-page-feature-film-in-10-days-using-saga-and-chatgpt-316f45e0f4ad

@@ -32,25 +32,25 @@ last_verified: 2026-11
 flowchart TD
   n1["researcher specifies targets (models + reported estimates)"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   n3["fetch replication package"]
-  n2 --> n3
   n4["rebuild environment"]
-  n3 --> n4
   n5["execute code"]
-  n4 --> n5
   n6["extract coefficients"]
-  n5 --> n6
   n7["match vs paper"]
-  n6 --> n7
   n8["bounded fix"]
-  n7 --> n8
   n9["re-verify"]
+  n10["verdict"]
+  n11{{"🛑 review (researcher checks progress + discrepancies)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   n9 -.->|repeat| n8
-  n10["verdict"]
   n9 --> n10
-  n11{{"🛑 review (researcher checks progress + discrepancies)"}}:::stop
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

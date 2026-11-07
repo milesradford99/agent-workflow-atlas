@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["resident message or call"]
   n2["diagnostic triage (questions, photos, safety risk)"]
-  n1 --> n2
   n3["info: answer"]
-  n2 --> n3
   n4["repair: categorise + prioritise work order"]
-  n2 --> n4
   n5["assign technician / dispatch contractor"]
+  n6{{"emergency: de-escalate or 🛑 handoff (on-call staff)"}}:::stop
+  n7["track job"]
+  n8["collect feedback"]
+  n1 --> n2
+  n2 --> n3
+  n2 --> n4
   n3 --> n5
   n4 --> n5
-  n6["emergency: de-escalate or 🛑 handoff (on-call staff)"]
   n3 --> n6
   n4 --> n6
-  n7["track job"]
   n5 --> n7
   n6 --> n7
-  n8["collect feedback"]
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

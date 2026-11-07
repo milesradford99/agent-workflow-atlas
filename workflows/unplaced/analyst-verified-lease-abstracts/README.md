@@ -33,16 +33,16 @@ last_verified: 2026-11
 flowchart TD
   n1["portfolio ZIP"]
   n2["sort + group by tenant"]
-  n1 --> n2
   n3["order amendments"]
-  n2 --> n3
   n4["abstract lease + amendments together (each value cited to…"]
-  n3 --> n4
   n5{{"🛑 review (analyst checks against source, resolves judgmen…"}}:::stop
-  n4 --> n5
   n6["load to portfolio system"]
-  n5 --> n6
   n7["amendment: re-abstract changed fields only"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

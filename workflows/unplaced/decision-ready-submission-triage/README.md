@@ -33,16 +33,16 @@ last_verified: 2026-11
 flowchart TD
   n1["broker submissions (emails, ACORDs, multi-language docs)"]
   n2["digitise to line-of-business schema"]
-  n1 --> n2
   n3["enrich with internal + external data"]
-  n2 --> n3
   n4["appetite + priority score"]
-  n3 --> n4
   n5["high confidence: straight to queue"]
-  n4 --> n5
-  n6["low confidence: 🛑 review (validation checkpoint)"]
-  n4 --> n6
+  n6{{"low confidence: 🛑 review (validation checkpoint)"}}:::stop
   n7{{"🛑 sign-off (underwriter assesses, quotes, binds or declines)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n4 --> n6
   n5 --> n7
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
@@ -53,8 +53,9 @@ flowchart TD
 ## Steps
 1. Ingest unstructured submissions and convert them into structured, 'decision-ready' risks against the carrier's schema [[1]](#sources)[[2]](#sources).
 2. Enrich with external data and rank by appetite and strategy [[3]](#sources)[[4]](#sources).
-3. High-confidence submissions go straight through; others are routed to triage review via 'human-in-the-loop validation checkpoints' [[2]](#sources).
-4. 🛑 **Sign-off**: the underwriter assesses, quotes and binds (or declines) in the downstream system [[1]](#sources)[[4]](#sources).
+3. High-confidence submissions go straight through to the underwriting queue [[2]](#sources).
+4. 🛑 **Review**: low-confidence submissions stop at 'human-in-the-loop validation checkpoints', where a person checks the extracted data before the submission enters the queue [[2]](#sources).
+5. 🛑 **Sign-off**: the underwriter assesses, quotes and binds (or declines) in the downstream system [[1]](#sources)[[4]](#sources).
 
 **Output:** Prioritised queue of structured submissions in the underwriting workbench.
 **Failure modes → guards:** Extraction errors flow into pricing → confidence thresholds and validation checkpoints. Underwriters only see a fraction of the inbox → full-inbox triage (Paragon) and decline routing.

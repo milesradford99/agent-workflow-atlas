@@ -32,17 +32,17 @@ last_verified: 2026-11
 flowchart TD
   n1["L&D writes scenarios from most frequent real conversations"]
   n2{{"🛑 plan (scenario set approved)"}}:::stop
-  n1 --> n2
   subgraph s3["each learner"]
   n4["voice role-play with AI customer"]
-  n2 --> n4
   end
   n5["repeat"]
-  n4 --> n5
   n6["end-of-session AI feedback"]
+  n7{{"🛑 sample (trainer observes + coaches)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7{{"🛑 sample (trainer observes + coaches)"}}:::stop
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

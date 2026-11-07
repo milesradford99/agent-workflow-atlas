@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["Slack request"]
   n2["classify intent"]
-  n1 --> n2
   n3["how-to: KB answer with links"]
-  n2 --> n3
   n4["access: match Okta group"]
-  n2 --> n4
   n5["check policy + existing access"]
+  n6{{"🛑 action (app approver)"}}:::stop
+  n7["provision via API"]
+  n8["confirm"]
+  n9{{"unclear or unsupported: 🛑 handoff (ticket with context)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n2 --> n4
   n3 --> n5
   n4 --> n5
-  n6{{"🛑 action (app approver)"}}:::stop
   n5 --> n6
-  n7["provision via API"]
   n6 --> n7
-  n8["confirm"]
   n7 --> n8
-  n9["unclear or unsupported: 🛑 handoff (ticket with context)"]
   n7 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

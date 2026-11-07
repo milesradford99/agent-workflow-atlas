@@ -30,24 +30,24 @@ last_verified: 2026-11
 flowchart TD
   n1["alert"]
   n2["route to runbook"]
-  n1 --> n2
   subgraph s3["each signal"]
   n4["investigate (metrics, logs, traces, deploys)"]
-  n2 --> n4
   end
   n5["ranked hypotheses"]
-  n4 --> n5
   n6{{"🛑 action"}}:::stop
-  n5 --> n6
   n7["runbook step"]
-  n6 --> n7
   n8["check SLO"]
-  n7 --> n8
   n9["draft postmortem"]
-  n8 --> n9
   n10{{"🛑 review"}}:::stop
-  n9 --> n10
   n11["update runbook"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["gather requirements + research dimensions"]
   n2["each phase (base shape, features, cleanup): (CadQuery scr…"]
-  n1 --> n2
   n3{{"🛑 review (preview)"}}:::stop
-  n2 --> n3
   n4["parameter table + STL"]
-  n3 --> n4
   n5["slice"]
-  n4 --> n5
   n6{{"🛑 review (slicer/print fit)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

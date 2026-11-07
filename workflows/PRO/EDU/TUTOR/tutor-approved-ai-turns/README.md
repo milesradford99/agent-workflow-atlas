@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["student answers wrong"]
   n2["alert on-call tutor"]
-  n1 --> n2
   n3["load question + likely misconception"]
-  n2 --> n3
   subgraph s4["each turn"]
   n5["AI drafts reply"]
-  n3 --> n5
   end
   n6{{"🛑 action (tutor approves, edits or replaces)"}}:::stop
-  n5 --> n6
   n7["send"]
+  n8{{"after term: 🛑 sample (tutors audit edits + corpus)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
   n6 --> n7
-  n8["after term: 🛑 sample (tutors audit edits + corpus)"]
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["claim file + dec sheet + estimate"]
   n2["generate letter citing policy language"]
-  n1 --> n2
   n3["no supporting language: block ('no relevant policy langua…"]
-  n2 --> n3
   n4{{"🛑 review (desk adjuster)"}}:::stop
-  n3 --> n4
   n5{{"🛑 sign-off (carrier approval)"}}:::stop
-  n4 --> n5
   n6["send"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

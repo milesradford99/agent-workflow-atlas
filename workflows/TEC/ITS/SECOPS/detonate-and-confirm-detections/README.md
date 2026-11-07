@@ -32,27 +32,27 @@ last_verified: 2026-11
 flowchart TD
   n1["detection rule"]
   n2["write TTP attack-simulation YAML"]
-  n1 --> n2
   n3["hook validates schema"]
-  n2 --> n3
   n4["deploy to lab host via SSH + run"]
-  n3 --> n4
   n5["per-step checks"]
+  n6["verifier agent polls SIEM for raw events + detection match"]
+  n7["timeout: debug agent classifies failure"]
+  n8{{"🛑 review (every TTP by hand)"}}:::stop
+  n9["add to reviewed catalogue"]
+  n10["scheduled runs"]
+  n11["health dashboard"]
+  n12{{"🛑 review (team decides fixes)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   n5 -.->|repeat| n4
-  n6["verifier agent polls SIEM for raw events + detection match"]
   n5 --> n6
-  n7["timeout: debug agent classifies failure"]
   n6 --> n7
-  n8{{"🛑 review (every TTP by hand)"}}:::stop
   n7 --> n8
-  n9["add to reviewed catalogue"]
   n8 --> n9
-  n10["scheduled runs"]
   n9 --> n10
-  n11["health dashboard"]
   n10 --> n11
-  n12{{"🛑 review (team decides fixes)"}}:::stop
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,25 +32,25 @@ last_verified: 2026-11
 flowchart TD
   n1{{"🛑 plan (scientist states research goal + background papers)"}}:::stop
   n2["supervisor parses into plan"]
-  n1 --> n2
   subgraph s3["each agent"]
   n4["generate (debate)"]
-  n2 --> n4
   end
   n5["reflect (tools, web search)"]
-  n4 --> n5
   n6["rank by tournament"]
-  n5 --> n6
   n7["evolve"]
+  n8["meta-review"]
+  n9["research overview + protocols"]
+  n10{{"🛑 review (scientists assess top 5, give feedback)"}}:::stop
+  n11{{"🛑 sign-off (lab validation)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   n7 -.->|repeat| n6
-  n8["meta-review"]
   n7 --> n8
-  n9["research overview + protocols"]
   n8 --> n9
-  n10{{"🛑 review (scientists assess top 5, give feedback)"}}:::stop
   n9 --> n10
-  n11{{"🛑 sign-off (lab validation)"}}:::stop
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

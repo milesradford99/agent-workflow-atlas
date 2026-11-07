@@ -32,27 +32,27 @@ last_verified: 2026-11
 flowchart TD
   n1["brief"]
   n2["naming + UTM registry"]
-  n1 --> n2
   n3["journey design"]
-  n2 --> n3
   n4["segment spec"]
-  n3 --> n4
   n5{{"🛑 plan"}}:::stop
-  n4 --> n5
   n6["copy (current product context + URL allowlist)"]
-  n5 --> n6
   n7["modular template HTML"]
-  n6 --> n7
   n8["build"]
-  n7 --> n8
   n9["QA checklist"]
+  n10{{"🛑 action (review + export to ESP)"}}:::stop
+  n11["A/B test"]
+  n12["winners feed next brief"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   n9 -.->|repeat| n8
-  n10{{"🛑 action (review + export to ESP)"}}:::stop
   n9 --> n10
-  n11["A/B test"]
   n10 --> n11
-  n12["winners feed next brief"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

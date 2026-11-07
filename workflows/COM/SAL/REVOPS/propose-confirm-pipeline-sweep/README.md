@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["daily: read live CRM pipeline"]
   n2["reconcile conversations across Slack/email/calendar/notes"]
-  n1 --> n2
   subgraph s3["each open deal"]
   n4["dated next step with source, stale / past-close-date / th…"]
-  n2 --> n4
   end
   n5["run quality self-checks"]
-  n4 --> n5
   n6["publish exceptions view"]
-  n5 --> n6
   n7{{"🛑 action (human confirms write-back)"}}:::stop
-  n6 --> n7
   n8{{"🛑 review (weekly pipeline review)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

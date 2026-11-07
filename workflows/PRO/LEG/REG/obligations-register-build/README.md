@@ -32,22 +32,22 @@ last_verified: 2026-11
 flowchart TD
   n1["scope + tier sources"]
   n2["scrape to structured XML"]
-  n1 --> n2
   n3["decompose + tag obligations"]
-  n2 --> n3
   n4["link related rules"]
-  n3 --> n4
   n5{{"🛑 review (lawyers check outputs)"}}:::stop
-  n4 --> n5
   n6["compile controls per obligation"]
-  n5 --> n6
   n7{{"🛑 sign-off (lawyer adequacy review)"}}:::stop
-  n6 --> n7
   n8["weekly old/new diff"]
-  n7 --> n8
   n9["impact briefing"]
-  n8 --> n9
   n10{{"🛑 review"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

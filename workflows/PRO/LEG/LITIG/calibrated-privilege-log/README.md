@@ -32,17 +32,17 @@ last_verified: 2026-11
 flowchart TD
   n1["privileged document population"]
   n2["draw sample set"]
-  n1 --> n2
   n3["prompt tailored to matter language"]
-  n2 --> n3
   n4["generate log descriptions on sample"]
-  n3 --> n4
   n5{{"🛑 review (outside counsel feedback)"}}:::stop
+  n6["run refined prompt on full privileged population"]
+  n7["finalize log"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   n5 -.->|repeat| n4
-  n6["run refined prompt on full privileged population"]
   n5 --> n6
-  n7["finalize log"]
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

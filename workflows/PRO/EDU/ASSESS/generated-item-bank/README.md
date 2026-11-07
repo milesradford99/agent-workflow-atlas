@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["few-shot passage generation per genre"]
   n2["filters (length, repetition, offensive content, likelihood)"]
-  n1 --> n2
   subgraph s3["each passage"]
   n4["generate item set + distractors"]
-  n2 --> n4
   end
   n5{{"🛑 review (≥3 content + 2 fairness reviewers, adjudication)"}}:::stop
-  n4 --> n5
   n6["pilot in practice test"]
-  n5 --> n6
   n7["psychometric analysis (easiness, item-total correlation,…"]
-  n6 --> n7
   n8["drop weak items"]
-  n7 --> n8
   n9{{"🛑 sign-off (operational pool)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

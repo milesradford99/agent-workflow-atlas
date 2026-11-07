@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["service-user consent"]
   n2["record practitioner visit or call"]
-  n1 --> n2
   n3["transcribe"]
-  n2 --> n3
   n4["draft assessment or case note"]
-  n3 --> n4
   n5{{"🛑 review (practitioner checks and edits)"}}:::stop
-  n4 --> n5
   n6["file to case record"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

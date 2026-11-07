@@ -32,26 +32,26 @@ last_verified: 2026-11
 flowchart TD
   n1["past reviewer decisions"]
   n2["train model"]
-  n1 --> n2
   subgraph s3["each record"]
   n4["score declassify"]
-  n2 --> n4
   n5["exempt"]
-  n2 --> n5
   n6["unsure"]
-  n2 --> n6
   end
-  n7["unsure: 🛑 handoff (human reviewer)"]
+  n7{{"unsure: 🛑 handoff (human reviewer)"}}:::stop
+  n8{{"🛑 sample (QC on model calls)"}}:::stop
+  n9["load decisions into review system"]
+  n10["release to FOIA reading room"]
+  n11["retrain for topic drift"]
+  n1 --> n2
+  n2 --> n4
+  n2 --> n5
+  n2 --> n6
   n4 --> n7
   n5 --> n7
   n6 --> n7
-  n8{{"🛑 sample (QC on model calls)"}}:::stop
   n7 --> n8
-  n9["load decisions into review system"]
   n8 --> n9
-  n10["release to FOIA reading room"]
   n9 --> n10
-  n11["retrain for topic drift"]
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

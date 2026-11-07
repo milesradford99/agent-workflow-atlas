@@ -98,6 +98,16 @@ def check_species(path, fm, tax, errors):
             if ex.is_dir() and not re.match(r"^\d{4}-\d{2}-[a-z0-9-]+$", ex.name):
                 err(f"examples/{ex.name}/ must be named YYYY-MM-short-name")
 
+    # the SOP itself: numbered steps, with every checkpoint in the shape written out as a step
+    body = path.read_text().split("\n---\n", 1)[-1]
+    steps = re.search(r"^## Steps\n(.*?)(?=^## |\Z)", body, re.M | re.S)
+    if not steps or len(re.findall(r"^\d+\. ", steps.group(1), re.M)) < 3:
+        err("needs a `## Steps` section with at least 3 numbered steps")
+    else:
+        for cp in sorted(in_shape):
+            if f"🛑 **{cp.capitalize()}" not in steps.group(1):
+                err(f"checkpoint `{cp}` is in the shape but no step starts with `🛑 **{cp.capitalize()}**`")
+
     # freshness: last_verified is a month, so scripts/freshness.py can age it
     if not re.match(r"^\d{4}-(0[1-9]|1[0-2])$", str(fm["last_verified"])):
         err(f"`last_verified: {fm['last_verified']}` must be a month like 2026-11")

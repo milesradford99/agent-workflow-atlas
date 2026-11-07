@@ -32,24 +32,24 @@ last_verified: 2026-11
 flowchart TD
   n1["concept doc or PRD"]
   n2["load ARCHITECTURE, SECURITY, LEGAL files + code"]
-  n1 --> n2
   n3["two-part spec (human half, agent half)"]
-  n2 --> n3
   n4["check against guardrail files"]
-  n3 --> n4
   n5["fresh subagent verifies file paths"]
-  n4 --> n5
   n6{{"🛑 review (design review meeting)"}}:::stop
-  n5 --> n6
   n7{{"🛑 sign-off (legal, privacy, security on data flows)"}}:::stop
-  n6 --> n7
   n8["phased agent PRs"]
-  n7 --> n8
   n9["weekly: review notes"]
-  n8 --> n9
   n10["system-file update PR"]
-  n9 --> n10
   n11{{"🛑 review"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -9,7 +9,7 @@ shape: "pilot on 10–20 files → 🛑 plan → each file: (refactor ⟲ lint �
 autonomy: sampled
 checkpoints: [plan, sample, review]
 patterns: [parallel, eval-opt, chain]
-variants: [claude-code-headless, agent-sdk, codex-exec]
+variants: [claude-code, claude-code-headless, agent-sdk, codex-exec]
 tags: {risk: low}
 evidence: A
 status: draft
@@ -24,6 +24,7 @@ last_verified: 2026-11
 `TEC › SWE › MAINT` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
 
 **Shape:** `pilot on 10–20 files → 🛑 plan → each file: (refactor ⟲ lint → types → tests) → add context to failures → each failure: (retry ⟲ checks) → 🛑 sample → batch PRs → 🛑 review`
+**Agent kit:** [run this in Claude Code](variants/claude-code.md)
 **Traits:** `parallel, eval-opt, chain` · **Variants:** `claude-code-headless` · `agent-sdk` · `codex-exec`
 **Reference example:** Airbnb's Enzyme → React Testing Library migration [[5]](#sources). About 3.5k test files were migrated in roughly 6 weeks, against an estimated 1.5 years by hand. A per-file step state machine retried with error feedback. About 75% of files passed within hours, and the remaining ~900 got richer context and more retries. Fewer than 100 were finished by hand.
 
@@ -32,32 +33,32 @@ last_verified: 2026-11
 flowchart TD
   n1["pilot on 10–20 files"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   subgraph s3["each file"]
   n4["refactor"]
-  n2 --> n4
   n5["lint"]
-  n4 --> n5
   n6["types"]
-  n5 --> n6
   n7["tests"]
-  n6 --> n7
-  n7 -.->|repeat| n4
   end
   n8["add context to failures"]
-  n7 --> n8
   subgraph s9["each failure"]
   n10["retry"]
-  n8 --> n10
   n11["checks"]
-  n10 --> n11
-  n11 -.->|repeat| n10
   end
   n12{{"🛑 sample"}}:::stop
-  n11 --> n12
   n13["batch PRs"]
-  n12 --> n13
   n14{{"🛑 review"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 -.->|repeat| n4
+  n7 --> n8
+  n8 --> n10
+  n10 --> n11
+  n11 -.->|repeat| n10
+  n11 --> n12
+  n12 --> n13
   n13 --> n14
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

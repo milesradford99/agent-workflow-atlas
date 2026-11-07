@@ -32,14 +32,14 @@ last_verified: 2026-11
 flowchart TD
   n1["signed contract returned"]
   n2["vision model reads signatures + initials"]
-  n1 --> n2
   n3["cross-check signer authority, pricing, ACV vs quote, requ…"]
-  n2 --> n3
   n4["clean: write fields to CRM + audit trail"]
-  n3 --> n4
-  n5["any doubt: 🛑 handoff (deal desk specialist)"]
-  n3 --> n5
+  n5{{"any doubt: 🛑 handoff (deal desk specialist)"}}:::stop
   n6["closed-won"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610

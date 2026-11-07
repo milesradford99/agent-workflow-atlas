@@ -32,25 +32,25 @@ last_verified: 2026-11
 flowchart TD
   n1{{"🛑 plan (human writes protocol: metric, priorities, constr…"}}:::stop
   n2["freeze eval harness + split"]
-  n1 --> n2
   n3["modify code"]
-  n2 --> n3
   n4["commit"]
-  n3 --> n4
   n5["train"]
-  n4 --> n5
   n6["evaluate"]
-  n5 --> n6
   n7["keep or revert"]
-  n6 --> n7
   n8["until human stops"]
+  n9["agent writes results report"]
+  n10{{"🛑 review (scientist audits log)"}}:::stop
+  n11{{"🛑 sign-off (promotion)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   n8 -.->|repeat| n3
-  n9["agent writes results report"]
   n8 --> n9
-  n10{{"🛑 review (scientist audits log)"}}:::stop
   n9 --> n10
-  n11{{"🛑 sign-off (promotion)"}}:::stop
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

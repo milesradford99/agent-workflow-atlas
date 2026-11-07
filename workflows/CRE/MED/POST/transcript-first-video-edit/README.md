@@ -32,27 +32,27 @@ last_verified: 2026-11
 flowchart TD
   n1["import recording"]
   n2["transcript edit (cut takes/tangents)"]
-  n1 --> n2
   n3{{"🛑 review (author content cuts)"}}:::stop
-  n2 --> n3
   n4["gap + filler tightening"]
-  n3 --> n4
   n5["agent writes ffmpeg audio extract + music mix"]
-  n4 --> n5
   n6["word-level Whisper transcript"]
-  n5 --> n6
   n7["agent builds Remotion captions + overlays"]
-  n6 --> n7
   n8["preview"]
-  n7 --> n8
   n9["agent fixes"]
+  n10{{"🛑 review (preview)"}}:::stop
+  n11["render"]
+  n12{{"🛑 sign-off (1.5x watch-through)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   n9 -.->|repeat| n8
-  n10{{"🛑 review (preview)"}}:::stop
   n9 --> n10
-  n11["render"]
   n10 --> n11
-  n12{{"🛑 sign-off (1.5x watch-through)"}}:::stop
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -33,21 +33,21 @@ flowchart TD
   n1["responses per question"]
   subgraph s2["each question"]
   n3["generate themes from all responses"]
-  n1 --> n3
   end
   n4{{"🛑 sign-off (policy team edits theme list)"}}:::stop
-  n3 --> n4
   subgraph s5["each response"]
   n6["map to one or more themes"]
-  n4 --> n6
   end
   n7{{"🛑 sample (analysts verify mappings)"}}:::stop
-  n6 --> n7
   n8["dashboard of theme counts + source responses"]
-  n7 --> n8
   n9["analysts synthesise findings"]
-  n8 --> n9
   n10{{"🛑 review (policy lead)"}}:::stop
+  n1 --> n3
+  n3 --> n4
+  n4 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

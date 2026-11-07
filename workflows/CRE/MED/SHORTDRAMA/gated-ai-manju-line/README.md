@@ -32,34 +32,34 @@ last_verified: 2026-11
 flowchart TD
   n1["立项评审 (greenlight review: hook, competition, audience fit,…"]
   n2{{"🛑 plan"}}:::stop
-  n1 --> n2
   n3["剧本 (script)"]
-  n2 --> n3
   n4{{"🛑 review (script review)"}}:::stop
-  n3 --> n4
   n5["script breakdown + 数字资产 (digital assets: 60–70 characters…"]
-  n4 --> n5
   n6{{"🛑 review (asset approval)"}}:::stop
-  n5 --> n6
   n7["分镜 (storyboard)"]
-  n6 --> n7
   n8{{"🛑 review (storyboard review)"}}:::stop
-  n7 --> n8
   subgraph s9["each shot"]
   n10["batch text-to-image / image-to-video 抽卡 (generate-and-pick)"]
-  n8 --> n10
   end
   n11{{"🛑 review (director pass)"}}:::stop
-  n10 --> n11
   n12["edit, dub, subtitles, SFX"]
-  n11 --> n12
   n13{{"🛑 review (two rounds on the cut)"}}:::stop
-  n12 --> n13
   n14{{"🛑 sign-off (合规审核, compliance review)"}}:::stop
-  n13 --> n14
   n15["投放 (paid distribution) test"]
-  n14 --> n15
   n16["scale winners"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n10
+  n10 --> n11
+  n11 --> n12
+  n12 --> n13
+  n13 --> n14
+  n14 --> n15
   n15 --> n16
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

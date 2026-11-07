@@ -33,23 +33,23 @@ last_verified: 2026-11
 flowchart TD
   n1["inbound customer email"]
   n2["classify (quote | load tender | appointment | tracking)"]
-  n1 --> n2
   n3["quote: price engine"]
-  n2 --> n3
   n4["reply"]
-  n3 --> n4
   n5["tender: connect details across email + PDF, fetch missing…"]
-  n3 --> n5
   n6["create orders"]
+  n7["appointment: book slot"]
+  n8{{"can't resolve: 🛑 handoff (team manages exception)"}}:::stop
+  n9{{"🛑 sample (human feedback loop)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["appointment: book slot"]
   n4 --> n7
   n5 --> n7
-  n8["can't resolve: 🛑 handoff (team manages exception)"]
   n6 --> n8
   n7 --> n8
-  n9{{"🛑 sample (human feedback loop)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

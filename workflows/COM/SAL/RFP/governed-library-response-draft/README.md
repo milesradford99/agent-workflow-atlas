@@ -32,27 +32,27 @@ last_verified: 2026-11
 flowchart TD
   n1["intake RFP/questionnaire"]
   n2["fit check (reject wrong docs)"]
-  n1 --> n2
   n3["parse into questions"]
-  n2 --> n3
   subgraph s4["each question"]
   n5["retrieve from verified library + draft with source trace"]
-  n3 --> n5
   end
   n6["flag unanswerable"]
-  n5 --> n6
   n7{{"🛑 review (SME/GRC on flagged)"}}:::stop
-  n6 --> n7
   n8["SE comments"]
-  n7 --> n8
   n9["regenerate"]
+  n10{{"🛑 sign-off"}}:::stop
+  n11["export in buyer format"]
+  n12["feed approved edits back to library"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   n9 -.->|repeat| n8
-  n10{{"🛑 sign-off"}}:::stop
   n9 --> n10
-  n11["export in buyer format"]
   n10 --> n11
-  n12["feed approved edits back to library"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

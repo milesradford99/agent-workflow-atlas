@@ -32,19 +32,19 @@ last_verified: 2026-11
 flowchart TD
   n1["cull (dedupe, threading, search)"]
   n2["attorneys write prompt from review protocol"]
-  n1 --> n2
   n3["run on sample"]
-  n2 --> n3
   n4{{"🛑 review (attorneys vs gold set)"}}:::stop
+  n5["run full population"]
+  n6{{"🛑 sample (precision + elusion validation)"}}:::stop
+  n7["attorneys review all relevant/borderline for privilege"]
+  n8{{"🛑 sign-off (responsible attorney accepts recall)"}}:::stop
+  n1 --> n2
+  n2 --> n3
   n3 --> n4
   n4 -.->|repeat| n3
-  n5["run full population"]
   n4 --> n5
-  n6{{"🛑 sample (precision + elusion validation)"}}:::stop
   n5 --> n6
-  n7["attorneys review all relevant/borderline for privilege"]
   n6 --> n7
-  n8{{"🛑 sign-off (responsible attorney accepts recall)"}}:::stop
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

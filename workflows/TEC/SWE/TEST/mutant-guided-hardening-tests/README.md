@@ -33,19 +33,19 @@ flowchart TD
   n1["plain-text concern (e.g. privacy)"]
   subgraph s2["each class"]
   n3["generate concern-specific mutants"]
-  n1 --> n3
   end
   n4["equivalent-mutant agent filters"]
-  n3 --> n4
   n5["generate tests that kill surviving mutants"]
-  n4 --> n5
   n6["builds"]
-  n5 --> n6
   n7["passes consistently"]
-  n6 --> n7
   n8["catches mutant no existing test catches"]
-  n7 --> n8
   n9{{"🛑 review (engineer accepts or rejects in test-a-thon)"}}:::stop
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

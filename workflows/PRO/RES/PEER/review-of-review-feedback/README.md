@@ -32,12 +32,12 @@ last_verified: 2026-11
 flowchart TD
   n1["reviewer submits review"]
   n2["multiple LLMs check vague comments, misreadings, unprofes…"]
-  n1 --> n2
   n3["reliability tests gate feedback"]
-  n2 --> n3
   n4["private feedback to reviewer"]
-  n3 --> n4
   n5{{"🛑 review (reviewer accepts, edits or ignores)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

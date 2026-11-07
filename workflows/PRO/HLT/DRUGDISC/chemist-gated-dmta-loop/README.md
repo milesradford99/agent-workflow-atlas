@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["open goal + steering prompts"]
   n2["generate + rank proposals"]
-  n1 --> n2
   n3{{"🛑 plan (chemists select shortlist)"}}:::stop
-  n2 --> n3
   n4["agent writes HTE grids"]
-  n3 --> n4
   n5{{"🛑 review (chemists correct procedures)"}}:::stop
-  n4 --> n5
   n6["run HTE + analyze"]
-  n5 --> n6
   n7["propose next cycle"]
+  n8{{"🛑 sign-off (chemists repeat at bench scale)"}}:::stop
+  n9["preprint"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   n7 -.->|repeat| n6
-  n8{{"🛑 sign-off (chemists repeat at bench scale)"}}:::stop
   n7 --> n8
-  n9["preprint"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

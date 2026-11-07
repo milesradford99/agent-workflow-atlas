@@ -32,19 +32,19 @@ last_verified: 2026-11
 flowchart TD
   n1["MRN + drug + payer criteria"]
   n2["pull chart data"]
-  n1 --> n2
   n3["check each criterion"]
-  n2 --> n3
   n4["met"]
-  n3 --> n4
   n5["not met (stop, list unmet)"]
-  n3 --> n5
   n6["documentation checklist + cover letter"]
+  n7{{"🛑 review (PA staff select records, edit letter)"}}:::stop
+  n8{{"🛑 action (staff submit request or appeal)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7{{"🛑 review (PA staff select records, edit letter)"}}:::stop
   n6 --> n7
-  n8{{"🛑 action (staff submit request or appeal)"}}:::stop
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

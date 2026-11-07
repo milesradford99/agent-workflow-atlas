@@ -31,29 +31,43 @@ last_verified: 2026-11
 flowchart TD
   n1["load consensus + guidance"]
   n2["new release, filing or transcript"]
-  n1 --> n2
   subgraph s3["each KPI"]
   n4["extract with citation"]
-  n2 --> n4
   end
   n5["compare to model"]
-  n4 --> n5
   n6["update Excel drivers with per-cell comments"]
-  n5 --> n6
   n7["transcript themes"]
-  n6 --> n7
   n8["note"]
-  n7 --> n8
   n9{{"🛑 review"}}:::stop
-  n8 --> n9
   n10{{"🛑 sign-off (compliance)"}}:::stop
-  n9 --> n10
   n11["publish"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```
 <!-- end shape diagram -->
 
+
+## Steps
+1. Load consensus and guidance before the event through data connectors: LSEG analyst estimates, S&P Capital IQ, Daloopa, FactSet and others in the financial-analysis plugin [[23]](#sources) [[25]](#sources).
+2. When the release, filing or transcript lands, pull it in; Aiera supplies real-time earnings call transcripts [[23]](#sources).
+3. For each KPI, extract the value with a citation to the source document, using a sector taxonomy with extraction rules. Write disambiguation rules that apply across the whole sector, covering segment, period (monthly vs quarterly), basis (consolidated vs pro-rata), regulatory framework and GAAP vs adjusted [[24]](#sources).
+4. Compare each actual and any guidance change with the model and with consensus; the earnings-analysis skill covers "metrics, guidance changes" [[23]](#sources).
+5. Update the Excel drivers in place. Claude for Excel preserves formula dependencies, "tracks and explains its changes" and links to the cells it references [[23]](#sources). Each changed driver gets a cell comment with the source and reason.
+6. Pull themes from the transcript and draft the note; `/earnings [company] [quarter]` generates a post-earnings update report [[25]](#sources).
+7. 🛑 **Review**: the analyst checks every changed cell and every cited KPI against the source. Start with values where models or rules disagree, since consensus is a prioritization signal, not proof [[24]](#sources). Raw model output shouldn't ship even at 99.3% extraction accuracy [[24]](#sources), and AI-generated analysis "should always be reviewed by a qualified professional" [[25]](#sources).
+8. 🛑 **Sign-off (compliance)**: compliance approves the note before distribution.
+9. Publish the note and save the updated model.
+
+**Output:** An updated model whose changed drivers each carry a source and reason, plus a research note ready for distribution after compliance sign-off.
+**Failure modes → guards:** Wrong segment chosen for multi-segment companies, monthly figures taken for quarterly, subtotals or the wrong basis for REITs, bank ratios under the wrong framework → sector-wide disambiguation rules and Extended Thinking [[24]](#sources). Lower accuracy in some sectors (Insurance, Industrials, REITs, Retail) → closer review there [[24]](#sources). Silent edits that break the model → change tracking and links to referenced cells [[23]](#sources).
 
 ## Public runs
 
@@ -64,3 +78,5 @@ Coverage as of 2026-11-06: **None found**: no public first-hand run yet. A real 
 ## Sources
 
 23. VentureBeat, Claude for Financial Services (July 2025). https://venturebeat.com/ai/anthropic-rolls-out-claude-ai-for-finance-integrates-with-excel-to-rival · Anthropic, *Advancing Claude for Financial Services*. https://anthropic.com/news/advancing-claude-for-financial-services
+24. Financial Datasets, EarningsBench, 2026-06-29. https://financialdatasets.ai/blogs/earningsbench
+25. Anthropic, Install financial services plugins for Cowork (Claude docs), undated. https://claude.com/docs/office-agents/fsi-plugins.md

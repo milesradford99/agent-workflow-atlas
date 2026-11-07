@@ -33,18 +33,18 @@ flowchart TD
   n1["retrain 3 models yearly on past proposals + peer-review s…"]
   subgraph s2["each proposal"]
   n3["3 independent classifiers"]
-  n1 --> n3
   end
   n4["all 3 say bottom class: flag"]
-  n3 --> n4
   n5["else: peer review"]
-  n3 --> n5
   n6{{"🛑 review (2 eligibility reviewers per flagged proposal; a…"}}:::stop
+  n7["confirmed: removed"]
+  n8["rescued: peer review"]
+  n1 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["confirmed: removed"]
   n6 --> n7
-  n8["rescued: peer review"]
   n6 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

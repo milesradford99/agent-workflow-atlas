@@ -30,21 +30,21 @@ last_verified: 2026-11
 flowchart TD
   n1["question"]
   n2["load metric definitions + schema"]
-  n1 --> n2
   n3["SQL"]
-  n2 --> n3
   n4["sanity checks"]
+  n5["chart + summary"]
+  n6{{"🛑 review"}}:::stop
+  n7{{"🛑 sign-off"}}:::stop
+  n8["publish"]
+  n9["save to golden queries"]
+  n1 --> n2
+  n2 --> n3
   n3 --> n4
   n4 -.->|repeat| n3
-  n5["chart + summary"]
   n4 --> n5
-  n6{{"🛑 review"}}:::stop
   n5 --> n6
-  n7{{"🛑 sign-off"}}:::stop
   n6 --> n7
-  n8["publish"]
   n7 --> n8
-  n9["save to golden queries"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

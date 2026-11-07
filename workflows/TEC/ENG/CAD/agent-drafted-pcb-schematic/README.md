@@ -32,24 +32,24 @@ last_verified: 2026-11
 flowchart TD
   n1["sketch + size limit"]
   n2["concept renders"]
-  n1 --> n2
   n3["agent drafts requirements doc + BOM + block diagram"]
-  n2 --> n3
   n4{{"🛑 plan"}}:::stop
-  n3 --> n4
-  n5["step by step: agent builds KiCad schematic, 🛑 action (des…"]
-  n4 --> n5
+  n5{{"step by step: agent builds KiCad schematic, 🛑 action (des…"}}:::stop
   n6["(adversarial schematic review ⟲ fixes) + ERC and netlist…"]
-  n5 --> n6
   n7{{"🛑 review (second engineer)"}}:::stop
-  n6 --> n7
   n8["manual PCB layout"]
-  n7 --> n8
   n9["export fab kit"]
-  n8 --> n9
   n10["order"]
-  n9 --> n10
   n11["bring-up"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
+  n9 --> n10
   n10 --> n11
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

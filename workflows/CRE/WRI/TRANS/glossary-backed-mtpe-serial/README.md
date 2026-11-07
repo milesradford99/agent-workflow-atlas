@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["build genre 术语库 (glossaries)"]
   n2["new chapter published"]
-  n1 --> n2
   n3["auto machine-translate chapter"]
-  n2 --> n3
   n4{{"🛑 review (human 校对: post-edit)"}}:::stop
-  n3 --> n4
   n5["publish on overseas platform"]
-  n4 --> n5
   n6["mine reader comments"]
-  n5 --> n6
   n7["update glossary"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

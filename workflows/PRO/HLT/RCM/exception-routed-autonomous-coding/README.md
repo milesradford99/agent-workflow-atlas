@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["document coding philosophy + org guidelines"]
   n2{{"🛑 plan (configure + validate engine)"}}:::stop
-  n1 --> n2
   subgraph s3["each chart"]
   n4["engine assigns ICD/CPT/E&M with rationale per code"]
-  n2 --> n4
   end
   n5["coverage check"]
-  n4 --> n5
   n6["covered: codes to billing"]
-  n5 --> n6
-  n7["dropped (understanding gap, documentation conflict, low-c…"]
-  n5 --> n7
+  n7{{"dropped (understanding gap, documentation conflict, low-c…"}}:::stop
   n8{{"🛑 sample (regular coding audits)"}}:::stop
+  n9["audit feedback to engine"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n5 --> n7
   n6 --> n8
   n7 --> n8
-  n9["audit feedback to engine"]
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

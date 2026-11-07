@@ -32,21 +32,21 @@ last_verified: 2026-11
 flowchart TD
   n1["map lineage + legacy code + docs"]
   n2["slice large procedures"]
-  n1 --> n2
   subgraph s3["each model"]
   n4["translate to dbt"]
-  n2 --> n4
   end
   n5["data diff vs production"]
-  n4 --> n5
   n6["agent explains/fixes differences"]
+  n7{{"🛑 review (data owner approves table via row-level diff)"}}:::stop
+  n8["batch cosmetic fixes"]
+  n9{{"🛑 sign-off (cutover once all approved)"}}:::stop
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
   n5 --> n6
   n6 -.->|repeat| n5
-  n7{{"🛑 review (data owner approves table via row-level diff)"}}:::stop
   n6 --> n7
-  n8["batch cosmetic fixes"]
   n7 --> n8
-  n9{{"🛑 sign-off (cutover once all approved)"}}:::stop
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

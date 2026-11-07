@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["full permit drawing set (PDF)"]
   n2["AI checks codes + cross-discipline coordination"]
-  n1 --> n2
   n3["issue list ranked by discipline + severity"]
-  n2 --> n3
   n4{{"🛑 review (firm triages real vs non-issues)"}}:::stop
-  n3 --> n4
   n5["drafters fix"]
-  n4 --> n5
   n6["submit to city"]
-  n5 --> n6
   n7{{"🛑 handoff (city plan check)"}}:::stop
-  n6 --> n7
   n8["log non-issues as tool feedback"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -9,7 +9,7 @@ shape: "study top dramas (hooks, 反转 density, 卡点 placement) → core setu
 autonomy: checkpointed
 checkpoints: [plan, review]
 patterns: [parallel, eval-opt]
-variants: []
+variants: [claude-code]
 tags: {region: [CN], lang: [zh], risk: low}
 evidence: A
 status: draft
@@ -24,6 +24,7 @@ last_verified: 2026-11
 `CRE › WRI › SCREEN` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
 
 **Shape:** `study top dramas (hooks, 反转 density, 卡点 placement) → core setup → 🛑 plan → 60–100 one-line episodes, each ending on a cliffhanger → 🛑 plan → each batch of 10: draft episodes → each episode: check 3-second hook, end cliffhanger, line length, cast and location budget → 🛑 review (head writer rewrites eps 1–10 + paywall ep) → content-rule check → 场次表`
+**Agent kit:** [run this in Claude Code](variants/claude-code.md)
 **How it differs from Beat-to-scene screenplay:** the deliverable is a 60–100-episode series with a paywall episode to pace toward, and episodes are drafted in parallel batches.
 **Tags:** domestic releases go through the NRTA's tiered review, with three categories by budget and subject. Platforms may not carry micro-dramas without a license or filing number [[14]](#sources). **Feeds into:** AWF-0015, AWF-0016.
 
@@ -32,31 +33,45 @@ last_verified: 2026-11
 flowchart TD
   n1["study top dramas (hooks, 反转 density, 卡点 placement)"]
   n2["core setup"]
-  n1 --> n2
   n3{{"🛑 plan"}}:::stop
-  n2 --> n3
   n4["60–100 one-line episodes, each ending on a cliffhanger"]
-  n3 --> n4
   n5{{"🛑 plan"}}:::stop
-  n4 --> n5
   subgraph s6["each batch of 10"]
   n7["draft episodes"]
-  n5 --> n7
   end
   subgraph s8["each episode"]
   n9["check 3-second hook, end cliffhanger, line length, cast a…"]
-  n7 --> n9
   end
   n10{{"🛑 review (head writer rewrites eps 1–10 + paywall ep)"}}:::stop
-  n9 --> n10
   n11["content-rule check"]
-  n10 --> n11
   n12["场次表"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n7
+  n7 --> n9
+  n9 --> n10
+  n10 --> n11
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```
 <!-- end shape diagram -->
 
+
+## Steps
+1. Study the market before choosing a story: pull the top 50 dramas by 7-day spend from third-party data platforms (the producer uses 新红 and 灰豚), and record the ending-hook type of each of eps 1–5 and the emotional peak of the paywall episode. An assistant tags hook labels (身份反转, 情感绑架, 生死危机, 打脸爽点) in Excel and counts their frequency [[15]](#sources).
+2. Build the core setup. The AI turns the story idea into a mind map and outline [[16]](#sources). Character sheets stay under 50 字 each, in three fields (身份标签, 核心软肋, 触发动作), kept in a 飞书多维表格 character base [[15]](#sources). Keep the cast small and the relationships readable at a glance [[18]](#sources).
+3. 🛑 **Plan**: the producer and head writer pick the emotion the audience will pay for (for example 虐渣复仇 over 母子相认 as the main line) before any episode is outlined [[15]](#sources).
+4. Lay out the series one line per episode in a 钩子密度表 (episode, event, ending-hook type from five fixed categories, paywall flag, estimated cost, notes). Eps 1–3 are free and must end on strong suspense; eps 8–12 are the usual paywall and are highlighted [[15]](#sources). Add a section-by-section climax table and a 伏笔登记表 (where each setup is planted and paid off) [[18]](#sources).
+5. 🛑 **Plan**: producer, writer and director read the hook table together to find weak endings. Ask the model for each episode's 分场大纲 and confirm it before the full episode is written [[15]](#sources) [[18]](#sources).
+6. Draft in batches of 10. Every prompt carries a recap of the previous episode and this episode's task, or the model starts forgetting settings after a dozen episodes; after each 10 episodes, check that the main suspense is still rising [[18]](#sources). One open-source Codex skill runs this as `/分集规划 1-10` and `/连写 1-10` with a cross-episode continuity ledger [[19]](#sources).
+7. Check every episode: conflict in the first 3 seconds, a cut-off on the ending hook, about 180–250 字 of dialogue per minute, lines of 10–12 字, timed by reading aloud [[15]](#sources); no more than 3 scene changes per episode [[18]](#sources). The same skill ships scripts that check length, line length, scene count, first-3-second conflict, ending cut and red-line words [[19]](#sources).
+8. 🛑 **Review**: the head writer rewrites eps 1–10 and the paywall episode. Lines, the nuance of relationships and the timing of 爽点 stay human work [[16]](#sources), and the strongest reversals go into the paywall episodes [[15]](#sources).
+9. Run the content-rule check, then export the 场次表 and per-episode cards (hook type, word count, key image) under a dated version name [[15]](#sources). Platforms run an AI review first and then a human one; one company saw nearly 70% of its AI dramas fail, mostly for violence or a face drifting into a celebrity's likeness [[17]](#sources). Domestic releases also need the NRTA filing or license [[14]](#sources).
+
+**Output:** a 60–100-episode script with a hook table, 场次表 and episode cards, handed to production (AWF-0015 or AWF-0016). Scripts for AI production need more scene and character description, roughly 5万 to 8万 字 [[17]](#sources).
+**Failure modes → guards:** A weak ending gets used as ad material and the click rate collapses → every ending gets a named hook type in the table [[15]](#sources). Viewers leave before the paywall → shoot eps 1–5, run a small ad test, and pull a reversal one episode earlier (ROI "回升了0.2左右") [[15]](#sources). The model forgets settings mid-series → recap and episode task in every prompt, plus a check every 10 episodes [[18]](#sources). Writers and storyboard artists work from different versions → one shared doc and a version-naming rule [[15]](#sources). Faster output without better quality ("产能确实提高了，但质量未必提高") → humans keep dialogue and 爽点 timing [[16]](#sources). Review rejection → screen for violence and likeness drift before submission [[17]](#sources).
 
 ## Public runs
 
@@ -69,3 +84,8 @@ Coverage as of 2026-11-06: **Weak**: only anonymous, vendor-linked or journalist
 ## Sources
 
 14. 新华网, 微短剧分类分层审核 (February 2025). https://www.news.cn/politics/20250205/3fbf8abbfa344641b01f799ae42a6318/c.html · 新华网, 《微短剧发展管理办法(征求意见稿)》 (June 2026). https://www.news.cn/politics/20260624/5794e5cd877e440cb678a7f27112ffc7/c.html · IT之家. https://www.ithome.com/0/984/306.htm
+15. 光影联盟, 微短剧剧本从选题到分镜：制片人复盘一套带付费卡点和具体参数的流程, 2026-09-21. https://www.lunxiao.com/article.html?id=23310
+16. 小树 for GPLP (via NetEase), 半个月上线一部AI短剧，编剧却在AI和自己之间反复, 2026-10-31. https://m.163.com/dy/article/LAJ3VILB05118D5B.html
+17. 新民周刊 p.41, 2026-07-13. https://img1.xinmin.cn/xmzk/2026-07-13/410713.pdf
+18. 老陈的 AI 知识库, 短剧剧本怎么写：从全剧架构到单集卡点的完整教程, 2026-08-24. https://www.cpengx.cn/video/d-script.html
+19. hongguo-shortdrama-screenwriting (GitHub, Codex skill, MIT), README, 2026-09. https://github.com/zhu5859243-free/hongguo-shortdrama-screenwriting

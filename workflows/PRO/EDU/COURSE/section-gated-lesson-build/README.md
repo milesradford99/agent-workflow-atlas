@@ -32,18 +32,18 @@ last_verified: 2026-11
 flowchart TD
   n1["teacher gives subject + key stage + title"]
   n2["retrieve similar curriculum lessons + rerank"]
-  n1 --> n2
   n3{{"🛑 plan (teacher picks a base lesson)"}}:::stop
-  n2 --> n3
   subgraph s4["each template section"]
   n5["draft"]
-  n3 --> n5
   end
   n6{{"🛑 review (teacher agrees or edits)"}}:::stop
-  n5 --> n6
   n7["parallel moderation (safe | guidance | toxic: stop)"]
-  n6 --> n7
   n8["download plan + slides + quizzes + worksheet"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

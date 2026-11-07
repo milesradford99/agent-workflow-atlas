@@ -33,14 +33,14 @@ last_verified: 2026-11
 flowchart TD
   n1["site safety documentation (up to 400 pages, multilingual)"]
   n2["document agents analyse + create tasks"]
-  n1 --> n2
   n3["task agents break down audit criteria"]
-  n2 --> n3
   n4["report agents compile compliance findings"]
-  n3 --> n4
   n5{{"🛑 review (human in the loop examines the process)"}}:::stop
-  n4 --> n5
   n6["audit report"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
   n5 --> n6
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

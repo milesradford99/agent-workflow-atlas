@@ -33,16 +33,16 @@ flowchart TD
   n1["build label guide from web + internal definitions"]
   subgraph s2["each product"]
   n3["review details against guide + assign labels"]
-  n1 --> n3
   end
   n4["high confidence: update listing + notify supplier"]
-  n3 --> n4
-  n5["low confidence / high risk: 🛑 action (supplier confirms)"]
-  n3 --> n5
+  n5{{"low confidence / high risk: 🛑 action (supplier confirms)"}}:::stop
   n6{{"🛑 sample (associates inspect samples)"}}:::stop
+  n7["A/B test impact"]
+  n1 --> n3
+  n3 --> n4
+  n3 --> n5
   n4 --> n6
   n5 --> n6
-  n7["A/B test impact"]
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

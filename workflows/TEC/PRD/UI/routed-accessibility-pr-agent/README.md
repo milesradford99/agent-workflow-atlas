@@ -32,24 +32,24 @@ last_verified: 2026-11
 flowchart TD
   n1["front-end PR or developer question"]
   n2["complexity score"]
-  n1 --> n2
-  n3["over threshold: 🛑 handoff (accessibility team)"]
-  n2 --> n3
+  n3{{"over threshold: 🛑 handoff (accessibility team)"}}:::stop
   n4["under: reviewer sub-agent (WCAG research → code audit → s…"]
-  n2 --> n4
   n5["parent filters findings + checks escalation triggers"]
+  n6["high-risk pattern: guidance only"]
+  n7["else implementer proposes fix"]
+  n8["validate"]
+  n9["re-audit"]
+  n10{{"🛑 review (engineer chooses to commit) · periodic 🛑 sample…"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n2 --> n4
   n3 --> n5
   n4 --> n5
-  n6["high-risk pattern: guidance only"]
   n5 --> n6
-  n7["else implementer proposes fix"]
   n5 --> n7
-  n8["validate"]
   n6 --> n8
   n7 --> n8
-  n9["re-audit"]
   n8 --> n9
-  n10{{"🛑 review (engineer chooses to commit) · periodic 🛑 sample…"}}:::stop
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

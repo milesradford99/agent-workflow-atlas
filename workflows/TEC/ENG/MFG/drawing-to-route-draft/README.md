@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["pull BOM + CAD from PLM"]
   n2["extract drawing features"]
-  n1 --> n2
   n3["interpret features"]
-  n2 --> n3
   n4["apply KB rules (process, workstation, labour-time)"]
-  n3 --> n4
   n5["draft route"]
-  n4 --> n5
   n6{{"🛑 review (team leader adjusts + releases)"}}:::stop
-  n5 --> n6
   n7["send to production"]
-  n6 --> n7
   n8["log corrections"]
-  n7 --> n8
   n9["update KB"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

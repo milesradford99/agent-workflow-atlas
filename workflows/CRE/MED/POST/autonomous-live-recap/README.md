@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["ingest live match streams"]
   n2["CV detects key moments (audio cues, camera angles)"]
-  n1 --> n2
   subgraph s3["each event"]
   n4["clip + auto-assemble recap (transitions, fade)"]
-  n2 --> n4
   end
   n5["publish straight to CMS/app (recap retold up to ~20 times…"]
-  n4 --> n5
   n6{{"🛑 sample (team watches performance + viewer thumbs up/down)"}}:::stop
-  n5 --> n6
   n7["roll out improvements"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

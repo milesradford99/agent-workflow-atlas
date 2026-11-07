@@ -32,32 +32,32 @@ last_verified: 2026-11
 flowchart TD
   n1{{"🛑 plan (humans write rubric per eval)"}}:::stop
   n2{{"🛑 review (humans label calibration sessions)"}}:::stop
-  n1 --> n2
   n3["optimize judge prompt"]
-  n2 --> n3
   n4["agreement with held-out human labels"]
+  n5["daily: traces"]
+  n6["transcript builder"]
+  n7["judge each eligible criterion on production sessions"]
+  n8["cluster failures by criterion"]
+  n9["coding agent investigates"]
+  n10["clear fix: draft PR"]
+  n11["prompt change: diagnosis + proposal"]
+  n12{{"🛑 review"}}:::stop
+  n13["offline simulator regression"]
+  n14["ship"]
+  n1 --> n2
+  n2 --> n3
   n3 --> n4
   n4 -.->|repeat| n3
-  n5["daily: traces"]
   n4 --> n5
-  n6["transcript builder"]
   n5 --> n6
-  n7["judge each eligible criterion on production sessions"]
   n6 --> n7
-  n8["cluster failures by criterion"]
   n7 --> n8
-  n9["coding agent investigates"]
   n8 --> n9
-  n10["clear fix: draft PR"]
   n9 --> n10
-  n11["prompt change: diagnosis + proposal"]
   n9 --> n11
-  n12{{"🛑 review"}}:::stop
   n10 --> n12
   n11 --> n12
-  n13["offline simulator regression"]
   n12 --> n13
-  n14["ship"]
   n13 --> n14
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

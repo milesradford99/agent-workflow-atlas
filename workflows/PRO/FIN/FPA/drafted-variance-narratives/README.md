@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["BvA data in planning model"]
   n2["agent pulls via MCP"]
-  n1 --> n2
   n3["flag key movements + trends"]
-  n2 --> n3
   n4["draft narratives (P&L, headcount, cash flow) in house tone"]
-  n3 --> n4
   n5{{"🛑 review (finance team edits)"}}:::stop
-  n4 --> n5
   n6["package exec summary"]
-  n5 --> n6
   n7{{"🛑 handoff (leadership)"}}:::stop
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

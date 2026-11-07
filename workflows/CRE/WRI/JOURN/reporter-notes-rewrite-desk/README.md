@@ -32,12 +32,12 @@ last_verified: 2026-11
 flowchart TD
   n1["reporter gathers + types notes and quotes"]
   n2["rewrite editor prompts AI draft"]
-  n1 --> n2
   n3{{"🛑 review (rewrite editor)"}}:::stop
-  n2 --> n3
   n4{{"🛑 sign-off (reporter final read)"}}:::stop
-  n3 --> n4
   n5["publish with reporter byline + Express Desk credit + AI note"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
   n4 --> n5
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

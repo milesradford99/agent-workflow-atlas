@@ -33,18 +33,18 @@ last_verified: 2026-11
 flowchart TD
   n1["importer documents"]
   n2["extract to entry fields with confidence + source"]
-  n1 --> n2
   n3["match parts library (HTS, origin, Chapter 99 / Section 23…"]
-  n2 --> n3
   n4["importer-specific SOP rules"]
-  n3 --> n4
   n5{{"🛑 review (entry writer / licensed broker checks fields +…"}}:::stop
-  n4 --> n5
   n6["push to ABI (NetCHB)"]
-  n5 --> n6
   n7{{"🛑 sign-off (broker submits)"}}:::stop
-  n6 --> n7
   n8["tariff change: bulk-update parts library"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
   n7 --> n8
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

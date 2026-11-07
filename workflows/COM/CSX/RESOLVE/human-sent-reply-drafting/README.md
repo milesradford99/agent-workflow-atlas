@@ -32,16 +32,16 @@ last_verified: 2026-11
 flowchart TD
   n1["case arrives"]
   n2["summarise thread + confirm intent"]
-  n1 --> n2
   n3["pull case history, CRM, KB, order data"]
-  n2 --> n3
   n4["draft reply in brand voice + run routine tool task (e.g.…"]
-  n3 --> n4
   n5{{"🛑 review (advisor edits and sends every reply)"}}:::stop
-  n4 --> n5
   n6["validate case intent before close"]
-  n5 --> n6
   n7["usage + handle-time tracking"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

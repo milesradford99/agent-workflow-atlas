@@ -32,27 +32,27 @@ last_verified: 2026-11
 flowchart TD
   n1["release (~every 2 weeks)"]
   n2["skill asks for product-specific inputs"]
-  n1 --> n2
   n3["regenerate API reference docs (15-step script)"]
-  n2 --> n3
   n4["detect API changes"]
-  n3 --> n4
   n5["draft release notes"]
-  n4 --> n5
   n6["verify notes vs changelist file changes + release-stage t…"]
-  n5 --> n6
   n7["fix"]
+  n8["update diagrams + affected docs + new feature docs"]
+  n9{{"🛑 review (writer review pass, fixes nuance and gremlins)"}}:::stop
+  n10["writer comments"]
+  n11["agent edits SKILL file"]
+  n12["publish"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
   n6 --> n7
   n7 -.->|repeat| n6
-  n8["update diagrams + affected docs + new feature docs"]
   n7 --> n8
-  n9{{"🛑 review (writer review pass, fixes nuance and gremlins)"}}:::stop
   n8 --> n9
-  n10["writer comments"]
   n9 --> n10
-  n11["agent edits SKILL file"]
   n10 --> n11
-  n12["publish"]
   n11 --> n12
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

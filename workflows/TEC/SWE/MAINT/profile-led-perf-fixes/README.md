@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["daily fleet CPU/memory profiles"]
   n2["top 30 hot functions per service"]
-  n1 --> n2
   n3["static filter (drop OSS + runtime)"]
-  n2 --> n3
   subgraph s4["each function"]
   n5["detect antipatterns vs catalogue"]
-  n3 --> n5
   end
   n6["LLM jury + rule-based validators"]
-  n5 --> n6
   n7["confidence score + suggested fix"]
-  n6 --> n7
   n8{{"🛑 review (developer)"}}:::stop
-  n7 --> n8
   n9["merge diff"]
+  n1 --> n2
+  n2 --> n3
+  n3 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

@@ -32,20 +32,20 @@ last_verified: 2026-11
 flowchart TD
   n1["sanitizer finding from unit tests"]
   n2["reproduce + isolate (stack trace, target file)"]
-  n1 --> n2
   subgraph s3["each model"]
   n4["generate fix"]
-  n2 --> n4
   end
   n5["build + rerun tests + sanitizer"]
-  n4 --> n5
   n6["pick best fix"]
-  n5 --> n6
   n7{{"🛑 review (security engineers filter)"}}:::stop
-  n6 --> n7
   n8{{"🛑 sign-off (code owner)"}}:::stop
-  n7 --> n8
   n9["submit"]
+  n1 --> n2
+  n2 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
   n8 --> n9
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```

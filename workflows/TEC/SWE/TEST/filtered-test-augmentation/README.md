@@ -33,21 +33,21 @@ flowchart TD
   n1["pick class with existing tests"]
   subgraph s2["each prompt × temperature"]
   n3["generate extra tests"]
-  n1 --> n3
   end
   n4["builds"]
-  n3 --> n4
   n5["passes"]
-  n4 --> n5
   n6["passes 5 reruns"]
-  n5 --> n6
   n7["raises coverage"]
-  n6 --> n7
   n8["one diff per surviving test"]
-  n7 --> n8
   n9{{"🛑 sample (tool owners)"}}:::stop
-  n8 --> n9
   n10{{"🛑 review (engineer accepts or rejects)"}}:::stop
+  n1 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6
+  n6 --> n7
+  n7 --> n8
+  n8 --> n9
   n9 --> n10
   classDef stop fill:#fde2e1,stroke:#b42318,color:#7a1610
 ```
