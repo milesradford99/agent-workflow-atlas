@@ -17,7 +17,7 @@ Four more ideas come from biology, each turned into one simple rule (§3): perma
 | Level | Question it answers | Count | Example |
 |---|---|---|---|
 | **Kingdom** | What broad field is the deliverable in? | 5 | `CRE` Creative & Media |
-| **Phylum** | Which profession? | 18 | `MED` Media Production |
+| **Phylum** | Which profession? | 20 | `MED` Media Production |
 | **Class** | Which discipline within it? | listed in §4 | `AIGCVIDEO` AI-generated video |
 | **Species** | Which specific workflow? | open | *AI shot factory* · `AWF-0015` |
 | *Variant* | Which toolchain? | open | `jimeng-kling-capcut` |
@@ -43,8 +43,8 @@ Folders follow the first four levels. Variants and examples live inside a specie
 
 | # | If the deliverable is… | Kingdom |
 |---|---|---|
-| 1 | Professional work in **research, law, finance, healthcare or education** (paper, legal memo, financial record, clinical note, lesson, grade) | **PRO** Professional services |
-| 2 | **Customer-facing** marketing, sales outreach or support | **COM** Commerce & customers |
+| 1 | Professional work in **research, law, insurance, finance, healthcare or education** (paper, legal memo, claim decision, financial record, clinical note, lesson, grade) | **PRO** Professional services |
+| 2 | **Customer-facing** marketing, sales outreach, support, or a storefront's product catalog | **COM** Commerce & customers |
 | 3 | A **technical system or its definition**: code, infrastructure, data, a product spec, design or prototype, an engineering design | **TEC** Technology & product |
 | 4 | An **authored work** for an audience to read, watch or hear | **CRE** Creative & media |
 | 5 | Anything else (internal operations, public sector, personal work) | **ORG** Organization & public |
@@ -55,12 +55,14 @@ Folders follow the first four levels. Variants and examples live inside a specie
 |---|---|---|
 | **PRO** | 1. `HLT` Patient care or life-science R&D | `CLINDOC` · `RCM` · `CLINTRIAL` · `DRUGDISC` |
 | | 2. `LEG` Legal advice, documents, filings, compliance | `CONTRACT` · `RESEARCH` · `LITIG` · `REG` · `DD` |
-| | 3. `FIN` Transactions, books, financial models, investment views | `AP` · `CLOSE` · `FPA` · `INVEST` · `AUDIT` · `TAX` |
-| | 4. `EDU` Teaching and assessing learners | `COURSE` · `ASSESS` · `TUTOR` · `LND` |
-| | 5. `RES` Scholarly papers, reviews, grants | `LITREV` · `WRITE` · `ANALYSIS` · `GRANT` · `PEER` |
+| | 3. `INS` Insurance claims and underwriting decisions | `CLAIMS` |
+| | 4. `FIN` Transactions, books, financial models, investment views | `AP` · `CLOSE` · `FPA` · `INVEST` · `AUDIT` · `TAX` |
+| | 5. `EDU` Teaching and assessing learners | `COURSE` · `ASSESS` · `TUTOR` · `LND` |
+| | 6. `RES` Scholarly papers, reviews, grants | `LITREV` · `WRITE` · `ANALYSIS` · `GRANT` · `PEER` |
 | **COM** | 1. `CSX` Helping an existing customer | `RESOLVE` · `QA` · `KB` · `CS` |
 | | 2. `SAL` Pursuing specific accounts or deals | `PROSPECT` · `DEAL` · `RFP` · `REVOPS` |
-| | 3. `MKT` One-to-many demand generation | `CONTENT` · `ADS` · `SOCIAL` · `LIFECYCLE` · `MKTRES` |
+| | 3. `RET` Running a storefront: product catalog, listings, attributes | `CATALOG` |
+| | 4. `MKT` One-to-many demand generation | `CONTENT` · `ADS` · `SOCIAL` · `LIFECYCLE` · `MKTRES` |
 | **TEC** | 1. `ENG` Physical engineering, construction, manufacturing | `CAD` · `SIM` · `CODECOMP` · `MFG` |
 | | 2. `PRD` Deciding *what* to build: specs, research, design, prototypes | `PM` · `UXR` · `UI` · `PROTO` · `DSYS` |
 | | 3. `DAT` Queries, analyses, pipelines, models, evals | `ANALYTICS` · `DATAENG` · `DS` · `MLOPS` |

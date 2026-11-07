@@ -98,6 +98,10 @@ def check_species(path, fm, tax, errors):
             if ex.is_dir() and not re.match(r"^\d{4}-\d{2}-[a-z0-9-]+$", ex.name):
                 err(f"examples/{ex.name}/ must be named YYYY-MM-short-name")
 
+    # freshness: last_verified is a month, so scripts/freshness.py can age it
+    if not re.match(r"^\d{4}-(0[1-9]|1[0-2])$", str(fm["last_verified"])):
+        err(f"`last_verified: {fm['last_verified']}` must be a month like 2026-11")
+
     # rule 6: merged points somewhere
     if fm["status"] == "merged" and not fm.get("merged_into"):
         err("`merged` needs `merged_into`")
