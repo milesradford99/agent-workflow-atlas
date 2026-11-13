@@ -4,6 +4,11 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 
 ## 2026-11
 
+### Changed
+- Catalog site redesigned for reading. Each workflow's route is written out in words (one chip per step, human checkpoints in red) in the detail sheet and on its page; the dot strip stays for scanning lists. Steps that hold a 🛑 are highlighted, tables in entries render as tables, and public runs read as separate cards.
+- *Start here* now opens with every field as a tile (count and public-evidence mix) that jumps into the field map. The field map shows a one-line summary under each workflow name. Cards name the approvals a person gives (plan, review, sign-off) instead of counting them.
+- New typeface (Geist), a light and dark switch that remembers the choice, and one Markdown renderer (`site_pages.markdown`) for both the app and the static pages.
+
 ### Added
 - Redesigned catalog site: a route strip for every workflow (agent steps in teal, human checkpoints in red), a calmer field directory, a detail sheet with section navigation, and full English and Simplified Chinese support (UI, field, profession and category names, workflow names and summaries; steps and sources stay in English). Chinese static pages at `w/<ID>/zh/`.
 - A one-sentence `summary` on every workflow, required by `validate.py`; display labels in `i18n/labels.yaml` and Chinese names and summaries in `i18n/workflows.zh-CN.yaml`.

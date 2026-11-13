@@ -40,7 +40,8 @@ def intro(body):
     m = re.search(r"^# .*?\n(.*?)(?=^## |\Z)", body, re.M | re.S)
     lines = (m.group(1) if m else "").strip().split("\n")
     # the shape and kit lines are drawn by the page itself (route, diagram, kit button)
-    lines = [ln for ln in lines if not ln.startswith(("**Shape:**", "**Agent kit:**"))]
+    # so are the traits and variants, which the page lists under the route
+    lines = [ln for ln in lines if not ln.startswith(("**Shape:**", "**Agent kit:**", "**Traits:**"))]
     # the first line repeats the place, autonomy and status, which the page shows as badges
     return "\n".join(lines[1:]).strip() if lines and lines[0].startswith("`") else "\n".join(lines).strip()
 
@@ -92,6 +93,17 @@ def records(tax, zh):
     return sorted(out, key=lambda w: w["id"])
 
 
+def app_record(w, repo):
+    """A workflow as the app needs it: the Markdown sections rendered once, here, so the
+    browser and the static pages can't drift apart."""
+    link = site_pages.resolver(repo, w["path"], 0)
+    md = lambda key, **kw: site_pages.markdown(w[key], link, blank=True, **kw) if w[key] else ""
+    out = {k: v for k, v in w.items() if k not in ("intro", "steps", "publicRuns", "sources")}
+    out.update(introHtml=md("intro"), stepsHtml=md("steps"), runsHtml=md("publicRuns", cls="runs"),
+               sourcesHtml=md("sources", sources=True, cls="sources"))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT / "site"))
@@ -106,7 +118,8 @@ def main():
         "labels": yaml.safe_load(LABELS.read_text()),
         "workflows": records(tax, yaml.safe_load(ZH.read_text()) or {}),
     }
-    blob = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    app = dict(data, workflows=[app_record(w, data["repo"]) for w in data["workflows"]])
+    blob = json.dumps(app, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = TEMPLATE.read_text().replace("/*__CSS__*/", STYLE.read_text()).replace("/*__DATA__*/null", blob)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
