@@ -44,7 +44,7 @@ Start a new one with `python scripts/i18n.py scaffold AWF-XXXX`. It copies the E
 | Part | Rule |
 |---|---|
 | `name`, `summary`, `deliverable` | Translate. The summary is one sentence of 120 characters or fewer. |
-| `shape` | Translate the step words. Keep every `→ ⟲ ( ) |` exactly where the English has them, and keep `🛑 plan / action / review / sample / sign-off / handoff` in English; the page shows them as 审批计划, 审阅草稿 and so on. Write `each X:` as `每个 X：`. |
+| `shape` | Translate the step words. Keep every `→ ⟲ ( ) |` exactly where the English has them, and keep `🛑 plan / action / review / sample / sign-off / handoff` in English; the page shows them as 审批计划, 审阅草稿 and so on. Write `each X:` as `每个 X：` (or 每份…：, 每批…：). Any step that starts with 每 and has a colon is read as an "each" group, so for a plain step such as "daily: …" or "weekly: …" drop the colon (每天汇总…, 每周列出…). |
 | Intro, steps, Output, Failure modes, Recent practice | Translate. Keep the same numbered steps in the same order. The checkpoint labels become 🛑 **计划** / **操作** / **审阅** / **抽检** / **签发** / **接手**. |
 | Public runs | Translate the coverage line and the description of each run. Keep the link text (the source's own title), the URL, the date and the quoted figure in "…" exactly as in the English. Translate the label *First-hand: yes; confidence: high.* as *第一手：是；可信度：高。* |
 | Sources | Don't copy them. The page shows the English source list, because titles must match what they cite. |

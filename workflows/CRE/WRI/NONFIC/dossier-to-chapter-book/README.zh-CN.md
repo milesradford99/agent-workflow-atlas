@@ -3,7 +3,7 @@ id: AWF-0073
 name: 资料卷宗成书
 summary: "逐章起草带引注的非虚构书稿；作者审核每章简报、资料卷宗和成稿，并做最终决定。"
 deliverable: 非虚构书稿
-shape: "搭建书稿仓库 → 缺口分析 + 研究计划 → 🛑 plan → 每个 章节：研究简报 → 🛑 review (简报) → 每个 章节：网络调研卷宗 → 🛑 review (卷宗) → 每个 章节：起草正文 + 引注 + BibTeX → 🛑 review (章节) → 审计无依据的论断 → 🛑 sign-off (作者最终决定)"
+shape: "搭建书稿仓库 → 缺口分析 + 研究计划 → 🛑 plan → 每个章节：研究简报 → 🛑 review (简报) → 每个章节：网络调研卷宗 → 🛑 review (卷宗) → 每个章节：起草正文 + 引注 + BibTeX → 🛑 review (章节) → 审计无依据的论断 → 🛑 sign-off (作者最终决定)"
 source_hash: 37b836e5818c
 ---
 

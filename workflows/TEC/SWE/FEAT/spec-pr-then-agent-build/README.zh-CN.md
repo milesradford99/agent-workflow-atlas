@@ -3,7 +3,7 @@ id: AWF-0179
 name: 先合并规格再由代理开发
 summary: "团队先以 PR 形式确认经事实核查的规格，再由智能体实现；常规代码 PR 一键批准，高风险的需审阅 diff。"
 deliverable: 已合并的功能
-shape: "涉及决策的变更 → 智能体追问（问题 + 推荐答案）→ 🛑 plan (人回答或推翻) → SPEC.md → 每个 论断：对照真实代码核对 → 唱反调裁决 → SIMPLIFY 或 KILL：回到追问 | BUILD：生成审阅页面 → 🛑 sign-off (团队合并规格 PR) → 智能体 (实现 ⟲ 测试 + 对照验收场景自审)→ 代码 PR → Slack 摘要 → 常规：🛑 action (一键批准) | 公开 API 或安全相关：🛑 review (阅读 diff)"
+shape: "涉及决策的变更 → 智能体追问（问题 + 推荐答案）→ 🛑 plan (人回答或推翻) → SPEC.md → 每个论断：对照真实代码核对 → 唱反调裁决 → SIMPLIFY 或 KILL：回到追问 | BUILD：生成审阅页面 → 🛑 sign-off (团队合并规格 PR) → 智能体 (实现 ⟲ 测试 + 对照验收场景自审)→ 代码 PR → Slack 摘要 → 常规：🛑 action (一键批准) | 公开 API 或安全相关：🛑 review (阅读 diff)"
 source_hash: 05cb53422d5e
 ---
 

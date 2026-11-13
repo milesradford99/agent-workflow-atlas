@@ -32,7 +32,7 @@ FIELDS = ("id", "name", "summary", "deliverable", "shape", "source_hash")
 DIAGRAM_RE = re.compile(r"\n*<!-- shape diagram:.*?<!-- end shape diagram -->\n*", re.S)
 CITE_RE = re.compile(r"\[\[(\d+)\]\]\(#sources\)")
 URL_RE = re.compile(r"https?://[^\s)\]>\"'`]+")
-QUOTE_RE = re.compile(r'"([^"\n]{3,})"')
+QUOTE_RE = re.compile(r'"([^"\n]+)"')
 NUM_RE = re.compile(r"(?<![\w.])\d[\d,.]*%?")
 
 
@@ -133,6 +133,13 @@ def problems(readme, fm, allow_todo=False):
     if n_en != n_zh:
         errs.append(f"{ZH_NAME}: {n_zh} public runs, the English has {n_en}")
 
+    # still English? (a scaffold matches the English structure trivially)
+    for key, label in (("steps", H_STEPS), ("intro", "intro")):
+        text = re.sub(r"`[^`]*`|\[[^\]]*\]\([^)]*\)|https?://\S+", "", zh[key])
+        letters = re.findall(r"[A-Za-z\u4e00-\u9fff]", text)
+        cjk = sum(1 for ch in letters if ch >= "\u4e00")
+        if letters and cjk / len(letters) < 0.3:
+            errs.append(f"{ZH_NAME}: the {label} section is still mostly English")
     en_all, zh_all = "\n".join(en.values()), "\n".join(zh.values())
     missing = sorted(set(CITE_RE.findall(en_all)) - set(CITE_RE.findall(zh_all)), key=int)
     if missing:
@@ -142,10 +149,11 @@ def problems(readme, fm, allow_todo=False):
         if url not in zh_urls:
             errs.append(f"{ZH_NAME}: link missing: {url}")
     for q in QUOTE_RE.findall(en["runs"]):
-        if q not in zh["runs"]:
+        if len(q) >= 3 and q not in zh["runs"]:
             errs.append(f'{ZH_NAME}: public-run quote must stay verbatim: "{q[:60]}"')
     zh_nums = set(NUM_RE.findall(zh_all))
-    lost = sorted({n.rstrip(".,") for n in NUM_RE.findall(en["intro"] + en["steps"])} - {n.rstrip(".,") for n in zh_nums} - {""})
+    norm = lambda nums: {n.rstrip(".,%") for n in nums} - {""}  # "40 percent" may become 40%
+    lost = sorted(norm(NUM_RE.findall(en["intro"] + en["steps"])) - norm(zh_nums))
     if lost:
         errs.append(f"{ZH_NAME}: numbers missing from intro or steps (keep Arabic numerals): {', '.join(lost[:8])}")
     behind = str(zfm.get("source_hash")) != english_hash(readme)

@@ -3,7 +3,7 @@ id: AWF-0007
 name: 从用户反馈到原型
 summary: "将用户反馈提炼为 PRD 并做出多个原型方案；产品经理选定要解决的问题，设计评审后再做用户测试。"
 deliverable: 原型
-shape: "反馈 → 主题聚类 + 引述 → 🛑 plan → PRD → 红队质疑 → 每个 方案：做原型 → 迭代 → 🛑 review → 5 次用户测试 → 回到反馈"
+shape: "反馈 → 主题聚类 + 引述 → 🛑 plan → PRD → 红队质疑 → 每个方案：做原型 → 迭代 → 🛑 review → 5 次用户测试 → 回到反馈"
 source_hash: f6d100ed040c
 ---
 

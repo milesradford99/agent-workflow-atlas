@@ -3,7 +3,7 @@ id: AWF-0010
 name: 审稿意见回复与稿件修订
 summary: "按审稿意见逐条修改稿件并起草回复信；作者审定修改方案、审改反驳并最终签发。"
 deliverable: 修订稿
-shape: "审稿意见 → 回复对照表 → 🛑 plan → 每个 意见：(修改或重新分析 ⟲ 编译、重跑、引用检查) → latexdiff + 回复信 → 🛑 review → 🛑 sign-off"
+shape: "审稿意见 → 回复对照表 → 🛑 plan → 每个意见：(修改或重新分析 ⟲ 编译、重跑、引用检查) → latexdiff + 回复信 → 🛑 review → 🛑 sign-off"
 source_hash: 88eea1844381
 ---
 

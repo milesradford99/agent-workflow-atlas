@@ -3,7 +3,7 @@ id: AWF-0098
 name: 承销人定稿的信贷备忘录
 summary: "提取交易文件信息并逐节起草信贷备忘录；承销人定稿，并经银行信贷审批流程签核。"
 deliverable: 信贷备忘录
-shape: "上传交易文件 (数千页、多种文件类型) → 提取字段 (Document AI) → 每个 备忘录章节：总结并起草 → 汇编备忘录草稿 → 🛑 review (承销人在 Docs 中修改并定稿) → 🛑 sign-off (银行的信贷审批流程) → 把每一步归档到共享 Drive"
+shape: "上传交易文件 (数千页、多种文件类型) → 提取字段 (Document AI) → 每个备忘录章节：总结并起草 → 汇编备忘录草稿 → 🛑 review (承销人在 Docs 中修改并定稿) → 🛑 sign-off (银行的信贷审批流程) → 把每一步归档到共享 Drive"
 source_hash: 483faf53e6be
 ---
 

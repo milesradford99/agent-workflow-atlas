@@ -3,7 +3,7 @@ id: AWF-0009
 name: 文献筛选漏斗
 summary: "围绕 PICO 问题检索数据库，由两个独立筛选器初筛；人工审批方案、抽检、复核并签核。"
 deliverable: 系统综述
-shape: "PICO 问题 → 检索式 → 🛑 plan → 每个 数据库：检索 → 去重 → 每个 记录：两个独立筛选器 → 分歧与纳入项 → 🛑 sample → 每个 论文：提取并附引文 + 页码 → 🛑 review → 综合 → 核对引用 → 🛑 sign-off"
+shape: "PICO 问题 → 检索式 → 🛑 plan → 每个数据库：检索 → 去重 → 每个记录：两个独立筛选器 → 分歧与纳入项 → 🛑 sample → 每个论文：提取并附引文 + 页码 → 🛑 review → 综合 → 核对引用 → 🛑 sign-off"
 source_hash: eef43c9fb49e
 ---
 

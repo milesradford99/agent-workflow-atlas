@@ -3,7 +3,7 @@ id: AWF-0140
 name: 图生 3D 资产包
 summary: "由概念图生成可入引擎的 3D 资产包；美术师筛选生成结果，并完成拓扑、UV 和外观收尾。"
 deliverable: 可入引擎的 3D 资产包
-shape: "参考资料 → 草图 (美术师 + 2D AI) → 无透视畸变的多视图概念图 → 每个 资产：(图生 3D 高模 ⟲ 重新生成) → 🛑 review (美术师保留或舍弃) → ZBrush 清理 → 重拓扑 + UV (AI 起步，美术师收尾) → 贴图 (生成 PBR，复杂资产手工制作) → 🛑 review (美术师收尾拓扑/UV/外观) → 渲染 + Unity/Unreal 装配"
+shape: "参考资料 → 草图 (美术师 + 2D AI) → 无透视畸变的多视图概念图 → 每个资产：(图生 3D 高模 ⟲ 重新生成) → 🛑 review (美术师保留或舍弃) → ZBrush 清理 → 重拓扑 + UV (AI 起步，美术师收尾) → 贴图 (生成 PBR，复杂资产手工制作) → 🛑 review (美术师收尾拓扑/UV/外观) → 渲染 + Unity/Unreal 装配"
 source_hash: ed874dc129fd
 ---
 

@@ -3,7 +3,7 @@ id: AWF-0125
 name: 多智能体实验报告评审
 summary: "由统计、数据工程、业务分析三类智能体对实验报告给出结构化评审意见；独立数据科学家复核后再决定是否上线。"
 deliverable: 实验评审意见
-shape: "Notion 中的实验报告 → 预过滤：拉取 Statsig 配置 + 结果、Snowflake 曝光计数、Metabase 图表、代码 → 工程师智能体判定平台、实验类型、版本 → 每个 评审者 (统计学家、数据工程师、业务分析师)：通过/不通过检查 → 综合 → 发布结构化 Notion 评论 → 🛑 review (独立的数据科学家评审) → 🛑 sign-off (上线决定)"
+shape: "Notion 中的实验报告 → 预过滤：拉取 Statsig 配置 + 结果、Snowflake 曝光计数、Metabase 图表、代码 → 工程师智能体判定平台、实验类型、版本 → 每个评审者 (统计学家、数据工程师、业务分析师)：通过/不通过检查 → 综合 → 发布结构化 Notion 评论 → 🛑 review (独立的数据科学家评审) → 🛑 sign-off (上线决定)"
 source_hash: 0b09dec48c47
 ---
 

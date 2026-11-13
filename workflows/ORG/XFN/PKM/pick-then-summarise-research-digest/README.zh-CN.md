@@ -3,7 +3,7 @@ id: AWF-0146
 name: 先选后读的文献摘要简报
 summary: "每日检索 arXiv 和 Scholar 生成简报，再对读者勾选的论文做摘要；由读者核对摘要。"
 deliverable: 每日文献简报
-shape: "日常定时任务：按主题配置检索 arXiv (每周加 Google Scholar)，跳过已展示的论文 → 简报链接到每日笔记 → 🛑 plan (读者保存选中的 PDF) → 夜间：每个 已保存的 PDF：智能体总结方法、效应量、证据 → 摘要出现在次日简报 → 🛑 review (读者在引用或据此行动前核对)"
+shape: "日常定时任务：按主题配置检索 arXiv (每周加 Google Scholar)，跳过已展示的论文 → 简报链接到每日笔记 → 🛑 plan (读者保存选中的 PDF) → 夜间：每个已保存的 PDF：智能体总结方法、效应量、证据 → 摘要出现在次日简报 → 🛑 review (读者在引用或据此行动前核对)"
 source_hash: 9c8063ea9ef0
 ---
 

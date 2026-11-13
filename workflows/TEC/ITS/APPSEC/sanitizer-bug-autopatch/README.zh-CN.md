@@ -3,7 +3,7 @@ id: AWF-0067
 name: Sanitizer 漏洞自动修复
 summary: "为 Sanitizer 发现的缺陷生成并测试修复提交；安全工程师筛选，代码所有者验证后提交。"
 deliverable: 安全修复提交
-shape: "单元测试中发现 sanitizer 问题 → 复现并隔离（堆栈跟踪、目标文件）→ 每个 模型：生成修复 → 构建 + 重跑测试 + 重跑 sanitizer → 选出最佳修复 → 🛑 review (安全工程师筛选) → 🛑 sign-off (代码所有者) → 提交"
+shape: "单元测试中发现 sanitizer 问题 → 复现并隔离（堆栈跟踪、目标文件）→ 每个模型：生成修复 → 构建 + 重跑测试 + 重跑 sanitizer → 选出最佳修复 → 🛑 review (安全工程师筛选) → 🛑 sign-off (代码所有者) → 提交"
 source_hash: 7bb4ea6a9a03
 ---
 

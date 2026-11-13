@@ -3,7 +3,7 @@ id: AWF-0002
 name: 批量代码迁移
 summary: "对大量文件批量执行代码迁移并按负责人分批提 PR；试点后由人确定方案，抽检结果，代码负责人评审。"
 deliverable: 迁移变更集
-shape: "在 10–20 个文件上试点 → 🛑 plan → 每个 文件：(重构 ⟲ lint → 类型 → 测试) → 为失败项补充上下文 → 每个 失败项：(重试 ⟲ 检查) → 🛑 sample → 分批提 PR → 🛑 review"
+shape: "在 10–20 个文件上试点 → 🛑 plan → 每个文件：(重构 ⟲ lint → 类型 → 测试) → 为失败项补充上下文 → 每个失败项：(重试 ⟲ 检查) → 🛑 sample → 分批提 PR → 🛑 review"
 source_hash: b203b9bf9d0d
 ---
 

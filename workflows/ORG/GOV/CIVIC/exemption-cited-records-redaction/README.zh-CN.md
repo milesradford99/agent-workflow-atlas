@@ -3,7 +3,7 @@ id: AWF-0205
 name: 引用豁免条款的公开记录遮蔽
 summary: "为公开记录申请分类文档并提出附豁免依据的遮蔽建议；记录官逐条批准。"
 deliverable: 遮蔽后的记录公开件
-shape: "收到记录申请 → 与申请人澄清范围 → 搜索文档、邮件和许可系统 → 每个 文档：分类 responsive | non-responsive | exempt (附法律依据) → 提出遮蔽建议（个人数据、州法豁免） → 🛑 review (记录官批准每一处遮蔽) → 向申请人公开 + 审计日志"
+shape: "收到记录申请 → 与申请人澄清范围 → 搜索文档、邮件和许可系统 → 每个文档：分类 responsive | non-responsive | exempt (附法律依据) → 提出遮蔽建议（个人数据、州法豁免） → 🛑 review (记录官批准每一处遮蔽) → 向申请人公开 + 审计日志"
 source_hash: b2ad1614c9e2
 ---
 
