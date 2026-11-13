@@ -88,7 +88,7 @@ Reconciliation is the bookkeeping check that one transaction appears, with the s
 
 **Checkpoints:** `handoff`: the exception report is the only thing the run sends to people, and the agent has no tool that changes the ledger, so a person resolves each exception in the ERP. Their decision goes into the state store for the next run. Limits on what may be cleared without a person (an amount cap, no related-party or write-off items) belong in the matching script or a hook, where they cannot be skipped, and not in the skill's text.
 
-**Since the sources:** Source 1 is filed under the tool `claude-code-skills`, and this build follows the design it reports: an explicit state store, one script per system, and output limited to exceptions. Cloud scheduled tasks, in research preview as of 2026-11, can now supply the schedule without a scheduler of your own. Source 2 describes a vendor product; its recalibration of thresholds against how often reviewers overrule the agent is not part of this build.
+**Since the sources:** Source 1 dates from 2026-04; source 2 is undated. Source 1 is filed under the tool `claude-code-skills`, and this build follows the design it reports: an explicit state store, one script per system, and output limited to exceptions. Cloud scheduled tasks, in research preview as of 2026-11, can now supply the schedule without a scheduler of your own. Source 2 describes a vendor product; its recalibration of thresholds against how often reviewers overrule the agent is not part of this build.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

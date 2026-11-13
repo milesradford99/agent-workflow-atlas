@@ -76,7 +76,7 @@ Fixed parts, in this order:
 
 **Checkpoints:** for each 🛑 type in the shape, written as `plan`, `review` and so on: how the agent is made to stop, and what the person sees.
 
-**Since the sources:** what the sources built by hand that current tooling now provides, what the build above leaves out, and what still cannot be done with a general agent. Write "Nothing material." if that is the case.
+**Since the sources:** starts with how old the evidence is ("Sources date from 2025-02 to 2025-08."), then what has changed since: what the sources built by hand that current tooling now provides, tools they used that were renamed or withdrawn, what the build above leaves out, and what still cannot be done with a general agent.
 
 *A design based on this entry's steps and the tool documentation as of YYYY-MM, not a reported run.*
 ```
@@ -128,6 +128,16 @@ Entries describe one vendor's blocks because the catalog's kits target Claude Co
 | `handoff` | The skill stops and states what it could not decide and why. | The item goes to a person's queue with the evidence gathered so far. |
 
 An instruction in a skill or `CLAUDE.md` asks the agent to stop. Where a missed stop would cost money, break a law or reach a customer, the build must also remove the tool or block it with a hook or permission rule, and **Checkpoints** must say which.
+
+### Timeliness
+
+Agent tooling changes within months, so an entry must show its age and must not pass old workarounds on as current advice.
+
+- **Since the sources** opens with the date range of the entry's sources and public runs. Write "undated" for those without a date.
+- If the newest source is more than 12 months older than `method_checked`, look for what changed: search for the named tools and the practice, open what you find, and report it in **Since the sources** with the month and a link. If you find nothing newer, write "No newer account found as of YYYY-MM."
+- When a step or guard in Steps was a workaround for a limit that no longer applies (small context windows, missing tool support, a model that could not be trusted with a step), leave Steps as the record of what was reported and say in **Since the sources** that the build drops it, and why.
+- A tool in `variants` that has been renamed or withdrawn is noted here; fixing the slug is part of re-checking ([MAINTAINING.md](MAINTAINING.md)).
+- Never mark something as outdated on a guess. Either cite the page that shows the change or leave it.
 
 ### Rules for this section
 

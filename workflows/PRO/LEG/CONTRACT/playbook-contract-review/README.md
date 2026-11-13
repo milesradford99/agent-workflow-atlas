@@ -83,7 +83,7 @@ Before a company signs a contract that someone else drafted (a supplier's terms,
 
 **Checkpoints:** `review`: the skill ends by listing every yellow and red clause with the playbook position and the proposed change, then stops; the lawyer edits the redlined copy. `sign-off`: the skill has no sending step and the agent has no mail tool, so the lawyer sends from their own mailbox.
 
-**Since the sources:** The tools listed for this entry (`harvey`, `spellbook`, `luminance`) are legal products that run these steps inside Word or their own review screen. A general agent with a skill runs the same steps on a file; it does not work inside Word's interface. This entry's steps cite no source, and its one public run reports a law firm's general trials of drafting tools, not this build.
+**Since the sources:** The steps cite no source; the one public run dates from 2024-06. No newer first-hand account was looked for when this was written. The tools listed for this entry (`harvey`, `spellbook`, `luminance`) are legal products that run these steps inside Word or their own review screen. A general agent with a skill runs the same steps on a file; it does not work inside Word's interface. This entry's steps cite no source, and its one public run reports a law firm's general trials of drafting tools, not this build.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

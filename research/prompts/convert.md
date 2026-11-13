@@ -5,7 +5,7 @@ The brief each agent gets when converting older entries to the [STANDARD.md](../
 **For the maintainer running the batch:**
 
 - List what is left with `grep -L '^build:' workflows/*/*/*/*/README.md workflows/unplaced/*/README.md`.
-- Give each agent 6 to 10 entries from one class or one profession, so it learns the field's terms once. Fill in `<MONTH>` and `<ENTRIES>` below.
+- Give each agent 6 to 10 entries from one class or one profession, so it learns the field's terms once. Fill in `<MONTH>`, `<CUTOFF>` (12 months before it) and `<ENTRIES>` below.
 - Agents edit only the folders they were given. They do not run `build_index.py` and do not commit; do both yourself after each wave, so parallel agents never touch the same file.
 - The session needs network access to the entries' source sites for the agents to re-read them. Without it they work from the entry text alone and leave `last_verified` as it is.
 - Review before merging: read every agent's report table, check each `platform` verdict and each flag yourself, and read three converted entries per agent in full. The usual faults are a larger form than the work needs, a feature that is not in the building-block table, and a Background that still assumes the reader knows the field.
@@ -37,7 +37,8 @@ Read these in full, in this order:
    - Fill the step table from the shape line, left to right. You may group neighbouring steps into one row.
    - Use only building blocks from the table in §3.
    - Under **Checkpoints**, cover every word in the entry's `checkpoints` list, in backticks. Where a missed stop would cost money, break a law or reach a customer, say which tool is withheld or which hook or permission rule blocks the action.
-   - Under **Since the sources**, say honestly how the build relates to what the sources report. If the sources describe people using AI tools with no agent running the process, or a vendor's product with no visible steps, say that.
+   - **Since the sources** opens with the date range of the entry's sources and public runs, then follows the Timeliness rules in STANDARD.md §3. If the newest source is from before <CUTOFF>, run two or three web searches for newer accounts of the same practice and for the tools in `variants` (renamed, withdrawn, superseded), open what you find, and report what changed with the month and a link, or "No newer account found as of <MONTH>." Do not spend more than a few searches per entry.
+   - Also under **Since the sources**, say honestly how the build relates to what the sources report. If the sources describe people using AI tools with no agent running the process, or a vendor's product with no visible steps, say that.
    - End with the fixed note, with <MONTH> in it.
 
 5. **Tidy the rest.**
@@ -49,7 +50,7 @@ Read these in full, in this order:
 
 6. **Chinese.** Make the same changes in `README.zh-CN.md`, following `i18n/TRANSLATING.md`. Write the Chinese as a native writer would, not word for word. Then run `python scripts/i18n.py stamp <ID>`.
 
-7. **Check.** Run `python scripts/build_diagrams.py`, then `python scripts/validate.py` and `python scripts/i18n.py check <ID>`. Fix every problem they print for your entries.
+7. **Check.** Run `python scripts/validate.py` and `python scripts/i18n.py check <ID>`. Fix every problem they print for your entries; other agents are working in parallel, so ignore problems listed for folders that are not yours. Do not run `build_diagrams.py`: leave the generated diagram block exactly where it is, straight after the bold lines that follow the title (**Shape:**, **Agent kit:**, **Traits:**, **Variants:**).
 
 ## Hard rules
 
@@ -66,4 +67,4 @@ When you are done, return only this table and one line of totals:
 | ID | Form | Why this form (≤15 words) | Sources opened | Flags |
 |---|---|---|---|---|
 
-Flags are: `no-agent-in-source`, `source-unreachable`, `steps-unsupported`, `consider-retiring`, `unsure-of-form` (say which two forms you weighed), or blank.
+Flags are: `outdated-method` (the sources' way of working has been superseded; say by what), `tool-renamed-or-gone`, `no-agent-in-source`, `source-unreachable`, `steps-unsupported`, `consider-retiring`, `unsure-of-form` (say which two forms you weighed), or blank.

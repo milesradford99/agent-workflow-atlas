@@ -102,7 +102,7 @@ flowchart TD
 
 **Checkpoints:** `plan`: the greenlight skill stops after presenting the completed checklist. `review`: each skill stops after its draft (script, asset sheets, storyboard); takes and cuts are reviewed in the generation and editing tools, outside the agent. `sign-off`: the agent has no tool that publishes or buys advertising; a person releases the series.
 
-**Since the sources:** The sources describe teams of people, such as one director with four image generators, using generation tools. Neither reports an agent that runs the line. This entry therefore records a production process with AI models as tools, and the build above is a proposal for its text stages only. A line where an automated critic checks each shot is a different entry: [AWF-0015 AI shot factory](../../AIGCVIDEO/ai-shot-factory/).
+**Since the sources:** Both sources date from 2026-08. They describe teams of people, such as one director with four image generators, using generation tools. Neither reports an agent that runs the line. This entry therefore records a production process with AI models as tools, and the build above is a proposal for its text stages only. A line where an automated critic checks each shot is a different entry: [AWF-0015 AI shot factory](../../AIGCVIDEO/ai-shot-factory/).
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 
