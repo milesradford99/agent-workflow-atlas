@@ -153,7 +153,7 @@ def problems(readme, fm, allow_todo=False):
             errs.append(f'{ZH_NAME}: public-run quote must stay verbatim: "{q[:60]}"')
     zh_nums = set(NUM_RE.findall(zh_all))
     norm = lambda nums: {n.rstrip(".,%") for n in nums} - {""}  # "40 percent" may become 40%
-    lost = sorted(norm(NUM_RE.findall(en["intro"] + en["steps"])) - norm(zh_nums))
+    lost = sorted(norm(NUM_RE.findall(en["intro"] + "\n" + en["steps"])) - norm(zh_nums))
     if lost:
         errs.append(f"{ZH_NAME}: numbers missing from intro or steps (keep Arabic numerals): {', '.join(lost[:8])}")
     behind = str(zfm.get("source_hash")) != english_hash(readme)

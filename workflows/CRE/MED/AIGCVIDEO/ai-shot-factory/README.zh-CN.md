@@ -3,7 +3,7 @@ id: AWF-0015
 name: AI 镜头工厂
 summary: "把剧本逐镜头生成 AI 视频剧集；方案、成片审核和发布前签发均由人工把关。"
 deliverable: 剧集
-shape: "剧本 → 分镜表 → 🛑 plan → 锁定角色 → 每个 镜头：(关键帧 ⟲ 评审) → (视频 ⟲ 检查) → 配音 + 口型同步 → 剪辑 → 🛑 review → AI 标识 → 🛑 sign-off → 发布"
+shape: "剧本 → 分镜表 → 🛑 plan → 锁定角色 → 每个镜头：(关键帧 ⟲ 评审) → (视频 ⟲ 检查) → 配音 + 口型同步 → 剪辑 → 🛑 review → AI 标识 → 🛑 sign-off → 发布"
 source_hash: 452743f96b65
 ---
 
