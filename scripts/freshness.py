@@ -6,6 +6,7 @@ Usage:
   python scripts/freshness.py --as-of 2027-06  age entries against another month
 
 Prints a Markdown report. The monthly freshness workflow posts it as an issue.
+It also lists Chinese translations (README.zh-CN.md) that are behind the English.
 Links are split into dead (404, 410, unknown domain), couldn't reach (timeouts and
 other errors, often bot blocking) and refused (403, 429).
 An entry is due when its `last_verified` month is STALE_AFTER months old or more.
@@ -19,6 +20,7 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 
+import i18n
 from catalog import ROOT, read_front_matter, species_files
 
 STALE_AFTER = 6
@@ -74,7 +76,7 @@ def main():
     today = date.today()
     as_of = tuple(map(int, args.as_of.split("-"))) if args.as_of else (today.year, today.month)
 
-    stale, urls = [], {}
+    stale, urls, zh_behind = [], {}, []
     for path in species_files():
         fm, problem = read_front_matter(path)
         if problem:
@@ -85,6 +87,9 @@ def main():
         age = months_old(fm["last_verified"], as_of)
         if age >= STALE_AFTER:
             stale.append((age, fm["id"], fm["name"], rel, fm["last_verified"]))
+        zh_errors, late = i18n.problems(path, fm)
+        if zh_errors or late:
+            zh_behind.append((fm["id"], fm["name"], rel, "missing or broken" if zh_errors else "behind the English"))
         for url in URL_RE.findall(path.read_text()):
             urls.setdefault(url, set()).add(fm["id"])
 
@@ -95,6 +100,13 @@ def main():
     if stale:
         out += ["| ID | Workflow | Last verified |", "|---|---|---|"]
         out += [f"| {i} | [{n}]({p}/) | {v} |" for _, i, n, p, v in sorted(stale, reverse=True)]
+    else:
+        out.append("None.")
+    out.append("")
+    out += [f"## Chinese translation to update ({len(zh_behind)})", "",
+            "README.zh-CN.md no longer matches the English README. Update it and run `python scripts/i18n.py stamp <ID>` (i18n/TRANSLATING.md).", ""]
+    if zh_behind:
+        out += ["| ID | Workflow | State |", "|---|---|---|"] + [f"| {i} | [{n}]({p}/) | {s} |" for i, n, p, s in zh_behind]
     else:
         out.append("None.")
     out.append("")

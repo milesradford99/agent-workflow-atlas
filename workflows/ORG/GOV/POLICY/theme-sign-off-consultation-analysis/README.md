@@ -67,14 +67,21 @@ flowchart TD
 **Output:** A per-question theme framework with counts and linked responses, used to write the published consultation analysis and government response.
 **Failure modes → guards:** Signed-off theme list misses a big group of responses → reviewers flag 'no theme fits' and the list is revisited. Bias across respondent groups → equality analysis by self-reported disability status (none found in the DWP run) [[1]](#sources). Over-trust in mappings → double review sets the human-vs-human baseline (F1 0.710) to compare Consult against (F1 0.816) [[1]](#sources).
 
+**Recent practice (2026):**
+- Step 4: In the IWC run the median review time was 16s per response, and for 12% of responses reviewers added a 'New theme', a sign the generated theme list was not exhaustive ([i.AI IWC evaluation](https://ai.gov.uk/evaluations/consult-evaluation-independent-water-commission-call-for-evidence/)).
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [i.AI, Consult Evaluation: DWP Pathways to Work](https://assets.publishing.service.gov.uk/media/68f63fe01c9076042263f0bd/evaluation-report.pdf) (2025-08-27). Live DWP consultation: 125 reviewers checked Consult's theme mappings; compared with human-vs-human agreement. "The reviewer made no changes to Consult's mapped themes for 73% of responses.". *First-hand: yes; confidence: high.*
 - [GOV.UK, Humphrey AI tool reviews consultation responses](https://www.gov.uk/government/news/government-built-humphrey-ai-tool-reviews-responses-to-consultation-for-first-time-in-bid-to-save-millions) (2025-05-14). Scottish Government cosmetics consultation, over 2,000 responses, six questions; experts refined themes and reviewed every response. "an F1 score (a common measure of alignment for AI tools) of 0.76". *First-hand: yes; confidence: med.*
+- [i.AI, Consult Evaluation: Independent Water Commission Call for Evidence](https://ai.gov.uk/evaluations/consult-evaluation-independent-water-commission-call-for-evidence/) (2025-10). Third live use; 50,000+ responses; two reviewer groups compared with Consult. "for 64%–69% of responses, reviewers made no changes to Consult’s theme suggestions". *First-hand: yes; confidence: high.*
+- [GOV.UK, Ground-breaking use of AI saves taxpayers’ money](https://www.gov.uk/government/news/ground-breaking-use-of-ai-saves-taxpayers-money-and-delivers-greater-government-efficiency) (2025-10-16). Cost and expert checking time for the IWC run. "The AI tool categorised responses into themes in around 2 hours, costing £240 and experts only needed 22 hours to check the results.". *First-hand: yes; confidence: high.*
 
 ## Sources
 
 1. Incubator for AI (i.AI), Consult Evaluation: DWP's Pathways to Work consultation, 2025-08-27. https://assets.publishing.service.gov.uk/media/68f63fe01c9076042263f0bd/evaluation-report.pdf
 2. GOV.UK press release, Government-built Humphrey AI tool reviews responses to consultation for first time in bid to save millions, 2025-05-14. https://www.gov.uk/government/news/government-built-humphrey-ai-tool-reviews-responses-to-consultation-for-first-time-in-bid-to-save-millions
+3. i.AI, Evaluating Consult: An AI Tool for Enhanced Public Consultation Analysis (Scottish Government NSCP evaluation). https://ai.gov.uk/blogs/evaluating-consult-an-ai-tool-for-enhanced-public-consultation-analysis
+4. i.AI, Scot Gov NSCP Evaluation Report. https://digitalgovernmenthub.org/wp-content/uploads/2026/02/Scot_Gov_NSCP_Evaluation_Report.pdf

@@ -64,14 +64,21 @@ flowchart TD
 **Output:** Per-conversation scores with rationales, a rolled-up experience metric, and a ranked list of root causes for ops, knowledge and coaching owners.
 **Failure modes → guards:** The judge drifts from human judgment, or it blurs related criteria and fails several when one is at fault → schedule recalibration against expert scores, and keep the rationale so the main issue can be identified [[1]](#sources)[[2]](#sources). A blended score hides what moved → keep the criteria separate in reporting.
 
+**Recent practice (2026):**
+- Score ⟲ sample loop: trace every human/AI disagreement to its cause (wrong document retrieved, ambiguous criterion wording, bad reasoning) before changing the prompt; re-sample after each policy or model change (Revelir, 2026-11-03). [[4]](#sources)
+- Note from Booth's test: the AI was stricter on unkept commitments, and the human was stricter where context lived outside the ticket; score full threads, since tickets can change after the audit date.
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [Oura, How Oura Uses AI to Measure Customer Experience](https://ouraring.com/blog/how-oura-uses-ai-to-measure-customer-experience/) (2026-08-25). Four classifiers score nearly every member interaction; calibrated against quality experts; findings drove routing and policy fixes. "repeated troubleshooting has dropped from 40 percent to around 20 percent". *First-hand: yes; confidence: high.*
 - [Instacart, LACE framework](https://company.instacart.com/tech-innovation/turbocharging-customer-support-chatbot-development-with-llm-based-automated-evaluation) (2025-06-11). Binary criteria across five dimensions; human-vs-LACE comparison repeated until aligned. "five key dimensions". *First-hand: yes; confidence: med.*
+- [Jen Spencer / Booth, We Scored Every Support Ticket. Here's What the Audit Missed](https://hirebooth.com/blog/we-scored-support-ticket-heres-what-the-audit-missed) (2026-11-12). AI scoring vs a trained QA analyst's audit on 20 tickets using the analyst's own scorecard. "The automated scoring agreed with the human on 96% of individual checks (192 of 200).". *First-hand: vendor; confidence: med.*
 
 ## Sources
 
 1. John Moses / Oura, How Oura Uses AI to Measure Customer Experience, 2026-08-25. https://ouraring.com/blog/how-oura-uses-ai-to-measure-customer-experience/
 2. Jeff Wu / Instacart, Turbocharging Customer Support Chatbot Development with LLM-Based Automated Evaluation, 2025-06-11. https://company.instacart.com/tech-innovation/turbocharging-customer-support-chatbot-development-with-llm-based-automated-evaluation
+3. Revelir AI, Calibrating AI QA to match a human reviewer, 2026-10-15. https://www.revelir.ai/blog/calibrating-ai-qa-to-match-a-human-reviewer-not-just-to-score-every-ticket
+4. Revelir AI, Build vs buy AutoQA, 2026-11-03. https://www.revelir.ai/blog/build-vs-buy-autoqa-should-your-cx-team-prompt-its-own-llm-to-score-tickets-or-deploy-an-auto-qa-platform-calibrated-to

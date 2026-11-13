@@ -65,12 +65,18 @@ flowchart TD
 **Output:** A reviewed fix commit for each vulnerability, landed by the code owner.
 **Failure modes → guards:** The model 'fixes' the bug by removing the failing test, or by serializing code with a misleading comment → rerun the tests and sanitizer on the patched code, and keep a human filter before code owners see it. Reviewers may trust machine fixes too much → tell developers the fix is AI-generated and keep the double human filter [[1]](#sources).
 
+**Recent practice (2026):**
+- Validate step: an LLM-based critique tool highlights differences between the original and modified code to check for regressions. The agent self-corrects, and only patches that fix the root cause, are functionally correct, cause no regressions and follow style guidelines are surfaced for human review (CodeMender). [[2]](#sources)
+- Review step: in the open-source variant, human researchers review every generated patch before it is submitted upstream to maintainers (CodeMender). [[2]](#sources)
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+Coverage as of 2026-11-13: **Strong**: a first-hand, detailed run that matches most of the shape. Updated in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [Google, AI-powered patching](https://storage.googleapis.com/gweb-research2023-media/pubtools/7563.pdf) (2024-01-05). Gemini pipeline patches sanitizer bugs found in unit tests; two human filters, then code owners accept. "Approximately 95% of the commits sent to code owners were accepted without discussion"; fixed "15% of sanitizer bugs". *First-hand: yes; confidence: med.*
+- [Google DeepMind, Introducing CodeMender: an AI agent for code security](https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/) (2025-10-06). Reactive patching agent with program-analysis tools and a critique agent; humans review every patch before upstreaming. "we have already upstreamed 72 security fixes to open source projects, including some as large as 4.5 million lines of code". *First-hand: yes; confidence: high.*
 
 ## Sources
 
 1. Jan Keller, Jan Nowakowski (Google), AI-powered patching: the future of automated vulnerability fixes, Google Security Engineering Technical Report, 2024 (PDF created 2024-01-05). https://research.google/pubs/ai-powered-patching-the-future-of-automated-vulnerability-fixes/ ; PDF https://storage.googleapis.com/gweb-research2023-media/pubtools/7563.pdf
+2. Raluca Ada Popa, Four Flynn (Google DeepMind), Introducing CodeMender: an AI agent for code security, 2025-10-06. https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/

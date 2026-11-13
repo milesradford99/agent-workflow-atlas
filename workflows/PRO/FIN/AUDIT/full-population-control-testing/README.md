@@ -60,14 +60,20 @@ flowchart TD
 **Output:** Tested-control workpapers with cited conclusions and exceptions, reviewed by auditors, feeding ICFR assessment or the audit file.
 **Failure modes → guards:** False negatives (under 10% in pilot) → auditor review and a KPI agreed before rollout [[1]](#sources).
 
+**Recent practice (2026):**
+- Plan step: at KPMG the auditor sets up the run by 'selecting the right data elements, combining the best methodology steps', and the agent then picks which expenses need testing, ingests the documentation, extracts dates and amounts, and writes the workpaper (CFO.com 2025-05-16). [[3]](#sources)
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [Kaption, Celsa Group pilot](https://www.kaption.io/case-studies/celsa) (n.d.). 60 ICFR controls tested by agents with cited conclusions for internal audit review. "Agent reasoning aligned with the auditors' own judgement in 85% of cases". *First-hand: vendor; confidence: med.*
 - [KPMG, Clara AI agents](https://kpmg.com/us/en/media/news/kpmg-clara-smart-audit-platform.html) (2025-04-23). Firm-wide agents for vouching and unrecorded-liability search; few workflow details. "more than 95,000 auditors globally". *First-hand: yes (announcement, not a measured run); confidence: low.*
+- [CFO.com, How KPMG is using AI to revamp their audit practice](https://www.cfo.com/news/how-kpmg-thomas-mackenzie-is-using-clara-ai-to-revamp-their-audit-practice-/748316/) (2025-05-16). KPMG audit leader describes the Clara expense-validation agent's steps and the auditor's guiding and review role. "If we can do 100% testing, it's like placing a filter across the river.". *First-hand: interview; confidence: med.*
 
 ## Sources
 
 1. Kaption, How Celsa Group piloted AI-powered control testing with Kaption, n.d. https://www.kaption.io/case-studies/celsa
 2. KPMG LLP, KPMG Advances AI Integration in KPMG Clara Smart Audit Platform, 2025-04-23. https://kpmg.com/us/en/media/news/kpmg-clara-smart-audit-platform.html
+3. Adam Zaki, How KPMG is using AI to revamp their audit practice (interview with Thomas Mackenzie), CFO.com, 2025-05-16. https://www.cfo.com/news/how-kpmg-thomas-mackenzie-is-using-clara-ai-to-revamp-their-audit-practice-/748316/
+4. KPMG LLP, 2025 Audit Quality Report, 2026. https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2026/2025-audit-quality-report.pdf

@@ -248,7 +248,7 @@ const STR = {
     nav: {route: "Route", steps: "Steps", runs: "Public runs", sources: "Sources", diagram: "Diagram"},
     meta: {delivers: "Delivers", autonomy: "Autonomy", evidence: "Sources", risk: "Risk", verified: "Last checked", tools: "Tools seen in practice", pattern: "Agent pattern"},
     routeTitle: "The route", stepsTitle: "Steps", runsTitle: "Public runs", sourcesTitle: "Sources", diagramTitle: "Full diagram",
-    contentNote: "",
+    contentNote: "", noteBehind: "", noteMissing: "",
     foot: {data: "Download the catalog", json: "JSON", csv: "CSV", license: "Content CC BY 4.0, code MIT", repo: "GitHub repository", contribute: "Add a workflow or a run"},
   },
   "zh-CN": {
@@ -286,7 +286,8 @@ const STR = {
     nav: {route: "路线", steps: "步骤", runs: "公开实例", sources: "来源", diagram: "流程图"},
     meta: {delivers: "交付物", autonomy: "自主程度", evidence: "来源类型", risk: "风险", verified: "最近核对", tools: "实践中用到的工具", pattern: "智能体模式"},
     routeTitle: "路线", stepsTitle: "步骤", runsTitle: "公开实例", sourcesTitle: "来源", diagramTitle: "完整流程图",
-    contentNote: "步骤、公开实例和来源保留英文原文，以便与引用的出处逐字对应。",
+    contentNote: "来源保留原文标题；公开实例中引号内的原话保留原文，以便与出处逐字对应。",
+    noteBehind: "英文原文在这份译文之后有更新，内容请以英文版为准。", noteMissing: "本页正文尚未翻译，以下为英文原文。",
     foot: {data: "下载整个目录", json: "JSON", csv: "CSV", license: "内容 CC BY 4.0，代码 MIT", repo: "GitHub 仓库", contribute: "提交工作流或运行记录"},
   },
 };
@@ -303,6 +304,9 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "
 const lab = (kind, code) => (L[kind][code] || {})[lang] || (L[kind][code] || {}).en || code;
 const nameOf = w => lang === "zh-CN" && w.nameZh ? w.nameZh : w.name;
 const sumOf = w => lang === "zh-CN" && w.summaryZh ? w.summaryZh : w.summary;
+// the Chinese text of an entry (README.zh-CN.md), when the reader picked 中文 and one exists
+const zhOf = w => lang === "zh-CN" ? w.zh : null;
+const routeOf = w => (zhOf(w) || w).route;
 const gc = c => "g-" + (c || "").split(" ")[0];
 const OCT = '<span class="oct" aria-hidden="true"></span>';
 const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
@@ -323,7 +327,8 @@ const state = {q: "", view: "start", f: Object.fromEntries(GROUPS.map(g => [g.ke
 const text = h => h.replace(/<[^>]+>/g, " ");
 const HAY = Object.fromEntries(W.map(w => [w.id, [w.id, w.name, w.nameZh, w.summary, w.summaryZh,
   L.phyla[w.phylum]?.en, L.phyla[w.phylum]?.["zh-CN"], L.classes[w.class]?.en, L.classes[w.class]?.["zh-CN"], w.class,
-  w.deliverable, w.shape, w.variants.join(" "), text(w.stepsHtml), text(w.introHtml)].join(" ").toLowerCase()]));
+  w.deliverable, w.shape, w.variants.join(" "), text(w.stepsHtml), text(w.introHtml),
+  w.zh ? [w.zh.deliverable, w.zh.shape, text(w.zh.stepsHtml), text(w.zh.introHtml)].join(" ") : ""].join(" ").toLowerCase()]));
 
 function matches(w, skip) {
   const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
@@ -339,19 +344,19 @@ function matches(w, skip) {
 // the route as a strip of marks, for scanning
 function routeHTML(w) {
   const t = T(), label = m => m.k === "stop" ? "🛑 " + t.cp[m.cp] : m.t;
-  return `<div class="route" role="img" aria-label="${esc(w.route.map(label).join(" → "))}">${w.route.map(m =>
+  return `<div class="route" role="img" aria-label="${esc(routeOf(w).map(label).join(" → "))}">${routeOf(w).map(m =>
     `<span class="m ${m.k}" title="${esc(m.k === "stop" && m.t && m.t !== m.cp ? label(m) + ": " + m.t : label(m))}"><i></i></span>`).join("")}</div>`;
 }
 // the route in words, for reading
 function flowHTML(w) {
   const t = T();
-  return `<ol class="flow">${w.route.map(m => m.k === "stop"
+  return `<ol class="flow">${routeOf(w).map(m => m.k === "stop"
     ? `<li class="stop"><span>${OCT}<span><b>${esc(t.cp[m.cp])}</b>${m.t && m.t !== m.cp ? ": " + esc(m.t) : ""}</span></span></li>`
     : `<li class="${m.k}"><span>${esc(m.t)}</span></li>`).join("")}</ol>`;
 }
 // which approvals a person gives, in route order
 function stopsHTML(w) {
-  const t = T(), cps = [...new Set(w.route.filter(m => m.k === "stop").map(m => m.cp))];
+  const t = T(), cps = [...new Set(routeOf(w).filter(m => m.k === "stop").map(m => m.cp))];
   return cps.length ? `<span class="stops" title="${esc(t.stopsLabel + ": " + cps.map(c => t.cp[c]).join(", "))}">${OCT}${cps.map(c => esc(t.cpShort[c])).join(" · ")}</span>` : "";
 }
 function barHTML(list) {
@@ -489,9 +494,9 @@ async function drawDiagram(w) {
   try {
     await loadMermaid();
     mermaid.initialize({startOnLoad: false, securityLevel: "strict", theme: isDark() ? "dark" : "neutral"});
-    const {svg} = await mermaid.render("m" + w.id.replace(/\W/g, "") + Date.now(), w.mermaid);
+    const {svg} = await mermaid.render("m" + w.id.replace(/\W/g, "") + Date.now(), (zhOf(w) || w).mermaid);
     if (dg()) dg().innerHTML = svg;
-  } catch (e) { if (dg()) dg().innerHTML = `<pre class="shape-line" style="white-space:pre-wrap;margin:0">${esc(w.mermaid)}</pre>`; }
+  } catch (e) { if (dg()) dg().innerHTML = `<pre class="shape-line" style="white-space:pre-wrap;margin:0">${esc((zhOf(w) || w).mermaid)}</pre>`; }
 }
 
 let lastFocus = null;
@@ -501,6 +506,8 @@ function openDetail(id) {
   if (!el.classList.contains("on")) lastFocus = document.activeElement;
   const altName = lang === "zh-CN" && w.nameZh ? w.name : "";
   const repoFile = DATA.repo ? `${DATA.repo}/blob/main/${w.path}/README.md` : `../${w.path}/README.md`;
+  const zw = zhOf(w), body = zw || w, bodyLang = zw ? ' lang="zh-CN"' : ' lang="en"';
+  const note = lang !== "zh-CN" ? "" : !zw ? t.noteMissing : (zw.behind ? t.noteBehind + " " : "") + t.contentNote;
   const sec = (id, title, html, attrs = "") => html ? `<section class="d-sec"><h2 id="${id}">${title}</h2><div${attrs}>${html}</div></section>` : "";
   el.setAttribute("aria-label", nameOf(w));
   el.innerHTML = `<div class="sheet-head"><div class="crumb"><span>${esc(lab("kingdoms", w.kingdom))} › ${esc(lab("phyla", w.phylum))} › ${esc(lab("classes", w.class))} · <span class="mono">${w.id}</span></span><button class="icon-btn close" aria-label="${t.close}"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
@@ -512,13 +519,13 @@ function openDetail(id) {
     <div class="actions">${w.kit ? `<a class="btn primary" href="${linkTo(w.path, "variants/claude-code.md")}" target="_blank" rel="noopener">${t.runKit}</a>` : ""}<a class="btn" href="w/${w.id}/${lang === "zh-CN" ? "zh/" : ""}">${t.page}</a><button class="btn" data-copy>${t.share}</button><a class="btn" href="${repoFile}" target="_blank" rel="noopener">${t.source}</a></div>
     <section class="d-sec"><h2 id="d-route">${t.routeTitle}</h2>
     <div class="route-box">${flowHTML(w)}</div>
-    <dl class="meta-grid"><div><dt>${t.meta.delivers}</dt><dd>${esc(w.deliverable)}</dd></div><div><dt>${t.meta.autonomy}</dt><dd>${esc(t.auto[w.autonomy])}</dd></div><div><dt>${t.meta.pattern}</dt><dd>${w.patterns.map(p => esc(t.pat[p] || p)).join(", ")}</dd></div><div><dt>${t.meta.evidence}</dt><dd>${esc(t.ev[w.evidence])}</dd></div><div><dt>${t.meta.risk}</dt><dd>${esc(t.risk[w.risk] || "")}</dd></div><div><dt>${t.meta.verified}</dt><dd>${esc(w.lastVerified)}</dd></div>${w.variants.length ? `<div class="wide"><dt>${t.meta.tools}</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd></div>` : ""}</dl></section>
-    ${t.contentNote ? `<p class="note" style="margin-top:28px">${t.contentNote}</p>` : ""}
-    ${sec("d-setup", t.setupTitle, w.introHtml, ' lang="en"')}
-    ${sec("d-steps", t.stepsTitle, w.stepsHtml, ' lang="en"')}
-    ${sec("d-runs", t.runsTitle, w.runsHtml, ' lang="en"')}
+    <dl class="meta-grid"><div><dt>${t.meta.delivers}</dt><dd>${esc((zhOf(w) || w).deliverable)}</dd></div><div><dt>${t.meta.autonomy}</dt><dd>${esc(t.auto[w.autonomy])}</dd></div><div><dt>${t.meta.pattern}</dt><dd>${w.patterns.map(p => esc(t.pat[p] || p)).join(", ")}</dd></div><div><dt>${t.meta.evidence}</dt><dd>${esc(t.ev[w.evidence])}</dd></div><div><dt>${t.meta.risk}</dt><dd>${esc(t.risk[w.risk] || "")}</dd></div><div><dt>${t.meta.verified}</dt><dd>${esc(w.lastVerified)}</dd></div>${w.variants.length ? `<div class="wide"><dt>${t.meta.tools}</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd></div>` : ""}</dl></section>
+    ${note ? `<p class="note" style="margin-top:28px">${esc(note)}</p>` : ""}
+    ${sec("d-setup", t.setupTitle, body.introHtml, bodyLang)}
+    ${sec("d-steps", t.stepsTitle, body.stepsHtml, bodyLang)}
+    ${sec("d-runs", t.runsTitle, body.runsHtml, bodyLang)}
     ${sec("d-sources", t.sourcesTitle, w.sourcesHtml, ' lang="en"')}
-    <section class="d-sec"><h2 id="d-diagram">${t.diagramTitle}</h2><div class="shape-line">${esc(w.shape)}</div><div class="diagram" id="dg" style="margin-top:12px"></div></section>
+    <section class="d-sec"><h2 id="d-diagram">${t.diagramTitle}</h2><div class="shape-line">${esc(body.shape)}</div><div class="diagram" id="dg" style="margin-top:12px"></div></section>
   </div>`;
   el.classList.add("on"); el.setAttribute("aria-hidden", "false"); document.getElementById("scrim").classList.add("on");
   document.body.style.overflow = "hidden";

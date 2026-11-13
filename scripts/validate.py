@@ -8,6 +8,7 @@ import sys
 
 import yaml
 
+import i18n
 from catalog import ROOT, WORKFLOWS, load_taxonomy, read_front_matter, species_files
 
 REQUIRED = [
@@ -171,12 +172,18 @@ def main():
             entry = labels.get(kind, {}).get(code) or {}
             if not entry.get("en") or not entry.get("zh-CN"):
                 errors.append(f"i18n/labels.yaml: {kind} `{code}` needs both `en` and `zh-CN`")
-    zh = yaml.safe_load((ROOT / "i18n" / "workflows.zh-CN.yaml").read_text()) or {}
-    for i, entry in zh.items():
-        if i not in ids:
-            errors.append(f"i18n/workflows.zh-CN.yaml: `{i}` is not a known id")
-        elif not isinstance(entry, dict) or not entry.get("name") or not entry.get("summary"):
-            errors.append(f"i18n/workflows.zh-CN.yaml: `{i}` needs `name` and `summary`")
+    # Chinese translations (README.zh-CN.md, see i18n/TRANSLATING.md): missing or broken is an error,
+    # behind the English is a warning
+    behind = []
+    for path in species_files():
+        fm, problem = read_front_matter(path)
+        if problem or not fm.get("id"):
+            continue
+        zh_errors, late = i18n.problems(path, fm)
+        rel = path.parent.relative_to(ROOT)
+        errors += [f"{rel}/{e}" for e in zh_errors]
+        if late and not zh_errors:
+            behind.append(fm["id"])
 
     numbers = [int(i[4:]) for i in ids if ID_RE.match(str(i))]
     next_id = f"AWF-{(max(numbers) + 1 if numbers else 1):04d}"
@@ -186,6 +193,9 @@ def main():
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
+    if behind:
+        print(f"Warning: the Chinese translation is behind the English for {len(behind)} workflow(s): {' '.join(behind)}")
+        print("  Update README.zh-CN.md and run `python scripts/i18n.py stamp <ID>` (i18n/TRANSLATING.md).")
     print(f"OK: {len(records)} workflows. Next free id: {next_id}")
 
 

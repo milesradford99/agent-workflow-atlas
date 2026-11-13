@@ -54,12 +54,19 @@ flowchart TD
 **Output:** A clearer, more actionable peer review written by the human reviewer, entering normal rebuttal and decision steps.
 **Failure modes → guards:** Hallucinated or low-quality feedback → multi-LLM pipeline with reliability-test guardrails [[1]](#sources). Most reviewers do not update → feedback stays optional; acceptance outcomes did not differ between groups [[1]](#sources).
 
+**Recent practice (2026):**
+- Feedback step: feedback goes only to the reviewer and the program chairs (not ACs or authors), arrives within a few hours of submission, and there is no second round (ICLR blog 2024-10-09). [[4]](#sources)
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md).
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [New workflows for empty categories](../../../../../research/2026-11-new-workflows.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [ICLR Blog, LLM feedback at ICLR 2025](https://blog.iclr.cc/2025/04/15/leveraging-llm-feedback-to-enhance-review-quality/) (2025-04-15). Randomized study across ~45k reviews; reviewers optionally revised after AI feedback. "26.6% of reviewers who received feedback updated their reviews". *First-hand: yes; confidence: high.*
+- [Thakkar et al., Nature Machine Intelligence](https://www.nature.com/articles/s42256-026-01188-x) (2026-02-23). Peer-reviewed publication of the ICLR 2025 randomized Review Feedback Agent study. "27% of reviewers who received automated feedback updated their reviews, incorporating over 12,000 suggestions". *First-hand: yes; confidence: high.*
 
 ## Sources
 
 1. Zou J., Thakkar N. (via ICLR Blog), Leveraging LLM feedback to enhance review quality, 2025-04-15. https://blog.iclr.cc/2025/04/15/leveraging-llm-feedback-to-enhance-review-quality/
+2. Thakkar N., Yuksekgonul M., Silberg J., Garg A., Peng N. et al., A large-scale randomized study of large language model feedback in peer review, Nature Machine Intelligence, 2026-02-23. https://www.nature.com/articles/s42256-026-01188-x
+3. Thakkar N. et al., Can LLM feedback enhance review quality? A randomized study of 20K reviews at ICLR 2025, arXiv 2504.09737, 2025-04-13. https://arxiv.org/abs/2504.09737
+4. Carl Vondrick, Assisting ICLR 2025 reviewers with feedback, ICLR Blog, 2024-10-09. https://blog.iclr.cc/2024/10/09/iclr2025-assisting-reviewers/

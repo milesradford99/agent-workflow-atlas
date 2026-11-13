@@ -68,11 +68,16 @@ flowchart TD
 **Output:** Orders, quotes and appointments written into the transport system.
 **Failure modes → guards:** Ambiguous tenders ('I have a load for Tuesday') → customer-history context fills the gaps. Unhandled cases → exception queue for managers.
 
+**Recent practice (2026):**
+- Classify: one email can be routed to both truckload and LTL quoting when it asks for both (C.H. Robinson, 2025-04-16). [[5]](#sources)
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Second collection pass](../../../research/2026-11-second-pass.md).
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Second collection pass](../../../research/2026-11-second-pass.md). More runs added in [Third collection pass](../../../research/2026-11-third-pass.md).
 
 - [C.H. Robinson, freight lifecycle press release](https://www.chrobinson.com/en-us/about-us/newsroom/press-releases/2024/generative-ai-for-freight-shipment-lifecycle/) (2024-10-31). Quotes, tenders and appointments automated from email. "The tech is turning emails into 5,500 shipment orders a day, achieved in 90 seconds.". *First-hand: yes; confidence: high.*
+- [C.H. Robinson, AI performs over 3 million shipping tasks](https://www.chrobinson.com/en-us/about-us/newsroom/press-releases/2025/ai-performs-over-three-million-shipping-tasks/) (2025-04-16). Orders agent extended from biggest truckload customers to SMB and LTL email tenders. "over 5,200 customers are getting their loads accepted in under 90 seconds". *First-hand: yes; confidence: high.*
+- [C.H. Robinson, More Than 100 Trillion Data Points Fuel C.H. Robinson’s Leadership in Agentic Supply Chains](https://ir.chrobinson.com/news/press-releases/news-details/2026/More-Than-100-Trillion-Data-Points-Fuel-C-H--Robinsons-Leadership-in-Agentic-Supply-Chains/default.aspx) (2026-03-11). Company's own analysis of truckload shipments handled by AI orders + appointments workflows. "up to 23% faster speed to market for customer shipments". *First-hand: yes; confidence: med.*
 
 ## Sources
 
@@ -80,3 +85,5 @@ Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches m
 2. Mike Neill, C.H. Robinson, How C.H. Robinson ensures ROI from agentic AI, 2026-01-06. https://www.chrobinson.com/en-us/resources/blog/how-chrobinson-ensures-roi-from-agentic-ai/
 3. Microsoft, C.H. Robinson customer story. https://www.microsoft.com/en/customers/story/19575-ch-robinson-azure-ai-studio
 4. Victoria Kickham, DC Velocity, Putting artificial intelligence to work, 2025-01-23. https://www.dcvelocity.com/technology/artificial-intelligence/putting-artificial-intelligence-to-work
+5. C.H. Robinson, At C.H. Robinson, Artificial Intelligence Has Now Performed Over 3 Million Shipping Tasks, 2025-04-16. https://www.chrobinson.com/en-us/about-us/newsroom/press-releases/2025/ai-performs-over-three-million-shipping-tasks/
+6. C.H. Robinson, More Than 100 Trillion Data Points Fuel C.H. Robinson’s Leadership in Agentic Supply Chains, 2026-03-11. https://ir.chrobinson.com/news/press-releases/news-details/2026/More-Than-100-Trillion-Data-Points-Fuel-C-H--Robinsons-Leadership-in-Agentic-Supply-Chains/default.aspx

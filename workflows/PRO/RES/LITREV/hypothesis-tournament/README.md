@@ -69,14 +69,20 @@ flowchart TD
 **Output:** A ranked hypothesis set with overview and protocols that scientists use to choose experiments.
 **Failure modes → guards:** Elo rankings are self-rated, not ground truth → expert assessment of the top candidates and lab validation [[1]](#sources). Over-claiming 'discovery' → the cf-PICI case rediscovered a known but unpublished result, and lab validation was still needed [[2]](#sources).
 
+**Recent practice (2026):**
+- Plan step: in the Imperial cf-PICI run the research goal was a single input document of published information only, so the system could not see the lab's unpublished result (Cell 2025-09-09). [[3]](#sources)
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md).
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [Penadés et al., AI mirrors experimental science (bioRxiv)](https://www.biorxiv.org/content/10.1101/2025.02.19.639094v1) (2025-02-19). Imperial lab posed its unpublished question; top-ranked hypothesis matched its lab result. "cf-PICIs hijack diverse phage tails to expand their host range" (top-ranked hypothesis; scientists assessed the top five). *First-hand: yes; confidence: high.*
 - [Google Research, AI co-scientist](https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/) (2025-02-19). AML repurposing candidates validated in vitro; liver fibrosis targets tested in organoids. "p-values for all suggested drugs are <0.01". *First-hand: yes; confidence: med.*
+- [Penadés, Gottweis et al., Cell](https://www.cell.com/cell/fulltext/S0092-8674%2825%2900973-0) (2025-09-09). Imperial lab gave co-scientist one input document; its top hypothesis matched their unpublished, experimentally confirmed mechanism. "The AI co-scientist generated five ranked hypotheses" (top Elo score 1,777). *First-hand: yes; confidence: high.*
+- [Google DeepMind, Co-Scientist: A multi-agent AI partner](https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/) (2026-05-19). Drug-repurposing candidates for fibrosis tested in the lab; results in Advanced Science. "successfully blocked 91% of a scarring-linked response in lab tests". *First-hand: vendor; confidence: med.*
 
 ## Sources
 
 1. Gottweis & Natarajan, Google Research, Accelerating scientific breakthroughs with an AI co-scientist, 2025-02-19. https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/
 2. Penadés, Gottweis et al., AI mirrors experimental science to uncover a novel mechanism of gene transfer crucial to bacterial evolution, bioRxiv, 2025-02-19. https://www.biorxiv.org/content/10.1101/2025.02.19.639094v1
+3. Penadés J.R., Gottweis J. et al., AI mirrors experimental science to uncover a mechanism of gene transfer crucial to bacterial evolution, Cell 188(23), published online 2025-09-09. https://www.cell.com/cell/fulltext/S0092-8674%2825%2900973-0

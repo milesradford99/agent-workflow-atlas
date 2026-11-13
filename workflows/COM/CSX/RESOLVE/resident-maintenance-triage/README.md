@@ -66,12 +66,14 @@ flowchart TD
 
 ## Public runs
 
-Coverage as of 2026-11-06: **Weak**: only anonymous, vendor-linked or journalist-told accounts. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md).
+Coverage as of 2026-11-06: **Weak**: only anonymous, vendor-linked or journalist-told accounts. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [EliseAI, Summit Property Management](https://eliseai.com/customer-stories/how-summit-property-management-reinvented-their-management-model-with-ai-and-centralization) (n.d.). 10,000+ apartment homes; maintenance triage. "MaintenanceAI generated 9,760 categorized work orders and de-escalated 34% of “emergencies,”". *First-hand: vendor; confidence: med.*
 - [QED Labs, L1 Property](https://qedlabs.co.uk/case-studies/l1-property) (n.d.). 603 units; 765 jobs dispatched to 36 contractors. "66% Increase in first-time fix rate". *First-hand: vendor; confidence: low.*
+- [EliseAI, Woodward Properties](https://eliseai.com/customer-stories/how-woodward-properties-built-a-24-7-operating-model-with-eliseai) (n.d.; data Apr-May 2026). ~2,300-unit operator; emergency triage + auto-assignment; quotes CEO and staff. "a 50% reduction in after-hours emergency dispatches". *First-hand: vendor; confidence: med.*
 
 ## Sources
 
 1. EliseAI, Summit Property Management success story. https://eliseai.com/customer-stories/how-summit-property-management-reinvented-their-management-model-with-ai-and-centralization
 2. QED Labs, L1 Property case study. https://qedlabs.co.uk/case-studies/l1-property
+3. EliseAI, How Woodward Properties Built a 24/7 Operating Model with EliseAI (data 2026-04-01 to 2026-05-31). https://eliseai.com/customer-stories/how-woodward-properties-built-a-24-7-operating-model-with-eliseai
