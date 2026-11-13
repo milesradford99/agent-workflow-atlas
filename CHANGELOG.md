@@ -5,6 +5,7 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 ## 2026-11
 
 ### Taxonomy
+- New classes `ORG/LOG/CUSTOMS` (AWF-0148, 0210, 0233), `TEC/ENG/SUBMITTAL` (AWF-0151, 0190, 0235) and, in a new phylum `ORG/AGR` (agriculture), `ADVISORY` (AWF-0154, 0211, 0236).
 - New class `PRO/INS/UW` (insurance underwriting) with AWF-0149, AWF-0155 and AWF-0163, and new phylum `ORG/LOG` (logistics and supply chain) with class `FREIGHT`: AWF-0150, AWF-0153 and AWF-0209. Each had three unplaced workflows (TAXONOMY.md rule 2). IDs are unchanged.
 
 ### Changed
@@ -13,6 +14,7 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 - New typeface (Geist), a light and dark switch that remembers the choice, and one Markdown renderer (`site_pages.markdown`) for both the app and the static pages.
 
 ### Added
+- Fourth collection pass: 23 new workflows (AWF-0216 to AWF-0238), all evidence A with first-hand public runs, targeting the classes that lacked a well-documented entry. See [research/2026-11-fourth-pass.md](research/2026-11-fourth-pass.md).
 - Full Simplified Chinese pages: every workflow has a `README.zh-CN.md` beside its README that translates the name, summary, deliverable, route, intro, steps and public runs (sources keep their original titles). `scripts/i18n.py` scaffolds, checks and stamps them; `validate.py` fails on a missing or mismatched translation and warns when one is behind the English, the freshness report lists those, and the Chinese page says so. Style guide and glossary: [i18n/TRANSLATING.md](i18n/TRANSLATING.md). Chinese names and summaries moved here from `i18n/workflows.zh-CN.yaml`, which is removed.
 - Third collection pass: 60 new workflows (AWF-0156 to AWF-0215) and newer runs, sources and practice notes for 20 existing ones, with every cited link re-checked. See [research/2026-11-third-pass.md](research/2026-11-third-pass.md).
 - Redesigned catalog site: a route strip for every workflow (agent steps in teal, human checkpoints in red), a calmer field directory, a detail sheet with section navigation, and full English and Simplified Chinese support (UI, field, profession and category names, workflow names and summaries; steps and sources stay in English). Chinese static pages at `w/<ID>/zh/`.

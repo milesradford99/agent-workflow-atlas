@@ -63,7 +63,7 @@ Folders follow the first four levels. Variants and examples live inside a specie
 | | 2. `SAL` Pursuing specific accounts or deals | `PROSPECT` · `DEAL` · `RFP` · `REVOPS` |
 | | 3. `RET` Running a storefront: product catalog, listings, attributes | `CATALOG` |
 | | 4. `MKT` One-to-many demand generation | `CONTENT` · `ADS` · `SOCIAL` · `LIFECYCLE` · `MKTRES` |
-| **TEC** | 1. `ENG` Physical engineering, construction, manufacturing | `CAD` · `SIM` · `CODECOMP` · `MFG` |
+| **TEC** | 1. `ENG` Physical engineering, construction, manufacturing | `CAD` · `SIM` · `CODECOMP` · `SUBMITTAL` · `MFG` |
 | | 2. `PRD` Deciding *what* to build: specs, research, design, prototypes | `PM` · `UXR` · `UI` · `PROTO` · `DSYS` |
 | | 3. `DAT` Queries, analyses, pipelines, models, evals | `ANALYTICS` · `DATAENG` · `DS` · `MLOPS` |
 | | 4. `ITS` Running systems: incidents, infrastructure, security, IT help | `SRE` · `INFRA` · `SECOPS` · `APPSEC` · `HELPDESK` |
@@ -71,9 +71,10 @@ Folders follow the first four levels. Variants and examples live inside a specie
 | **CRE** | 1. `WRI` Final deliverable is text, including scripts and translations | `FICTION` · `SERIAL` (网文) · `SCREEN` · `NONFIC` · `JOURN` · `TECHW` · `TRANS` |
 | | 2. `MED` Video, images or audio | `SHORTDRAMA` (live-action) · `AIGCVIDEO` (AI video, 漫剧) · `POST` · `DUB` · `AUDIO` · `GAMEART` |
 | **ORG** | 1. `GOV` Public administration | `POLICY` · `CASEWORK` · `CIVIC` |
-| | 2. `LOG` Moving goods: freight, customs, warehousing | `FREIGHT` |
-| | 3. `BIZ` Company functions: people, procurement, projects, strategy | `HR` · `PROC` · `PMO` · `STRAT` · `ADMIN` |
-| | 4. `XFN` One person's own email, meetings, notes | `INBOX` · `MEET` · `PKM` |
+| | 2. `LOG` Moving goods: freight, customs, warehousing | `FREIGHT` · `CUSTOMS` |
+| | 3. `AGR` Advising or running farms | `ADVISORY` |
+| | 4. `BIZ` Company functions: people, procurement, projects, strategy | `HR` · `PROC` · `PMO` · `STRAT` · `ADMIN` |
+| | 5. `XFN` One person's own email, meetings, notes | `INBOX` · `MEET` · `PKM` |
 
 **Edge cases the keys settle:**
 - *Issue → agent-opened PR* is `SWE.FEAT`, not `SWE.REVIEW`, because the deliverable is a PR.
