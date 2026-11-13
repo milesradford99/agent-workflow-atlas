@@ -13,7 +13,7 @@ import re
 
 CSV_FIELDS = ["id", "name", "nameZh", "summary", "summaryZh", "kingdom", "phylum", "class", "deliverable",
               "autonomy", "checkpoints", "patterns", "variants", "evidence", "coverage", "runs", "risk",
-              "region", "status", "lastVerified", "kit", "shape", "url", "source"]
+              "region", "status", "lastVerified", "build", "methodChecked", "kit", "shape", "url", "source"]
 
 UI = {
     "en": {
@@ -27,6 +27,8 @@ UI = {
         "pat": {"chain": "Chain", "route": "Router", "parallel": "Parallel", "orch-workers": "Orchestrator and workers", "eval-opt": "Generate and critique", "auto-loop": "Autonomous loop", "role-crew": "Role crew", "computer-use": "Computer use"},
         "ev": {"A": "First-hand write-up", "B": "Vendor material", "C": "Community report"},
         "risk": {"low": "Low", "medium": "Medium", "high": "High (regulated)"},
+        "background": "Background", "buildTitle": "Build it with an agent", "form": "Agent form", "methodChecked": "Method checked",
+        "forms": {"skill": "One skill", "project": "Claude Code project", "service": "Agent SDK service", "platform": "Needs a specialist platform"},
         "setup": "Inputs and tools", "pattern": "Agent pattern", "evidence": "Sources", "riskLabel": "Risk", "checked": "Last checked",
         "tools": "Tools seen in practice", "theme": "Switch between light and dark",
         "delivers": "Delivers", "autonomy": "Autonomy", "desc": "{name}: a step-by-step AI agent workflow from {field}, with the human checkpoints, tools and sources. {summary}",
@@ -44,6 +46,8 @@ UI = {
         "pat": {"chain": "链式", "route": "路由", "parallel": "并行", "orch-workers": "编排与子智能体", "eval-opt": "生成与评审", "auto-loop": "自主循环", "role-crew": "角色分工", "computer-use": "操作电脑"},
         "ev": {"A": "第一手记录", "B": "厂商材料", "C": "社区经验"},
         "risk": {"low": "低", "medium": "中", "high": "高（受监管）"},
+        "background": "背景", "buildTitle": "用智能体搭建", "form": "智能体形态", "methodChecked": "方法核对",
+        "forms": {"skill": "一个 skill", "project": "Claude Code 项目", "service": "Agent SDK 服务", "platform": "依赖专业平台"},
         "setup": "输入与工具", "pattern": "智能体模式", "evidence": "来源类型", "riskLabel": "风险", "checked": "最近核对",
         "tools": "实践中用到的工具", "theme": "切换浅色或深色",
         "delivers": "交付物", "autonomy": "自主程度", "desc": "{name}：来自{field}的 AI 智能体工作流，逐步写明人工检查点、工具和出处。{summary}",
@@ -220,10 +224,12 @@ footer {{ border-top: 1px solid var(--rule); color: var(--slate); font-size: 13.
 <div class="actions">{kit}<a class="btn" href="{app}">{t_open}</a><a class="btn" href="{source}">{t_source}</a></div>
 <section class="d-sec"><h2>{t_route}</h2>
 <div class="route-box">{route}</div>
-<dl class="meta-grid"><div><dt>{t_delivers}</dt><dd>{deliverable}</dd></div><div><dt>{t_autonomy}</dt><dd>{autonomy}</dd></div><div><dt>{t_pattern}</dt><dd>{pattern}</dd></div><div><dt>{t_evidence}</dt><dd>{evidence}</dd></div><div><dt>{t_risk}</dt><dd>{risk}</dd></div><div><dt>{t_checked}</dt><dd>{checked}</dd></div>{tools}</dl>
+<dl class="meta-grid"><div><dt>{t_delivers}</dt><dd>{deliverable}</dd></div><div><dt>{t_autonomy}</dt><dd>{autonomy}</dd></div><div><dt>{t_pattern}</dt><dd>{pattern}</dd></div><div><dt>{t_evidence}</dt><dd>{evidence}</dd></div><div><dt>{t_risk}</dt><dd>{risk}</dd></div><div><dt>{t_checked}</dt><dd>{checked}</dd></div>{form}{tools}</dl>
 </section>
 {note}
 <div lang="{body_lang}">
+{background}
+{build}
 {intro}
 <section class="d-sec"><h2>{t_steps}</h2>
 {steps}</section>
@@ -296,6 +302,10 @@ def page(w, data, site_url, css, lang):
         note=f'<p class="note" style="margin-top:28px">{esc(note)}</p>' if note else "", body_lang="zh-CN" if tr else "en",
         t_steps=esc(ui["steps"]), steps=markdown(pick("steps"), link),
         intro=f'<section class="d-sec"><h2>{esc(ui["setup"])}</h2>\n{markdown(pick("intro"), link)}</section>' if pick("intro") else "",
+        background=f'<section class="d-sec"><h2>{esc(ui["background"])}</h2>\n{markdown(pick("background"), link)}</section>' if pick("background") else "",
+        build=f'<section class="d-sec"><h2>{esc(ui["buildTitle"])}</h2>\n{markdown(pick("buildNotes"), link)}</section>' if pick("buildNotes") else "",
+        form=(f'<div><dt>{esc(ui["form"])}</dt><dd>{esc(ui["forms"].get(w["build"], w["build"]))}</dd></div>'
+              f'<div><dt>{esc(ui["methodChecked"])}</dt><dd>{esc(w["methodChecked"])}</dd></div>') if w["build"] else "",
         t_runs=esc(ui["runs"]), runs=markdown(pick("publicRuns"), link, cls="runs"),
         t_sources=esc(ui["sources"]), sources=markdown(w["sources"], link, sources=True, cls="sources"),
         t_diagram=esc(ui["diagram"]), shape=esc(pick("shape")), mermaid=esc(pick("mermaid")),

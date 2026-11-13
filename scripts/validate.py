@@ -20,6 +20,44 @@ ID_RE = re.compile(r"^AWF-\d{4}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 
+H_BACKGROUND, H_BUILD = "## Background", "## Build it with an agent"
+NOT_A_RUN = "not a reported run"
+
+
+def check_standard(fm, body, traits, err):
+    """STANDARD.md: an entry that sets `build` must carry the Background and Build sections.
+
+    Entries without `build` are in the older format and are only counted, so the catalog
+    can be converted in batches."""
+    if "build" not in fm:
+        return
+    if fm["build"] not in traits["build"]:
+        err(f"`build: {fm['build']}` is not one of {traits['build']}")
+    if not re.match(r"^\d{4}-(0[1-9]|1[0-2])$", str(fm.get("method_checked"))):
+        err("`build` needs `method_checked`, a month like 2026-11 (STANDARD.md §5)")
+    heads = re.findall(r"^## .*$", body, re.M)
+    order = [h for h in heads if h in (H_BACKGROUND, H_BUILD, "## Steps")]
+    if order != [H_BACKGROUND, H_BUILD, "## Steps"]:
+        err(f"sections must come in the order `{H_BACKGROUND}`, `{H_BUILD}`, `## Steps` (STANDARD.md §1)")
+        return
+    sec = lambda h: re.search(rf"^{re.escape(h)}\n(.*?)(?=^## |\Z)", body, re.M | re.S).group(1)
+    background, build = sec(H_BACKGROUND), sec(H_BUILD)
+    if len(background.split("**Terms:**")[0].split()) < 40:
+        err(f"`{H_BACKGROUND}` needs at least 40 words before any **Terms:** list (STANDARD.md §2)")
+    if f"**Form:** `{fm['build']}`" not in build:
+        err(f"`{H_BUILD}` must start with **Form:** `{fm['build']}`, matching the `build` field")
+    for label in ("**You need:**", "**Checkpoints:**", "**Since the sources:**"):
+        if label not in build:
+            err(f"`{H_BUILD}` is missing {label} (STANDARD.md §3)")
+    if not re.search(r"^\|.*\|\n\|[\s:|-]+\|$", build, re.M):
+        err(f"`{H_BUILD}` needs the step table (STANDARD.md §3)")
+    if NOT_A_RUN not in build:
+        err(f"`{H_BUILD}` must end with the note that it is a design, {NOT_A_RUN} (STANDARD.md §3)")
+    for cp in fm.get("checkpoints") or []:
+        if f"`{cp}`" not in build.split("**Checkpoints:**")[-1]:
+            err(f"`{H_BUILD}` **Checkpoints:** must say how `{cp}` is held")
+
+
 def check_species(path, fm, tax, errors):
     rel = path.relative_to(ROOT)
 
@@ -115,6 +153,8 @@ def check_species(path, fm, tax, errors):
             if f"🛑 **{cp.capitalize()}" not in steps.group(1):
                 err(f"checkpoint `{cp}` is in the shape but no step starts with `🛑 **{cp.capitalize()}**`")
 
+    check_standard(fm, body, traits, err)
+
     # freshness: last_verified is a month, so scripts/freshness.py can age it
     if not re.match(r"^\d{4}-(0[1-9]|1[0-2])$", str(fm["last_verified"])):
         err(f"`last_verified: {fm['last_verified']}` must be a month like 2026-11")
@@ -196,7 +236,8 @@ def main():
     if behind:
         print(f"Warning: the Chinese translation is behind the English for {len(behind)} workflow(s): {' '.join(behind)}")
         print("  Update README.zh-CN.md and run `python scripts/i18n.py stamp <ID>` (i18n/TRANSLATING.md).")
-    print(f"OK: {len(records)} workflows. Next free id: {next_id}")
+    done = sum(1 for _, fm in records if "build" in fm)
+    print(f"OK: {len(records)} workflows, {done} in the STANDARD.md format. Next free id: {next_id}")
 
 
 if __name__ == "__main__":

@@ -47,3 +47,4 @@ traits:
   evidence: [A, B, C]
   status: [draft, accepted, merged, retired]
   risk: [low, medium, high]
+  build: [skill, project, service, platform]   # STANDARD.md §3: the smallest agent form that runs the workflow

@@ -28,6 +28,8 @@ ZH_NAME = "README.zh-CN.md"
 # 🛑 checkpoint labels in steps: English `🛑 **Review**` becomes `🛑 **审阅**`
 CP_ZH = {"plan": "计划", "action": "操作", "review": "审阅", "sample": "抽检", "sign-off": "签发", "handoff": "接手"}
 H_STEPS, H_RUNS = "## 步骤", "## 公开实例"
+H_BACKGROUND, H_BUILD = "## 背景", "## 用智能体搭建"
+NOT_A_RUN = "不是已报道的实例"
 FIELDS = ("id", "name", "summary", "deliverable", "shape", "source_hash")
 DIAGRAM_RE = re.compile(r"\n*<!-- shape diagram:.*?<!-- end shape diagram -->\n*", re.S)
 CITE_RE = re.compile(r"\[\[(\d+)\]\]\(#sources\)")
@@ -65,12 +67,14 @@ def intro(text):
 def parts(readme):
     """The pieces of an English README that a translation must mirror."""
     text = body(readme.read_text())
-    return {"intro": intro(text), "steps": section(text, "## Steps"), "runs": section(text, "## Public runs")}
+    return {"intro": intro(text), "steps": section(text, "## Steps"), "runs": section(text, "## Public runs"),
+            "background": section(text, "## Background"), "build": section(text, "## Build it with an agent")}
 
 
 def zh_parts(path):
     text = body(path.read_text())
-    return {"intro": intro(text), "steps": section(text, H_STEPS), "runs": section(text, H_RUNS)}
+    return {"intro": intro(text), "steps": section(text, H_STEPS), "runs": section(text, H_RUNS),
+            "background": section(text, H_BACKGROUND), "build": section(text, H_BUILD)}
 
 
 def shape_marks(shape):
@@ -120,6 +124,18 @@ def problems(readme, fm, allow_todo=False):
         errs.append(f"{ZH_NAME}: needs a `{H_STEPS}` section")
     if en["runs"] and not zh["runs"]:
         errs.append(f"{ZH_NAME}: needs a `{H_RUNS}` section")
+    for key, head in (("background", H_BACKGROUND), ("build", H_BUILD)):
+        if en[key] and not zh[key]:
+            errs.append(f"{ZH_NAME}: needs a `{head}` section")
+    if en["build"] and zh["build"]:
+        form = re.search(r"\*\*Form:\*\* (`[a-z]+`)", en["build"])
+        if form and f"**形态：** {form.group(1)}" not in zh["build"]:
+            errs.append(f"{ZH_NAME}: `{H_BUILD}` must start with **形态：** {form.group(1)}")
+        if NOT_A_RUN not in zh["build"]:
+            errs.append(f"{ZH_NAME}: `{H_BUILD}` must keep the closing note (…{NOT_A_RUN}。)")
+        rows = lambda s: len(re.findall(r"^\|", s, re.M))
+        if rows(en["build"]) != rows(zh["build"]):
+            errs.append(f"{ZH_NAME}: step table has {rows(zh['build'])} rows, the English has {rows(en['build'])}")
     n_en = len(re.findall(r"^\d+\. ", en["steps"], re.M))
     n_zh = len(re.findall(r"^\d+\. ", zh["steps"], re.M))
     if n_en != n_zh:
@@ -134,7 +150,7 @@ def problems(readme, fm, allow_todo=False):
         errs.append(f"{ZH_NAME}: {n_zh} public runs, the English has {n_en}")
 
     # still English? (a scaffold matches the English structure trivially)
-    for key, label in (("steps", H_STEPS), ("intro", "intro")):
+    for key, label in (("steps", H_STEPS), ("intro", "intro"), ("background", H_BACKGROUND), ("build", H_BUILD)):
         text = re.sub(r"`[^`]*`|\[[^\]]*\]\([^)]*\)|https?://\S+", "", zh[key])
         letters = re.findall(r"[A-Za-z\u4e00-\u9fff]", text)
         cjk = sum(1 for ch in letters if ch >= "\u4e00")
@@ -153,9 +169,9 @@ def problems(readme, fm, allow_todo=False):
             errs.append(f'{ZH_NAME}: public-run quote must stay verbatim: "{q[:60]}"')
     zh_nums = set(NUM_RE.findall(zh_all))
     norm = lambda nums: {n.rstrip(".,%") for n in nums} - {""}  # "40 percent" may become 40%
-    lost = sorted(norm(NUM_RE.findall(en["intro"] + "\n" + en["steps"])) - norm(zh_nums))
+    lost = sorted(norm(NUM_RE.findall("\n".join(en[k] for k in ("intro", "background", "build", "steps")))) - norm(zh_nums))
     if lost:
-        errs.append(f"{ZH_NAME}: numbers missing from intro or steps (keep Arabic numerals): {', '.join(lost[:8])}")
+        errs.append(f"{ZH_NAME}: numbers missing from intro, background, build or steps (keep Arabic numerals): {', '.join(lost[:8])}")
     behind = str(zfm.get("source_hash")) != english_hash(readme)
     return errs, behind
 
@@ -175,6 +191,7 @@ def load(readme):
         "name": str(zfm.get("name") or ""), "summary": str(zfm.get("summary") or ""),
         "deliverable": str(zfm.get("deliverable") or ""), "shape": str(zfm.get("shape") or ""),
         "intro": p["intro"], "steps": p["steps"], "runs": p["runs"],
+        "background": p["background"], "build": p["build"],
         "behind": str(zfm.get("source_hash")) != english_hash(readme),
     }
 
@@ -197,7 +214,12 @@ def scaffold(readme, fm):
     q = lambda s: '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
     lines = ["---", f"id: {fm['id']}", f"name: {fm['name']}", f"summary: {q(fm['summary'])}",
              f"deliverable: {fm['deliverable']}", f"shape: {q(fm['shape'])}", "source_hash: TODO", "---", "",
-             f"# {fm['name']}", "", en["intro"], "", H_STEPS, "", steps]
+             f"# {fm['name']}", "", en["intro"]]
+    if en["background"]:
+        lines += ["", H_BACKGROUND, "", en["background"]]
+    if en["build"]:
+        lines += ["", H_BUILD, "", en["build"].replace("**Form:**", "**形态：**")]
+    lines += ["", H_STEPS, "", steps]
     if en["runs"]:
         lines += ["", H_RUNS, "", en["runs"]]
     return "\n".join(lines) + "\n"

@@ -221,7 +221,7 @@ const STR = {
     lStep: "a step the agent runs", lLoop: "repeats until a check passes", lEach: "runs for every item", lStop: "a person must approve",
     stats: {w: "workflows", p: "professions", c: "categories", s: "with strong public evidence"},
     fieldsTitle: "Browse by field", fieldsText: "Everything the catalog covers. Pick a field to see all of its workflows.",
-    showAll: n => `Show all ${n}`, theme: "Switch between light and dark", setupTitle: "Inputs and tools",
+    showAll: n => `Show all ${n}`, theme: "Switch between light and dark", setupTitle: "Inputs and tools", backgroundTitle: "Background", buildTitle: "Build it with an agent",
     cpShort: {plan: "plan", action: "action", review: "review", sample: "sample", "sign-off": "sign-off", handoff: "handoff"},
     stopsLabel: "A person approves", noStops: "No fixed human stop",
     cols: {wf: "Workflow", field: "Field", route: "Route", ev: "Public evidence"},
@@ -259,7 +259,7 @@ const STR = {
     lStep: "智能体执行的一步", lLoop: "反复执行，直到检查通过", lEach: "对每一项执行", lStop: "必须由人审批",
     stats: {w: "条工作流", p: "个行业", c: "个类别", s: "条有充分公开证据"},
     fieldsTitle: "按领域浏览", fieldsText: "目录覆盖的全部内容。选一个领域，查看其中所有工作流。",
-    showAll: n => `查看全部 ${n} 条`, theme: "切换浅色或深色", setupTitle: "输入与工具",
+    showAll: n => `查看全部 ${n} 条`, theme: "切换浅色或深色", setupTitle: "输入与工具", backgroundTitle: "背景", buildTitle: "用智能体搭建",
     cpShort: {plan: "计划", action: "操作", review: "审阅", sample: "抽检", "sign-off": "签发", handoff: "接手"},
     stopsLabel: "由人审批", noStops: "无固定人工节点",
     cols: {wf: "工作流", field: "领域", route: "路线", ev: "公开证据"},
@@ -327,8 +327,8 @@ const state = {q: "", view: "start", f: Object.fromEntries(GROUPS.map(g => [g.ke
 const text = h => h.replace(/<[^>]+>/g, " ");
 const HAY = Object.fromEntries(W.map(w => [w.id, [w.id, w.name, w.nameZh, w.summary, w.summaryZh,
   L.phyla[w.phylum]?.en, L.phyla[w.phylum]?.["zh-CN"], L.classes[w.class]?.en, L.classes[w.class]?.["zh-CN"], w.class,
-  w.deliverable, w.shape, w.variants.join(" "), text(w.stepsHtml), text(w.introHtml),
-  w.zh ? [w.zh.deliverable, w.zh.shape, text(w.zh.stepsHtml), text(w.zh.introHtml)].join(" ") : ""].join(" ").toLowerCase()]));
+  w.deliverable, w.shape, w.variants.join(" "), text(w.stepsHtml), text(w.introHtml), text(w.backgroundHtml || ""), text(w.buildHtml || ""),
+  w.zh ? [w.zh.deliverable, w.zh.shape, text(w.zh.stepsHtml), text(w.zh.introHtml), text(w.zh.backgroundHtml || ""), text(w.zh.buildHtml || "")].join(" ") : ""].join(" ").toLowerCase()]));
 
 function matches(w, skip) {
   const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
@@ -521,6 +521,8 @@ function openDetail(id) {
     <div class="route-box">${flowHTML(w)}</div>
     <dl class="meta-grid"><div><dt>${t.meta.delivers}</dt><dd>${esc((zhOf(w) || w).deliverable)}</dd></div><div><dt>${t.meta.autonomy}</dt><dd>${esc(t.auto[w.autonomy])}</dd></div><div><dt>${t.meta.pattern}</dt><dd>${w.patterns.map(p => esc(t.pat[p] || p)).join(", ")}</dd></div><div><dt>${t.meta.evidence}</dt><dd>${esc(t.ev[w.evidence])}</dd></div><div><dt>${t.meta.risk}</dt><dd>${esc(t.risk[w.risk] || "")}</dd></div><div><dt>${t.meta.verified}</dt><dd>${esc(w.lastVerified)}</dd></div>${w.variants.length ? `<div class="wide"><dt>${t.meta.tools}</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd></div>` : ""}</dl></section>
     ${note ? `<p class="note" style="margin-top:28px">${esc(note)}</p>` : ""}
+    ${sec("d-background", t.backgroundTitle, body.backgroundHtml, bodyLang)}
+    ${sec("d-build", t.buildTitle, body.buildHtml, bodyLang)}
     ${sec("d-setup", t.setupTitle, body.introHtml, bodyLang)}
     ${sec("d-steps", t.stepsTitle, body.stepsHtml, bodyLang)}
     ${sec("d-runs", t.runsTitle, body.runsHtml, bodyLang)}
