@@ -7,7 +7,7 @@ kingdoms:
     phyla:
       HLT: {name: Healthcare & life sciences, classes: [CLINDOC, RCM, CLINTRIAL, DRUGDISC]}
       LEG: {name: Legal & compliance, classes: [CONTRACT, RESEARCH, LITIG, REG, DD]}
-      INS: {name: Insurance, classes: [CLAIMS]}
+      INS: {name: Insurance, classes: [CLAIMS, UW]}
       FIN: {name: Finance & accounting, classes: [AP, CLOSE, FPA, INVEST, AUDIT, TAX]}
       EDU: {name: Education & training, classes: [COURSE, ASSESS, TUTOR, LND]}
       RES: {name: Research & academia, classes: [LITREV, WRITE, ANALYSIS, GRANT, PEER]}
@@ -21,7 +21,7 @@ kingdoms:
   TEC:
     name: Technology & product
     phyla:
-      ENG: {name: Physical engineering & AEC, classes: [CAD, SIM, CODECOMP, MFG]}
+      ENG: {name: Physical engineering & AEC, classes: [CAD, SIM, CODECOMP, SUBMITTAL, MFG]}
       PRD: {name: Product & design, classes: [PM, UXR, UI, PROTO, DSYS]}
       DAT: {name: Data & ML, classes: [ANALYTICS, DATAENG, DS, MLOPS]}
       ITS: {name: IT, infrastructure & security, classes: [SRE, INFRA, SECOPS, APPSEC, HELPDESK]}
@@ -35,6 +35,8 @@ kingdoms:
     name: Organization & public
     phyla:
       GOV: {name: Public sector, classes: [POLICY, CASEWORK, CIVIC]}
+      LOG: {name: Logistics & supply chain, classes: [FREIGHT, CUSTOMS]}
+      AGR: {name: Agriculture, classes: [ADVISORY]}
       BIZ: {name: Business operations & people, classes: [HR, PROC, PMO, STRAT, ADMIN]}
       XFN: {name: Personal knowledge work, classes: [INBOX, MEET, PKM]}
 
