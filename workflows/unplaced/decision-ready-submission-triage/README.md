@@ -61,6 +61,9 @@ flowchart TD
 **Output:** Prioritised queue of structured submissions in the underwriting workbench.
 **Failure modes → guards:** Extraction errors flow into pricing → confidence thresholds and validation checkpoints. Underwriters only see a fraction of the inbox → full-inbox triage (Paragon) and decline routing.
 
+**Recent practice (2026):**
+- Step 2: Hiscox's UK high-net-worth model categorises broker submissions by risk appetite to streamline underwriter workflow (Hiscox 2025 Annual Report). [[5]](#sources)
+
 ## Public runs
 
 Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [Second collection pass](../../../research/2026-11-second-pass.md).
@@ -76,3 +79,5 @@ Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the s
 2. Ivans, From Days to Hours: How Arch Insurance Automated Submission Intake, 2026-05-26. https://www.ivans.com/blog/posts/arch-insurance-ai-submission-intake-cytora/
 3. Markel, AI can accelerate underwriting. People must remain accountable, 2026-11-02. https://www.markel.com/insights-and-resources/insights/ai-can-accelerate-underwriting-people-must-remain-accountable
 4. Kalepa, How Paragon Doubled Its Quote-to-Bind Rate. https://kalepa.com/case-studies/paragon-doubled-quote-to-bind-rate
+5. Hiscox Ltd, 2025 Annual Report and Accounts (filed with BMA). https://cdn.bma.bm/documents/2026-07-16-21-20-40-Hiscox-Ltd-2025-Financial-Statement-Group.pdf
+6. Reinsurance News, AI adoption drives productivity growth and opens business opportunities: Hiscox CFO Cooper, 2025-11-07. https://www.reinsurancene.ws/ai-adoption-drives-productivity-growth-and-opens-business-opportunities-hiscox-cfo-cooper/

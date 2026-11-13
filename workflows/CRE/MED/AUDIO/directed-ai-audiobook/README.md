@@ -68,12 +68,21 @@ flowchart TD
 **Output:** WAV/MP3 audiobook masters the publisher owns, distributed outside Audible exclusivity.
 **Failure modes → guards:** Committing to a voice that grates a few chapters in → voice audition up front. Mispronounced names and homographs → global pronunciation dictionary. Flat dialogue → emotion tags plus full directed listen.
 
+**Recent practice (2026):**
+- Import step: make one studio chapter per scene (named book-chapter-scene-first-words) so you can regenerate a scene without touching the rest. Distribution through Voices by INaudio needs files submitted straight from ElevenLabs with no external audio edits (Freitag 2026). [[2]](#sources)
+- Pronunciation step: when the dictionary fails for frequent invented names, write the word phonetically in the script, using capitals for emphasis (Freitag 2026). [[2]](#sources)
+- Export step: export single chapters to verify settings first. A whole-project export has no undo ('I once lost 153k credits in one go') (Freitag 2026). [[2]](#sources)
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Partial**: first-hand runs that cover part of the shape or put checkpoints elsewhere. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md).
+Coverage as of 2026-11-13: **Strong**: a first-hand, detailed run that matches most of the shape. Updated in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [The Creative Penn, Producing AI-Narrated Audiobooks Using ElevenLabs](https://www.thecreativepenn.com/2025/06/27/producing-ai-narrated-audiobooks-using-elevenlabs-with-simon-patrick/) (2025-06-27). Producer's own process; novella Death Valley made with author's voice clone. "Your novella, Death Valley, was six and a half hours long. That took 18 hours of editing.". *First-hand: interview (producer on the author's podcast); confidence: high.*
+- [Minu Freitag, Digital Narration with ElevenLabs: What I Wish I'd Known](https://minu.co.nz/digital-narration-with-elevenlabs-what-i-wish-id-known/) (2026-05-10). 143k-word novel; one EL chapter per scene; pronunciation dictionary plus phonetic spellings; export pitfalls. "It took me two to three hours per recorded hour for the first release candidate and another hour per recorded hour to make changes.". *First-hand: yes; confidence: high.*
+- [Renee Bryan, ElevenLabs Review: My Experience Creating an AI Audiobook](https://reneelizbryan.info/elevenlabs-review-ai-audiobook-experience/) (2026-08-23). Own-voice clone; repeated listen/edit/regenerate to fix mismatched emotion. "I spent well over 100 hours on the audiobook". *First-hand: yes; confidence: high.*
+- [Nir Librach, LinkedIn post on Power Quest audiobook](https://www.linkedin.com/posts/nir-librach-478827194_litrpg-audiobooks-activity-7496197446239449089-4E1f) (2026-08-20). Multi-voice AI audiobook directed over four months; released on ElevenReader and Spotify. "Power Quest's 54 chapters span over 27 hours of audio, and feature over 40 unique character voices". *First-hand: yes; confidence: med.*
 
 ## Sources
 
 1. Joanna Penn with Simon Patrick, The Creative Penn podcast, 'Producing AI-Narrated Audiobooks Using ElevenLabs With Simon Patrick', 2025-06-27. https://www.thecreativepenn.com/2025/06/27/producing-ai-narrated-audiobooks-using-elevenlabs-with-simon-patrick/
+2. Minu Freitag, Digital Narration with ElevenLabs: What I Wish I'd Known, 2026-05-10. https://minu.co.nz/digital-narration-with-elevenlabs-what-i-wish-id-known/

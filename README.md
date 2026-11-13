@@ -6,7 +6,7 @@
 
 It covers software engineering, product design, research, law, finance, healthcare, education, marketing, sales, support, fiction and screenwriting, and industrialized short-drama production (短剧). Each workflow lists its sources and how strong its evidence is.
 
-**Status:** 155 workflows across 5 fields, 20 professions and 87 categories. Every category has at least one workflow, and 9 more from new fields wait in [unplaced](workflows/unplaced/). Each entry lists its public runs, re-checked against their sources in November 2026. One is `accepted`; the rest stay `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)).
+**Status:** 215 workflows across 5 fields, 20 professions and 87 categories. Every category has at least one workflow, and 18 more from new fields wait in [unplaced](workflows/unplaced/). Each entry lists its public runs, re-checked against their sources in November 2026. One is `accepted`; the rest stay `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)).
 
 ![The catalog site: a map of every field with each workflow's public-evidence grade, and a detail panel drawing the AI shot factory's steps, with human checkpoints in red](docs/images/site-detail.png)
 
@@ -82,7 +82,7 @@ Good places to start: issues labelled [`good first issue`](../../issues?q=is%3Ai
 
 - [research/phase1-report.md](research/phase1-report.md): the study this catalog started from, covering the landscape across industries, the classification design, and a log of 31 claims checked against sources.
 - [research/2026-11-real-runs.md](research/2026-11-real-runs.md): which workflows have public, first-hand runs, and who to invite to contribute.
-- [research/2026-11-new-workflows.md](research/2026-11-new-workflows.md) and [research/2026-11-second-pass.md](research/2026-11-second-pass.md): how workflows 32–155 were collected and checked.
+- [research/2026-11-new-workflows.md](research/2026-11-new-workflows.md) and [research/2026-11-second-pass.md](research/2026-11-second-pass.md) and [research/2026-11-third-pass.md](research/2026-11-third-pass.md): how workflows 32–215 were collected and checked.
 
 ## License
 

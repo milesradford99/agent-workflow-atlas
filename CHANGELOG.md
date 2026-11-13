@@ -10,6 +10,7 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 - New typeface (Geist), a light and dark switch that remembers the choice, and one Markdown renderer (`site_pages.markdown`) for both the app and the static pages.
 
 ### Added
+- Third collection pass: 60 new workflows (AWF-0156 to AWF-0215) and newer runs, sources and practice notes for 20 existing ones, with every cited link re-checked. See [research/2026-11-third-pass.md](research/2026-11-third-pass.md).
 - Redesigned catalog site: a route strip for every workflow (agent steps in teal, human checkpoints in red), a calmer field directory, a detail sheet with section navigation, and full English and Simplified Chinese support (UI, field, profession and category names, workflow names and summaries; steps and sources stay in English). Chinese static pages at `w/<ID>/zh/`.
 - A one-sentence `summary` on every workflow, required by `validate.py`; display labels in `i18n/labels.yaml` and Chinese names and summaries in `i18n/workflows.zh-CN.yaml`.
 - A shareable static page per workflow (`w/<ID>/`) with a preview image, a sitemap, and catalog exports (`catalog.json`, `catalog.csv`) built by `scripts/build_site.py`.

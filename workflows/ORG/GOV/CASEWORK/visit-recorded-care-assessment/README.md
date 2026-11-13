@@ -57,16 +57,23 @@ flowchart TD
 **Output:** A practitioner-approved statutory assessment or case note in the council's social care record.
 **Failure modes → guards:** Poor audio produces inaccurate transcripts (reported in Kingston's evaluation via secondary coverage, not opened) → practitioner review of every draft. Over-reliance and skill erosion → BASW has called for more evaluation. Vendor-inflated savings → prefer council figures (Swindon, Kingston) over Beam projections.
 
+**Recent practice (2026):**
+- Review step: Kent supervisors reported fewer amendments needed to AI-drafted reports, and audits found assessments more consistent (HI-KSS evaluation).
+
 ## Public runs
 
-Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md).
+Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Second collection pass](../../../../../research/2026-11-second-pass.md). More runs added in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [Swindon Borough Council, AI trial](https://www.swindon.gov.uk/news/article/1071/council_completes_ai_trial_to_enhance_adult_social_care_services) (2024-10-01). Trial with 19 social workers across 184 frontline meetings, April to July 2024. "the time taken to write up these assessments was reduced from four hours to one hour 30 minutes.". *First-hand: yes; confidence: high.*
 - [Kingston Council launch](https://www.kingston.gov.uk/news/2024/kingston-council-launches-ai-tool-free-time-frontline-social-workers) (2024-11-20). Pilot then rollout to more adult social care workers; practitioner reviews each record. "saves each frontline social worker at least 4 hours a week" (the same page also says "up to four hours"). *First-hand: yes; confidence: med.*
 - [Beam via techUK, Kent rollout](https://www.techuk.org/resource/how-local-government-is-using-ai-to-transform-social-care.html) (2025-12-10). Kent pilot of 29 practitioners scaled to over 1,000 staff. "seven hours per week". *First-hand: vendor; confidence: low.*
+- [Health Innovation KSS, Evaluation of test and learn of Magic Notes in Kent County Council adult social care](https://healthinnovation-kss.com/wp-content/uploads/2026/01/Magic-Notes-Evaluation-Report-HI-KSS-final.pdf) (2026-01). Independent evaluation; 29 staff, May-June 2025, care needs and OT assessments. "an average reduction of 2.7 hours per assessment (48%)". *First-hand: study; confidence: high.*
+- [St Helens Borough Council, rolls out AI tool to 450 frontline staff](https://news.sthelens.gov.uk/article/14316/St-Helens-Borough-Council-rolls-out-innovative-AI-tool-to-450-frontline-staff) (2025-11-26). Council pilot (17 practitioners) then rollout to 450 staff, incl. EHCP reports. "able to submit reports and assessments 71 per cent faster". *First-hand: yes; confidence: high.*
 
 ## Sources
 
 1. Swindon Borough Council, Council completes AI trial to enhance Adult Social Care services, 2024-10-01. https://www.swindon.gov.uk/news/article/1071/council_completes_ai_trial_to_enhance_adult_social_care_services
 2. Kingston Council, Kingston Council launches AI tool to free up time for frontline social workers, 2024-11-20. https://www.kingston.gov.uk/news/2024/kingston-council-launches-ai-tool-free-time-frontline-social-workers
 3. Rachel Astall (Beam), How local government is using AI to transform social care, techUK, 2025-12-10. https://www.techuk.org/resource/how-local-government-is-using-ai-to-transform-social-care.html
+4. Unity Insights, Magic Notes Validation Report v3.0, 2025-09. https://unityinsights.co.uk/wp-content/uploads/2025/10/202509_UI-Magic-Notes-Validation-Report-v3.0.pdf
+5. Slough Borough Council, Cabinet report (Magic Notes proof of concept). https://democracy.slough.gov.uk/mgConvert2PDF.aspx?ID=87342
