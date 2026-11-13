@@ -18,6 +18,7 @@ from pathlib import Path
 
 import yaml
 
+import i18n
 import site_pages
 from catalog import ROOT, load_taxonomy, read_front_matter, species_files
 from shapes import to_mermaid, to_route
@@ -25,7 +26,6 @@ from shapes import to_mermaid, to_route
 TEMPLATE = Path(__file__).with_name("site_template.html")
 STYLE = Path(__file__).with_name("site_style.css")
 LABELS = ROOT / "i18n" / "labels.yaml"
-ZH = ROOT / "i18n" / "workflows.zh-CN.yaml"
 DIAGRAM_RE = re.compile(r"\n*<!-- shape diagram:.*?<!-- end shape diagram -->\n*", re.S)
 
 
@@ -55,7 +55,7 @@ def repo_url():
     return re.sub(r"\.git$", "", url) if url.startswith("https://") else ""
 
 
-def records(tax, zh):
+def records(tax):
     out = []
     for path in species_files():
         fm, problem = read_front_matter(path)
@@ -68,9 +68,11 @@ def records(tax, zh):
         kingdom = tax["kingdoms"].get(fm["kingdom"], {})
         phylum = kingdom.get("phyla", {}).get(fm["phylum"], {})
         tags = fm.get("tags") or {}
+        zh = i18n.load(path) or {}
+        full = bool(zh.get("translated"))
         out.append({
             "id": fm["id"], "name": fm["name"], "summary": fm.get("summary") or "",
-            "nameZh": (zh.get(fm["id"]) or {}).get("name", ""), "summaryZh": (zh.get(fm["id"]) or {}).get("summary", ""),
+            "nameZh": zh.get("name", ""), "summaryZh": zh.get("summary", ""),
             "kingdom": fm["kingdom"], "kingdomName": kingdom.get("name", ""),
             "phylum": fm["phylum"], "phylumName": phylum.get("name", ""),
             "class": fm["class"], "deliverable": fm["deliverable"], "shape": fm["shape"],
@@ -89,6 +91,10 @@ def records(tax, zh):
             "steps": section(body, "Steps"),
             "publicRuns": runs,
             "sources": section(body, "Sources"),
+            # the Chinese page: everything but the sources, from README.zh-CN.md (scripts/i18n.py)
+            "zh": {"deliverable": zh["deliverable"], "shape": zh["shape"], "route": to_route(zh["shape"]),
+                   "mermaid": to_mermaid(zh["shape"]), "intro": zh["intro"], "steps": zh["steps"],
+                   "publicRuns": zh["runs"], "behind": zh["behind"]} if full else None,
         })
     return sorted(out, key=lambda w: w["id"])
 
@@ -98,9 +104,14 @@ def app_record(w, repo):
     browser and the static pages can't drift apart."""
     link = site_pages.resolver(repo, w["path"], 0)
     md = lambda key, **kw: site_pages.markdown(w[key], link, blank=True, **kw) if w[key] else ""
-    out = {k: v for k, v in w.items() if k not in ("intro", "steps", "publicRuns", "sources")}
+    out = {k: v for k, v in w.items() if k not in ("intro", "steps", "publicRuns", "sources", "zh")}
     out.update(introHtml=md("intro"), stepsHtml=md("steps"), runsHtml=md("publicRuns", cls="runs"),
                sourcesHtml=md("sources", sources=True, cls="sources"))
+    zh = w["zh"]
+    if zh:
+        zmd = lambda key, **kw: site_pages.markdown(zh[key], link, blank=True, **kw) if zh[key] else ""
+        out["zh"] = {"deliverable": zh["deliverable"], "shape": zh["shape"], "route": zh["route"], "mermaid": zh["mermaid"],
+                     "behind": zh["behind"], "introHtml": zmd("intro"), "stepsHtml": zmd("steps"), "runsHtml": zmd("publicRuns", cls="runs")}
     return out
 
 
@@ -116,7 +127,7 @@ def main():
         "taxonomy": {k: {"name": v["name"], "phyla": {p: {"name": ph["name"], "classes": ph["classes"]} for p, ph in v["phyla"].items()}}
                      for k, v in tax["kingdoms"].items()},
         "labels": yaml.safe_load(LABELS.read_text()),
-        "workflows": records(tax, yaml.safe_load(ZH.read_text()) or {}),
+        "workflows": records(tax),
     }
     app = dict(data, workflows=[app_record(w, data["repo"]) for w in data["workflows"]])
     blob = json.dumps(app, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

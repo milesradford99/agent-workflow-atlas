@@ -20,7 +20,7 @@ UI = {
         "home": "All workflows", "open": "Open in the catalog", "source": "Source on GitHub",
         "kit": "Run it with the Claude Code kit", "route": "The route", "steps": "Steps", "runs": "Public runs",
         "sources": "Sources", "diagram": "Full diagram", "verified": "Last checked {v}.", "report": "Report something out of date",
-        "note": "", "other": "中文", "otherHref": "zh/", "stops": "{n} human stops", "stop1": "1 human stop",
+        "note": "", "noteBehind": "", "noteMissing": "", "other": "中文", "otherHref": "zh/", "stops": "{n} human stops", "stop1": "1 human stop",
         "cov": {"Strong": "Strong evidence", "Partial": "Partial evidence", "Weak": "Weak evidence", "None found": "No public run"},
         "auto": {"assist": "Assist: a person reviews each piece", "checkpointed": "Checkpointed: runs freely between fixed approvals", "sampled": "Sampled: runs end to end while people audit samples"},
         "cp": {"plan": "approve the plan", "action": "approve an action", "review": "review the draft", "sample": "check a sample", "sign-off": "sign off", "handoff": "take over a hard case"},
@@ -36,7 +36,8 @@ UI = {
         "home": "全部工作流", "open": "在目录中打开", "source": "在 GitHub 查看源文件",
         "kit": "用 Claude Code 套件运行", "route": "路线", "steps": "步骤", "runs": "公开实例",
         "sources": "来源", "diagram": "完整流程图", "verified": "最近核对：{v}。", "report": "报告过时内容",
-        "note": "步骤、公开实例和来源保留英文原文，以便与引用的出处逐字对应。", "other": "English", "otherHref": "../", "stops": "{n} 个人工节点", "stop1": "1 个人工节点",
+        "note": "来源保留原文标题；公开实例中引号内的原话保留原文，以便与出处逐字对应。",
+        "noteBehind": "英文原文在这份译文之后有更新，内容请以英文版为准。", "noteMissing": "本页正文尚未翻译，以下为英文原文。", "other": "English", "otherHref": "../", "stops": "{n} 个人工节点", "stop1": "1 个人工节点",
         "cov": {"Strong": "证据充分", "Partial": "证据部分", "Weak": "证据薄弱", "None found": "暂无公开实例"},
         "auto": {"assist": "辅助：每一步都由人审阅", "checkpointed": "分段：在固定审批点之间自动运行", "sampled": "抽检：端到端运行，人抽查样本"},
         "cp": {"plan": "审批计划", "action": "审批操作", "review": "审阅草稿", "sample": "抽检样本", "sign-off": "签发", "handoff": "人工接手疑难"},
@@ -222,15 +223,15 @@ footer {{ border-top: 1px solid var(--rule); color: var(--slate); font-size: 13.
 <dl class="meta-grid"><div><dt>{t_delivers}</dt><dd>{deliverable}</dd></div><div><dt>{t_autonomy}</dt><dd>{autonomy}</dd></div><div><dt>{t_pattern}</dt><dd>{pattern}</dd></div><div><dt>{t_evidence}</dt><dd>{evidence}</dd></div><div><dt>{t_risk}</dt><dd>{risk}</dd></div><div><dt>{t_checked}</dt><dd>{checked}</dd></div>{tools}</dl>
 </section>
 {note}
-<div lang="en">
+<div lang="{body_lang}">
 {intro}
 <section class="d-sec"><h2>{t_steps}</h2>
 {steps}</section>
 <section class="d-sec"><h2>{t_runs}</h2>
 {runs}</section>
-<section class="d-sec"><h2 id="sources">{t_sources}</h2>
-{sources}</section>
 </div>
+<section class="d-sec"><h2 id="sources">{t_sources}</h2>
+<div lang="en">{sources}</div></section>
 <section class="d-sec"><h2>{t_diagram}</h2>
 <div class="shape-line">{shape}</div>
 <pre class="mermaid diagram" style="margin-top:12px">{mermaid}</pre></section>
@@ -263,6 +264,12 @@ def page(w, data, site_url, css, lang):
     summary = w["summaryZh"] if zh and w["summaryZh"] else w["summary"]
     base = f"{site_url}/w/{w['id']}/" if site_url else ""
     href_en, href_zh = (base, base + "zh/") if site_url else ("../" if zh else "./", "./" if zh else "zh/")
+    # the Chinese page reads README.zh-CN.md; without one it falls back to the English text
+    tr = w["zh"] if zh and w.get("zh") else None
+    pick = lambda key: tr[key] if tr else w[key]
+    note = ui["note"] if tr else ui["noteMissing"]
+    if tr and tr["behind"]:
+        note = ui["noteBehind"] + " " + note
     stops = sum(1 for m in w["route"] if m["k"] == "stop")
     kit = f'<a class="btn primary" href="{esc(link("variants/claude-code.md"))}">{esc(ui["kit"])}</a>' if w["kit"] else ""
     return PAGE.format(
@@ -279,19 +286,19 @@ def page(w, data, site_url, css, lang):
         stops=esc(ui["stop1"] if stops == 1 else ui["stops"].format(n=stops)), kit=kit,
         app=esc(up + ("?lang=zh-CN" if zh else "") + "#" + w["id"]), t_open=esc(ui["open"]),
         source=esc(f"{repo}/blob/main/{w['path']}/README.md" if repo else up + "../" + w["path"] + "/README.md"), t_source=esc(ui["source"]),
-        t_route=esc(ui["route"]), route=flow_html(w, ui),
+        t_route=esc(ui["route"]), route=flow_html(tr or w, ui),
         t_pattern=esc(ui["pattern"]), pattern=esc(", ".join(ui["pat"].get(p, p) for p in w["patterns"])),
         t_evidence=esc(ui["evidence"]), evidence=esc(ui["ev"].get(w["evidence"], w["evidence"])),
         t_risk=esc(ui["riskLabel"]), risk=esc(ui["risk"].get(w["risk"], w["risk"])),
         t_checked=esc(ui["checked"]), checked=esc(w["lastVerified"]),
         tools=f'<div class="wide"><dt>{esc(ui["tools"])}</dt><dd>{" ".join(f"<code>{esc(v)}</code>" for v in w["variants"])}</dd></div>' if w["variants"] else "",
-        t_delivers=esc(ui["delivers"]), deliverable=esc(w["deliverable"]), t_autonomy=esc(ui["autonomy"]), autonomy=esc(ui["auto"][w["autonomy"]]),
-        note=f'<p class="note" style="margin-top:28px">{esc(ui["note"])}</p>' if ui["note"] else "",
-        t_steps=esc(ui["steps"]), steps=markdown(w["steps"], link),
-        intro=f'<section class="d-sec"><h2>{esc(ui["setup"])}</h2>\n{markdown(w["intro"], link)}</section>' if w["intro"] else "",
-        t_runs=esc(ui["runs"]), runs=markdown(w["publicRuns"], link, cls="runs"),
+        t_delivers=esc(ui["delivers"]), deliverable=esc(pick("deliverable")), t_autonomy=esc(ui["autonomy"]), autonomy=esc(ui["auto"][w["autonomy"]]),
+        note=f'<p class="note" style="margin-top:28px">{esc(note)}</p>' if note else "", body_lang="zh-CN" if tr else "en",
+        t_steps=esc(ui["steps"]), steps=markdown(pick("steps"), link),
+        intro=f'<section class="d-sec"><h2>{esc(ui["setup"])}</h2>\n{markdown(pick("intro"), link)}</section>' if pick("intro") else "",
+        t_runs=esc(ui["runs"]), runs=markdown(pick("publicRuns"), link, cls="runs"),
         t_sources=esc(ui["sources"]), sources=markdown(w["sources"], link, sources=True, cls="sources"),
-        t_diagram=esc(ui["diagram"]), shape=esc(w["shape"]), mermaid=esc(w["mermaid"]),
+        t_diagram=esc(ui["diagram"]), shape=esc(pick("shape")), mermaid=esc(pick("mermaid")),
         verified=esc(ui["verified"].format(v=w["lastVerified"])),
         issues=esc(f"{repo}/issues/new?template=correction.yml" if repo else "#"), t_report=esc(ui["report"]),
         t_foot=esc(ui["foot"]), json=esc(up + "catalog.json"), csv=esc(up + "catalog.csv"),
@@ -325,7 +332,7 @@ def write_all(out, data, site_url, css):
         (d / "index.html").write_text(page(w, data, site_url, css, "en"))
         (d / "zh" / "index.html").write_text(page(w, data, site_url, css, "zh-CN"))
     rows = export_rows(workflows, repo, site_url)
-    full = [dict({k: v for k, v in w.items() if k != "mermaid"}, url=r["url"], source=r["source"]) for w, r in zip(workflows, rows)]
+    full = [dict({k: v for k, v in w.items() if k not in ("mermaid", "zh")}, zh={k: v for k, v in w["zh"].items() if k != "mermaid"} if w["zh"] else None, url=r["url"], source=r["source"]) for w, r in zip(workflows, rows)]
     (out / "catalog.json").write_text(json.dumps({"taxonomy": data["taxonomy"], "labels": data["labels"], "workflows": full}, ensure_ascii=False, indent=1))
     (out / "catalog.csv").write_text(to_csv(rows))
     if site_url:

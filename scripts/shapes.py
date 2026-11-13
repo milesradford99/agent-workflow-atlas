@@ -2,11 +2,14 @@
 
   →          next step
   (a ⟲ b)    a, then b; back to a until b passes
-  each X: a  a, done for every X (drawn as a box labelled "each X")
+  each X: a  a, done for every X (drawn as a box labelled "each X"); 每个 X：a in Chinese
   a | b      alternative paths after a routing step
   🛑 type    a human checkpoint (drawn red)
 """
 import re
+
+# "each X: a" (or, in a Chinese shape line, "每个 X：a")
+EACH = re.compile(r"^(each [^:：()]+|每[^:：()]+)[:：]\s*(.+)$")
 
 
 def split_top(text, sep):
@@ -86,7 +89,7 @@ def build(g, text, prev):
             for end in prev:
                 g.back(end, first)
             continue
-        each = re.match(r"^(each [^:()]+):\s*(.+)$", seg)
+        each = re.match(EACH, seg)
         if each:
             g.lines.append(f'  subgraph {g.next_id("s")}["{label(each.group(1))}"]')
             prev = build(g, each.group(2), prev)
@@ -123,8 +126,11 @@ def to_route(shape):
         text = unwrap(seg)
         cp = re.search(r"🛑 ([a-z-]+)", text)
         if cp:
-            marks.append({"k": "stop", "t": text.replace("🛑", "").strip(), "cp": cp.group(1)})
-        elif re.match(r"^each [^:()]+:", text):
+            # the page names the checkpoint itself, so keep only what the shape adds: who, or which case
+            detail = re.sub(r"🛑 [a-z-]+\s*(?:\(([^()]*)\))?", lambda m: m.group(1) or "", text, count=1)
+            detail = re.sub(r"\s+", " ", detail).strip(" :：")
+            marks.append({"k": "stop", "t": detail or cp.group(1), "cp": cp.group(1)})
+        elif re.match(EACH, text):
             marks.append({"k": "each", "t": text})
         elif len(split_top(text, "⟲")) > 1:
             marks.append({"k": "loop", "t": text})
