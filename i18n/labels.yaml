@@ -28,6 +28,7 @@ phyla:
   WRI: {en: Writing & publishing, zh-CN: 写作与出版}
   MED: {en: Media production, zh-CN: 影音制作}
   GOV: {en: Public sector, zh-CN: 公共部门}
+  LOG: {en: Logistics & supply chain, zh-CN: 物流与供应链}
   BIZ: {en: Business operations & people, zh-CN: 企业运营与人力}
   XFN: {en: Personal knowledge work, zh-CN: 个人知识工作}
 
@@ -42,6 +43,7 @@ classes:
   REG: {en: Regulatory compliance, zh-CN: 监管合规}
   DD: {en: Due diligence, zh-CN: 尽职调查}
   CLAIMS: {en: Claims, zh-CN: 理赔}
+  UW: {en: Underwriting, zh-CN: 核保}
   AP: {en: Accounts payable, zh-CN: 应付账款}
   CLOSE: {en: Month-end close, zh-CN: 月末结账}
   FPA: {en: Planning & analysis, zh-CN: 财务计划与分析}
@@ -116,6 +118,7 @@ classes:
   PMO: {en: Project management, zh-CN: 项目管理}
   STRAT: {en: Strategy research, zh-CN: 战略研究}
   ADMIN: {en: Administration, zh-CN: 行政}
+  FREIGHT: {en: Freight, zh-CN: 货运}
   INBOX: {en: Inbox, zh-CN: 邮件收件箱}
   MEET: {en: Meetings, zh-CN: 会议}
   PKM: {en: Personal knowledge, zh-CN: 个人知识管理}

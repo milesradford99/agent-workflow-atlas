@@ -4,13 +4,12 @@ name: 可决策的投保件分诊
 summary: "把经纪人投保件数字化并打分，排入核保队列；低置信度的由人工复核，核保员最终决定。"
 deliverable: 已分诊的投保件队列
 shape: "经纪人投保件 (邮件、ACORD 表格、多语言文档) → 数字化为险种数据模式 → 补充内部 + 外部数据 → 承保偏好 + 优先级评分 → 高置信度：直接进入队列 | 低置信度：🛑 review (验证检查点) → 🛑 sign-off (核保员评估、报价、承保或拒保)"
-source_hash: 494a9ae2a05d
+source_hash: 82e4613c35f6
 ---
 
 # 可决策的投保件分诊
 
 **与相近工作流的区别：** 上文的 Hiscox 报价起草会产出带定价的报价。本工作流的产出是排好序的投保件队列，每个风险仍由核保员定价。AWF-0022 形态相近，但产出的是应付款项，而不是核保决定。
-**未归类原因：** taxonomy.yaml 中目前没有涵盖此类的类别。在有三个类似的工作流足以支撑新类别 `UW`（TAXONOMY.md 规则 2）之前，先归在这里。
 **工具变体：** `cytora` · `kalepa`
 
 ## 步骤
@@ -29,7 +28,7 @@ source_hash: 494a9ae2a05d
 
 ## 公开实例
 
-覆盖度（截至 2026-11-06）：**部分**：第一手实例只覆盖流程的一部分，或检查点设在别处。收集与复核见 [Second collection pass](../../../research/2026-11-second-pass.md)。
+覆盖度（截至 2026-11-06）：**部分**：第一手实例只覆盖流程的一部分，或检查点设在别处。收集与复核见 [Second collection pass](../../../../../research/2026-11-second-pass.md)。
 
 - [Ivans, Arch Insurance submission intake](https://www.ivans.com/blog/posts/arch-insurance-ai-submission-intake-cytora/) (2026-05-26)。四条业务线在不到三个月内上线。"from two to three days down to two hours"。*第一手：厂商；可信度：中。*
 - [Cytora, Zurich scales Agentic AI](https://cytora.com/risk-flow-center/blog/zurich-scales-agentic-ai-to-5-countries-in-90-days-proving-the-target-model-for-itsglobal-rollout) (n.d.)。在 Zurich 各国分支推广。"manual triage time falling from 75 minutes to 15 minutes"。*第一手：厂商；可信度：中。*

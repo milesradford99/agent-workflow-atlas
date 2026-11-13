@@ -22,7 +22,7 @@ last_verified: 2026-11
 
 # Carrier-call booking agent
 
-`unplaced` (proposed: `ORG › LOG › FREIGHT`) · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../CONTRIBUTING.md#1-add-an-example-run))
+`ORG › LOG › FREIGHT` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
 
 **Shape:** `load ready in TMS → post to load boards + rank carriers for lane → each carrier call (inbound | outbound): identify MC → compliance check (Highway) → match load → negotiate inside lane floor/ceiling → can't identify / out of policy / carrier asks: 🛑 handoff (rep, with context) → agreed rate: 🛑 sign-off (team lead confirms negotiation) → book in TMS + send confirmation`
 **How it differs:** Closest AWF-0150 Email-to-order freight agents: that is the shipper side (emails → quotes/orders/appointments, sampled with exception handoff). This is the carrier-procurement side: a live voice negotiation whose deliverable is a booked carrier at an agreed rate, with a per-booking team-lead confirmation. Also differs from AWF-0153 (missed-pickup recovery calls, not booking).
@@ -66,7 +66,7 @@ flowchart TD
 
 ## Public runs
 
-Coverage as of 2026-11-13: **Weak**: only anonymous, vendor-linked or journalist-told accounts. Collected and re-checked in [Third collection pass](../../../research/2026-11-third-pass.md).
+Coverage as of 2026-11-13: **Weak**: only anonymous, vendor-linked or journalist-told accounts. Collected and re-checked in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [FreightWaves, Fura Freight: Next Year, Our AI Agent Will Book 90% of Loads](https://www.freightwaves.com/news/fura-freight-next-year-our-ai-agent-will-book-90-of-loads) (2026-11-11). CEO says agent Donna does compliance to booking; team lead confirms the finished negotiation. "Donna, now handles more than 40% of the company’s load bookings". *First-hand: interview; confidence: high.*
 - [Ten8, Fura Freight case study results](https://www.ten8.ai/blog/fura-freight-case-study-results) (2026-04-03). Inbound voice, MC verification, negotiation inside per-lane floor/ceiling; edge cases escalate. "Carrier calls answered | 60% | 100%". *First-hand: vendor; confidence: med.*

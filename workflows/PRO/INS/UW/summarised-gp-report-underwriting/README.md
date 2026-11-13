@@ -22,7 +22,7 @@ last_verified: 2026-11
 
 # Summarised GP-report underwriting
 
-`unplaced` (proposed: `PRO › INS › UW`) · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../CONTRIBUTING.md#1-add-an-example-run))
+`PRO › INS › UW` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
 
 **Shape:** `individual protection application → GP medical report received (up to 90+ pages) → GenAI filters irrelevant detail + summarises key medical facts → 🛑 review (underwriter reads summary, makes final decision) → decision to adviser → 🛑 sample (post-application audit + regular quality reviews)`
 **How it differs:** AWF-0149 triages broker submissions into a scored queue; AWF-0155 drafts a priced broker quote email. Here the agent condenses one applicant's medical evidence and the underwriter decides every case (assist): different deliverable (individual risk decision on medical evidence) and checkpoint. Enables the UW class (three distinct workflows).
@@ -59,7 +59,7 @@ flowchart TD
 
 ## Public runs
 
-Coverage as of 2026-11-13: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Third collection pass](../../../research/2026-11-third-pass.md).
+Coverage as of 2026-11-13: **Strong**: a first-hand, detailed run that matches most of the shape. Collected and re-checked in [Third collection pass](../../../../../research/2026-11-third-pass.md).
 
 - [Aviva, AI underwriting tool launch](https://www.aviva.com/newsroom/news-and-research-overview/news-releases/2025/11/aviva-to-launch-groundbreaking-ai-underwriting-tool/) (2025-11-18). Life underwriting rollout after 18 months' testing; underwriter decides every case. "already processed 1,000 cases in an active test phase". *First-hand: yes; confidence: high.*
 - [Aviva, extends to Critical Illness](https://www.aviva.com/newsroom/news-and-research-overview/news-releases/2026/03/aviva-extends-industry-first-ai-underwriting-tool-to-critical-illness-cover/) (2026-03-18). Extended to CI; also used for post-application auditing. "reduced the time underwriters spend reviewing each case by around half". *First-hand: yes; confidence: high.*

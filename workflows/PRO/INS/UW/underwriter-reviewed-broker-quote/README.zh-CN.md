@@ -4,13 +4,12 @@ name: 核保员复核的经纪人报价
 summary: "为范围内的续保起草含定价的经纪人报价邮件；发送前由核保员审核。"
 deliverable: 经纪人报价邮件
 shape: "经纪人投保件 (续保，范围内险种) → 范围检查 → Gemini 评估风险 → 将定价 + 数据填入经纪人邮件 → 🛑 review (核保员) → 发送报价"
-source_hash: ad6e7c14ad14
+source_hash: 3ee434a98502
 ---
 
 # 核保员复核的经纪人报价
 
 **与相近工作流的区别：** AWF-0051 受管控答案库的回复草稿（Governed-library response draft）是根据已批准的答案库回答问卷。本工作流的产出是针对单个风险的带定价报价，由一次核保员审核把关。
-**未归类原因：** taxonomy.yaml 中目前没有涵盖此类的类别。在有三个类似的工作流足以支撑新类别 `UW`（TAXONOMY.md 规则 2）之前，先归在这里。
 **工具变体：** `gemini-vertex`
 
 ## 步骤
@@ -28,7 +27,7 @@ source_hash: ad6e7c14ad14
 
 ## 公开实例
 
-覆盖度（截至 2026-11-06）：**充分**：有详细的第一手实例，与流程的大部分环节一致。收集与复核见 [Second collection pass](../../../research/2026-11-second-pass.md)。更多实例补充见 [Third collection pass](../../../research/2026-11-third-pass.md)。
+覆盖度（截至 2026-11-06）：**充分**：有详细的第一手实例，与流程的大部分环节一致。收集与复核见 [Second collection pass](../../../../../research/2026-11-second-pass.md)。更多实例补充见 [Third collection pass](../../../../../research/2026-11-third-pass.md)。
 
 - [Hiscox, GenAI lead underwriting model goes live](https://www.hiscoxgroup.com/news/press-releases/2024/12-08-24) (2024-08-12)。在伦敦市场上线；与经纪人 WTW 承保了第一单风险。"an insurance quote in a matter of minutes"。*第一手：是；可信度：高。*
 - [Reinsurance News, Hiscox CFO Cooper on AI adoption](https://www.reinsurancene.ws/ai-adoption-drives-productivity-growth-and-opens-business-opportunities-hiscox-cfo-cooper/) (2025-11-07)。增强型主承保已在破坏与恐怖主义业务中规模化；正扩展到中型市场财产险。"from a turnaround time of about three days to certainly around three minutes"；"around two-thirds of the sabotage and terrorism business now subject to the augmented underwriting process"。*第一手：访谈；可信度：高。*

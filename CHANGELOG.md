@@ -4,6 +4,9 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 
 ## 2026-11
 
+### Taxonomy
+- New class `PRO/INS/UW` (insurance underwriting) with AWF-0149, AWF-0155 and AWF-0163, and new phylum `ORG/LOG` (logistics and supply chain) with class `FREIGHT`: AWF-0150, AWF-0153 and AWF-0209. Each had three unplaced workflows (TAXONOMY.md rule 2). IDs are unchanged.
+
 ### Changed
 - Catalog site redesigned for reading. Each workflow's route is written out in words (one chip per step, human checkpoints in red) in the detail sheet and on its page; the dot strip stays for scanning lists. Steps that hold a 🛑 are highlighted, tables in entries render as tables, and public runs read as separate cards.
 - *Start here* now opens with every field as a tile (count and public-evidence mix) that jumps into the field map. The field map shows a one-line summary under each workflow name. Cards name the approvals a person gives (plan, review, sign-off) instead of counting them.

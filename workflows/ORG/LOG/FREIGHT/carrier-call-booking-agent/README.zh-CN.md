@@ -4,7 +4,7 @@ name: 承运商电话订舱代理
 summary: "接打承运商电话、核查合规并在线路价格区间内议价；团队主管确认后订舱。"
 deliverable: 已订舱货载
 shape: "货载在 TMS 中就绪 → 发布到货载信息板 + 为该线路给承运商排序 → 每个承运商电话 (呼入 | 呼出)：识别 MC → 合规核查 (Highway) → 匹配货载 → 在线路价格下限/上限内议价 → 无法识别 / 超出政策 / 承运商要求：🛑 handoff (业务员，附上下文) → 价格谈妥：🛑 sign-off (团队主管确认议价结果) → 在 TMS 中订舱 + 发送确认"
-source_hash: f92d020ea928
+source_hash: b91f3bd32267
 ---
 
 # 承运商电话订舱代理
@@ -26,7 +26,7 @@ source_hash: f92d020ea928
 
 ## 公开实例
 
-覆盖度（截至 2026-11-13）：**薄弱**：只有匿名、与厂商相关或经记者转述的说法。收集与复核见 [Third collection pass](../../../research/2026-11-third-pass.md)。
+覆盖度（截至 2026-11-13）：**薄弱**：只有匿名、与厂商相关或经记者转述的说法。收集与复核见 [Third collection pass](../../../../../research/2026-11-third-pass.md)。
 
 - [FreightWaves, Fura Freight: Next Year, Our AI Agent Will Book 90% of Loads](https://www.freightwaves.com/news/fura-freight-next-year-our-ai-agent-will-book-90-of-loads) (2026-11-11)。CEO 称智能体 Donna 从合规核查做到订舱；团队主管确认谈完的结果。"Donna, now handles more than 40% of the company’s load bookings"。*第一手：访谈；可信度：高。*
 - [Ten8, Fura Freight case study results](https://www.ten8.ai/blog/fura-freight-case-study-results) (2026-04-03)。呼入语音、MC 核验、在每条线路的价格下限/上限内议价；边缘情况升级处理。"Carrier calls answered | 60% | 100%"。*第一手：厂商；可信度：中。*

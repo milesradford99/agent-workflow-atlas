@@ -4,7 +4,7 @@ name: 全科医生报告摘要核保
 summary: "为保障类保险核保摘要冗长的全科医生报告；每个决定由核保人作出，输出定期审计。"
 deliverable: 核保决定
 shape: "个人保障类保险申请 → 收到全科医生（GP）体检报告 (多达 90+ 页) → GenAI 过滤无关细节 + 归纳关键医学事实 → 🛑 review (核保人阅读摘要并作出最终决定) → 把决定告知顾问 → 🛑 sample (投保后审计 + 定期质量复核)"
-source_hash: 7d3b9fe714ff
+source_hash: 74cd271c4e8e
 ---
 
 # 全科医生报告摘要核保
@@ -25,7 +25,7 @@ source_hash: 7d3b9fe714ff
 
 ## 公开实例
 
-覆盖度（截至 2026-11-13）：**充分**：有详细的第一手实例，与流程的大部分环节一致。收集与复核见 [Third collection pass](../../../research/2026-11-third-pass.md)。
+覆盖度（截至 2026-11-13）：**充分**：有详细的第一手实例，与流程的大部分环节一致。收集与复核见 [Third collection pass](../../../../../research/2026-11-third-pass.md)。
 
 - [Aviva, AI underwriting tool launch](https://www.aviva.com/newsroom/news-and-research-overview/news-releases/2025/11/aviva-to-launch-groundbreaking-ai-underwriting-tool/) (2025-11-18)。经过 18 个月测试后推广寿险核保；每个案件由核保人决定。"already processed 1,000 cases in an active test phase"。*第一手：是；可信度：高。*
 - [Aviva, extends to Critical Illness](https://www.aviva.com/newsroom/news-and-research-overview/news-releases/2026/03/aviva-extends-industry-first-ai-underwriting-tool-to-critical-illness-cover/) (2026-03-18)。扩展到重疾险；也用于投保后审计。"reduced the time underwriters spend reviewing each case by around half"。*第一手：是；可信度：高。*

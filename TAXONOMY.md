@@ -55,7 +55,7 @@ Folders follow the first four levels. Variants and examples live inside a specie
 |---|---|---|
 | **PRO** | 1. `HLT` Patient care or life-science R&D | `CLINDOC` · `RCM` · `CLINTRIAL` · `DRUGDISC` |
 | | 2. `LEG` Legal advice, documents, filings, compliance | `CONTRACT` · `RESEARCH` · `LITIG` · `REG` · `DD` |
-| | 3. `INS` Insurance claims and underwriting decisions | `CLAIMS` |
+| | 3. `INS` Insurance claims and underwriting decisions | `CLAIMS` · `UW` |
 | | 4. `FIN` Transactions, books, financial models, investment views | `AP` · `CLOSE` · `FPA` · `INVEST` · `AUDIT` · `TAX` |
 | | 5. `EDU` Teaching and assessing learners | `COURSE` · `ASSESS` · `TUTOR` · `LND` |
 | | 6. `RES` Scholarly papers, reviews, grants | `LITREV` · `WRITE` · `ANALYSIS` · `GRANT` · `PEER` |
@@ -71,8 +71,9 @@ Folders follow the first four levels. Variants and examples live inside a specie
 | **CRE** | 1. `WRI` Final deliverable is text, including scripts and translations | `FICTION` · `SERIAL` (网文) · `SCREEN` · `NONFIC` · `JOURN` · `TECHW` · `TRANS` |
 | | 2. `MED` Video, images or audio | `SHORTDRAMA` (live-action) · `AIGCVIDEO` (AI video, 漫剧) · `POST` · `DUB` · `AUDIO` · `GAMEART` |
 | **ORG** | 1. `GOV` Public administration | `POLICY` · `CASEWORK` · `CIVIC` |
-| | 2. `BIZ` Company functions: people, procurement, projects, strategy | `HR` · `PROC` · `PMO` · `STRAT` · `ADMIN` |
-| | 3. `XFN` One person's own email, meetings, notes | `INBOX` · `MEET` · `PKM` |
+| | 2. `LOG` Moving goods: freight, customs, warehousing | `FREIGHT` |
+| | 3. `BIZ` Company functions: people, procurement, projects, strategy | `HR` · `PROC` · `PMO` · `STRAT` · `ADMIN` |
+| | 4. `XFN` One person's own email, meetings, notes | `INBOX` · `MEET` · `PKM` |
 
 **Edge cases the keys settle:**
 - *Issue → agent-opened PR* is `SWE.FEAT`, not `SWE.REVIEW`, because the deliverable is a PR.
