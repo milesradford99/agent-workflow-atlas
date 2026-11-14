@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **187 of 238 entries converted, 51 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **193 of 238 entries converted, 45 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -102,7 +102,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0059 workflows/TEC/ENG/MFG/drawing-to-route-draft
   - AWF-0057 workflows/TEC/ENG/SIM/engineer-checked-cfd-run
   - AWF-0193 workflows/TEC/ENG/SIM/unattended-simulation-campaign
-- [ ] **Batch 10** (building codes and construction submittals, 6)
+- [x] **Batch 10** (building codes and construction submittals, 6)
   - AWF-0058 workflows/TEC/ENG/CODECOMP/cited-pre-screen-checks
   - AWF-0117 workflows/TEC/ENG/CODECOMP/pre-submittal-plan-check
   - AWF-0118 workflows/TEC/ENG/CODECOMP/zoning-rule-study-crew
@@ -318,3 +318,19 @@ Unique evidence URLs: 5 readable of 9. Three source sites refused an automated r
 | AWF-0193 | service | Overnight batches with nobody present; the plan and the surrogate arrive as queue items | 1 of 1 | Vendor material only. Newer: a second vendor account (2026-05-29) extends the loop to driver-in-the-loop and measurement; an HBK/VI-grade partnership (2026-09). The wrong-equilibrium check is gate logic, not model judgement. |
 
 Checks: `validate.py` reports 238 workflows, 187 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the six folders and CHANGELOG/CONVERSION-TODO.
+
+
+**Batch 10 (2026-11-14), building codes and construction submittals; six bilingual entries; two read in full (AWF-0058, 0235)**
+
+Unique evidence URLs: 9 readable of 15. Two PDFs were read with a PDF text reader (the Seattle pilot report, the EMSD paper) and their headline figures re-checked. pype.io returns 403 and was not retried; the vendor position on Pype was taken from a 2026 product review instead. The Frontiers paper, the Seattle blog, and the InspectMind pages were opened; five of the fifteen (the Procore and ENR case studies, the Frontiers article) were not re-opened on this pass and are reported as such. No source, public run, quote, shape or id changed.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0058 | service | Applications arrive continuously; the check runs unattended and the examiner answers per check | 2 of 2 (report via PDF reader) | The pre-screen is now mandatory in Honolulu from 2026-09-01 (applications rejected without it; 40.5 days saved, review cycles 3.4 to 1.4) and piloted in Toronto with a citation on every finding; both describe it as guidance that does not approve, refuse or delay a permit. |
+| AWF-0117 | skill | One reviewer, one set, a triage gate before any fix; per-discipline reads are parallel checks | 2 of 2 | Both sources are undated vendor case studies; the "about a quarter" legitimate rate is the vendor quoting one firm. A 2026 comparison shows the same checks moving into the design tools, still advisory. |
+| AWF-0118 | skill | One architect, one study, one sign-off; the source's "crew" is one agent with subagents today | 1 of 1 | Vendor figures only. Commercial zoning products build coverage jurisdiction by jurisdiction, so on a French PLU the retrieve-and-quote step stays the agent's work; nothing opened shows a PLU usable as a rule set. |
+| AWF-0151 | service | Packages arrive on their own schedule; the engineer answers a queue and the architect disposes | 1 of 7 | The trigger now differs by product: one runs automatically when a package is uploaded, the others start only when a person prompts them, and submittal-type coverage varies (vendor 2026 comparison). Both human acts unchanged in every account. |
+| AWF-0235 | service | Submissions arrive continuously; verdicts are worked in a queue and the reply is released by approval | 1 of 1 (paper via PDF reader) | The same shape was productised in China: a state construction group's platform (2026-10) runs a multi-agent first pass over 26 categories of hazardous-works submissions, cites a clause per comment, keeps an audit trail and requires confirm/reject/add before the report is generated. |
+| AWF-0190 | skill | One project engineer runs it once per spec set and verifies the draft | 1 of 2 | tool-renamed-or-gone: Pype AutoSpecs is now an Autodesk product licensed only in the Forma for Construction Operations bundle; eBinder and SmartPlans were withdrawn from sale in 2024-03; the current product adds version diffing and suggested missing items. |
+
+Checks: `validate.py` reports 238 workflows, 193 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagrams regenerated for the two entries whose copied blocks drifted and the check now passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the six folders plus CHANGELOG/CONVERSION-TODO.
