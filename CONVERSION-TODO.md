@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **174 of 238 entries converted, 64 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **181 of 238 entries converted, 57 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -87,7 +87,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0231 workflows/TEC/PRD/UI/designer-authored-ui-pr
   - AWF-0121 workflows/TEC/PRD/UI/routed-accessibility-pr-agent
   - AWF-0062 workflows/TEC/PRD/UI/spec-bound-screen-options
-- [ ] **Batch 8** (user research and marketing, 7)
+- [x] **Batch 8** (user research and marketing, 7)
   - AWF-0120 workflows/TEC/PRD/UXR/agent-run-interviews
   - AWF-0195 workflows/TEC/PRD/UXR/pr-reviewed-research-wiki
   - AWF-0061 workflows/TEC/PRD/UXR/quote-verified-synthesis
@@ -285,3 +285,20 @@ Unique evidence URLs: 8 fully readable of 9; Doctolib's Medium page returned 403
 | AWF-0062 | project | Standing DESIGN.md and enforced library-only write boundary | 1 of 1 | Current official Figma documentation confirms native read/write tools; connector access can replace a custom API wrapper. Library publication and production release remain human-controlled. |
 
 Checks: `validate.py` reports 238 workflows, 174 STANDARD entries; index regenerated/check passes; diagrams unchanged/check passes; i18n status 238 up to date, 0 behind/problem/missing; `git diff --check` clean. Complete evidence tails, id and shape compared with the previous commit and unchanged.
+
+
+**Batch 8 (2026-11-14), user research and marketing; seven bilingual entries; three read in full (AWF-0171, 0225, 0061)**
+
+Unique evidence URLs: 11 readable of 13; Donska and ShopBack Medium return 403 and were not retried. Full papers were opened for both arXiv studies, not just abstracts. Evidence tails/shapes preserved. Methods checked in 2026-11.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0120 | service | Participant sessions run independently of researcher-operated conversations | 1 of 1 | Opened Anthropic's later Interviewer study dated 2026-09-29; participant choice about public release retained. Build covers text interviews, not unverified voice/video features. |
+| AWF-0195 | service | Daily wiki updates with researcher-only merge | 1 of 1 | Source does not identify video tooling or supply a reusable implementation. Build assumes an approved existing processor; no claim a text agent replaces media processing. |
+| AWF-0061 | skill | One researcher synthesises one study using the existing kit | 1 of 3 | source-unreachable: Donska and Medium403. Newly found PubMed study page returned a cookie challenge and was not cited. Kit linked; this build narrows publishing to researcher-owned tools. |
+| AWF-0171 | project | Frozen holdout, calibration boundary and versioned approval | 3 of 3 | SSR paper explicitly says anchors were optimised on the studied surveys; headline performance does not establish generalisation. Opened Pew2026-09 model comparison; domain-specific validation retained. The sources describe distinct approaches, not one end-to-end deployment. Part C: Bain describes backtesting but does not identify a formal insights-lead sign-off; treat that gate as the catalog's guard. |
+| AWF-0055 | service | Weekly scan and owner-routed exception/review queue | 1 of 1 | Source says author stays in loop, but does not document a strict technical pre-post approval gate; Build adds it explicitly. No newer account found in bounded searches. |
+| AWF-0053 | skill | One editor drafts and reviews a calendar in conversation | 3 of 3 | Opened Oktopost plugin update2026-09-10. Multirole recurring loops are optional; minimal build is draft-only, with editor-controlled scheduling and metrics exports on request. Historical platform-policy claims require separate current-policy verification before actual deployment. |
+| AWF-0225 | platform | Core trained ranker and controlled online experiment cannot be replaced by agent judgment | 1 of 1 | Platform verdict reviewed: campaign-specific learned ranker remains a specialist model. Full paper confirms single refinement, human slate review and online winner selection. No newer account found in bounded searches. |
+
+Checks: `validate.py` reports 238 workflows, 181 STANDARD entries; index and diagram checks pass; i18n status 238 up to date, 0 behind/problem/missing; `git diff --check` clean. Complete evidence tails, id and shape compared with the previous commit and unchanged.
