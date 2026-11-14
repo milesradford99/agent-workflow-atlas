@@ -4,7 +4,7 @@ name: 差异验证的 dbt 迁移
 summary: "将遗留代码迁移为 dbt 项目，每个模型都与生产数据比对验证；数据负责人逐表审批并签批切换。"
 deliverable: 迁移完成的 dbt 项目
 shape: "梳理血缘 + 遗留代码 + 文档 → 切分大型存储过程 → 每个模型：翻译成 dbt → (与生产数据做 data diff ⟲ 智能体解释或修复差异) → 🛑 review (数据负责人通过行级 diff 审批该表) → 批量处理外观类修改 → 🛑 sign-off (全部审批通过后切换)"
-source_hash: f453401f1ddf
+source_hash: 5c30d5fbd9d5
 ---
 
 # 差异验证的 dbt 迁移

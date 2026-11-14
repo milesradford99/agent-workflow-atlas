@@ -119,5 +119,5 @@ Coverage as of 2026-11-06: **Weak**: only anonymous, vendor-linked or journalist
 ## Sources
 
 1. Daniel Poppy (dbt Labs), How Ecolab used an AI migration agent to shrink 84,000 lines of legacy SQL by 6x, 2026-10-27. https://www.getdbt.com/blog/ecolab-ai-agent-legacy-sql-migration
-2. Gleb Mezhanskiy (Datafold), The Slicer vs. The Kraken, 2025-07-14. https://www.datafold.com/blog/stored-procedure-migration-slicer/ (search excerpt only, not fetched) (search excerpt only, not opened)
-3. Sidhartha Ray, I had 45 hand-written Snowflake SQL pipelines to migrate to dbt (LinkedIn), 2026-06-22. https://www.linkedin.com/posts/sidhartharay_dbt-snowflake-etl-migration-agentic-ai-activity-7474834597030289408-AMAv (search excerpt only, not fetched) (search excerpt only, not opened)
+2. Gleb Mezhanskiy (Datafold), The Slicer vs. The Kraken, 2025-07-14. https://www.datafold.com/blog/stored-procedure-migration-slicer/
+3. Sidhartha Ray, I had 45 hand-written Snowflake SQL pipelines to migrate to dbt (LinkedIn), 2026-06-22. https://www.linkedin.com/posts/sidhartharay_dbt-snowflake-etl-migration-agentic-ai-activity-7474834597030289408-AMAv
