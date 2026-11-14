@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **200 of 238 entries converted, 38 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **207 of 238 entries converted, 31 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -117,7 +117,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0112 workflows/COM/RET/CATALOG/confidence-sampled-attribute-extraction
   - AWF-0113 workflows/COM/RET/CATALOG/copilot-attribute-suggestions
   - AWF-0114 workflows/COM/RET/CATALOG/supplier-confirmed-catalog-fixes
-- [ ] **Batch 12** (video, 短剧, screenwriting, localisation, 7). Several sources are Chinese; keep Chinese industry terms as written and define them under Terms.
+- [x] **Batch 12** (video, 短剧, screenwriting, localisation, 7). Several sources are Chinese; keep Chinese industry terms as written and define them under Terms.
   - AWF-0138 workflows/CRE/MED/POST/autonomous-live-recap
   - AWF-0202 workflows/CRE/MED/POST/editor-curated-broadcast-clips
   - AWF-0077 workflows/CRE/MED/POST/transcript-first-video-edit
@@ -351,3 +351,20 @@ Unique evidence URLs: 8 readable of 19. Four entries' own sources were not re-op
 | AWF-0114 | service | A million listings reviewed in batches; supplier confirmation and physical sampling are asynchronous | 1 of 1 | A 2026 account sets out the promotion policy this entry routes on, and warns that editing supplier-asserted content in place loses the difference between asserted and inferred; the build keeps both values in the change record. |
 
 Checks: `validate.py` reports 238 workflows, 200 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes after rebuilding two blocks; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.
+
+
+**Batch 12 (2026-11-14), video, 短剧, screenwriting and localisation; seven bilingual entries; two read in full (AWF-0138, 0014)**
+
+Chinese industry terms are kept as written in both languages and glossed in the term lists, as this batch's brief asks (场次表, 卡点, 投流, 钩子, 转写, 备案). Unique evidence URLs: 8 readable of 19. Two entries' Chinese production sources were not re-opened (AWF-0016, AWF-0014) and each says so; the 微短剧 regulation was re-checked and both entries record that the consultation draft is now in force. The WGA page was opened and AWF-0013's compliance note is updated to the 2026 MBA. No source, public run, quote, shape or id changed.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0138 | platform | Detection is a CV model over live audio and video and assembly runs at match tempo; the agent carries the event vocabulary, the clip spec and the sampling report | 1 of 1 | The 2023 build is now a product category: 2026 platforms sell detect-and-assemble across dozens of sports and split over exactly this entry's decision — one markets "AI detects the moments, you decide what gets published", others publish automatically. Because publishing is unattended, the exclusions are made structural (vocabulary and publish template) rather than prompted. |
+| AWF-0202 | platform | Segmentation, reframing and vertical rendering are video and speech model work on a live signal | 2 of 2 | The checkpoint this entry chose is now the marketed position of the 2026 live-clipping platforms; the editor's job moves from cutting to selecting, so the throughput limit becomes judgement speed. |
+| AWF-0077 | project | Standing brand components, a jargon dictionary and render scripts must behave the same on every video | 1 of 1 | Remotion now publishes its own agent skill, so the glue the 2026-04 account wrote by hand is partly packaged; what stays in the repository is the components, the dictionary and the watch-through. |
+| AWF-0016 | platform | The shoot is physical, the grade needs post tools and 投流 needs the ad platform's buying system | 0 of 4 | Sources not re-opened; the regulation was: 微短剧发展管理办法 in force 2026-09-01, three classes by budget and subject, filing or licence, 11 content red lines, per-episode AI label. The release checkpoint is firmer than recorded and the class should be fixed before the shoot. |
+| AWF-0013 | skill | One writer, one screenplay, two locked plans and a final sign-off | 1 of 2 | The old note's open question is settled: the 2026 MBA (2026-05-02 to 2030-05-01) keeps the 2023 AI protections and adds a notice requirement for licensing scripts to train a commercial AI system. Compliance block updated; no step changed. |
+| AWF-0014 | project | Hook table, character base and continuity ledger must persist across dozens of sessions — the sources' main failure is a model that forgets the setting | 0 of 5 | Sources not re-opened; the regulation re-checked (as AWF-0016). The content-rule check is now a compliance step and should be run against the drama's classification. Kit linked in the Form line. |
+| AWF-0136 | service | A version's strings arrive in batches across ten languages with nobody starting the run | 0 of 1 | Source not re-opened (more than twelve months old). A 2026 account of the same three-level pipeline reports raw MT usable about 70%, rising to about 85% with a terminology engine — consistent with this entry's rule layer and two gates. |
+
+Checks: `validate.py` reports 238 workflows, 207 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.

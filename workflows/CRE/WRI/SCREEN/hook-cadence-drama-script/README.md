@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
+build: project
+method_checked: 2026-11
 ---
 
 # Hook-cadence drama script
@@ -60,7 +62,48 @@ flowchart TD
 <!-- end shape diagram -->
 
 
+## Background
+
+A 微短剧 is told in 60 to 100 episodes of about 90 seconds each, watched on a phone and paid for by the episode after a free opening. That format dictates the writing. Every episode has to open with something that stops a thumb within three seconds and end on a cut that makes the next one feel necessary, and the platform earns nothing until a viewer reaches the paywall, so episodes one to ten and the paywall episode carry the whole business. Producers therefore start from data: which endings the top dramas used, where their paywalls sat, how often the reversal came. This workflow turns that study into a hook table — one line per episode, with the ending-hook type named and the paywall flagged — then drafts in batches of ten with a recap of the previous episode in every prompt, checks each episode mechanically for the hook, the ending, the line length and the cast budget, and hands the result to the head writer, who rewrites the opening and the paywall episode by hand. The writing that decides whether anyone pays stays human; what the model provides is volume against a fixed form.
+
+**Terms:**
+- **微短剧**: a short-form serial for mobile, under twenty minutes an episode, usually 60–100 episodes.
+- **钩子 (hook)**: the opening beat that stops a viewer scrolling.
+- **反转**: a reversal — new information that turns the situation.
+- **卡点 (paywall point)**: the episode where free viewing stops and payment starts.
+- **钩子密度表**: the hook table: one line per episode with its event, ending-hook type, paywall flag and cost.
+- **场次表**: the scene breakdown handed to production.
+- **伏笔 (setup and payoff)**: a detail planted early and used later; the entry keeps a register of both ends.
+- **备案 / 许可**: the filing or distribution licence a domestic release needs.
+
+## Build it with an agent
+
+**Form:** `project`. The scripts, the hook table, the character database and the continuity ledger have to persist across dozens of sessions and stay in one version — the sources' main failure is a model that forgets the setting after a dozen episodes — which is a repository with `CLAUDE.md` and skills, and a Claude Code kit is provided.
+
+**You need:** the market study as a table — for the top dramas, the ending-hook type per early episode and the paywall position; the character base, each entry three fields in under 50 字; the hook table and the setup/payoff register as files under version control; the check scripts (length, line length, scene count, first-three-second conflict, ending cut, red-line words); the platform's content rules and the classification the drama falls into. The agent must not invent a hook type outside the fixed five, and must not overwrite an approved episode without a new version.
+
+| Step | Built as |
+|---|---|
+| study top dramas | A data pull from a third-party spend ranking plus an assistant tagging each ending into the five fixed hook types; the output is a frequency table, which is what the next step argues from. |
+| core setup | The Skill turns the idea into an outline and a character base; `CLAUDE.md` fixes the three-field, 50-字 character format so the cast stays small and readable. |
+| 🛑 plan | The producer and head writer choose the emotion the audience will pay for before any episode is outlined; nothing is drafted until that choice is written into the hook table's header. |
+| 60–100 one-line episodes | The Skill lays out the hook table with the paywall flagged and the free episodes marked, plus a setup/payoff register so a reversal can be traced to what planted it. |
+| 🛑 plan | Producer, writer and director read the hook table together and find the weak endings; per-episode scene outlines are confirmed before any full episode is written. |
+| each batch of 10: draft episodes | Batches of ten with the previous episode's recap and this episode's task in every prompt, and a continuity ledger beside the scripts; the batch size is the model's memory limit made explicit. |
+| each episode: check hook, ending, line length, cast and location budget | Scripts run the mechanical checks — first-three-second conflict, cut-off ending, 180–250 字 of dialogue per minute, 10–12 字 lines, at most three scene changes — so the head writer reads for what a script cannot measure. |
+| 🛑 review (head writer rewrites eps 1–10 + paywall ep) | The head writer rewrites by hand the episodes that decide revenue, and the strongest reversals are moved into the paywall episodes; the build keeps the rewritten version as the version of record. |
+| content-rule check → 场次表 | A red-line scan plus the classification check, then the 场次表 and episode cards are exported under a dated version name. |
+
+**Checkpoints:** `plan`: twice — the paid emotion before the outline, and the hook table before any episode is written — because both are cheap to change and expensive to discover later. `review`: the head writer's rewrite of episodes 1–10 and the paywall episode is the editorial gate, and it is deliberately placed where the money is; the build keeps the rewrite as a separate version so the original and the rewrite can be compared.
+
+**Since the sources:** Sources date from 2026-07 to 2026-10: a producer's process review, a writer's interview, a magazine feature and an open-source Codex skill. They were not re-opened on this pass; the regulation was. The tiered review this entry's tags describe is no longer anticipated — the 微短剧发展管理办法 [took effect on 2026-09-01](https://www.news.cn/20260731/9d0579e4587648fb83580e0fec008e12/c.html), with the three classes by budget and subject, the filing and licence system, eleven content red lines and a per-episode AI label for generated work. That makes the content-rule check a compliance step rather than a precaution, and it should be run against the drama's classification, which is decided before production rather than at submission.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
+
+*As reported by the sources.*
+
 1. Study the market before choosing a story: pull the top 50 dramas by 7-day spend from third-party data platforms (the producer uses 新红 and 灰豚), and record the ending-hook type of each of eps 1–5 and the emotional peak of the paywall episode. An assistant tags hook labels (身份反转, 情感绑架, 生死危机, 打脸爽点) in Excel and counts their frequency [[15]](#sources).
 2. Build the core setup. The AI turns the story idea into a mind map and outline [[16]](#sources). Character sheets stay under 50 字 each, in three fields (身份标签, 核心软肋, 触发动作), kept in a 飞书多维表格 character base [[15]](#sources). Keep the cast small and the relationships readable at a glance [[18]](#sources).
 3. 🛑 **Plan**: the producer and head writer pick the emotion the audience will pay for (for example 虐渣复仇 over 母子相认 as the main line) before any episode is outlined [[15]](#sources).

@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: [AWF-0014]
 merged_into: null
 last_verified: 2026-11
+build: platform
+method_checked: 2026-11
 ---
 
 # Live-action assist
@@ -60,7 +62,48 @@ flowchart TD
 <!-- end shape diagram -->
 
 
+## Background
+
+A 微短剧 is a serial made for a phone: each episode under twenty minutes, sixty to a hundred of them, shot fast and cheap, and paid for by advertising spend rather than by subscriptions. The economics explain the workflow. Because the drama is bought and watched through paid placements (投流), the first three seconds of a clip decide whether the money works, so a production makes dozens of alternate openings for the same scene and lets the ad platform's data choose. Before that, a crew has to plan a shoot of ten days or so across real locations, with a cast, costumes, props and a schedule that fits them; and after it, someone has to cut, caption, grade and patch the VFX. Here AI does the preparation and the paperwork — breaking the script into 场次 (scene units), listing what each scene needs, making previs frames, subtitling, and generating the ad-cut variants — while people shoot, act, choose the cut and approve the spend. The human stops are the three places where taste and liability sit: the plan that commits a crew's time, the cut that carries the drama, and the release, which now needs a filing or licence and an AI label on every episode.
+
+**Terms:**
+- **微短剧**: a short-form serial for mobile, each episode under twenty minutes, usually 60–100 episodes.
+- **场次表**: the scene breakdown: what happens in each scene, who is in it, what it needs.
+- **previs**: pre-visualisation — rough frames or animatics made before shooting to fix composition and blocking.
+- **投流**: paid traffic buying on a platform's ad system, which is how these dramas find viewers.
+- **ad cut / 投流素材**: a short promotional edit, often 20–50 variants per hook, each with a different opening.
+- **3-second view rate**: the share of impressions watched past three seconds; the metric the ad buying is tuned on.
+- **ROI**: return on ad spend for the campaign.
+- **钩子 (hook)**: the opening beat designed to stop a scrolling viewer.
+
+## Build it with an agent
+
+**Form:** `platform`. Three of the core steps cannot be done by a general agent — the shoot is physical, the grade and VFX need the post tools, and the traffic test needs the ad platform's own buying system; the agent's part is the breakdown, the schedule, the previs brief, the subtitle pass, the creative variants and the reading of the platform's data.
+
+**You need:** the script and its scene structure; the studio's asset inventory — locations, costumes, props, crew — as a queryable list, which is what makes a breakdown fast; the shooting schedule and the producer's approval; previs frames from an image model; the edit and grade tools; subtitle and beat-sync tools, with a name list and a glossary because auto-subtitles mishear proper nouns; ad-platform access with creative-level reporting; the compliance file for release. The agent must not commit spend or publish: both are the producer's acts, and the ad account's permissions should say so.
+
+| Step | Built as |
+|---|---|
+| script → 场次表, cast, props, locations, schedule | The Skill reads the script and writes the breakdown against the studio's asset list, one row per scene with cast, costume, props, lighting and vehicles, so the producer edits a table rather than a document. |
+| 🛑 plan | The producer checks the breakdown and fixes the schedule; nothing is booked until that approval, and the agent has no booking tool. |
+| previs keyframes | Image-model frames per scene, plus a written motion brief — what moves, how — because the frames are a communication device for the crew, not a deliverable. |
+| human shoot | Outside the agent: the crew shoots, including close-up performance, which the sources say AI cannot yet carry. |
+| captions, rough cut, color, VFX touch-ups | Scripted subtitle and beat-sync passes, with a name list checked by a person because the error rate is around 5%; grade and VFX in the post tools, where the agent can prepare lists rather than make the look. |
+| 🛑 review | The directors review the cut against the editor's return notes and send named shots back; the notes are a list the agent maintains, so a regeneration request names the shot rather than describing it. |
+| each hook: ad cut (20–50) | The Skill generates variants from a graded scene library — the same scene cut with a strong-conflict, a dialogue-suspense and a mood-reversal opening — and names the files by drama, episode, scene, grade and event so performance can be traced back. |
+| 投流 test → keep best by ROI | The platform's own buying system runs the test; the agent reads the creative-level export on a schedule, applies the thresholds the team set, and reports which variants to kill, watch or extend — the account's spend permissions stay with the buyer. |
+| 🛑 sign-off | Before publishing, the producer confirms the filing or licence and, where AI-generated footage is used, the per-episode AI label the regulator requires; the agent can check the file exists but cannot file or publish. |
+
+**Checkpoints:** `plan`: the breakdown and schedule are a person's commitment of crew and money, so the agent stops at a table and has no booking tool. `review`: the cut is the drama, and the director's return notes are the mechanism — the build keeps them as a structured list attached to shots, so "regenerate this shot" is unambiguous. `sign-off`: the release check is a legal act (filing or licence, and an AI label on each episode where generated footage is used), so the agent may assemble the compliance file and nothing more; publishing stays with a person.
+
+**Since the sources:** Sources date from 2026-06 to 2026-09: two production interviews, one anonymous account of ad-creative iteration and the regulator's consultation draft. They were not re-opened on this pass, but the regulation was: the consultation draft became the 微短剧发展管理办法, [in force from 2026-09-01](https://www.news.cn/20260731/9d0579e4587648fb83580e0fec008e12/c.html), with the per-episode AI label the entry already cites, plus a three-class system by budget and subject that decides whether a drama needs a filing, a distribution licence or platform self-review. That makes the last checkpoint firmer than the entry recorded: the class is not a matter of judgement for the producer to guess at, and it should be determined before the shoot, not at release. Nothing opened this month changes the production method the sources describe.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
+
+*As reported by the sources.*
+
 1. Break the script into 场次 and scenes and draft the shoot plan with an AI tool. At 永川科技片场 the studio's own FilmOS (built on DeepSeek and ChatGPT, fed the studio's 1,000+ digital assets, 100+ nearby real locations and costume/prop stock) lists shots, actors, costume, lighting crew and vehicles per scene. Breakdown went from 1–2 weeks for two people to 15 minutes, and the schedule from 10 days to about 10 minutes [[1]](#sources).
 2. 🛑 **Plan**: the producer checks the breakdown and fixes the shoot plan; prep for 《离歌1999》 took about a month instead of 2–3 [[1]](#sources).
 3. Make previs: scene concept images and dynamic storyboards [[1]](#sources). On a hybrid AI + live-action show, the crew also shot a rough rooftop previs of fight scenes and fed it to the model to find what motion transfer could handle [[2]](#sources).
