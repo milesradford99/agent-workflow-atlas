@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **207 of 238 entries converted, 31 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **214 of 238 entries converted, 24 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -125,7 +125,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0013 workflows/CRE/WRI/SCREEN/beat-to-scene-screenplay
   - AWF-0014 workflows/CRE/WRI/SCREEN/hook-cadence-drama-script
   - AWF-0136 workflows/CRE/WRI/TRANS/term-gated-game-localisation
-- [ ] **Batch 13** (agriculture, strategy, government, 7)
+- [x] **Batch 13** (agriculture, strategy, government, 7)
   - AWF-0236 workflows/ORG/AGR/ADVISORY/agronomist-gated-push-advisories
   - AWF-0211 workflows/ORG/AGR/ADVISORY/extension-agent-mediated-advice
   - AWF-0154 workflows/ORG/AGR/ADVISORY/plot-registered-agronomy-advice
@@ -186,6 +186,7 @@ These need judgement; give them to a stronger model or a person, after A and B.
 
 - [ ] **`platform` verdicts.** List with `grep -l '^build: platform' workflows/*/*/*/*/README.md workflows/unplaced/*/README.md` (23 on 2026-11-14). For each, read the Build section: `platform` is right only if STANDARD.md §3's earlier rows truly do not fit. Downgrade where a `service` would do.
 - [ ] **Entries flagged unsure of form.** Current verdict stands unless the review disagrees: AWF-0070 (service; kit is project-style), AWF-0132 (skill; one source is event-triggered), AWF-0063 (project; one source ran solo with skills), AWF-0124 (skill; source ran as a Slack bot), AWF-0125 (skill; source does not say how a run starts), AWF-0065 (project vs service).
+- [ ] **AWF-0080** `theme-sign-off-consultation-analysis`: set to `service` (batch 13), but it is the closest call in the batch — Consult is a cross-government tool with a waitlist and a 2027 rollout, which reads like a `platform`. It is not: the work is unattended batch processing of a finite corpus with three human gates and no live service or physical step. Revisit only if a future source shows teams using it continuously rather than per consultation.
 - [ ] **AWF-0130** `profile-led-perf-fixes`: step 5 and the per-diff developer-review checkpoint are only partly supported. Uber's post says output feeds "downstream tools for code transformation or manual review by developers" and that validated suggestions flow into Optix; it does not say every diff is developer-reviewed before merge. Re-read the source and either soften the step or change the checkpoint (if the shape changes, rerun `build_diagrams.py`).
 - [ ] **AWF-0006** `governed-query`: steps carry no citations and both public runs refuse automated readers (OpenAI 403, Uber 406). Open them in a browser, add citations or flag the entry.
 - [ ] **AWF-0126** `calibrated-judge-quality-loop`: the Dropbox source lists a second author, Dmitriy Meyerzon, missing from the citation.
@@ -368,3 +369,20 @@ Chinese industry terms are kept as written in both languages and glossed in the 
 | AWF-0136 | service | A version's strings arrive in batches across ten languages with nobody starting the run | 0 of 1 | Source not re-opened (more than twelve months old). A 2026 account of the same three-level pipeline reports raw MT usable about 70%, rising to about 85% with a terminology engine — consistent with this entry's rule layer and two gates. |
 
 Checks: `validate.py` reports 238 workflows, 207 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.
+
+
+**Batch 13 (2026-11-14), agriculture, strategy and government; seven bilingual entries; three read in full (AWF-0204, AWF-0143, AWF-0080)**
+
+The batch's agriculture and civic entries draw on 2026 evidence that all points the same way, which is worth saying once: the model is not the bottleneck. In two agriculture entries the measured gain comes from content rather than conversation (a fine-tuned small model lifted recall of expert-verified facts from 26.2% to 50.3% at about 15% of a frontier model's cost, with a quarter to a third of farmer queries still unanswered); in the planning-data entry the published detail has moved from accuracy to review load, with officers reviewing all outputs and needing only minor edits in around two thirds of cases; in the consultation entry the opposing tool reports that without human validation of the theme set it recovers only about 75% of the human themes. Each entry therefore argues its checkpoint from a number rather than from principle. One form call is close: AWF-0080 could be read as `platform` because it is a cross-government tool with a waitlist, but the work is batch processing with three human gates and no live service, so `service` stands. No source, public run, quote, shape or id changed. `platform`-adjacent doubt recorded in Part C.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0236 | service | A weekly campaign to tens of thousands of phones with nobody starting it; the agronomy team answers one queue before release and one review after | 2 of 2 + 1 new | The hard evidence is a randomised evaluation rather than a testimonial, so the registry entry is now the number to cite. The 2026 column on Indian advisory services points the same way as this build: content and curation, not the model, decide usefulness. |
+| AWF-0211 | skill | One extension agent asks one question at a time with the farmer present and decides whether the answer is good enough to pass on | 0 of 2 + 1 new | Sources not re-opened. Voice services now reach six figures of farmers a year in one state, which makes the retrieval-from-a-validated-corpus design the load-bearing part rather than the conversation. |
+| AWF-0154 | service | A season of prompts over months on the messaging channel, with people at registration, in-season exception and implementation handoff | 1 of 2 + 1 new | Preprint not re-opened, and its authors may be linked to the provider (already flagged). A 2026 review finds technical performance better evidenced than farmer outcomes, and a producer survey puts trust without cross-checking at about a quarter — both support the season-end yield record. |
+| AWF-0228 | service | Runs weekly with nobody starting it; the only human act is the approval that lets edits reach the sales asset | 1 of 1 | Nothing supersedes the account. The point to keep is the division of labour: under five minutes of human time a week, spent on which shifts matter for a live deal. |
+| AWF-0143 | skill | One planning officer works one record at a time and signs off every field and boundary; the extraction is a toolset the officer runs | 2 of 2 | The service has gone from an alpha to every council in England, and the published detail has shifted from accuracy to review load: all outputs reviewed, minor edits only in around two thirds of cases. A full review is affordable only if most items are quick, which is an interface requirement. |
+| AWF-0204 | project | A corpus, a classification schema and per-agency report templates must persist across a months-long audit of thousands of provisions | 1 of 5 | Classification is a legal opinion, so the build keeps an "unclear" category and citations on every recommendation. The 35.7% headline belongs to the wider four-year programme, not the AI pilot — the number most likely to be misquoted from this entry. |
+| AWF-0080 | service | Consultations arrive as batches of tens of thousands of responses from many teams and are discarded after write-up; unattended processing with three gates | 4 old not re-opened, 3 new opened | Access is now the binding constraint: demand exceeds capacity, a waitlist runs, and full cross-government rollout is planned for 2027. Consult is in production use (2026-10-30 written answer) but the 1,000 sign-ins a week cover four tools, not Consult alone. A second live build (DfT with the Turing Institute, 200,000 responses, 92% raw agreement, F1 0.75 blind) reports that without human validation of the theme set it finds only about 75% of the human themes. Savings figures on both remain modelled, not measured. |
+
+Checks: `validate.py` reports 238 workflows, 214 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.
