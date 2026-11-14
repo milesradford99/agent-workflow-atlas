@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **181 of 238 entries converted, 57 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **187 of 238 entries converted, 51 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -95,7 +95,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0055 workflows/COM/MKT/MKTRES/routed-competitive-digest
   - AWF-0053 workflows/COM/MKT/SOCIAL/plan-to-calendar-drafting
   - AWF-0225 workflows/COM/MKT/LIFECYCLE/ranker-guided-creative-slate
-- [ ] **Batch 9** (CAD, manufacturing, simulation, 6)
+- [x] **Batch 9** (CAD, manufacturing, simulation, 6)
   - AWF-0116 workflows/TEC/ENG/CAD/agent-drafted-pcb-schematic
   - AWF-0056 workflows/TEC/ENG/CAD/phased-preview-build
   - AWF-0119 workflows/TEC/ENG/MFG/ai-first-cam-program
@@ -302,3 +302,19 @@ Unique evidence URLs: 11 readable of 13; Donska and ShopBack Medium return 403 a
 | AWF-0225 | platform | Core trained ranker and controlled online experiment cannot be replaced by agent judgment | 1 of 1 | Platform verdict reviewed: campaign-specific learned ranker remains a specialist model. Full paper confirms single refinement, human slate review and online winner selection. No newer account found in bounded searches. |
 
 Checks: `validate.py` reports 238 workflows, 181 STANDARD entries; index and diagram checks pass; i18n status 238 up to date, 0 behind/problem/missing; `git diff --check` clean. Complete evidence tails, id and shape compared with the previous commit and unchanged.
+
+
+**Batch 9 (2026-11-14), CAD, manufacturing and simulation; six bilingual entries; two read in full (AWF-0116, 0193)**
+
+Unique evidence URLs: 5 readable of 9. Three source sites refused an automated reader (Towards AI 403, camo.hku.hk 403, mmsonline 403) and were not retried; the LinkedIn post and the YouTube video were not re-opened on this pass. Search coverage was three queries per entry (two for the CAD pair). No source, public run, quote, shape or id was changed.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0116 | project | Library-only parts, a datasheet rule and an unseen reviewer must hold on every edit | 1 of 1 | KiCad MCP servers now cover what the account wires by hand: Konnect 0.11.0 (2026-08) exposes schematic/board edits and ERC/DRC; Copperhead (2026-07) keeps every artifact in the repository. Manual layout, second-engineer review and bench bring-up retained; the fault the account reports was found after manufacture. |
+| AWF-0056 | skill | One maker, one part, a preview gate at each of three phases | 0 of 1 | source-unreachable (Towards AI 403). Newer: the same author packaged the method as flowful-ai/cad-skill (2026-07) and SOMA (2026-11) puts agent + CadQuery behind a desktop app with print-constraint skills. |
+| AWF-0119 | platform | Toolpaths, the post-processor and the first-article proof are not the agent's to produce | 1 of 2 | Newest source 2025-06, so the tool was re-checked: CAM Assist now runs in six CAM packages and its 2.0 Strategy Editor reviews the proposed strategy before toolpaths return to CAM (2026). Generation and verification left with the platform; the agent carries the reading and the variant bookkeeping. |
+| AWF-0059 | skill | One planner drafts one part's route in conversation; the leader releases it | 0 of 1 | source-unreachable (camo.hku.hk 403); outdated-method: the image-features → visual-reasoning → rules-KB pipeline was a workaround for models that could not read drawings, collapsed here into one vision pass with rules as reference files; newer accounts are vendor material (undated). Corrections land as a proposed diff, not a silent KB write. |
+| AWF-0057 | skill | One engineer, one case, two stops; scripts and checklists live in the case repository | 1 of 4 | GitHub repository opened; the two blogs and the video were not re-opened on this pass. Newer: CFD Forge (2026-10) makes deterministic acceptance checks the deciding party; AI CFD Scientist (2026) adds a vision gate for silent failures. Both fit as scripts beside the skill. |
+| AWF-0193 | service | Overnight batches with nobody present; the plan and the surrogate arrive as queue items | 1 of 1 | Vendor material only. Newer: a second vendor account (2026-05-29) extends the loop to driver-in-the-loop and measurement; an HBK/VI-grade partnership (2026-09). The wrong-equilibrium check is gate logic, not model judgement. |
+
+Checks: `validate.py` reports 238 workflows, 187 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the six folders and CHANGELOG/CONVERSION-TODO.
