@@ -64,6 +64,8 @@ workflows/
 
 The full rules fit on one page: [TAXONOMY.md](TAXONOMY.md).
 
+What an entry must contain is in [STANDARD.md](STANDARD.md): a plain-language background, how to build the workflow with an agent today (as one skill, a Claude Code project, an Agent SDK service, or with a specialist platform), then the sourced steps and public runs. Four entries follow it so far; the rest are being converted.
+
 ## Keeping it current
 
 AI practice changes every few months, so the catalog has three upkeep loops, described in [MAINTAINING.md](MAINTAINING.md):

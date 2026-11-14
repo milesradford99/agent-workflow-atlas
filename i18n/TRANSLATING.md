@@ -2,7 +2,7 @@
 
 Every workflow folder has a `README.zh-CN.md` next to its `README.md`. The Chinese site pages (`w/<ID>/zh/` and the 中文 view of the catalog) are built from it. It translates the whole entry except the sources.
 
-[AWF-0069 Filtered test augmentation](../workflows/TEC/SWE/TEST/filtered-test-augmentation/README.zh-CN.md) is a complete example.
+[AWF-0069 Filtered test augmentation](../workflows/TEC/SWE/TEST/filtered-test-augmentation/README.zh-CN.md) is a complete example in the older layout, and [AWF-0164 只看例外的对账](../workflows/PRO/FIN/CLOSE/exception-only-reconciliation/README.zh-CN.md) in the [STANDARD.md](../STANDARD.md) layout.
 
 ## The file
 
@@ -46,6 +46,7 @@ Start a new one with `python scripts/i18n.py scaffold AWF-XXXX`. It copies the E
 | `name`, `summary`, `deliverable` | Translate. The summary is one sentence of 120 characters or fewer. |
 | `shape` | Translate the step words. Keep every `→ ⟲ ( ) |` exactly where the English has them, and keep `🛑 plan / action / review / sample / sign-off / handoff` in English; the page shows them as 审批计划, 审阅草稿 and so on. Write `each X:` as `每个 X：` (or 每份…：, 每批…：). Any step that starts with 每 and has a colon is read as an "each" group, so for a plain step such as "daily: …" or "weekly: …" drop the colon (每天汇总…, 每周列出…). |
 | Intro, steps, Output, Failure modes, Recent practice | Translate. Keep the same numbered steps in the same order. The checkpoint labels become 🛑 **计划** / **操作** / **审阅** / **抽检** / **签发** / **接手**. |
+| Background (`## 背景`) and Build (`## 用智能体搭建`) | Entries in the [STANDARD.md](../STANDARD.md) format have these two sections; translate both. Labels: **术语：**, **形态：**, **需要：**, **检查点：**, **与来源相比：**, table header `步骤 \| 搭建方式`. Keep identical to the English: the form word after **形态：** (`skill`, `project`, `service`, `platform`), building-block names (`skill`, `CLAUDE.md`, `PreToolUse`, MCP, Agent SDK, `claude -p`), the checkpoint words in backticks, the number of table rows, links and numbers. The first column of the table repeats the Chinese shape line's step words. End with the fixed note: *以上是依据本条目的步骤和截至 YYYY-MM 的工具文档做出的设计，不是已报道的实例。* Under `## 步骤`, *As reported by the sources.* becomes *以下按来源所述。* In a term list, give the Chinese term first and the English in brackets where readers will meet it (审查手册（playbook））; a term that is already Chinese needs only its definition. |
 | Public runs | Translate the coverage line and the description of each run. Keep the link text (the source's own title), the URL, the date and the quoted figure in "…" exactly as in the English. Translate the label *First-hand: yes; confidence: high.* as *第一手：是；可信度：高。* |
 | Sources | Don't copy them. The page shows the English source list, because titles must match what they cite. |
 | Citations `[[3]](#sources)`, links, numbers | Keep every one. Write numbers as Arabic numerals (5, 73%, 2026-08), not 五. |
@@ -81,6 +82,11 @@ Use these consistently. Common technical words that Chinese engineers write in E
 | Output | 产出 |
 | Failure modes → guards | 失败模式 → 防护 |
 | Recent practice (2026) | 近期实践（2026） |
+| Background / Terms | 背景 / 术语 |
+| Build it with an agent / Form / You need / Built as | 用智能体搭建 / 形态 / 需要 / 搭建方式 |
+| Checkpoints / Since the sources | 检查点 / 与来源相比 |
+| subagent / hook / plan mode / permission rule | 子智能体 / 钩子 / 计划模式 / 权限规则 |
+| cloud scheduled task | 云端定时任务 |
 | Metric caution | 指标提示 |
 
 Industry terms already in Chinese stay as written (短剧, 网文, 口播稿, 伏笔). Use the field and class names from `i18n/labels.yaml` when you name a category.

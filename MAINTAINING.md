@@ -14,7 +14,7 @@ Readers can also report a problem at any time with the [correction issue form](.
 
 On the 1st of each month, [`.github/workflows/freshness.yml`](.github/workflows/freshness.yml) runs `scripts/freshness.py --links` and keeps one open issue labelled `freshness` up to date. The report has two parts:
 
-- **Due for re-checking:** every entry whose `last_verified` month is 6 or more months old.
+- **Due for re-checking:** every entry whose `last_verified` month is 6 or more months old. `last_verified` covers the sources; `method_checked` covers the Build section (STANDARD.md §5).
 - **Dead links:** sources and public runs that return 404 or 410, or whose domain no longer exists. Fix these.
 - **Chinese translation to update:** entries whose `README.zh-CN.md` is missing, broken or behind the English README.
 - **Couldn't reach:** timeouts, dropped connections and server errors, listed in a collapsed section. These are usually slow sites or sites that block automated traffic; look only at ones that stay there several months running. Sites that refuse automated checks outright (403, 429) are just counted.
@@ -36,8 +36,9 @@ One pull request per entry, or one per class if several are due together.
 4. **Practice.** If the way people run it has changed (new checkpoints, different autonomy, different deliverable), apply the swap test:
    - *Small change:* update the steps.
    - *Different checkpoints, autonomy or deliverable:* add a new workflow with a new ID, and leave this one as it is.
-5. **Chinese.** Make the same changes in the entry's `README.zh-CN.md` and run `python scripts/i18n.py stamp <ID>` ([i18n/TRANSLATING.md](i18n/TRANSLATING.md)).
-6. **Date.** Set `last_verified` to the current month. Run `python scripts/validate.py` and `python scripts/build_index.py`.
+5. **Method.** For an entry in the [STANDARD.md](STANDARD.md) format, re-read its Build section against the current tool documentation: is the form still the smallest that works, and does every named building block still exist under that name? Update the section and set `method_checked` to the current month. For an entry not yet in that format, convert it ([research/prompts/convert.md](research/prompts/convert.md)).
+6. **Chinese.** Make the same changes in the entry's `README.zh-CN.md` and run `python scripts/i18n.py stamp <ID>` ([i18n/TRANSLATING.md](i18n/TRANSLATING.md)).
+7. **Date.** Set `last_verified` to the current month. Run `python scripts/validate.py` and `python scripts/build_index.py`.
 
 **Retiring.** An entry with no new example runs in 18 months whose tools have all been discontinued becomes `status: retired` (TAXONOMY.md rule 6). Keep the folder and the ID.
 
@@ -48,7 +49,7 @@ Once a quarter, look for workflows the catalog doesn't have. The sweep follows t
 1. **Plan.** Export the existing workflows with their shape lines (one line each: class, ID and name, autonomy, shape). Split the classes into 6–8 groups, plus one group for fields outside the taxonomy. A maintainer approves the split.
 2. **Research.** Give each group's agent [research/prompts/collect.md](research/prompts/collect.md), filled in with its classes. Run them in parallel. Each one returns YAML blocks in the catalog's record format, or "none found".
 3. **Re-check.** Collect every public run into a table and give it to separate agents with [research/prompts/check.md](research/prompts/check.md). Drop runs whose page won't open or whose number isn't there. Correct the first-hand labels.
-4. **File.** Turn each surviving block into `workflows/<K>/<P>/<C>/<name>/README.md` with the next free IDs, plus its `README.zh-CN.md` (`scripts/i18n.py scaffold`, then translate and `stamp`), and put fields that don't fit in `workflows/unplaced/`. When three similar unplaced workflows exist, propose a new class (CONTRIBUTING.md, "New class or phylum").
+4. **File.** Following [STANDARD.md](STANDARD.md), turn each surviving block into `workflows/<K>/<P>/<C>/<name>/README.md` with the next free IDs, plus its `README.zh-CN.md` (`scripts/i18n.py scaffold`, then translate and `stamp`), and put fields that don't fit in `workflows/unplaced/`. When three similar unplaced workflows exist, propose a new class (CONTRIBUTING.md, "New class or phylum").
 5. **Record.** Write a dated note in `research/` with the counts, what was dropped and the caveats, as [research/2026-11-new-workflows.md](research/2026-11-new-workflows.md) does. Then run the checks and open the pull request.
 
 ## Merging pull requests

@@ -18,6 +18,8 @@ reference_example: examples/2026-11-where-are-the-real-runs/
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
+build: project
+method_checked: 2026-11
 ---
 
 # Issue-tree research
@@ -55,16 +57,56 @@ flowchart TD
 ```
 <!-- end shape diagram -->
 
+## Background
+
+A strategy or research team is asked a business question, such as how a market is changing or how a set of competitors compares, and answers it with a slide deck that its leaders will act on. The work is to break the question into parts, look each part up, collect the facts and numbers into one place, check them, and then say what they mean. Done by hand it takes days of searching, and the risk is a number in a chart that nobody can trace or that was never checked. The agent splits the question, researches the parts in parallel, keeps every claim with its source, has separate checkers re-open each source, and drafts the deck. The person who asked the question still approves the plan before any research starts and reads the findings before the deck is built, because they own the question, decide what counts as a good source and answer for the conclusions.
+
+**Terms:**
+- **Issue tree**: the key question split into sub-questions, branch by branch.
+- **MECE (mutually exclusive, collectively exhaustive)**: a split in which every item belongs to exactly one branch and no branch is missing.
+- **Claims table**: one row per fact, with the number as the source words it, the source, its date and a confidence grade.
+- **So-what page**: a slide that states a finding and what it means for the question, not just the data.
+- **First-hand source**: an account written by the people who did or saw the thing, not a summary by someone else.
+- **Outlier**: a value far from the others; it pulls an average (mean) but barely moves the median, the middle value.
+- **SEO content farm**: a site written to rank in search results rather than to inform.
+- **Artifact**: a page, chart or slide deck that the Claude app builds and shows beside the conversation.
+
+## Build it with an agent
+
+**Form:** `project`. A skill can carry the procedure, but the two stops must hold every time and the checkers must not have seen the research, which needs custom subagents and standing project rules. [The kit](variants/claude-code.md) writes this build out as files.
+
+**You need:** a `CLAUDE.md` section with the run folder layout and the two stops; the research skill; brief templates for the branch researchers and for the checkers; web search and page fetch for the subagents; the firm's deck template, filled in before the run. Tell the agent which source types count, that nobody is to be contacted, and that no personal contact details are to be collected.
+
+| Step | Built as |
+|---|---|
+| key question → MECE issue tree | The skill restates the question as one sentence, offers sharper versions if it is vague, and writes the tree and the research rules to `plan.md`. |
+| 🛑 plan | See Checkpoints. |
+| each branch: deep research | One custom subagent per branch, all launched in one message, each given a filled-in brief with objective, output format, sources to use and boundaries; each must fetch every page it cites. |
+| claims table (claim, number, source, date, confidence) | The lead merges the branch tables into one file, one row per claim, and notes conflicts between sources. |
+| each number: re-fetch source | New checker subagents that did not do the research re-open every source and return a verdict per row. For a table of hundreds of rows, a dynamic workflow can run these checks between the two checkpoints. The lead applies the corrections and drops unverifiable rows. |
+| so-what pages | The lead writes the findings, each tied to its claims-table rows, and marks judgements as judgements. |
+| 🛑 review | See Checkpoints. |
+| deck from firm template | The skill checks that the template exists and builds one slide per finding; every number on a slide must be in the claims table. |
+
+**Checkpoints:** `plan`: the `CLAUDE.md` section and the skill tell the agent to present `plan.md` and wait; because no research should start without it, a `PreToolUse` hook can block the branch subagents until the plan file is marked approved. `review`: the skill stops after presenting the claims table (with the correction and drop counts) and the findings, and the deck is built only after the question owner approves or edits. Nothing here reaches a customer, so an instruction-level stop is enough for `review`.
+
+**Since the sources:** Sources date from 2025-06 to 2026-11 (one undated: the `claude-code-heavy` repository, which could not be opened because the site returned 403). Source 3 is this catalog's own run, and the kit reuses its briefs. Source 2 describes Anthropic's research system built for its own product, and source 1 a marketing team doing the work by hand with a spreadsheet; this build follows their shape (a lead, parallel workers, a separate pass that checks citations) with built-in subagents rather than their code. The plan is kept in a file because the approval gate needs it; the sources' reason for saving it (to survive context truncation) is not relied on. The build leaves out the sources' paid data tools and the polishing of final charts in a design tool. No newer account of the practice was searched for, as the newest sources date from 2026.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
-1. Pick the key question. Before scaling up, test the method on one case you already know, such as your own company, and make the agent say how it found each item [[1]](#sources). In this repo's run, the maintainer chose one of four suggested questions [[3]](#sources).
-2. Build a MECE issue tree, split so that each item belongs to exactly one branch, with the same sub-questions under every branch [[3]](#sources). The lead agent saves the plan to memory so it survives context truncation [[2]](#sources).
+
+*As reported by the sources.*
+
+1. The question owner picks the key question. Before scaling up, test the method on one case you already know, such as your own company, and make the agent say how it found each item [[1]](#sources). In this repo's run, the maintainer chose one of four suggested questions [[3]](#sources).
+2. The lead agent builds a MECE issue tree, split so that each item belongs to exactly one branch, with the same sub-questions under every branch [[3]](#sources). The lead agent saves the plan to memory so it survives context truncation [[2]](#sources).
 3. 🛑 **Plan**: the question owner approves the tree, the research rules (for example first-hand sources only, public channels only, nobody contacted) and the deliverables before any research starts [[3]](#sources).
-4. Each branch: deep research. Launch one subagent per branch in parallel, each with a brief giving the objective, output format, tools and sources to use, and boundaries [[2]](#sources) [[3]](#sources). For data-heavy questions, gather one data point at a time: fix its definition, test the method on 1–5 rows, use the cheapest method that works and save it to the skill [[1]](#sources).
-5. Merge the findings into a claims table (claim, number, source, date, confidence), kept as the single source of truth, one row per entity [[1]](#sources) [[3]](#sources). Allow "unknown" as an answer instead of forcing yes/no [[1]](#sources).
+4. Each branch: deep research. The lead agent launches one subagent per branch in parallel, each with a brief giving the objective, output format, tools and sources to use, and boundaries [[2]](#sources) [[3]](#sources). For data-heavy questions, gather one data point at a time: fix its definition, test the method on 1–5 rows, use the cheapest method that works and save it to the skill [[1]](#sources).
+5. The lead agent merges the findings into a claims table (claim, number, source, date, confidence), kept as the single source of truth, one row per entity [[1]](#sources) [[3]](#sources). Allow "unknown" as an answer instead of forcing yes/no [[1]](#sources).
 6. Each number: re-fetch the source. Separate checker agents re-open every source and check each number on its page. In this repo's run, that meant 65 sources and about 20 corrections [[3]](#sources). Anthropic's system uses a separate citation agent for this pass [[2]](#sources). Also spot-check a sample of rows, every outlier, and the hardest fields by hand [[1]](#sources).
-7. Write the so-what pages. Try different cuts in quick chart artifacts and compare medians with means, since outliers skew means [[1]](#sources).
+7. The lead agent writes the so-what pages. It tries different cuts in quick chart artifacts and compares medians with means, since outliers skew means [[1]](#sources).
 8. 🛑 **Review**: the question owner reads the findings and approves or sends back [[3]](#sources). Publish methodology caveats with them: what isn't significant and where numbers are fuzzy [[1]](#sources).
-9. Build the deck from the firm template (a Slides artifact in this repo's run [[3]](#sources); final charts polished in Figma at MKT1 [[1]](#sources)).
+9. The lead agent builds the deck from the firm template (a Slides artifact in this repo's run [[3]](#sources); final charts polished in Figma at MKT1 [[1]](#sources)).
 
 **Output:** A research deck with so-what pages, plus the claims table behind it, every number traceable to a re-checked source.
 **Failure modes → guards:** The agent fills gaps with plausible numbers (round figures exposed this) → explicit "flag unknowns" rules and an "unknown" option [[1]](#sources). Errors flow into published charts (two newsletters were corrected after release) → the re-fetch and spot-check steps come before 🛑 review [[1]](#sources). Subagents duplicate each other's work → briefs with explicit boundaries [[2]](#sources). Agents prefer SEO content farms → source-quality rules in the brief [[2]](#sources). A branch reads only search-result text → the re-fetch step catches it, and the brief should require a direct fetch [[3]](#sources). Stale facts, such as executives who have left → check those fields by hand [[1]](#sources). The firm template is empty at deck time → fill it in before the run [[3]](#sources). Judgement calls, such as coverage grades, go unchecked → have the checker review them too [[3]](#sources).

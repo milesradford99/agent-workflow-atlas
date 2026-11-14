@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
+build: service
+method_checked: 2026-11
 ---
 
 # Daily inbox triage
@@ -48,12 +50,49 @@ flowchart TD
 ```
 <!-- end shape diagram -->
 
+## Background
+
+Most professionals start the day with an inbox full of email, a calendar with requests to fit in, and messages from chat apps. Working out which of these need an answer today, what to say, and when to meet takes time before any real work begins, and it tempts people to ignore the pile until it is overwhelming. Here the agent reads all three each morning, sorts every item, writes a draft reply wherever one is needed, suggests meeting times and compiles a short brief of the five things that matter most. The owner still reads and sends every message and accepts every invitation. A reply speaks for the owner to someone else and cannot be taken back, and the incoming messages are written by outsiders, so the agent must not be able to act on them by itself.
+
+**Terms:**
+- **Triage**: sorting items by what each needs: a reply, a read, a hand-off, or nothing.
+- **DM (direct message)**: a private message in a chat app such as Slack, WhatsApp or iMessage.
+- **Draft**: a reply saved in the mail program's Drafts folder, unsent.
+- **Calendar hold**: a provisional block on the calendar, not yet a confirmed event.
+- **Prompt injection**: text inside an email or message that is written to make the agent follow the sender's instructions instead of the owner's.
+- **Lethal trifecta**: an agent that can read private data, take in untrusted content and send messages outward, which together let an attacker steal data.
+- **Obligations tracker**: a running list of what the owner has promised to others.
+
+## Build it with an agent
+
+**Form:** `service`. The run starts at 07:00 with nobody at the keyboard, and the owner sees only the brief and the drafts. [The kit](variants/claude-code.md) writes this build out as files.
+
+**You need:** mail, calendar and (if used) chat connectors (MCP servers) set to the narrowest rights each offers: the mail connector may read, label and create drafts, and has no send tool; the calendar connector reads only. A file of voice rules distilled from the owner's sent mail, and a rules file (important senders, delegates, what may be archived). A place for the brief, such as a dated file. Treat every incoming message as data to sort, never as instructions.
+
+| Step | Built as |
+|---|---|
+| 07:00 schedule: email, calendar, DMs | A cloud scheduled task where the connectors can be reached from it, or your own scheduler starting `claude -p` or an Agent SDK program. |
+| sort (action / FYI / delegate / archive) | A skill: it reads unanswered mail since the last run, today's calendar and unread DMs, and puts each item in one bucket with a one-line reason. |
+| each thread: reply saved as draft | The same skill, using the connector's create-draft tool, the owner's voice rules and `CLAUDE.md`. For the recipient it takes the address from the thread. |
+| meeting-slot proposals | The skill reads free and busy times and writes two or three suggested slots into the draft; it creates no events. |
+| top-5 brief | The skill's last step writes the dated brief file: the top five items, counts per bucket, the drafts and any suspicious messages. |
+| 🛑 action (a person sends every message and accepts every invite) | See Checkpoints. |
+
+**Checkpoints:** `action`: the owner opens the drafts in their own mail client, then edits and sends, or rejects. The connectors give the agent no send, forward, accept, decline or delete tool, and permission deny rules or a `PreToolUse` hook on any such tool name stop the run if one is ever added. The agent only prepares drafts and holds. Messages that ask for credentials or payment changes, or that address the assistant, go under a "suspicious" heading in the brief with no draft.
+
+**Since the sources:** Sources date from 2025-06 to 2025-12; two of them are repositories with no date, and neither could be opened in 2026-11 (the site refused the request), so they are read from the entry text. Source 2 ran its triage as a Desktop scheduled task because it touches local data; that is not among the building blocks listed in STANDARD.md, so this build names a cloud scheduled task or `claude -p` instead. A cloud task needs connectors that it can reach, which a purely local mail setup may not offer. Source 1 describes an interactive session in which the owner asks for the triage, not a scheduled run; it is the source for draft-only access and for the voice rules. Source 3 allows sending with no approval step described, and this build does not follow it. The build adds the deny rule or hook against sending because instructions in `CLAUDE.md` alone ask the agent not to send, and source 4 shows why that is not enough.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
-1. On a schedule, run triage as a Desktop scheduled task, since it touches local data [[2]](#sources). Connect Gmail, Calendar and Contacts over MCP [[1]](#sources) [[2]](#sources), and add Slack, WhatsApp or iMessage for DMs if needed [[3]](#sources).
-2. Sort every item into a tier: respond now, handle today, or FYI/archive [[3]](#sources). Domain buckets work too, such as referee requests, co-author threads, invitations and admin deadlines [[2]](#sources). A plain list of what needs a reply, unread first, also works [[1]](#sources).
-3. Each thread: draft a reply. Find the original thread and its message IDs, state the `To:` address explicitly, search for context, and save the reply as a draft, never sending it [[1]](#sources). Voice rules come from a couple of hundred of the owner's sent emails, distilled into CLAUDE.md [[1]](#sources) [[3]](#sources).
-4. Propose meeting slots: when a thread needs time, offer a calendar hold as an action to approve, not a booked event [[2]](#sources).
-5. Write the morning brief covering calendar, tasks, urgent messages and meeting prep [[3]](#sources), plus a digest and an obligations tracker [[2]](#sources).
+
+*As reported by the sources.*
+
+1. A scheduled job runs the triage as a Desktop scheduled task, since it touches local data [[2]](#sources). The agent is connected to Gmail, Calendar and Contacts over MCP [[1]](#sources) [[2]](#sources), with Slack, WhatsApp or iMessage added for DMs if needed [[3]](#sources).
+2. The agent sorts every item into a tier: respond now, handle today, or FYI/archive [[3]](#sources). Buckets by subject work too, such as referee requests, co-author threads, invitations and admin deadlines [[2]](#sources). A plain list of what needs a reply, unread first, also works [[1]](#sources).
+3. For each thread, the agent drafts a reply. It finds the original thread and its message IDs, states the `To:` address explicitly, searches for context, and saves the reply as a draft, never sending it [[1]](#sources). Voice rules come from a couple of hundred of the owner's sent emails, distilled into CLAUDE.md [[1]](#sources) [[3]](#sources).
+4. The agent proposes meeting slots: when a thread needs time, it offers a calendar hold as an action to approve, not a booked event [[2]](#sources).
+5. The agent writes the morning brief covering calendar, tasks, urgent messages and meeting prep [[3]](#sources), plus a digest and an obligations tracker (the running list of what the owner has promised) [[2]](#sources).
 6. 🛑 **Action**: the owner reviews the drafts in their own mail client, then edits and sends, or rejects [[1]](#sources). Every proposed action, including calendar holds, waits for approval, and nothing is sent automatically [[2]](#sources).
 
 **Output:** A triaged inbox, reply drafts sitting in the mail client's Drafts folder, proposed calendar holds and a short morning brief. The owner sends, accepts or discards each one.
