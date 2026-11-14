@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: [AWF-0007]
 merged_into: null
 last_verified: 2026-11
+build: project
+method_checked: 2026-11
 ---
 
 # Design to code
@@ -47,11 +49,43 @@ flowchart TD
 <!-- end shape diagram -->
 
 
+## Background
+
+Designers describe an interface in a visual file, while developers implement its behavior using a product's existing components. A screenshot alone does not reveal which component, spacing rule or reusable style should be used, so similar-looking code can still diverge from the product system. This workflow gives the coding agent structured design context and compares the rendered result with the design. The designer reviews the preview because visual similarity does not establish correct interactions, accessible behavior or a suitable component choice.
+
+**Terms:**
+- **Frame / component map**: a design screen or selection, and its links to actual code components.
+- **Design tokens**: named values for color, spacing and typography, reused instead of hardcoded values.
+- **MCP / CLI**: the protocol connecting external tools to agents, and a command-line interface.
+- **Screenshot diff / PR**: comparison of rendered images, and a proposed repository change.
+- **DS / typecheck**: design system, and an automated check that code uses declared types correctly.
+
+## Build it with an agent
+
+**Form:** `project`. The design procedure needs repository-wide component rules and a repeatable validation gate as well as a Skill.
+
+**You need:** the frame link; approved Figma and design-system MCP server (connector) tools; current component mappings and token definitions; the repository, preview command and screenshot comparison script. Use `CLAUDE.md` for conventions and a Skill for implementation. Protect unrelated files and give the agent no merge or production deployment permission.
+
+| Step | Built as |
+|---|---|
+| frame link → load design context, tokens, component map | The Skill reads design context and mappings through MCP server (connector) tools and stops if authoritative component information is unavailable. |
+| code ⟲ screenshot diff | The Skill reuses mapped components and renders a preview; scripts compare screenshots. A Hook runs the project's token/component checks and build checks. |
+| 🛑 review → PR | The Skill presents the preview, screenshots, diff and unresolved token gaps. After design review it prepares the PR for the ordinary engineering process. |
+
+**Checkpoints:** `review`: the designer inspects the running preview and screenshot differences, including states a still image cannot establish. The agent cannot merge or deploy; required code-host review gates production. A screenshot comparison cannot waive functional or accessibility checks.
+
+**Since the sources:** Evidence dates from 2026-08 to 2026-09 plus undated documentation. In 2026-11 the Coinbase account, BILL account and Figma guide opened; Doctolib's Medium page refused access. Searches found [Figma's current tool documentation](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/), opened in 2026-11, listing design-context, variable, screenshot and Code Connect tools. This provides structured context without requiring a custom scraper. It does not supply missing mappings or prove the inaccessible Doctolib results. Retain the source's hard stop when design-system information cannot be retrieved and report component or token gaps instead of guessing.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
-1. Pull the frame's design context, variables (color, spacing, typography), and Code Connect mappings through the Figma MCP server [[7]](#sources).
-2. Reuse mapped code components instead of re-creating them.
-3. Use tokens only, with no hardcoded values.
-4. Render, take a screenshot, compare with the Figma screenshot, and loop.
+
+*As reported by the sources.*
+
+1. The agent pulls the frame's design context, variables (color, spacing, typography), and Code Connect mappings through the Figma MCP server [[7]](#sources).
+2. The agent reuses mapped code components instead of re-creating them.
+3. The agent uses tokens only, with no hardcoded values.
+4. The agent renders, takes a screenshot, compares it with the Figma screenshot, and loops.
 5. 🛑 **Review**: designer review in a preview build.
 
 **Output:** a PR. Token gaps are reported back to the design-system team.

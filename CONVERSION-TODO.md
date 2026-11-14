@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **168 of 238 entries converted, 70 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **174 of 238 entries converted, 64 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -80,7 +80,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0060 workflows/TEC/PRD/PM/spec-to-ticket-planning
   - AWF-0007 workflows/TEC/PRD/PROTO/feedback-to-prototype
   - AWF-0232 workflows/TEC/PRD/PROTO/in-codebase-handoff-prototype
-- [ ] **Batch 7** (design systems and UI, 6)
+- [x] **Batch 7** (design systems and UI, 6)
   - AWF-0194 workflows/TEC/PRD/DSYS/agent-eval-docs-loop
   - AWF-0008 workflows/TEC/PRD/DSYS/design-to-code
   - AWF-0122 workflows/TEC/PRD/DSYS/scored-token-migration
@@ -269,3 +269,19 @@ Unique evidence URLs: 7 fully readable of 9; Every partially readable behind a s
 | AWF-0232 | project | Prepared repository, persistent component knowledge and protected edit boundaries | 1 of 1 | Source reports designers using a coding agent, not unattended feature delivery. Newer adjacent first-hand prototyping account 2026-07 does not invalidate this method. |
 
 Checks: `validate.py` reports 238 workflows, 168 STANDARD entries; `build_index.py --check` and diagrams check pass; i18n status 238 up to date, 0 behind/problem/missing. Shape, identifiers and the complete Public runs/Sources tails were compared against the previous commit and are unchanged.
+
+
+**Batch 7 (2026-11-14), design systems and UI; six bilingual entries; three read in full (AWF-0194, 0121, 0062)**
+
+Unique evidence URLs: 8 fully readable of 9; Doctolib's Medium page returned 403 and was not retried. Evidence sections and shapes preserved. Methods checked in 2026-11.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0194 | skill | One maintainer invokes the existing evaluation harness | 1 of 1 | Retained source's warning: documentation-only evals must disable code chunks and lint assistance; measure their additional effects separately. No newer account found in bounded searches. |
+| AWF-0008 | project | Component/token rules and repeatable validation across repository edits | 3 of 4 | source-unreachable: Medium 403; Coinbase, BILL and Figma guide opened. Current Figma docs provide native structured context and mapping tools; no need to infer components from screenshots alone. |
+| AWF-0122 | project | Shared audited rubric, frozen migration rules and lint gate | 1 of 1 | Citation-date fault: entry says 2026-10-27, page displays July 21, 2026. Opened Ambrook's 2026-08-06 adjacent component-migration account; it does not supersede this token rubric or manual theme checks. |
+| AWF-0231 | project | Repository conventions, editing boundaries and engineering review | 1 of 1 | Opened newer Plotly engineering follow-up dated 2025-10-23; recommends developer plan approval before coding and tightly scoped frontend changes. Build includes that guard, original shape remains unchanged. |
+| AWF-0121 | service | PR-triggered work plus asynchronous review and expert samples | 1 of 1 | Opened 2026-09 accessFlow Code Agent announcement, a product alternative rather than proof of full accessibility. Deny rules prohibit local commits as well as merge/deployment. |
+| AWF-0062 | project | Standing DESIGN.md and enforced library-only write boundary | 1 of 1 | Current official Figma documentation confirms native read/write tools; connector access can replace a custom API wrapper. Library publication and production release remain human-controlled. |
+
+Checks: `validate.py` reports 238 workflows, 174 STANDARD entries; index regenerated/check passes; diagrams unchanged/check passes; i18n status 238 up to date, 0 behind/problem/missing; `git diff --check` clean. Complete evidence tails, id and shape compared with the previous commit and unchanged.
