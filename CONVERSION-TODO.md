@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **155 of 238 entries converted, 83 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **161 of 238 entries converted, 77 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -65,7 +65,7 @@ grep -L '^build:' workflows/*/*/*/*/README.md workflows/unplaced/*/README.md
 
 Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`. Batches 8 to 10: `workflows/TEC/DAT/DS/repo-grounded-analysis`. For the rest, pick an already converted entry in the same phylum (`grep -l '^build:' workflows/<K>/<P>/*/*/README.md`).
 
-- [ ] **Batch 5** (security, 6)
+- [x] **Batch 5** (security, 6)
   - AWF-0005 workflows/TEC/ITS/SECOPS/alert-enrich-and-adjudicate
   - AWF-0128 workflows/TEC/ITS/SECOPS/detonate-and-confirm-detections
   - AWF-0187 workflows/TEC/ITS/SECOPS/purple-team-detection-build
@@ -236,3 +236,19 @@ Paste each batch's report table here, newest last.
 **Batch 4 (2026-11-14), stopped early: 4 of 7 finished, no report (see Part C)**
 
 AWF-0185, AWF-0127, AWF-0230, AWF-0004 converted. AWF-0005, AWF-0128, AWF-0187 moved to batch 5.
+
+
+**Batch 5 (2026-11-14), security; six bilingual entries; three read in full (AWF-0128, 0187, 0129)**
+
+Sources opened counts below count unique evidence URLs, not repeated links. HTTP success with no article body is not verification. `last_verified` values were preserved; all methods checked in 2026-11. Source text and search notes were kept in the session workspace, not added to the catalog.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0005 | service | Incoming alerts, exception queue and weekly sampling | 3 of 3 | steps-unsupported: none of the opened accounts establishes weekly QA cadence; steps have no numbered citations. Build states this limitation. |
+| AWF-0128 | service | Interactive authoring plus unattended catalogue replay | 1 of 1 | Source claims a post-write hook blocks the write; current hook semantics require a pre-execution guard. Build makes that distinction. |
+| AWF-0187 | project | Separate defender/tester contexts and enforced lab boundaries | 1 of 1 | steps-unsupported: source also records user approval before each detonation; shape and How it differs omit that checkpoint. Build retains it explicitly; Part C should reconcile the historical shape. Source is undated, page modified 2026-08-05. |
+| AWF-0129 | service | Asynchronous fuzz jobs and crash queues | 0 of 1 | source-unreachable: Google blog returns title/navigation only. tool-renamed-or-gone: OSS-Fuzz-Gen repository archived 2026-11-10 (opened directly); retained as historical variant. outdated-method: general coding-agent Skill can carry the edit/test loop, while the operator still supplies fuzzing infrastructure. |
+| AWF-0067 | service | Queue of findings and two human review stages | 3 of 3 | outdated-method: general coding-agent Skill carries the bespoke prompt pipeline; no claimed equivalence to CodeMender tools. Source citation uses PDF creation date 2024-01-05, but printed report date is 2024-01-31; source author order is Jan Nowakowski, Jan Keller. CodeMender managed preview announced 2026-07. |
+| AWF-0188 | service | Scheduled dispatch and later deployment verification | 1 of 1 | tool-renamed-or-gone (planned): Atlassian 2026-10-23 notice says Rovo Dev CLI will transition to Rovo CLI; current support remains. Claude/Codex MCP version differs from Rovo Dev CLI. |
+
+Validation: `validate.py` reports 238 workflows, 161 STANDARD entries; index regenerated; diagrams unchanged; i18n status 238 up to date, 0 behind/problem/missing. No public-run quote, evidence citation, shape, id or folder changed.
