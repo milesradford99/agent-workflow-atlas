@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
+build: platform
+method_checked: 2026-11
 ---
 
 # Dubbing pipeline
@@ -61,15 +63,57 @@ flowchart TD
 <!-- end shape diagram -->
 
 
+## Background
+
+Dubbing replaces the spoken language of a video with another language, voiced by new actors or by synthetic voices, and adds subtitles. 短剧 (short dramas) are serial stories in episodes of a minute or two, watched on phones, and 出海 ("going overseas") apps sell them to audiences abroad. A series can run to a hundred episodes with dozens of characters, so dubbing it by hand into many languages is slow and costly. A literal translation also goes wrong in ways viewers notice: a term of address becomes the wrong relationship, a joke or a cultural reference makes no sense, or a line is too long to fit the actor's mouth movements. The agent does the transcription, the glossary, the translation, the fitting of each line to its time slot and the voice generation. Native speakers still check the result and a person signs it off before release, because a mistranslation or a cultural taboo reaches paying viewers and the publisher answers for it.
+
+**Terms:**
+- **ASR**: automatic speech recognition, software that turns speech into text.
+- **Diarization**: working out who speaks each line in a recording with several speakers.
+- **Glossary and cultural notes**: for one series, a list of how each name, term of address, place, currency, unit and idiom is rendered in each target language.
+- **Honorifics**: forms of address that show relationship or rank (for example Japanese politeness levels).
+- **Line fitting**: shortening or rephrasing a translated line so that, spoken at natural speed, it fits the time the original line occupied.
+- **Voice cloning (TTS)**: text-to-speech that imitates a character's voice from a few reference clips.
+- **Lip-sync**: adjusting the picture or audio so mouth movements match the new language.
+- **SRT**: a plain-text subtitle file with timed lines.
+- **Ducking**: lowering the background music while someone speaks.
+- **Post-editing (译后编辑)**: a human correcting machine translation.
+- **QA**: quality assurance, here a native speaker's listen-through.
+- **IAP**: in-app purchase, the money viewers spend inside the app.
+
+## Build it with an agent
+
+**Form:** `platform`. The voices and lip-sync come from speech and video models that a general agent cannot replace. A general agent can run the script, glossary and translation steps as a `project`, because several languages are handled in parallel and two rules must hold every time: no release without a person, and a fixed line-length limit.
+
+**You need:** the episode video files and the script if one exists; accounts for a speech-recognition service, a voice generation service and a lip-sync tool; reference voice clips for each character, with the rights to clone them; the client's delivery spec (languages, subtitle format, review rules); native-speaker reviewers for each language. Do not put unreleased episodes into services the client has not approved.
+
+| Step | Built as |
+|---|---|
+| episode + script → diarized ASR aligned to script | A script beside the skill runs the speech-recognition service. The skill aligns the text to the script and builds the character roster. |
+| per-series glossary + cultural notes | A skill writes the glossary file from the roster and the market rules; later steps read it instead of guessing. |
+| 🛑 plan | See Checkpoints. |
+| each language: (translate ⟲ fits line duration) | One subagent per language translates against the glossary. A script measures the duration of each line and returns those that run over for rephrasing. |
+| voice-clone TTS → lip-sync → subtitles | The voice generation and lip-sync services, called from scripts. The skill writes the SRT files and the music mix list. |
+| 🛑 sample → 🛑 sign-off → publish | See Checkpoints. |
+
+**Checkpoints:** `plan`: the skill writes the language list, delivery spec, roster, voice references and review rules to a file and stops until the client's contact approves. `sample`: native reviewers listen to episodes 1 to 10 in full and then a sample; the agent copies those files to their queue and does not go on to the next batch until the reviewers pass them. `sign-off`: the agent has no upload or publish tool, so a person releases each language from the platform's own screen.
+
+**Since the sources:** Sources and public runs date from 2025-04 to 2026-10, within the last 12 months, so no newer-account search was needed. They describe one in-house pipeline (source 19) and a vendor's service (source 20) that run these steps with fine-tuned models and human review, and trade coverage (source 21). The build above is a design for a general agent and does not reproduce their models. Lip-sync is not part of the Dashverse pipeline; it appears here only because trade coverage names tools for it. Vendor throughput claims in the entry's tags line are unverified.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
-1. Rebuild the screenplay from the episode. Dashverse feeds speech-to-text, voice-activity and visual signals with the video into a multimodal LLM, processes the show in chunks and reconciles character identities across them. It also tags each line's emotion and non-verbal sounds and builds a show-wide character roster (age, gender, role, aliases, honorifics) [[19]](#sources). Where scripts are missing or messy, clean and normalize the text first [[20]](#sources).
-2. Build the per-series glossary and cultural notes: localized character names, honorifics, places, currencies, units and idioms, each mapped in context, so translation looks terms up instead of guessing [[19]](#sources). Add market rules such as Japanese honorific levels, Latin-American family terms and Arabic-market sensitive content [[20]](#sources).
-3. 🛑 **Plan**: agree with the client on target languages, delivery spec, character list, voice references, subtitle format, review requirements and release schedule before batch work starts [[20]](#sources). Reviewers can still steer translation, names and casting [[19]](#sources).
-4. For each language, translate, then fit each line to its time slot. Dashverse routes lines to per-language, per-register fine-tuned models and rephrases over-long lines rather than speeding audio past 1.15×; in a Chinese-to-Hindi sample the median first take was 1.45× the slot and the accepted take 1.02× [[19]](#sources). Transn's post-editors check meaning, naturalness, character voice and line length [[20]](#sources).
-5. Voice the lines. Transn clones each character's voice from a few reference clips [[20]](#sources). Dashverse casts from about 3,000 hand-labelled prebuilt voices instead, because cloning carried accents and mispronunciations, and uses action tags such as `[whispers]` or `[sobs]` rather than abstract ones [[19]](#sources).
-6. Sync, mix and subtitle: duration prediction and audio-video sync [[20]](#sources); remix background music with ducking under dialogue, and generate SRTs [[19]](#sources). Dashverse's pipeline does not include lip-sync; lip-sync tools such as Heygen are named in trade coverage [[21]](#sources).
+
+*As reported by the sources.*
+
+1. The pipeline rebuilds the screenplay from the episode. Dashverse feeds speech-to-text, voice-activity and visual signals with the video into a multimodal LLM, processes the show in chunks and reconciles character identities across them. It also tags each line's emotion and non-verbal sounds and builds a show-wide character roster (age, gender, role, aliases, honorifics) [[19]](#sources). Where scripts are missing or messy, the team cleans and normalizes the text first [[20]](#sources).
+2. The team builds the per-series glossary and cultural notes: localized character names, honorifics, places, currencies, units and idioms, each mapped in context, so translation looks terms up instead of guessing [[19]](#sources). Add market rules such as Japanese honorific levels, Latin-American family terms and Arabic-market sensitive content [[20]](#sources).
+3. 🛑 **Plan**: the team agrees with the client on target languages, delivery spec, character list, voice references, subtitle format, review requirements and release schedule before batch work starts [[20]](#sources). Reviewers can still steer translation, names and casting [[19]](#sources).
+4. For each language, the pipeline translates, then fits each line to its time slot. Dashverse routes lines to per-language, per-register fine-tuned models and rephrases over-long lines rather than speeding audio past 1.15×; in a Chinese-to-Hindi sample the median first take was 1.45× the slot and the accepted take 1.02× [[19]](#sources). Transn's post-editors check meaning, naturalness, character voice and line length [[20]](#sources).
+5. The pipeline voices the lines. Transn clones each character's voice from a few reference clips [[20]](#sources). Dashverse casts from about 3,000 hand-labelled prebuilt voices instead, because cloning carried accents and mispronunciations, and uses action tags such as `[whispers]` or `[sobs]` rather than abstract ones [[19]](#sources).
+6. The pipeline syncs, mixes and subtitles: duration prediction and audio-video sync [[20]](#sources); it remixes background music with ducking under dialogue and generates SRTs [[19]](#sources). Dashverse's pipeline does not include lip-sync; lip-sync tools such as Heygen are named in trade coverage [[21]](#sources).
 7. 🛑 **Sample**: native-speaker QA. The shape's plan is eps 1–10 in full, then a sample. The cited teams check more than that: Dashverse reviews every show and kept about 95% of speaker labels, 89% of translated lines and 96% of casting as generated [[19]](#sources); Transn's AI review flags omissions, inconsistent names, sensitive wording, sync and audio faults, and people handle the low-confidence share (about 15%) [[20]](#sources).
-8. 🛑 **Sign-off**: a human re-check before delivery is not skipped even when nothing changes [[21]](#sources). Pick the delivery tier (quick preview, social, or premium app with manual polish) for that show [[20]](#sources), then publish.
+8. 🛑 **Sign-off**: a person re-checks before delivery, even when nothing changes [[21]](#sources). The team picks the delivery tier (quick preview, social, or premium app with manual polish) for that show [[20]](#sources), then publishes.
 
 **Output:** dubbed, mixed and subtitled episodes per language, plus a glossary, voice settings and review rules reused on the next show of the same type [[20]](#sources).
 **Failure modes → guards:** Diarization degrades over long shows with 20–40 characters → ensemble labelling plus reconciliation across chunks; reviewers relabelled 5.2% of lines [[19]](#sources). Literal translation changes the plot (oppa rendered as bhaiya, lottery stakes shrunk) → glossary and roster built before translation [[19]](#sources). Models default to bookish register in Tamil and Telugu → fine-tuning on about 340,000 lines of in-house dialogue [[19]](#sources). Lines run long → rephrase to fit; speed-up only within a narrow range [[19]](#sources). Mistranslation or cultural taboo ("臣妾做不到啊" rendered as a maid unable to work) → mandatory human re-check [[21]](#sources). Sensitive expressions for a market → AI flags plus human cultural review [[20]](#sources).
