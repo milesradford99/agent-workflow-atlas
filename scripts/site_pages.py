@@ -93,7 +93,22 @@ def inline(text, link, blank=False):
 
 
 def cells(line):
-    return [c.strip() for c in line.strip().strip("|").split("|")]
+    # A route's alternatives use \| inside a cell, not another table column.
+    text = line.strip()
+    if text.startswith("|"):
+        text = text[1:]
+    if text.endswith("|"):
+        text = text[:-1]
+    parts, cell, escaped = [], [], False
+    for char in text:
+        if char == "|" and not escaped:
+            parts.append("".join(cell))
+            cell = []
+        else:
+            cell.append(char)
+        escaped = char == "\\" and not escaped
+    parts.append("".join(cell))
+    return [re.sub(r"\\([\\|])", r"\1", part.strip()) for part in parts]
 
 
 def markdown(text, link, sources=False, blank=False, cls=""):
