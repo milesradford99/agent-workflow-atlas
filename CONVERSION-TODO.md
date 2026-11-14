@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **193 of 238 entries converted, 45 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **200 of 238 entries converted, 38 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -109,7 +109,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0151 workflows/TEC/ENG/SUBMITTAL/first-pass-submittal-review
   - AWF-0235 workflows/TEC/ENG/SUBMITTAL/rule-set-verdict-review
   - AWF-0190 workflows/TEC/ENG/SUBMITTAL/spec-to-submittal-register
-- [ ] **Batch 11** (customer support and retail catalog, 7)
+- [x] **Batch 11** (customer support and retail catalog, 7)
   - AWF-0021 workflows/COM/CSX/RESOLVE/procedure-agent
   - AWF-0108 workflows/COM/CSX/RESOLVE/resident-maintenance-triage
   - AWF-0175 workflows/COM/CSX/RESOLVE/supervised-voice-agent
@@ -334,3 +334,20 @@ Unique evidence URLs: 9 readable of 15. Two PDFs were read with a PDF text reade
 | AWF-0190 | skill | One project engineer runs it once per spec set and verifies the draft | 1 of 2 | tool-renamed-or-gone: Pype AutoSpecs is now an Autodesk product licensed only in the Forma for Construction Operations bundle; eBinder and SmartPlans were withdrawn from sale in 2024-03; the current product adds version diffing and suggested missing items. |
 
 Checks: `validate.py` reports 238 workflows, 193 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagrams regenerated for the two entries whose copied blocks drifted and the check now passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the six folders plus CHANGELOG/CONVERSION-TODO.
+
+
+**Batch 11 (2026-11-14), support and retail catalog; seven bilingual entries; two read in full (AWF-0021, 0114)**
+
+Unique evidence URLs: 8 readable of 19. Four entries' own sources were not re-opened on this pass (AWF-0021's forum thread and two papers, AWF-0112's two retailer posts, AWF-0113's single post) and each entry says so in **Since the sources**; the newer material for every entry was opened. Two mermaid blocks were copied with the wrong classDef separator and were rebuilt; `build_diagrams.py --check` passes. No source, public run, quote, shape or id changed.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0021 | service | Customers write at any hour; people appear only at the exceptions, the handoff and the sample | 3 of 5 | The 2026 benchmark round-up reports platform averages of 52% to 76% and states every figure is self-reported under its publisher's definition, with one vendor counting a completed procedure or a handoff as a resolution. This strengthens the entry's existing metric caution; no claim changed. |
+| AWF-0108 | service | Reports arrive around the clock; people appear at the emergencies and in the sample | 3 of 3 | The handoff is thin in all three vendor case studies, so the build specifies a decision packet and a rubric, and fills the gap from a 2026 practitioner framework: named recipients, a consolidation rule so one building-wide incident produces one alert, and false-emergency and missed-emergency rates as the tuning metrics. |
+| AWF-0175 | platform | The call is real-time audio; recognition, interruption and an audible take-over need speech models and telephony a general agent does not have | 2 of 5 | A 2026 guide treats the monitor seat as a staffing decision, argues a high intervention rate is a signal the agent's escalation rules are failing, and states a take-over should be announced and logged — the build enforces both. |
+| AWF-0111 | service | Thousands of items processed in batches; reviewers meet a screening queue | 1 of 3 | 2026 practitioner material adds guardrail versioning and a legal audit of health, safety and warranty claims; the build adopts both and keeps the screening queue as it is. |
+| AWF-0112 | service | Extraction runs over batches; people meet a correction queue and a sampling programme | 0 of 2 | A 2026 account makes the staging table and an explicit promotion policy the published default, and warns that self-reported confidence is only loosely correlated with correctness; the build calibrates the score before it gates anything. |
+| AWF-0113 | skill | One content specialist, one article, a decision on every field | 0 of 1 | The same company's Q1 2026 results show one attribute (material composition) now enriched automatically at about 6,000 articles a day, so the line between automatic and human is moving; the build keeps every field on the human side as the conservative reading. |
+| AWF-0114 | service | A million listings reviewed in batches; supplier confirmation and physical sampling are asynchronous | 1 of 1 | A 2026 account sets out the promotion policy this entry routes on, and warns that editing supplier-asserted content in place loses the difference between asserted and inferred; the build keeps both values in the change record. |
+
+Checks: `validate.py` reports 238 workflows, 200 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes after rebuilding two blocks; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.

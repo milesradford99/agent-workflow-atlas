@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
+build: service
+method_checked: 2026-11
 ---
 
 # Procedure agent
@@ -57,7 +59,48 @@ flowchart TD
 <!-- end shape diagram -->
 
 
+## Background
+
+A retailer or software company takes customer questions in a chat window: where is my order, can I change my address, my card was charged twice, how do I return this. Most are answered from a help centre; a minority need an action in a system — a refund, a cancellation, an address change — and only after the person asking has proved they own the account. Support leaders write the answers and the rules down as procedures, and an agent can now work through them in the chat: it answers from the articles, and for a transaction it authenticates, calls the system and tells the customer what happened. Three things keep a person in the loop. Money-moving actions must be capped, and a cap written in a prompt is only a suggestion, so the limits live in the tool itself. Cases the procedure does not cover — a threatened chargeback, a bereavement, a legal threat — go to a human with a summary. And because a resolved-looking conversation can still be a wrong one, quality staff score conversations and read the flagged and the sampled. What the sources call the resolution rate is the number the whole arrangement is judged on, and every vendor defines it differently.
+
+**Terms:**
+- **KB (knowledge base)**: the help-centre articles the agent answers from.
+- **procedure**: a written routine with conditions and limits, such as "refund if the parcel is more than ten days late and the value is under the cap".
+- **route**: deciding which kind of message this is before answering it.
+- **authenticate**: proving the person owns the account before any account action.
+- **tool call**: the agent's action in an outside system, such as issuing a refund.
+- **handoff**: passing the conversation to a person, with a summary.
+- **QA sampling**: scoring every conversation and having people re-read a share of them.
+- **deflection vs resolution**: a conversation the customer gave up on versus one whose problem was actually solved; only the second is resolution.
+
+## Build it with an agent
+
+**Form:** `service`. Customers write at any hour and the agent answers without anyone starting it; people appear only at the exceptions, the handoffs and the sample.
+
+**You need:** the KB and the procedures as files the run loads, one procedure per intent with its conditions and its limits written as numbers; account tools — refund, cancel, address change — exposed through an MCP connector, with the caps enforced inside those tools; an authentication step whose result the tools require; a store outside the conversation for what the current case has established; a queue for handoffs and a review queue for sampled conversations. The agent must have no tool that can exceed a cap and no channel to a customer other than the chat itself.
+
+| Step | Built as |
+|---|---|
+| load KB + procedures | The Skill's first instruction: read the route table and load the procedure for this intent only, so the limits in force are the ones written for the case at hand. |
+| each message: route | A small classifier in the calling program picks from a fixed intent list; anything the list does not cover becomes a handoff, not a free-form answer. |
+| info: answer | Retrieval over the KB with the article cited in the reply; a question it cannot ground goes to the gap log instead of being answered from general knowledge. |
+| transaction: authenticate | The authentication tool returns a session token that the account tools require; without it every account call fails closed. |
+| 🛑 action (limits in code) | The refund and cancellation tools enforce their own ceilings and refuse anything above them; the agent chooses whether to refund, never how high the cap is. |
+| tool call | MCP connectors to the order, billing and CRM systems, each returning a structured result that goes into the reply and the log. |
+| sensitive: 🛑 handoff | A handoff tool that packages the transcript, the identity state, what was tried and why it stopped into the queue of the right team. |
+| 🛑 sample (QA) | Every conversation is scored, and a fixed share plus anything flagged goes to a reviewer; the scores drive procedure edits, not the agent. |
+| KB-gap clusters → new articles | A scheduled pass clusters the unanswered questions weekly and proposes article drafts for the content team to accept. |
+
+**Checkpoints:** `action`: the ceiling is a property of the tool, so no wording in a prompt can raise it, and a failed authentication has no path to an account action. `handoff`: the only route to a person is the handoff tool, which ends the run and leaves a decision packet rather than a bare transfer. `sample`: the review share is set by the programme, not by the agent, and the scored conversations are what changes to the procedures are based on.
+
+**Since the sources:** Sources date from 2023 to 2026-10: two first-hand engineering accounts, a vendor case study, a practitioner forum thread and a 2026 customer story. The 2026 benchmark round-up and the Aircall story were opened this month; the older forum thread was not re-opened. What has changed since: how the headline number is counted. The 2026 round-up reports platform averages from 52% to 76% and states that [every published figure is self-reported under a definition its publisher wrote](https://www.lorikeetcx.ai/articles/resolution-rate-ai-customer-support-benchmarks-2026), with one vendor counting a completed procedure or a handoff as a resolution and another counting only conversations that end without escalation. That makes the metric caution in this entry more relevant, not less: the build should fix its definition of resolution per intent before it is measured, or the number will move when a vendor's definition changes rather than when the service does. The fixed attempt limit before escalation, recorded as 2026 recent practice, is unchanged in the newer account.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
+
+*As reported by the sources.*
+
 1. Rewrite tribal knowledge as natural-language procedures with explicit conditions and limits. Decagon AOPs compile these into workflows where refunds and identity checks run in code [[21]](#sources). Intercom Fin Procedures and Sierra journeys are equivalent variants.
 2. Route each message by intent.
 3. Authenticate before any account action.
