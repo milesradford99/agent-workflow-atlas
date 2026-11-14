@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **161 of 238 entries converted, 77 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **168 of 238 entries converted, 70 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -72,7 +72,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0129 workflows/TEC/ITS/APPSEC/ai-fuzz-target-hunting
   - AWF-0067 workflows/TEC/ITS/APPSEC/sanitizer-bug-autopatch
   - AWF-0188 workflows/TEC/ITS/APPSEC/scheduled-vuln-fix-prs
-- [ ] **Batch 6** (IT helpdesk, infrastructure, product planning and prototypes, 7)
+- [x] **Batch 6** (IT helpdesk, infrastructure, product planning and prototypes, 7)
   - AWF-0189 workflows/TEC/ITS/HELPDESK/self-repair-before-handoff
   - AWF-0068 workflows/TEC/ITS/HELPDESK/slack-it-request-agent
   - AWF-0066 workflows/TEC/ITS/INFRA/chat-to-iac-change
@@ -252,3 +252,20 @@ Sources opened counts below count unique evidence URLs, not repeated links. HTTP
 | AWF-0188 | service | Scheduled dispatch and later deployment verification | 1 of 1 | tool-renamed-or-gone (planned): Atlassian 2026-10-23 notice says Rovo Dev CLI will transition to Rovo CLI; current support remains. Claude/Codex MCP version differs from Rovo Dev CLI. |
 
 Validation: `validate.py` reports 238 workflows, 161 STANDARD entries; index regenerated; diagrams unchanged; i18n status 238 up to date, 0 behind/problem/missing. No public-run quote, evidence citation, shape, id or folder changed.
+
+
+**Batch 6 (2026-11-14), IT helpdesk, infrastructure, planning and prototypes; seven bilingual entries; three read in full (AWF-0186, 0060, 0007)**
+
+Unique evidence URLs: 7 fully readable of 9; Every partially readable behind a subscription boundary, Matos title-only. No date was advanced on the strength of an HTTP response. No sources, public runs, quotes or shapes were changed. Methods checked in 2026-11.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0189 | service | Request-triggered diagnostics, bounded repairs and exception handoff | 1 of 1 | Microsoft hosted-agent availability update published 2026-09; it does not expose internal Managed Cloud Labs APIs. |
+| AWF-0068 | service | Message and lifecycle events plus asynchronous approvals | 2 of 2 | Citation fault: Kernel page now identifies Chander Inguva and updated 2026-03-19, rather than author unnamed/undated. ServiceNow 2026-08 release notes show Otto rebranding in part of the product family; generic variant retained. |
+| AWF-0066 | service | Chat or monitoring event starts a PR proposal unattended | 1 of 1 | No newer account found in bounded searches as of 2026-11; plan/apply infrastructure and required code-host review retained. |
+| AWF-0186 | service | Scheduled cross-project sweep with human review and apply | 1 of 1 | Source intentionally replaced a tool-calling agent with a deterministic controller; build preserves it. Current Atlantis FAQ documents drift APIs but no built-in scheduler; installed-version check required. |
+| AWF-0060 | skill | One person plans one project in conversation | 0 fully of 2; 1 partial | source-unreachable: Matos title-only; Every subscription boundary blocks the quoted ticket count. Citation dates need review: Every now shows publication 2026-05-01, updated 2026-11-09. |
+| AWF-0007 | skill | Product lead guides one discovery cycle | 1 of 1 | no-agent-in-source; steps-unsupported: source interviews teams, does not establish this complete agent sequence or universal 5-test rule. Build explicitly states both limits. Newer adjacent first-hand prototyping account 2026-07. |
+| AWF-0232 | project | Prepared repository, persistent component knowledge and protected edit boundaries | 1 of 1 | Source reports designers using a coding agent, not unattended feature delivery. Newer adjacent first-hand prototyping account 2026-07 does not invalidate this method. |
+
+Checks: `validate.py` reports 238 workflows, 168 STANDARD entries; `build_index.py --check` and diagrams check pass; i18n status 238 up to date, 0 behind/problem/missing. Shape, identifiers and the complete Public runs/Sources tails were compared against the previous commit and are unchanged.
