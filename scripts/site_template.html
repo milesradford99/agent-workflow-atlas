@@ -212,8 +212,10 @@ footer.site a { color: var(--slate); }
 <script>
 const DATA = /*__DATA__*/null;
 const W = DATA.workflows, L = DATA.labels, byId = Object.fromEntries(W.map(w => [w.id, w]));
+const active = w => !["retired", "merged"].includes(w.status);
 const STR = {
   en: {
+    retired: "Retired from the active catalog; retained for reference.", merged: "Merged into",
     search: "Search workflows, tools, professions (code review, 短剧, prior auth)",
     heroTitle: "How work actually gets done with AI agents",
     heroText: n => `${n.w} workflows from ${n.p} professions, each written as a step-by-step procedure with the tools, the sources and the exact points where a person has to decide.`,
@@ -221,14 +223,15 @@ const STR = {
     lStep: "a step the agent runs", lLoop: "repeats until a check passes", lEach: "runs for every item", lStop: "a person must approve",
     stats: {w: "workflows", p: "professions", c: "categories", s: "with strong public evidence"},
     fieldsTitle: "Browse by field", fieldsText: "Everything the catalog covers. Pick a field to see all of its workflows.",
-    showAll: n => `Show all ${n}`, theme: "Switch between light and dark", setupTitle: "Inputs and tools",
+    showAll: n => `Show all ${n}`, theme: "Switch between light and dark", setupTitle: "Inputs and tools", backgroundTitle: "Background", buildTitle: "Build it with an agent",
     cpShort: {plan: "plan", action: "action", review: "review", sample: "sample", "sign-off": "sign-off", handoff: "handoff"},
     stopsLabel: "A person approves", noStops: "No fixed human stop",
     cols: {wf: "Workflow", field: "Field", route: "Route", ev: "Public evidence"},
-    tabs: {start: "Start here", map: "By field", list: "All workflows"},
+    tabs: {moves: "By move", map: "By field", list: "All workflows", start: "Start here"},
     count: (n, t) => n === t ? `${t} workflows` : `${n} of ${t} workflows`,
     filters: "Filters", clear: "Clear filters",
-    groups: {kingdom: "Field", coverage: "Public evidence", autonomy: "How much the agent decides", checkpoints: "Human checkpoints", patterns: "Agent pattern", evidence: "Source type", risk: "Risk", status: "Status", region: "Region"},
+    movesTitle: "Browse by move", movesText: "Most workflows gather context, draft and ask a person to decide. The move is what differs: how the input is prepared, actions bounded or results checked.",
+    groups: {moves: "The move", kingdom: "Field", coverage: "Public evidence", autonomy: "How much the agent decides", checkpoints: "Human checkpoints", patterns: "Agent pattern", evidence: "Source type", risk: "Risk", status: "Status", region: "Region"},
     hintAll: "Shows workflows with every checkpoint you select",
     cov: {Strong: "Strong evidence", Partial: "Partial evidence", Weak: "Weak evidence", "None found": "No public run"},
     covShort: {Strong: "Strong", Partial: "Partial", Weak: "Weak", "None found": "None found"},
@@ -252,6 +255,7 @@ const STR = {
     foot: {data: "Download the catalog", json: "JSON", csv: "CSV", license: "Content CC BY 4.0, code MIT", repo: "GitHub repository", contribute: "Add a workflow or a run"},
   },
   "zh-CN": {
+    retired: "已从在用目录退役，保留供参考。", merged: "已合并至",
     search: "搜索工作流、工具、行业（如：代码评审、短剧、事前授权）",
     heroTitle: "各行各业如何真正用 AI 智能体干活",
     heroText: n => `${n.w} 条工作流，来自 ${n.p} 个行业。每条都写成可照做的步骤，标明用到的工具、出处，以及必须由人拍板的节点。`,
@@ -259,14 +263,15 @@ const STR = {
     lStep: "智能体执行的一步", lLoop: "反复执行，直到检查通过", lEach: "对每一项执行", lStop: "必须由人审批",
     stats: {w: "条工作流", p: "个行业", c: "个类别", s: "条有充分公开证据"},
     fieldsTitle: "按领域浏览", fieldsText: "目录覆盖的全部内容。选一个领域，查看其中所有工作流。",
-    showAll: n => `查看全部 ${n} 条`, theme: "切换浅色或深色", setupTitle: "输入与工具",
+    showAll: n => `查看全部 ${n} 条`, theme: "切换浅色或深色", setupTitle: "输入与工具", backgroundTitle: "背景", buildTitle: "用智能体搭建",
     cpShort: {plan: "计划", action: "操作", review: "审阅", sample: "抽检", "sign-off": "签发", handoff: "接手"},
     stopsLabel: "由人审批", noStops: "无固定人工节点",
     cols: {wf: "工作流", field: "领域", route: "路线", ev: "公开证据"},
-    tabs: {start: "从这里开始", map: "按领域浏览", list: "全部工作流"},
+    tabs: {moves: "按一招", map: "按领域", list: "全部工作流", start: "从这里开始"},
     count: (n, t) => n === t ? `共 ${t} 条工作流` : `${t} 条中的 ${n} 条`,
     filters: "筛选", clear: "清除筛选",
-    groups: {kingdom: "领域", coverage: "公开证据", autonomy: "智能体自主程度", checkpoints: "人工检查点", patterns: "智能体模式", evidence: "来源类型", risk: "风险", status: "状态", region: "地区"},
+    movesTitle: "按一招浏览", movesText: "多数工作流都是收集上下文、起草、交人决定。差别在这一招：输入怎样准备、行动怎样受限、结果怎样核实。",
+    groups: {moves: "一招", kingdom: "领域", coverage: "公开证据", autonomy: "智能体自主程度", checkpoints: "人工检查点", patterns: "智能体模式", evidence: "来源类型", risk: "风险", status: "状态", region: "地区"},
     hintAll: "只显示同时包含所选全部检查点的工作流",
     cov: {Strong: "证据充分", Partial: "证据部分", Weak: "证据薄弱", "None found": "暂无公开实例"},
     covShort: {Strong: "充分", Partial: "部分", Weak: "薄弱", "None found": "暂无"},
@@ -303,6 +308,8 @@ const T = () => STR[lang];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const lab = (kind, code) => (L[kind][code] || {})[lang] || (L[kind][code] || {}).en || code;
 const nameOf = w => lang === "zh-CN" && w.nameZh ? w.nameZh : w.name;
+const moveOf = w => lang === "zh-CN" && w.moveZh ? w.moveZh : w.move;
+const MOVES = Object.keys(L.moves);
 const sumOf = w => lang === "zh-CN" && w.summaryZh ? w.summaryZh : w.summary;
 // the Chinese text of an entry (README.zh-CN.md), when the reader picked 中文 and one exists
 const zhOf = w => lang === "zh-CN" ? w.zh : null;
@@ -315,22 +322,25 @@ const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches ? "aut
 const GROUPS = [
   {key: "kingdom", values: Object.keys(DATA.taxonomy), label: v => lab("kingdoms", v)},
   {key: "coverage", values: COV, label: v => T().covShort[v]},
+  {key: "moves", values: MOVES, label: v => lab("moves", v)},
   {key: "autonomy", values: ["assist", "checkpointed", "sampled"], label: v => T().autoShort[v]},
   {key: "checkpoints", values: ["plan", "action", "review", "sample", "sign-off", "handoff"], all: true, label: v => T().cp[v]},
   {key: "patterns", values: ["chain", "route", "parallel", "orch-workers", "eval-opt", "auto-loop", "role-crew", "computer-use"], label: v => T().pat[v]},
   {key: "evidence", values: ["A", "B", "C"], label: v => T().ev[v]},
   {key: "risk", values: ["low", "medium", "high"], label: v => T().risk[v]},
-  {key: "status", values: ["accepted", "draft"], label: v => T().status[v]},
+  {key: "status", values: ["accepted", "draft", "retired", "merged"], label: v => T().status[v]},
   {key: "region", values: [...new Set(W.flatMap(w => w.region))].sort(), label: v => v},
 ];
-const state = {q: "", view: "start", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()])), open: {kingdom: true, coverage: true, checkpoints: true}};
+const state = {q: "", view: "moves", f: Object.fromEntries(GROUPS.map(g => [g.key, new Set()])), open: {moves: true, kingdom: true, coverage: true}};
 const text = h => h.replace(/<[^>]+>/g, " ");
-const HAY = Object.fromEntries(W.map(w => [w.id, [w.id, w.name, w.nameZh, w.summary, w.summaryZh,
+const HAY = Object.fromEntries(W.map(w => [w.id, [w.id, w.name, w.nameZh, w.summary, w.summaryZh, w.move, w.moveZh, w.moves.join(" "),
+  w.moves.map(c => [L.moves[c]?.en, L.moves[c]?.["zh-CN"]].join(" ")).join(" "),
   L.phyla[w.phylum]?.en, L.phyla[w.phylum]?.["zh-CN"], L.classes[w.class]?.en, L.classes[w.class]?.["zh-CN"], w.class,
-  w.deliverable, w.shape, w.variants.join(" "), text(w.stepsHtml), text(w.introHtml),
-  w.zh ? [w.zh.deliverable, w.zh.shape, text(w.zh.stepsHtml), text(w.zh.introHtml)].join(" ") : ""].join(" ").toLowerCase()]));
+  w.deliverable, w.shape, w.variants.join(" "), text(w.stepsHtml), text(w.introHtml), text(w.backgroundHtml || ""), text(w.buildHtml || ""),
+  w.zh ? [w.zh.deliverable, w.zh.shape, text(w.zh.stepsHtml), text(w.zh.introHtml), text(w.zh.backgroundHtml || ""), text(w.zh.buildHtml || "")].join(" ") : ""].join(" ").toLowerCase()]));
 
 function matches(w, skip) {
+  if (skip !== "status" && !state.f.status.size && !active(w)) return false;
   const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
   if (terms.some(t => !HAY[w.id].includes(t))) return false;
   for (const g of GROUPS) {
@@ -370,30 +380,37 @@ function card(w) {
   return `<a class="card" href="#${w.id}" data-id="${w.id}">
     <div class="sub"><span>${esc(lab("phyla", w.phylum))} · ${esc(lab("classes", w.class))}</span>${w.kit ? `<span class="kit-tag">${t.kit}</span>` : ""}</div>
     <h3>${esc(nameOf(w))}</h3>
-    <p class="sum">${esc(sumOf(w))}</p>
+    <p class="sum">${esc(moveOf(w) || sumOf(w))}</p>
     ${routeHTML(w)}
     <div class="foot">${stopsHTML(w)}<span class="grade ${gc(w.coverage)}">${esc(t.cov[w.coverage] || "")}</span></div>
   </a>`;
 }
 function renderStart() {
-  const t = T(), kits = W.filter(w => w.kit);
-  const best = W.filter(w => w.coverage === "Strong" && w.evidence === "A" && !w.kit).sort((a, b) => (b.runs - a.runs) || a.id.localeCompare(b.id));
+  const t = T(), kits = W.filter(w => active(w) && w.kit);
+  const best = W.filter(w => active(w) && w.coverage === "Strong" && w.evidence === "A" && !w.kit).sort((a, b) => (b.runs - a.runs) || a.id.localeCompare(b.id));
   const fields = Object.entries(DATA.taxonomy).map(([k, kd]) => {
-    const inK = W.filter(w => w.kingdom === k && !w.unplaced);
+    const inK = W.filter(w => active(w) && w.kingdom === k && !w.unplaced);
     return `<a class="field" href="#" data-jump="${k}"><div class="field-top"><h3>${esc(lab("kingdoms", k))}</h3><span class="field-n">${inK.length}</span></div>
       <p>${Object.keys(kd.phyla).map(p => esc(lab("phyla", p))).join(" · ")}</p>${barHTML(inK)}</a>`;
   });
-  const un = W.filter(w => w.unplaced);
+  const un = W.filter(w => active(w) && w.unplaced);
   if (un.length) fields.push(`<a class="field" href="#" data-jump="unplaced"><div class="field-top"><h3>${t.unplaced}</h3><span class="field-n">${un.length}</span></div><p>${esc(t.unplacedText)}</p>${barHTML(un)}</a>`);
   return `<section class="sec"><div class="sec-head"><div><h2>${t.fieldsTitle}</h2><p>${t.fieldsText}</p></div>${evLegend()}</div><div class="fields">${fields.join("")}</div></section>
     <section class="sec"><div class="sec-head"><div><h2>${t.startKits}</h2><p>${t.startKitsText(kits.length)}</p></div></div><div class="cards">${kits.map(card).join("")}</div></section>
-    <section class="sec"><div class="sec-head"><div><h2>${t.startBest}</h2><p>${t.startBestText(best.length)}</p></div>${best.length > BEST_SHOWN ? `<button class="btn" data-best>${t.showAll(W.filter(w => w.coverage === "Strong").length)}</button>` : ""}</div><div class="cards">${best.slice(0, BEST_SHOWN).map(card).join("")}</div></section>`;
+    <section class="sec"><div class="sec-head"><div><h2>${t.startBest}</h2><p>${t.startBestText(best.length)}</p></div>${best.length > BEST_SHOWN ? `<button class="btn" data-best>${t.showAll(W.filter(w => active(w) && w.coverage === "Strong").length)}</button>` : ""}</div><div class="cards">${best.slice(0, BEST_SHOWN).map(card).join("")}</div></section>`;
 }
 function evLegend() {
   return `<div class="ev-legend" aria-label="${esc(T().groups.coverage)}">${COV.map(c => `<span><i class="dot ${gc(c)}"></i>${esc(T().cov[c])}</span>`).join("")}</div>`;
 }
 function wfLink(w) {
-  return `<a class="wf" href="#${w.id}" data-id="${w.id}"><span class="dot ${gc(w.coverage)}" title="${esc(T().cov[w.coverage] || "")}"></span><span><b>${esc(nameOf(w))}</b><small>${esc(sumOf(w))}</small></span>${routeHTML(w)}</a>`;
+  return `<a class="wf" href="#${w.id}" data-id="${w.id}"><span class="dot ${gc(w.coverage)}" title="${esc(T().cov[w.coverage] || "")}"></span><span><b>${esc(nameOf(w))}</b><small>${esc(moveOf(w) || sumOf(w))}</small></span>${routeHTML(w)}</a>`;
+}
+function renderMoves(list) {
+  const codes = MOVES.filter(c => !state.f.moves.size || state.f.moves.has(c));
+  const groups = codes.map(code => [code, list.filter(w => w.moves.includes(code))]).filter(([, ws]) => ws.length);
+  if (!groups.length) return empty();
+  return `<section class="sec"><div class="sec-head"><div><h2>${T().movesTitle}</h2><p>${T().movesText}</p></div></div></section>` +
+    groups.map(([code, ws]) => `<section class="kingdom"><header><h2>${esc(lab("moves", code))}</h2><span>${ws.length}</span></header><div class="cards">${ws.map(card).join("")}</div></section>`).join("");
 }
 function renderMap(list) {
   const t = T();
@@ -423,7 +440,7 @@ function renderMap(list) {
 function renderList(list) {
   const t = T();
   return list.length ? `<div class="rows"><div class="row-head"><div>${t.cols.wf}</div><div class="p">${t.cols.field}</div><div class="r">${t.cols.route}</div><div>${t.cols.ev}</div></div>${list.map(w => `<a class="row" href="#${w.id}" data-id="${w.id}">
-    <div><div class="t">${esc(nameOf(w))}${w.kit ? `<span class="kit-tag">${t.kit}</span>` : ""}</div><div class="s">${esc(sumOf(w))}</div></div>
+    <div><div class="t">${esc(nameOf(w))}${w.kit ? `<span class="kit-tag">${t.kit}</span>` : ""}</div><div class="s">${esc(moveOf(w) || sumOf(w))}</div></div>
     <div class="p"><b>${esc(lab("phyla", w.phylum))}</b>${esc(lab("classes", w.class))}</div>
     <div class="r">${routeHTML(w)}</div>
     <div><span class="grade ${gc(w.coverage)}">${esc(t.covShort[w.coverage] || "")}</span></div>
@@ -456,16 +473,16 @@ function render() {
   const categories = Object.values(DATA.taxonomy).reduce((n, k) => n + Object.values(k.phyla).reduce((m, p) => m + p.classes.length, 0), 0);
   const mark = k => `<span class="route"><span class="m ${k}"><i></i></span></span>`;
   document.getElementById("hero").innerHTML = `<h1>${t.heroTitle}</h1><p>${t.heroText({w: W.length, p: professions})}</p>
-    <dl class="stats"><div><dt>${t.stats.w}</dt><dd>${W.length}</dd></div><div><dt>${t.stats.p}</dt><dd>${professions}</dd></div><div><dt>${t.stats.c}</dt><dd>${categories}</dd></div><div><dt>${t.stats.s}</dt><dd>${W.filter(w => w.coverage === "Strong").length}</dd></div></dl>
+    <dl class="stats"><div><dt>${t.stats.w}</dt><dd>${W.length}</dd></div><div><dt>${t.stats.p}</dt><dd>${professions}</dd></div><div><dt>${t.stats.c}</dt><dd>${categories}</dd></div><div><dt>${t.stats.s}</dt><dd>${W.filter(w => active(w) && w.coverage === "Strong").length}</dd></div></dl>
     <ul class="legend"><li>${t.legendTitle}</li><li>${mark("step")}${t.lStep}</li><li>${mark("loop")}${t.lLoop}</li><li>${mark("each")}${t.lEach}</li><li>${mark("stop")}${t.lStop}</li></ul>`;
   document.getElementById("hero").style.display = start ? "" : "none";
-  document.getElementById("tabs").innerHTML = ["start", "map", "list"].map(v => `<button role="tab" data-view="${v}" aria-selected="${state.view === v}">${t.tabs[v]}</button>`).join("");
-  // Start here is a fixed front page; search and filters belong to the two full views
+  document.getElementById("tabs").innerHTML = ["moves", "map", "list", "start"].map(v => `<button role="tab" data-view="${v}" aria-selected="${state.view === v}">${t.tabs[v]}</button>`).join("");
+  // Start here is a fixed front page; search and filters belong to the full views
   document.getElementById("count").textContent = start ? "" : t.count(list.length, W.length);
   document.getElementById("body").classList.toggle("solo", start);
   document.getElementById("filters-toggle").textContent = t.filters;
   document.getElementById("filters-toggle").hidden = start;
-  document.getElementById("view").innerHTML = state.view === "map" ? renderMap(list) : state.view === "list" ? renderList(list) : renderStart();
+  document.getElementById("view").innerHTML = state.view === "moves" ? renderMoves(list) : state.view === "map" ? renderMap(list) : state.view === "list" ? renderList(list) : renderStart();
   renderFilters();
   document.getElementById("foot").innerHTML = `<span>${t.foot.data}: <a href="catalog.json">${t.foot.json}</a>, <a href="catalog.csv">${t.foot.csv}</a></span>${DATA.repo ? `<a href="${DATA.repo}">${t.foot.repo}</a><a href="${DATA.repo}/blob/main/CONTRIBUTING.md">${t.foot.contribute}</a>` : ""}<span>${t.foot.license}</span>`;
 }
@@ -514,6 +531,8 @@ function openDetail(id) {
     <nav><a href="#d-route">${t.nav.route}</a><a href="#d-steps">${t.nav.steps}</a><a href="#d-runs">${t.nav.runs}</a><a href="#d-sources">${t.nav.sources}</a><a href="#d-diagram">${t.nav.diagram}</a></nav></div>
   <div class="sheet-in">
     <h1 class="d-title">${esc(nameOf(w))}</h1>${altName ? `<div class="alt-name" lang="en">${esc(altName)}</div>` : ""}
+    ${w.status === "retired" ? `<p class="note status-note">${esc(t.retired)}</p>` : w.status === "merged" && w.mergedInto ? `<p class="note status-note">${esc(t.merged)} <a href="#${w.mergedInto}" data-id="${w.mergedInto}">${esc(w.mergedInto)}</a></p>` : ""}
+    ${moveOf(w) ? `<p class="move">${esc(moveOf(w))}</p>` : ""}
     <p class="lede">${esc(sumOf(w))}</p>
     <div class="facts"><span class="grade ${gc(w.coverage)}" title="${esc(t.covLong[w.coverage] || "")}">${esc(t.cov[w.coverage] || "")} · ${t.runs(w.runs)}</span>${stopsHTML(w)}</div>
     <div class="actions">${w.kit ? `<a class="btn primary" href="${linkTo(w.path, "variants/claude-code.md")}" target="_blank" rel="noopener">${t.runKit}</a>` : ""}<a class="btn" href="w/${w.id}/${lang === "zh-CN" ? "zh/" : ""}">${t.page}</a><button class="btn" data-copy>${t.share}</button><a class="btn" href="${repoFile}" target="_blank" rel="noopener">${t.source}</a></div>
@@ -521,6 +540,8 @@ function openDetail(id) {
     <div class="route-box">${flowHTML(w)}</div>
     <dl class="meta-grid"><div><dt>${t.meta.delivers}</dt><dd>${esc((zhOf(w) || w).deliverable)}</dd></div><div><dt>${t.meta.autonomy}</dt><dd>${esc(t.auto[w.autonomy])}</dd></div><div><dt>${t.meta.pattern}</dt><dd>${w.patterns.map(p => esc(t.pat[p] || p)).join(", ")}</dd></div><div><dt>${t.meta.evidence}</dt><dd>${esc(t.ev[w.evidence])}</dd></div><div><dt>${t.meta.risk}</dt><dd>${esc(t.risk[w.risk] || "")}</dd></div><div><dt>${t.meta.verified}</dt><dd>${esc(w.lastVerified)}</dd></div>${w.variants.length ? `<div class="wide"><dt>${t.meta.tools}</dt><dd>${w.variants.map(v => `<code>${esc(v)}</code>`).join(" ")}</dd></div>` : ""}</dl></section>
     ${note ? `<p class="note" style="margin-top:28px">${esc(note)}</p>` : ""}
+    ${sec("d-background", t.backgroundTitle, body.backgroundHtml, bodyLang)}
+    ${sec("d-build", t.buildTitle, body.buildHtml, bodyLang)}
     ${sec("d-setup", t.setupTitle, body.introHtml, bodyLang)}
     ${sec("d-steps", t.stepsTitle, body.stepsHtml, bodyLang)}
     ${sec("d-runs", t.runsTitle, body.runsHtml, bodyLang)}
@@ -533,7 +554,7 @@ function openDetail(id) {
   el.querySelector(".close").onclick = closeDetail;
   el.querySelector("[data-copy]").onclick = e => { const u = new URL(`w/${w.id}/`, location.href).href; (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => e.target.textContent = t.copied, () => prompt(t.share, u)); };
   // in-sheet anchors (section nav, citations) scroll the sheet; the page hash stays the workflow id
-  el.querySelectorAll('a[href^="#"]').forEach(a => a.onclick = ev => { ev.preventDefault(); ev.stopPropagation(); const to = el.querySelector(`[id="${a.getAttribute("href").slice(1)}"]`); if (to) to.scrollIntoView({behavior: calm(), block: "start"}); });
+  el.querySelectorAll('a[href^="#"]:not([data-id])').forEach(a => a.onclick = ev => { ev.preventDefault(); ev.stopPropagation(); const to = el.querySelector(`[id="${a.getAttribute("href").slice(1)}"]`); if (to) to.scrollIntoView({behavior: calm(), block: "start"}); });
   if (location.hash !== "#" + id) history.replaceState(null, "", location.pathname + location.search + "#" + id);
   drawDiagram(w);
 }

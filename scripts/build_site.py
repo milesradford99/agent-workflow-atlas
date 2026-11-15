@@ -78,8 +78,13 @@ def records(tax):
             "class": fm["class"], "deliverable": fm["deliverable"], "shape": fm["shape"],
             "autonomy": fm["autonomy"], "checkpoints": fm["checkpoints"], "patterns": fm["patterns"],
             "variants": fm.get("variants") or [], "evidence": fm["evidence"], "status": fm["status"],
+            "mergedInto": fm.get("merged_into"),
             "risk": tags.get("risk", ""), "region": tags.get("region") or [],
             "lastVerified": str(fm["last_verified"]),
+            "build": fm.get("build") or "", "methodChecked": str(fm.get("method_checked") or ""),
+            "moves": fm.get("moves") or [], "move": fm.get("move") or "",
+            "moveZh": zh.get("move", ""),
+            "background": section(body, "Background"), "buildNotes": section(body, "Build it with an agent"),
             "coverage": grade.group(1) if grade else "",
             "runs": len(re.findall(r"^- \[", runs, re.M)),
             "path": path.parent.relative_to(ROOT).as_posix(),
@@ -94,6 +99,7 @@ def records(tax):
             # the Chinese page: everything but the sources, from README.zh-CN.md (scripts/i18n.py)
             "zh": {"deliverable": zh["deliverable"], "shape": zh["shape"], "route": to_route(zh["shape"]),
                    "mermaid": to_mermaid(zh["shape"]), "intro": zh["intro"], "steps": zh["steps"],
+                   "background": zh["background"], "buildNotes": zh["build"],
                    "publicRuns": zh["runs"], "behind": zh["behind"]} if full else None,
         })
     return sorted(out, key=lambda w: w["id"])
@@ -104,14 +110,14 @@ def app_record(w, repo):
     browser and the static pages can't drift apart."""
     link = site_pages.resolver(repo, w["path"], 0)
     md = lambda key, **kw: site_pages.markdown(w[key], link, blank=True, **kw) if w[key] else ""
-    out = {k: v for k, v in w.items() if k not in ("intro", "steps", "publicRuns", "sources", "zh")}
-    out.update(introHtml=md("intro"), stepsHtml=md("steps"), runsHtml=md("publicRuns", cls="runs"),
+    out = {k: v for k, v in w.items() if k not in ("intro", "steps", "publicRuns", "sources", "zh", "background", "buildNotes")}
+    out.update(backgroundHtml=md("background"), buildHtml=md("buildNotes"), introHtml=md("intro"), stepsHtml=md("steps"), runsHtml=md("publicRuns", cls="runs"),
                sourcesHtml=md("sources", sources=True, cls="sources"))
     zh = w["zh"]
     if zh:
         zmd = lambda key, **kw: site_pages.markdown(zh[key], link, blank=True, **kw) if zh[key] else ""
         out["zh"] = {"deliverable": zh["deliverable"], "shape": zh["shape"], "route": zh["route"], "mermaid": zh["mermaid"],
-                     "behind": zh["behind"], "introHtml": zmd("intro"), "stepsHtml": zmd("steps"), "runsHtml": zmd("publicRuns", cls="runs")}
+                     "behind": zh["behind"], "backgroundHtml": zmd("background"), "buildHtml": zmd("buildNotes"), "introHtml": zmd("intro"), "stepsHtml": zmd("steps"), "runsHtml": zmd("publicRuns", cls="runs")}
     return out
 
 

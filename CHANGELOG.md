@@ -4,11 +4,16 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 
 ## 2026-11
 
+### The move
+- Required front-matter fields `moves` and bilingual `move` ([STANDARD.md §8](STANDARD.md#8-the-move)) on all 238 records. The site leads with the move on cards and entry pages, opens by move before field, filters moves alongside autonomy/checkpoints, and exports both languages in JSON/CSV. The index groups active entries by move; validation checks codes, length, labels and translation numbers.
+- Owner-approved editorial decisions: 40 older-evidence entries retired without deleting folders or reusing IDs, and AWF-0222 merged into AWF-0110 after reopening their shared source. Default browsing excludes archived records; status filters and stable URLs preserve access. The completed handover is removed; the dated decision record and standard-entry review are in [research/2026-11-moves-decisions.md](research/2026-11-moves-decisions.md).
+
 ### Taxonomy
 - New classes `ORG/LOG/CUSTOMS` (AWF-0148, 0210, 0233), `TEC/ENG/SUBMITTAL` (AWF-0151, 0190, 0235) and, in a new phylum `ORG/AGR` (agriculture), `ADVISORY` (AWF-0154, 0211, 0236).
 - New class `PRO/INS/UW` (insurance underwriting) with AWF-0149, AWF-0155 and AWF-0163, and new phylum `ORG/LOG` (logistics and supply chain) with class `FREIGHT`: AWF-0150, AWF-0153 and AWF-0209. Each had three unplaced workflows (TAXONOMY.md rule 2). IDs are unchanged.
 
 ### Changed
+- New entry standard, [STANDARD.md](STANDARD.md). Every entry now opens with a plain-language **Background** (the job, who does it, a term list) and a **Build it with an agent** section: the smallest agent form that runs the workflow (`skill`, `project`, `service` or `platform`), each step mapped to a building block, and how each checkpoint is held. New fields `build` and `method_checked`; `last_verified` keeps meaning "sources re-opened". All 238 entries are converted, in English and Chinese (the four model entries are AWF-0001, AWF-0024, AWF-0137 and AWF-0164). Future conversions follow [research/prompts/convert.md](research/prompts/convert.md). `validate.py`, `i18n.py`, the site and the catalog exports understand both.
 - Catalog site redesigned for reading. Each workflow's route is written out in words (one chip per step, human checkpoints in red) in the detail sheet and on its page; the dot strip stays for scanning lists. Steps that hold a 🛑 are highlighted, tables in entries render as tables, and public runs read as separate cards.
 - *Start here* now opens with every field as a tile (count and public-evidence mix) that jumps into the field map. The field map shows a one-line summary under each workflow name. Cards name the approvals a person gives (plan, review, sign-off) instead of counting them.
 - New typeface (Geist), a light and dark switch that remembers the choice, and one Markdown renderer (`site_pages.markdown`) for both the app and the static pages.

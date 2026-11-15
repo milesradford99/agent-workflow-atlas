@@ -64,9 +64,14 @@ def render(records, tax):
         "",
         f"**{len(records)} workflows** · " + " · ".join(f"{n} {s}" for s, n in sorted(by_status.items())),
         "",
-        "## By field",
-        "",
     ]
+    lines += ["## By move", "", "What each workflow does beyond AI drafting and human review. An entry can appear under two moves.", ""]
+    for code in tax["traits"]["moves"]:
+        hits = [r for r in records if r["status"] not in ("retired", "merged") and code in (r.get("moves") or [])]
+        if hits:
+            lines += [f"### {code}", "", "| ID | Workflow | The move |", "|---|---|---|",
+                      *[f"| {r['id']} | {link(r)} | {r['move'].replace('|', chr(92) + '|')} |" for r in hits], ""]
+    lines += ["## By field", ""]
     for k, kingdom in tax["kingdoms"].items():
         lines += [f"### {k} · {kingdom['name']}", ""]
         rows = []

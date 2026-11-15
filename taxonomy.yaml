@@ -47,3 +47,5 @@ traits:
   evidence: [A, B, C]
   status: [draft, accepted, merged, retired]
   risk: [low, medium, high]
+  moves: [prepare, restrict, verify, feedback, triage, standard]   # STANDARD.md §8: what the entry does beyond 'AI drafts, a person reviews'
+  build: [skill, project, service, platform]   # STANDARD.md §3: the smallest agent form that runs the workflow

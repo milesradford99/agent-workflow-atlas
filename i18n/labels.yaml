@@ -126,3 +126,11 @@ classes:
   INBOX: {en: Inbox, zh-CN: 邮件收件箱}
   MEET: {en: Meetings, zh-CN: 会议}
   PKM: {en: Personal knowledge, zh-CN: 个人知识管理}
+
+moves:
+  prepare: {en: Prepare the input, zh-CN: 放入}
+  restrict: {en: Restrict actions, zh-CN: 挡住}
+  verify: {en: Verify independently, zh-CN: 外验}
+  feedback: {en: Feed corrections back, zh-CN: 回灌}
+  triage: {en: Route by risk or confidence, zh-CN: 分流}
+  standard: {en: Draft and review, zh-CN: 标准}

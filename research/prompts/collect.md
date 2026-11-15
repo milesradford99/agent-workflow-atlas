@@ -14,6 +14,8 @@ A workflow qualifies only if all four hold:
 3. Has named human checkpoints (approve a plan, approve an action, review a draft, sample outputs, sign off, or take handoffs).
 4. Rerunnable by someone else from the description.
 
+Write steps so an outsider can follow them: start each with who acts (the agent, a named role, a system), and say what a component does instead of naming the source's infrastructure.
+
 Evidence: you need at least one FIRST-HAND public account of a real run or deployment (a named practitioner or organization describing their own use, with steps and at least one number), or a peer-reviewed deployment study. Vendor-only workflows get evidence B, community anecdotes C. Do not invent anything.
 Shape line format: plain words plus five symbols: `→` next step; `(a ⟲ b)` repeat a and b until b passes; `each X:` do for every X in parallel; `a | b` alternative paths after routing; `🛑 <type>` a human checkpoint where <type> is exactly one of: plan, action, review, sample, sign-off, handoff (you may add a short parenthetical after it, e.g. `🛑 sign-off (partner)`).
 Example: `read issue + code → plan → 🛑 plan → failing tests → (code ⟲ tests) → fresh review → 🛑 action → open PR → 🛑 review`
@@ -42,6 +44,11 @@ steps:
   - "..."
 output: "What is delivered and where it goes next."
 failure_modes: "What goes wrong in practice → what guards against it."
+background: "3-6 plain sentences for a reader from another field: what the job is, who does it, why it is slow or risky by hand, what the agent takes over and why a person still approves. No numbers, no product names."
+terms:
+  - "term: one-line definition (every trade term, abbreviation or Chinese industry term your steps use)"
+build_form: skill     # skill | project | service | platform: the SMALLEST setup that would run this with a general agent today, judged by what the work needs, not by what the source built (STANDARD.md §3)
+build_note: "How the source's setup relates to that form: what it built by hand, what a general agent cannot do here. Say so if the source describes people using AI tools with no agent running the process."
 differs_from: "Nearest existing catalog workflow and the deliverable/checkpoint/autonomy difference (or 'none close')."
 variants: [tool-slug, tool-slug]   # toolchains seen in practice
 sources:

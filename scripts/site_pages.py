@@ -11,13 +11,14 @@ import io
 import json
 import re
 
-CSV_FIELDS = ["id", "name", "nameZh", "summary", "summaryZh", "kingdom", "phylum", "class", "deliverable",
+CSV_FIELDS = ["id", "name", "nameZh", "summary", "summaryZh", "moves", "move", "moveZh", "kingdom", "phylum", "class", "deliverable",
               "autonomy", "checkpoints", "patterns", "variants", "evidence", "coverage", "runs", "risk",
-              "region", "status", "lastVerified", "kit", "shape", "url", "source"]
+              "region", "status", "mergedInto", "lastVerified", "build", "methodChecked", "kit", "shape", "url", "source"]
 
 UI = {
     "en": {
         "home": "All workflows", "open": "Open in the catalog", "source": "Source on GitHub",
+        "retired": "Retired from the active catalog; retained for reference.", "merged": "Merged into",
         "kit": "Run it with the Claude Code kit", "route": "The route", "steps": "Steps", "runs": "Public runs",
         "sources": "Sources", "diagram": "Full diagram", "verified": "Last checked {v}.", "report": "Report something out of date",
         "note": "", "noteBehind": "", "noteMissing": "", "other": "中文", "otherHref": "zh/", "stops": "{n} human stops", "stop1": "1 human stop",
@@ -27,6 +28,8 @@ UI = {
         "pat": {"chain": "Chain", "route": "Router", "parallel": "Parallel", "orch-workers": "Orchestrator and workers", "eval-opt": "Generate and critique", "auto-loop": "Autonomous loop", "role-crew": "Role crew", "computer-use": "Computer use"},
         "ev": {"A": "First-hand write-up", "B": "Vendor material", "C": "Community report"},
         "risk": {"low": "Low", "medium": "Medium", "high": "High (regulated)"},
+        "background": "Background", "buildTitle": "Build it with an agent", "form": "Agent form", "methodChecked": "Method checked",
+        "forms": {"skill": "One skill", "project": "Claude Code project", "service": "Agent SDK service", "platform": "Needs a specialist platform"},
         "setup": "Inputs and tools", "pattern": "Agent pattern", "evidence": "Sources", "riskLabel": "Risk", "checked": "Last checked",
         "tools": "Tools seen in practice", "theme": "Switch between light and dark",
         "delivers": "Delivers", "autonomy": "Autonomy", "desc": "{name}: a step-by-step AI agent workflow from {field}, with the human checkpoints, tools and sources. {summary}",
@@ -34,6 +37,7 @@ UI = {
     },
     "zh-CN": {
         "home": "全部工作流", "open": "在目录中打开", "source": "在 GitHub 查看源文件",
+        "retired": "已从在用目录退役，保留供参考。", "merged": "已合并至",
         "kit": "用 Claude Code 套件运行", "route": "路线", "steps": "步骤", "runs": "公开实例",
         "sources": "来源", "diagram": "完整流程图", "verified": "最近核对：{v}。", "report": "报告过时内容",
         "note": "来源保留原文标题；公开实例中引号内的原话保留原文，以便与出处逐字对应。",
@@ -44,6 +48,8 @@ UI = {
         "pat": {"chain": "链式", "route": "路由", "parallel": "并行", "orch-workers": "编排与子智能体", "eval-opt": "生成与评审", "auto-loop": "自主循环", "role-crew": "角色分工", "computer-use": "操作电脑"},
         "ev": {"A": "第一手记录", "B": "厂商材料", "C": "社区经验"},
         "risk": {"low": "低", "medium": "中", "high": "高（受监管）"},
+        "background": "背景", "buildTitle": "用智能体搭建", "form": "智能体形态", "methodChecked": "方法核对",
+        "forms": {"skill": "一个 skill", "project": "Claude Code 项目", "service": "Agent SDK 服务", "platform": "依赖专业平台"},
         "setup": "输入与工具", "pattern": "智能体模式", "evidence": "来源类型", "riskLabel": "风险", "checked": "最近核对",
         "tools": "实践中用到的工具", "theme": "切换浅色或深色",
         "delivers": "交付物", "autonomy": "自主程度", "desc": "{name}：来自{field}的 AI 智能体工作流，逐步写明人工检查点、工具和出处。{summary}",
@@ -89,7 +95,22 @@ def inline(text, link, blank=False):
 
 
 def cells(line):
-    return [c.strip() for c in line.strip().strip("|").split("|")]
+    # A route's alternatives use \| inside a cell, not another table column.
+    text = line.strip()
+    if text.startswith("|"):
+        text = text[1:]
+    if text.endswith("|"):
+        text = text[:-1]
+    parts, cell, escaped = [], [], False
+    for char in text:
+        if char == "|" and not escaped:
+            parts.append("".join(cell))
+            cell = []
+        else:
+            cell.append(char)
+        escaped = char == "\\" and not escaped
+    parts.append("".join(cell))
+    return [re.sub(r"\\([\\|])", r"\1", part.strip()) for part in parts]
 
 
 def markdown(text, link, sources=False, blank=False, cls=""):
@@ -215,15 +236,19 @@ footer {{ border-top: 1px solid var(--rule); color: var(--slate); font-size: 13.
 <main>
 <div class="crumb">{crumb}</div>
 <h1 class="d-title">{name}</h1>{alt}
+{status_note}
+{move}
 <p class="lede">{summary}</p>
 <div class="facts"><span class="grade {grade}">{cov}</span><span class="stops">{oct}{stops}</span></div>
 <div class="actions">{kit}<a class="btn" href="{app}">{t_open}</a><a class="btn" href="{source}">{t_source}</a></div>
 <section class="d-sec"><h2>{t_route}</h2>
 <div class="route-box">{route}</div>
-<dl class="meta-grid"><div><dt>{t_delivers}</dt><dd>{deliverable}</dd></div><div><dt>{t_autonomy}</dt><dd>{autonomy}</dd></div><div><dt>{t_pattern}</dt><dd>{pattern}</dd></div><div><dt>{t_evidence}</dt><dd>{evidence}</dd></div><div><dt>{t_risk}</dt><dd>{risk}</dd></div><div><dt>{t_checked}</dt><dd>{checked}</dd></div>{tools}</dl>
+<dl class="meta-grid"><div><dt>{t_delivers}</dt><dd>{deliverable}</dd></div><div><dt>{t_autonomy}</dt><dd>{autonomy}</dd></div><div><dt>{t_pattern}</dt><dd>{pattern}</dd></div><div><dt>{t_evidence}</dt><dd>{evidence}</dd></div><div><dt>{t_risk}</dt><dd>{risk}</dd></div><div><dt>{t_checked}</dt><dd>{checked}</dd></div>{form}{tools}</dl>
 </section>
 {note}
 <div lang="{body_lang}">
+{background}
+{build}
 {intro}
 <section class="d-sec"><h2>{t_steps}</h2>
 {steps}</section>
@@ -282,6 +307,9 @@ def page(w, data, site_url, css, lang):
         other_href=esc(ui["otherHref"]), other_lang="en" if zh else "zh-CN", t_other=esc(ui["other"]),
         crumb=esc(f"{lab('kingdoms', w['kingdom'])} › {lab('phyla', w['phylum'])} › {lab('classes', w['class'])} · {w['id']}"),
         name=esc(name), alt=f'<div class="alt-name" lang="en">{esc(w["name"])}</div>' if zh and w["nameZh"] else "",
+        status_note=status_note(w, ui, up + "w/", "zh/" if zh else ""),
+        move=(f'<p class="move">{esc(w.get("moveZh") if zh and w.get("moveZh") else w.get("move", ""))}</p>'
+              if w.get("move") else ""),
         summary=esc(summary), grade="g-" + (w["coverage"] or "").split(" ")[0], cov=esc(ui["cov"].get(w["coverage"], "")),
         stops=esc(ui["stop1"] if stops == 1 else ui["stops"].format(n=stops)), kit=kit,
         app=esc(up + ("?lang=zh-CN" if zh else "") + "#" + w["id"]), t_open=esc(ui["open"]),
@@ -296,6 +324,10 @@ def page(w, data, site_url, css, lang):
         note=f'<p class="note" style="margin-top:28px">{esc(note)}</p>' if note else "", body_lang="zh-CN" if tr else "en",
         t_steps=esc(ui["steps"]), steps=markdown(pick("steps"), link),
         intro=f'<section class="d-sec"><h2>{esc(ui["setup"])}</h2>\n{markdown(pick("intro"), link)}</section>' if pick("intro") else "",
+        background=f'<section class="d-sec"><h2>{esc(ui["background"])}</h2>\n{markdown(pick("background"), link)}</section>' if pick("background") else "",
+        build=f'<section class="d-sec"><h2>{esc(ui["buildTitle"])}</h2>\n{markdown(pick("buildNotes"), link)}</section>' if pick("buildNotes") else "",
+        form=(f'<div><dt>{esc(ui["form"])}</dt><dd>{esc(ui["forms"].get(w["build"], w["build"]))}</dd></div>'
+              f'<div><dt>{esc(ui["methodChecked"])}</dt><dd>{esc(w["methodChecked"])}</dd></div>') if w["build"] else "",
         t_runs=esc(ui["runs"]), runs=markdown(pick("publicRuns"), link, cls="runs"),
         t_sources=esc(ui["sources"]), sources=markdown(w["sources"], link, sources=True, cls="sources"),
         t_diagram=esc(ui["diagram"]), shape=esc(pick("shape")), mermaid=esc(pick("mermaid")),
@@ -303,6 +335,15 @@ def page(w, data, site_url, css, lang):
         issues=esc(f"{repo}/issues/new?template=correction.yml" if repo else "#"), t_report=esc(ui["report"]),
         t_foot=esc(ui["foot"]), json=esc(up + "catalog.json"), csv=esc(up + "catalog.csv"),
     )
+
+
+def status_note(w, ui, prefix, suffix=""):
+    if w["status"] == "retired":
+        return f'<p class="note status-note">{esc(ui["retired"])}</p>'
+    if w["status"] == "merged" and w.get("mergedInto"):
+        target = w["mergedInto"]
+        return f'<p class="note status-note">{esc(ui["merged"])} <a href="{esc(prefix + target + "/" + suffix)}">{esc(target)}</a></p>'
+    return ""
 
 
 def export_rows(workflows, repo, site_url):

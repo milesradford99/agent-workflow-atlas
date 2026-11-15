@@ -142,3 +142,5 @@ code { background: var(--wash); padding: 2px 6px; border-radius: 6px; }
 .diagram { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r); padding: 16px; overflow: auto; }
 .diagram svg { max-width: 100%; height: auto; }
 .shape-line { font-family: var(--f-mono); font-size: 13px; line-height: 1.7; color: var(--slate); }
+
+.move { font-size: 19px; line-height: 1.65; margin: 18px 0; color: var(--ink); max-width: 72ch; }
