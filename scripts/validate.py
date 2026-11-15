@@ -14,7 +14,7 @@ from catalog import ROOT, WORKFLOWS, load_taxonomy, read_front_matter, species_f
 REQUIRED = [
     "id", "name", "summary", "kingdom", "phylum", "class", "deliverable", "shape", "autonomy",
     "checkpoints", "patterns", "variants", "evidence", "status", "reference_example",
-    "last_verified",
+    "last_verified", "moves", "move",
 ]
 ID_RE = re.compile(r"^AWF-\d{4}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
@@ -98,20 +98,22 @@ def check_species(path, fm, tax, errors):
     for field in ["autonomy", "evidence", "status"]:
         if fm[field] not in traits[field]:
             err(f"`{field}: {fm[field]}` is not one of {traits[field]}")
-    # STANDARD.md §8: `moves` and `move` are optional for now, but come as a pair
+    # STANDARD.md §8: the classification and cross-field explanation travel together
     if ("moves" in fm) != ("move" in fm):
         err("`moves` and `move` must be set together (STANDARD.md §8)")
     elif "moves" in fm:
-        mv, line = fm["moves"], str(fm["move"] or "").strip()
+        mv, line = fm["moves"], fm["move"]
         if not isinstance(mv, list) or not mv or len(mv) > 2:
             err("`moves` must be a list of one or two codes")
         else:
             for m in mv:
                 if m not in traits["moves"]:
                     err(f"`moves: {m}` is not one of {traits['moves']}")
+            if len(mv) == 2 and mv[0] == mv[1]:
+                err("`moves` must not repeat a code")
             if "standard" in mv and len(mv) > 1:
                 err("`moves: standard` cannot be combined with another code")
-        if not line or len(line) > 300:
+        if not isinstance(line, str) or not line.strip() or len(line) > 300:
             err("`move` must be one or two sentences, 300 characters or fewer")
     for field in ["checkpoints", "patterns"]:
         if not isinstance(fm[field], list) or not fm[field]:
@@ -222,7 +224,8 @@ def main():
     # translations: labels cover every taxonomy code; Chinese entries point at real IDs
     labels = yaml.safe_load((ROOT / "i18n" / "labels.yaml").read_text())
     for kind, codes in [("kingdoms", tax["kingdoms"]), ("phyla", {p for k in tax["kingdoms"].values() for p in k["phyla"]}),
-                        ("classes", {c for k in tax["kingdoms"].values() for p in k["phyla"].values() for c in p["classes"]})]:
+                        ("classes", {c for k in tax["kingdoms"].values() for p in k["phyla"].values() for c in p["classes"]}),
+                        ("moves", tax["traits"]["moves"])]:
         for code in codes:
             entry = labels.get(kind, {}).get(code) or {}
             if not entry.get("en") or not entry.get("zh-CN"):

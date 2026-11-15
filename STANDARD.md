@@ -199,4 +199,4 @@ move: "Every model is proven by a row-level diff against production data; a two-
 - Take it from the entry: usually **Failure modes → guards**, sometimes the shape or **How it differs**. Do not add a fact, number or claim the entry does not carry.
 - For `standard`, say plainly what the entry is and, if its value lies elsewhere (a measured error rate, a rare first-hand account), say that.
 
-The Chinese file carries the same sentence as `move:` in its front matter, with the same numbers. Both fields are optional while the catalog is being filled in ([MOVES-PLAN.md](MOVES-PLAN.md)); `validate.py` checks them wherever they are present and requires them as a pair.
+The Chinese file carries the same sentence as `move:` in its front matter, with the same numbers. Both fields are required; `validate.py` checks the pair, codes and length, and `i18n.py` checks that the Chinese move keeps the numbers. Put the move in front matter; the site shows it above the summary and the index groups entries by move.

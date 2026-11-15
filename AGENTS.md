@@ -21,6 +21,7 @@ CI runs `validate.py`, `build_index.py --check` and `build_diagrams.py --check`,
 
 ## Gotchas
 
+- Every entry needs `moves` (one or two distinct codes) and a bilingual `move` (at most 300 characters); follow STANDARD.md §8 and take every claim and number from the entry itself. `standard` is never combined with another move.
 - Never change or reuse an `AWF-####` id. Moving a workflow keeps its id; merging sets `status: merged` and `merged_into`, never deletes the folder.
 - Folder path and the `kingdom`/`phylum`/`class` fields must agree; allowed codes are in `taxonomy.yaml`.
 - `checkpoints` must equal the set of `🛑 <word>` entries in `shape`.

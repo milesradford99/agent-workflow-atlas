@@ -42,6 +42,8 @@ One pull request per entry, or one per class if several are due together.
 
 **Retiring.** An entry with no new example runs in 18 months whose tools have all been discontinued becomes `status: retired` (TAXONOMY.md rule 6). Keep the folder and the ID.
 
+On 2026-11-15 the owner explicitly approved a separate catalog-scope retirement of 40 entries under a 2025-11 evidence-date cutoff. This does not assert that their tools are discontinued. The per-entry notices and [decision record](research/2026-11-moves-decisions.md) preserve that reason; the normal retirement rule above is unchanged.
+
 ## Collection sweep
 
 Once a quarter, look for workflows the catalog doesn't have. The sweep follows the catalog's own [Issue-tree research](workflows/ORG/BIZ/STRAT/issue-tree-research/) shape:

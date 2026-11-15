@@ -11,13 +11,14 @@ import io
 import json
 import re
 
-CSV_FIELDS = ["id", "name", "nameZh", "summary", "summaryZh", "kingdom", "phylum", "class", "deliverable",
+CSV_FIELDS = ["id", "name", "nameZh", "summary", "summaryZh", "moves", "move", "moveZh", "kingdom", "phylum", "class", "deliverable",
               "autonomy", "checkpoints", "patterns", "variants", "evidence", "coverage", "runs", "risk",
-              "region", "status", "lastVerified", "build", "methodChecked", "kit", "shape", "url", "source"]
+              "region", "status", "mergedInto", "lastVerified", "build", "methodChecked", "kit", "shape", "url", "source"]
 
 UI = {
     "en": {
         "home": "All workflows", "open": "Open in the catalog", "source": "Source on GitHub",
+        "retired": "Retired from the active catalog; retained for reference.", "merged": "Merged into",
         "kit": "Run it with the Claude Code kit", "route": "The route", "steps": "Steps", "runs": "Public runs",
         "sources": "Sources", "diagram": "Full diagram", "verified": "Last checked {v}.", "report": "Report something out of date",
         "note": "", "noteBehind": "", "noteMissing": "", "other": "中文", "otherHref": "zh/", "stops": "{n} human stops", "stop1": "1 human stop",
@@ -36,6 +37,7 @@ UI = {
     },
     "zh-CN": {
         "home": "全部工作流", "open": "在目录中打开", "source": "在 GitHub 查看源文件",
+        "retired": "已从在用目录退役，保留供参考。", "merged": "已合并至",
         "kit": "用 Claude Code 套件运行", "route": "路线", "steps": "步骤", "runs": "公开实例",
         "sources": "来源", "diagram": "完整流程图", "verified": "最近核对：{v}。", "report": "报告过时内容",
         "note": "来源保留原文标题；公开实例中引号内的原话保留原文，以便与出处逐字对应。",
@@ -234,6 +236,8 @@ footer {{ border-top: 1px solid var(--rule); color: var(--slate); font-size: 13.
 <main>
 <div class="crumb">{crumb}</div>
 <h1 class="d-title">{name}</h1>{alt}
+{status_note}
+{move}
 <p class="lede">{summary}</p>
 <div class="facts"><span class="grade {grade}">{cov}</span><span class="stops">{oct}{stops}</span></div>
 <div class="actions">{kit}<a class="btn" href="{app}">{t_open}</a><a class="btn" href="{source}">{t_source}</a></div>
@@ -303,6 +307,9 @@ def page(w, data, site_url, css, lang):
         other_href=esc(ui["otherHref"]), other_lang="en" if zh else "zh-CN", t_other=esc(ui["other"]),
         crumb=esc(f"{lab('kingdoms', w['kingdom'])} › {lab('phyla', w['phylum'])} › {lab('classes', w['class'])} · {w['id']}"),
         name=esc(name), alt=f'<div class="alt-name" lang="en">{esc(w["name"])}</div>' if zh and w["nameZh"] else "",
+        status_note=status_note(w, ui, up + "w/", "zh/" if zh else ""),
+        move=(f'<p class="move">{esc(w.get("moveZh") if zh and w.get("moveZh") else w.get("move", ""))}</p>'
+              if w.get("move") else ""),
         summary=esc(summary), grade="g-" + (w["coverage"] or "").split(" ")[0], cov=esc(ui["cov"].get(w["coverage"], "")),
         stops=esc(ui["stop1"] if stops == 1 else ui["stops"].format(n=stops)), kit=kit,
         app=esc(up + ("?lang=zh-CN" if zh else "") + "#" + w["id"]), t_open=esc(ui["open"]),
@@ -328,6 +335,15 @@ def page(w, data, site_url, css, lang):
         issues=esc(f"{repo}/issues/new?template=correction.yml" if repo else "#"), t_report=esc(ui["report"]),
         t_foot=esc(ui["foot"]), json=esc(up + "catalog.json"), csv=esc(up + "catalog.csv"),
     )
+
+
+def status_note(w, ui, prefix, suffix=""):
+    if w["status"] == "retired":
+        return f'<p class="note status-note">{esc(ui["retired"])}</p>'
+    if w["status"] == "merged" and w.get("mergedInto"):
+        target = w["mergedInto"]
+        return f'<p class="note status-note">{esc(ui["merged"])} <a href="{esc(prefix + target + "/" + suffix)}">{esc(target)}</a></p>'
+    return ""
 
 
 def export_rows(workflows, repo, site_url):

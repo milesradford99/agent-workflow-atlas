@@ -4,17 +4,19 @@
 
 **A catalog of how professionals actually run AI agents in production work**, written as step-by-step SOPs you can copy: what goes in, which agents and tools do what, where a person has to approve, and what comes out.
 
+Most entries gather context, let AI draft and keep a person responsible for the decision. What differs is the **move**: the prepared input, enforced limit, independent check, correction loop or routing rule a reader can take into another field. Browse by move first, then by profession.
+
 It covers software engineering, product design, research, law, finance, healthcare, education, marketing, sales, support, fiction and screenwriting, and industrialized short-drama production (短剧). Each workflow lists its sources and how strong its evidence is.
 
-**Status:** 238 workflows across 5 fields, 22 professions and 92 categories. Every category has at least one workflow, and 10 more from new fields wait in [unplaced](workflows/unplaced/). Each entry lists its public runs, re-checked against their sources in November 2026. One is `accepted`; the rest stay `draft` until someone adds a real example run. That's the most useful contribution right now ([how](CONTRIBUTING.md#1-add-an-example-run)).
+**Status:** 238 records across 5 fields, 22 professions and 92 categories: 197 active (1 `accepted`, 196 `draft`), 40 `retired` under the owner-approved evidence-date cutoff, and 1 `merged`. All retain their folders and IDs; the site shows active workflows by default and exposes historical entries through the status filter. Ten records from new fields remain in [unplaced](workflows/unplaced/). A real example run is the most useful contribution ([how](CONTRIBUTING.md#1-add-an-example-run)).
 
 ![The catalog site: a map of every field with each workflow's public-evidence grade, and a detail panel drawing the AI shot factory's steps, with human checkpoints in red](docs/images/site-detail.png)
 
 ## Browse
 
-- **The catalog site**, in English and 中文: *Start here* (the 10 workflows with agent kits and the best-documented ones), a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk), and a shareable page for each workflow at `w/<ID>/` (Chinese at `w/<ID>/zh/`, fully translated except the sources) with its route, diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is published to GitHub Pages.
+- **The catalog site**, in English and 中文: browse by move, then by field; filter by move alongside autonomy and checkpoints. Each card and entry page leads with its move. Also available: *Start here* (the 10 workflows with agent kits and the best-documented ones), a map of every field, search, filters (autonomy, checkpoints, agent patterns, evidence, risk), and a shareable page for each workflow at `w/<ID>/` (Chinese at `w/<ID>/zh/`, fully translated except the sources) with its route, diagram, steps and sources. Build it with `python scripts/build_site.py` and open `site/index.html`. Once the repository is public it is published to GitHub Pages.
 - **Data**: the whole catalog as `catalog.json` and `catalog.csv`, built next to the site, for anyone building on it.
-- **[INDEX.md](INDEX.md)**: every workflow, by field, by trait and by strength of public evidence.
+- **[INDEX.md](INDEX.md)**: active workflows by move, and all records by field, trait and strength of public evidence.
 - **[workflows/](workflows/)**: one folder per workflow. GitHub renders each one's shape as a diagram.
 
 A sample entry, [AI shot factory](workflows/CRE/MED/AIGCVIDEO/ai-shot-factory/) (`AWF-0015`), turns a short-drama script into a finished AI-generated episode:

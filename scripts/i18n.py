@@ -106,6 +106,12 @@ def problems(readme, fm, allow_todo=False):
         errs.append(f"{ZH_NAME}: not translated yet (source_hash: TODO)")
     if fm.get("move") and not str(zfm.get("move") or "").strip():
         errs.append(f"{ZH_NAME}: `move` is empty (the English has one; STANDARD.md §8)")
+    if fm.get("move"):
+        en_move, zh_move = str(fm["move"]), zfm.get("move") or ""
+        if not isinstance(zh_move, str) or len(zh_move) > 300:
+            errs.append(f"{ZH_NAME}: `move` must be text of at most 300 characters")
+        elif {n.rstrip('.,') for n in NUM_RE.findall(en_move)} != {n.rstrip('.,') for n in NUM_RE.findall(zh_move)}:
+            errs.append(f"{ZH_NAME}: `move` must keep the English numbers (STANDARD.md §8)")
     if len(str(zfm.get("summary") or "")) > 120:
         errs.append(f"{ZH_NAME}: summary is longer than 120 characters")
     if errs:
@@ -191,6 +197,7 @@ def load(readme):
     translated = str(zfm.get("source_hash")) != "TODO"
     return {"translated": translated,
         "name": str(zfm.get("name") or ""), "summary": str(zfm.get("summary") or ""),
+        "move": str(zfm.get("move") or ""),
         "deliverable": str(zfm.get("deliverable") or ""), "shape": str(zfm.get("shape") or ""),
         "intro": p["intro"], "steps": p["steps"], "runs": p["runs"],
         "background": p["background"], "build": p["build"],
@@ -215,7 +222,8 @@ def scaffold(readme, fm):
         steps = steps.replace(f"🛑 **{cp.capitalize()}**", f"🛑 **{word}**")
     q = lambda s: '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
     lines = ["---", f"id: {fm['id']}", f"name: {fm['name']}", f"summary: {q(fm['summary'])}",
-             f"deliverable: {fm['deliverable']}", f"shape: {q(fm['shape'])}", "source_hash: TODO", "---", "",
+             f"deliverable: {fm['deliverable']}", f"shape: {q(fm['shape'])}",
+             *([f"move: {q(fm['move'])}"] if fm.get("move") else []), "source_hash: TODO", "---", "",
              f"# {fm['name']}", "", en["intro"]]
     if en["background"]:
         lines += ["", H_BACKGROUND, "", en["background"]]
