@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Route sensitive or out-of-scope employee requests to HR partners by policy while handling routine transactions; the public account does not specify the exact transaction-confirmation step."
 ---
 
 # Contained HR service desk

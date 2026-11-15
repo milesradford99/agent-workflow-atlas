@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Route low-confidence or high-risk listing changes to the external supplier for confirmation, while confident changes go live and associates sample the results."
 ---
 
 # Supplier-confirmed catalog fixes

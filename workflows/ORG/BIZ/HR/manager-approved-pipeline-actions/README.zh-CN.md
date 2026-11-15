@@ -4,7 +4,8 @@ name: 经理批准的招聘流程操作
 summary: "对应聘者分级并给出处理建议；经理批准整批操作后，再发送消息并归档候选人。"
 deliverable: 已执行的招聘流程操作
 shape: "分流：收件箱 + WAAS + Ashby + 日历 → 每个应聘者：对照岗位手册分级 (归档 | 索要作品示例 | 推进) → 向经理给出建议 (终端或 Slack) → 🛑 action (经理批准整批操作，例如 \"reject all of these\") → 按阶段定制每位候选人的消息 → 在 Gmail、WAAS、Ashby 中发送并归档 → 重新查询各系统以核实"
-source_hash: 6c734e58b392
+move: "应聘者数据缺失时标记，不自动归档；批准的操作完成后回查 Gmail、WAAS 与 Ashby 才汇报，防止漏掉静默写入失败。"
+source_hash: 7b9af69b07a2
 ---
 
 # 经理批准的招聘流程操作

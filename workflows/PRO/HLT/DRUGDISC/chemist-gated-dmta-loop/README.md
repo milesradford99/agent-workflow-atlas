@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Repeat microscale experimental results manually at bench scale before sign-off; chemists also control which agent proposals enter the lab and correct the procedures."
 ---
 
 # Chemist-gated DMTA loop

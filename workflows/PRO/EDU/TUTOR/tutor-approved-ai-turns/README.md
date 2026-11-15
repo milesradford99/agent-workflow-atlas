@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [standard]
+move: "A tutor approves, edits or replaces every AI tutoring message before sending; the first-hand audit found 5 factual errors in 3,617 drafts."
 ---
 
 # Tutor-approved AI turns

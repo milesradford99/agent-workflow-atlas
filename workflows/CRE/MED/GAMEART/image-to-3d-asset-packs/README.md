@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare]
+move: "Create multi-view concepts without perspective distortion before image-to-3D generation; artists reject weak outputs and rebuild topology or UVs where the generated mesh fails."
 ---
 
 # Image-to-3D asset packs

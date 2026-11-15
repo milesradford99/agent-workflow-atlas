@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [standard]
+move: "Draft priced broker-quote emails only for in-scope lines, renewals and regions; an underwriter reviews each quote and keeps complex risks."
 ---
 
 # Underwriter-reviewed broker quote

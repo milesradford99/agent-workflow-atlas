@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [restrict]
+move: "Keep the calendar audit read-only with no send permission; the owner accepts or rejects each recommendation and an EA makes the actual calendar changes."
 ---
 
 # Calendar time audit

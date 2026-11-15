@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify, feedback]
+move: "Cross-check release notes against changelists, stage labels against YAML and screenshots with a sub-agent; fold writer comments back into each product’s skill before the next release."
 ---
 
 # Release-cycle docs skill

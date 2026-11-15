@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [feedback, verify]
+move: "Have teaching fellows compare old and new tutor answers pairwise before prompt changes roll out, and calibrate model-graded evaluation to their choices instead of just lengthening the prompt."
 ---
 
 # Guardrailed course tutor

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Flag missing applicant data rather than auto-archiving, and re-query Gmail, WAAS and Ashby after approved actions before reporting completion, so a silent write failure is not missed."
 ---
 
 # Manager-approved pipeline actions

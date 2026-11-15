@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Supply a URL allowlist, product-name dictionary and current product context before campaign copy, then run render QA; the first version without those guardrails had 10.5% render errors."
 ---
 
 # Guardrailed campaign build

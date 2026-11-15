@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Draft news from reporter notes, then require rewrite-editor review and the reporter’s final approval; a reported byline-without-sign-off incident required a correction."
 ---
 
 # Reporter-notes rewrite desk

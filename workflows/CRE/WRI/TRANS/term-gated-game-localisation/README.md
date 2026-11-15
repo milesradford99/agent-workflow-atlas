@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Mine and approve term pairs each game version before translation, then run format and terminology rules plus expert LQA; the rule layer covers 70%+ of format and term issues."
 ---
 
 # Term-gated game localisation

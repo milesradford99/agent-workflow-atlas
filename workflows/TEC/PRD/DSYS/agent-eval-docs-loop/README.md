@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [feedback]
+move: "Use agents as test-takers of design-system docs, then have maintainers translate build failures into doc fixes and rerun; continuous agent self-editing of the docs spun out in the account."
 ---
 
 # Agent-eval docs loop

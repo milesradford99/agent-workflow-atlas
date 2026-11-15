@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [standard]
+move: "Call carriers to confirm missed-pickup status before rescheduling or retendering; unresolved cases go to the LTL team, although the source only implies that handoff."
 ---
 
 # Missed-pickup call-and-decide

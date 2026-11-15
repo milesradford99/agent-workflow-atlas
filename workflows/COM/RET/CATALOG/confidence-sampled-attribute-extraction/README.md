@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, verify]
+move: "Use an independent verifier for attribute confidence rather than trusting the extractor’s self-report; auditors correct low-confidence values and sample for catalog drift."
 ---
 
 # Confidence-sampled attribute extraction

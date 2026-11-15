@@ -4,7 +4,8 @@ name: 带护栏的营销活动搭建
 summary: "生成邮件旅程、人群规格、UTM 登记和模板 HTML；方案由人工批准，导出到 ESP 前需人工复核。"
 deliverable: 可直接用于 ESP 的营销活动
 shape: "需求简报 → 命名 + UTM 登记 → 旅程设计 → 人群规格 → 🛑 plan → 文案（当前产品上下文 + URL 白名单）→ 模块化模板 HTML → (搭建 ⟲ QA 清单) → 🛑 action (复核并导出到 ESP) → A/B 测试 → 胜出版本回流到下一份简报"
-source_hash: 8acaa1bc455c
+move: "活动文案前先给 URL 白名单、产品名词典和当前产品背景，再做渲染 QA；缺少这些护栏的初版有 10.5% 渲染错误。"
+source_hash: fc4d2c345a62
 ---
 
 # 带护栏的营销活动搭建

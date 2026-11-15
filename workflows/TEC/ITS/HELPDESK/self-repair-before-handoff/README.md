@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Allow only known safe VM repairs and hand risky cases to support; test each supported Windows version on deliberately broken VMs before releasing repairs."
 ---
 
 # Self-repair before handoff

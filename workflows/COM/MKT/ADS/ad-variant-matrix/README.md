@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Check ad claims before creative review, because an overpromising script can look good on ROAS while causing returns and bad reviews later."
 ---
 
 # Ad variant matrix

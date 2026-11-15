@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Restrict write tools to a code-enforced allowlist of runbook commands and require the on-call engineer to approve the specific command; verify recovery against the SLO afterward."
 ---
 
 # Triage then remediate
