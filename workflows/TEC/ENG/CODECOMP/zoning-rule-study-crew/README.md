@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Draft an applicant-side zoning study rule by rule; the architect validates and signs the study before the permit application."
 ---
 
 # Zoning-rule study crew

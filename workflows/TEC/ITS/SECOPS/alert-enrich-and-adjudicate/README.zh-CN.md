@@ -4,7 +4,8 @@ name: 告警富化与研判
 summary: "对安全告警做情报富化并给出带证据的结论；良性告警自动关闭，其余转二线，每周抽检自动关闭项。"
 deliverable: 告警结论
 shape: "告警 → 每个来源：富化 (威胁情报、身份、EDR) → 结论 + 证据 → 良性：自动关闭 | 可疑：🛑 handoff · 每周 🛑 sample"
-source_hash: 0baf2add62ff
+move: "只自动关闭附有证据的良性告警，其余判定整理成案件交给 2 线；QA 每周抽查自动关闭项。"
+source_hash: abda402f957d
 ---
 
 # 告警富化与研判

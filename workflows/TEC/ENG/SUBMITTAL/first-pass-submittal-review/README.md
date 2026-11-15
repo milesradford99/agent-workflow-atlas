@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [standard]
+move: "Check a subcontractor’s submittal against current specifications and prior approvals; the PM edits the recommendation before the architect or engineer of record gives the disposition."
 ---
 
 # First-pass submittal review

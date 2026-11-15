@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Check physics beyond solver convergence: a swirl probe catches a rotating wall left as noSlip, and the engineer reviews assumptions and comparisons with reference results."
 ---
 
 # Engineer-checked CFD run

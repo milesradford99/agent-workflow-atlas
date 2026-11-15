@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare]
+move: "Supply an import-ID format table before drafting Terraform drift fixes; a clean plan still needs owner review because weak remediation proposals can pass it."
 ---
 
 # Plan-verified drift fixes

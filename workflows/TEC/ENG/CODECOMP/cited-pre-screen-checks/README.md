@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Attach a code citation to every permit-check verdict, require reviewer approval per check, and track false passes rather than treating a clean AI result as permission."
 ---
 
 # Cited pre-screen checks

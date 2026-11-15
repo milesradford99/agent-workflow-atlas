@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Define company jargon and pre-filter metric payloads before specialist reviewers see them; a one-line definition of internal DAU removed a whole class of false flags."
 ---
 
 # Multi-agent readout review

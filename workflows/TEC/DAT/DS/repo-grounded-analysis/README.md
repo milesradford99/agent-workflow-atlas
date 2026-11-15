@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [restrict]
+move: "Pair each Markdown trust rule with code enforcement; unverified tables need provisional analyst sign-off before they can ground an analysis."
 ---
 
 # Repo-grounded analysis

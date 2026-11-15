@@ -4,7 +4,8 @@ name: 分阶段预览的 CAD 建模
 summary: "分三个阶段生成带预览的参数化 CAD 模型；每阶段的预览和切片结果都由制作者确认后再打印。"
 deliverable: 参数化 CAD 模型
 shape: "收集需求 + 调研尺寸 → 各阶段（基础形体、特征、收尾）：(CadQuery 脚本 → STL → 四视图渲染 ⟲ 清单自查) → 🛑 review (预览) → 参数表 + STL → 切片 → 🛑 review (切片软件/打印适配)"
-source_hash: a6b261f75726
+move: "CAD 每阶段审查 4 视图渲染，再看真实切片器输出；脚本看似合理，布尔运算仍可能静默失败，壁厚也可能无法打印。"
+source_hash: 9e8ee6dde424
 ---
 
 # 分阶段预览的 CAD 建模

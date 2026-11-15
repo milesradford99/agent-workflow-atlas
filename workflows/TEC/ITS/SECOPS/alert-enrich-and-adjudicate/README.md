@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Auto-close only benign alerts with evidence attached; route all other verdicts to tier 2 as prepared cases, and have QA sample the auto-closures weekly."
 ---
 
 # Alert enrich and adjudicate

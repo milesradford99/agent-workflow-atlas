@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [standard]
+move: "Investigate the incident and draft status updates and the post-mortem; responders decide fixes, and signed-off follow-ups go into the tracker the team already uses."
 ---
 
 # Agent-run war room

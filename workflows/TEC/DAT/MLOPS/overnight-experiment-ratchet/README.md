@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [restrict]
+move: "Freeze the data split and make the evaluation harness read-only so overnight training changes cannot rewrite the test they are trying to beat."
 ---
 
 # Overnight experiment ratchet

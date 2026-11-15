@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [feedback]
+move: "Log the team leader’s changes to the proposed manufacturing route and feed them back into the process-rule knowledge base before later routes are drafted."
 ---
 
 # Drawing-to-route draft

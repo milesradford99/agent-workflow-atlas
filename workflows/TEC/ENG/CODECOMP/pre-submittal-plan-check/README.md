@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [triage]
+move: "Have the design firm triage ranked plan-check flags before fixing drawings; about 1 in 4 flags was real, so benchmark against the firm’s own review list."
 ---
 
 # Pre-submittal plan check

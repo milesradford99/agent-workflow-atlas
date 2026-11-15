@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Extract required submittals from specification books into a register; the project engineer checks every line for duplicates and dropped conditions before issuing it."
 ---
 
 # Spec-to-submittal register

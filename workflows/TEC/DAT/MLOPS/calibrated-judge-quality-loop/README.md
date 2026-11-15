@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Calibrate the judge against held-out human labels, recalibrate when rubrics change, and test proposed fixes in a fixture-pinned simulator before shipping."
 ---
 
 # Calibrated-judge quality loop

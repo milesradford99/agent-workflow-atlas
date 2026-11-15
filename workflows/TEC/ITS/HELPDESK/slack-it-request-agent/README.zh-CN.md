@@ -4,7 +4,8 @@ name: Slack IT 请求助手
 summary: "在 Slack 中处理 IT 使用咨询与权限申请；权限开通须指定审批人批准，无法处理的转为工单交人工。"
 deliverable: 已解决的 IT 请求
 shape: "Slack 请求 → 识别意图 → 使用咨询：带链接的知识库回答 | 权限申请：匹配 Okta 组 → 检查策略和现有权限 → 🛑 action (应用审批人) → 通过 API 开通 → 确认 | 不明确或不支持：🛑 handoff (附上下文的工单)"
-source_hash: 24e42aa69f37
+move: "将访问审批权写进工作流策略，不交给模型提示词决定；用数周真实请求调路由阈值，并对照身份提供方核对组名。"
+source_hash: 16d4e46bbdac
 ---
 
 # Slack IT 请求助手

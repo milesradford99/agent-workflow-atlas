@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Test the context layer end to end and audit public Slack threads instead of approving every answer; answers expose their SQL and use endorsed datasets."
 ---
 
 # Context-tested Slack analyst

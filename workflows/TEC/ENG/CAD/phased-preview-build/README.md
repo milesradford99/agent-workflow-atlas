@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Review a 4-view render at each CAD phase, then check the real slicer output; silent Boolean failures and unprintable walls can survive a plausible-looking script."
 ---
 
 # Phased preview build

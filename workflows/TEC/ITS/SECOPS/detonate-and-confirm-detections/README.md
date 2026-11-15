@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify, restrict]
+move: "Run attack simulations on lab hosts and re-query the SIEM for raw events and rule matches; a devcontainer and egress rules limit unattended agents that might change out-of-scope configuration."
 ---
 
 # Detonate-and-confirm detections

@@ -4,7 +4,8 @@ name: 攻击模拟验证检测规则
 summary: "在实验室编写并执行攻击模拟，验证检测规则能否告警；每个 TTP 入库前都由人工审核。"
 deliverable: 已验证的 TTP 目录
 shape: "检测规则 → 编写 TTP 攻击模拟 YAML → 钩子校验 schema → (经 SSH 部署到实验室主机并运行 ⟲ 逐步检查) → 验证智能体轮询 SIEM 的原始事件 + 检测命中 → 超时：调试智能体对失败分类 → 🛑 review (逐个人工审查每个 TTP) → 加入已审阅目录 → 定时运行 → 健康度看板 → 🛑 review (团队决定修复项)"
-source_hash: f685cd5cbfa4
+move: "在实验主机上运行攻击模拟，并回查 SIEM 原始事件和规则命中；用 devcontainer 与出站规则限制无人值守智能体越界改配置。"
+source_hash: 5125466fd7ff
 ---
 
 # 攻击模拟验证检测规则

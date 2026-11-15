@@ -4,7 +4,8 @@ name: 经 plan 验证的漂移修复
 summary: "每天早上为每个发生漂移的 Terraform 项目提交一个经 plan 验证的合并请求；由所属团队审阅并执行。"
 deliverable: 漂移修复合并请求
 shape: "工作日定时任务 → 对所有 IaC 项目运行 plan (JSON) → 干净: 记录 | plan 失败: 仅发 Slack 报告 | 云端缺失: 报告，不改动 | 漂移: 每个项目: 起草 HCL (更新以匹配 | 保留 + 回退警告 | import 块) → 独立分支 + MR → autoplan → 标记 ready-for-review | needs-investigation → 一份早晨 Slack 报告 → 🛑 review (所属团队批准 MR) → 🛑 action (工程师执行 apply) · 每周: 集中复盘已关闭的 MR"
-source_hash: 20a83a0444fc
+move: "起草 Terraform 漂移修复前提供导入 ID 格式表；干净的 plan 仍需负责人审查，因为薄弱的修复方案也可能通过。"
+source_hash: d9bc9a7c1c40
 ---
 
 # 经 plan 验证的漂移修复

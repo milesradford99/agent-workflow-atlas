@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Detonate more than 5 technique variants per detection rule, then test against operational telemetry before review; catching one PoC is not enough to establish durable detection."
 ---
 
 # Purple-team detection build

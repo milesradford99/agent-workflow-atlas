@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare]
+move: "Store dependency patterns, file locations, build commands and exceptions per codebase; tickets, branches and deployment state prevent duplicate fixes when the scheduled run repeats."
 ---
 
 # Scheduled vuln-fix PRs

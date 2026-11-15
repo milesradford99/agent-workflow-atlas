@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify, feedback]
+move: "Test metric moves against 6-month variability and the same period last year before writing commentary; the tagged owner edits the published report and those edits sync back to context."
 ---
 
 # Scheduled metric commentary

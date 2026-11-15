@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Reconcile query results with a canonical dashboard total and check join fan-out before analyst review; save the verified SQL to a golden set for reuse."
 ---
 
 # Governed query

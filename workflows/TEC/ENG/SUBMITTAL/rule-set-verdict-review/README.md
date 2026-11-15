@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Confirm the reconciled General and Particular Specifications before checking submissions; each rule verdict shows highlighted evidence and each override needs a written reason."
 ---
 
 # Rule-set verdict review

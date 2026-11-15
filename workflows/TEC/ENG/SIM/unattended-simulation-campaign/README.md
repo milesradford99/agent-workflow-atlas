@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Calibrate the base simulation against measurements before the campaign, then check every run for plausibility; a solver can report success at the wrong equilibrium."
 ---
 
 # Unattended simulation campaign

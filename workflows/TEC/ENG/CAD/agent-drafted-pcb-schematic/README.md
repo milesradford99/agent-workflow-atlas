@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Use netlist inspection, a second engineer and bench bring-up to catch circuit faults the model misses; a shorted switch pin held BOOT0 low despite the schematic review."
 ---
 
 # Agent-drafted PCB schematic

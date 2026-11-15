@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Keep access-approval authority in workflow policy rather than the model’s prompt; tune routing thresholds on weeks of real requests and check group names against the identity provider."
 ---
 
 # Slack IT request agent
