@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Split a tax notice into separate issues before retrieval, then answer each with a 13-point template so a multi-issue notice does not silently lose one point."
 ---
 
 # Issue-split notice reply

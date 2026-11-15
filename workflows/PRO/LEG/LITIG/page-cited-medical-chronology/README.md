@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Attach a page citation to every medical-chronology event and have a paralegal or attorney check each against the original page before it enters case preparation."
 ---
 
 # Page-cited medical chronology

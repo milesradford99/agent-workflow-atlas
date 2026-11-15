@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [triage, verify]
+move: "Send low-confidence tax fields to the preparer for validation and compare against the prior year to find missing forms before the senior reviewer signs and files."
 ---
 
 # Review-ready 1040 prep

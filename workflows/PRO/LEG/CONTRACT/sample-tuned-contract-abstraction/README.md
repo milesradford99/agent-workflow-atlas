@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [feedback, verify]
+move: "Tune field-specific extraction prompts with attorneys on a representative contract sample before scaling; hyperlink each extracted field to its source text for validation."
 ---
 
 # Sample-tuned contract abstraction

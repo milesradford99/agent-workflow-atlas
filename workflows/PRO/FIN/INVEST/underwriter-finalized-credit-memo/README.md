@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Extract deal documents and draft the credit memo section by section; the underwriter edits and finalizes every memo before the bank’s credit-approval process."
 ---
 
 # Underwriter-finalized credit memo

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify, feedback]
+move: "Label every patient eligibility criterion with a rationale and source note, let the coordinator adjudicate each one, and revise criterion prompts against coordinator agreement."
 ---
 
 # Coordinator-reviewed prescreen

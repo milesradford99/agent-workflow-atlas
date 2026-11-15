@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [feedback]
+move: "Pass prior expert-review signals into retrieval and fine-tuning for taxability rules; when guidance changes, flag affected determinations for another expert review."
 ---
 
 # Expert-approved taxability rules

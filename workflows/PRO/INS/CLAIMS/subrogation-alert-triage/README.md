@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare, triage]
+move: "Scan open and closed claims in the background and apply state negligence and limitation rules in each recovery alert, so subrogation does not depend on a handler remembering to refer it."
 ---
 
 # Subrogation alert triage

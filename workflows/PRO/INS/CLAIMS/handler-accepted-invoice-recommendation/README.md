@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [feedback]
+move: "Let claims handlers flag missing drug or treatment context, but require senior verification before updating that knowledge; every invoice-line recommendation still needs handler acceptance."
 ---
 
 # Handler-accepted invoice recommendation

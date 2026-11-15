@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Populate only legal-approved templates through a guided form and refuse out-of-scope requests, routing them to expedited legal review rather than inventing contract terms."
 ---
 
 # Business self-serve drafting

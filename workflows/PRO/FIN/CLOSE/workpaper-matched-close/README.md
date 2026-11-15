@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [restrict]
+move: "Deliberately withhold bank access from close agents; accountants set the rules and the controller reviews all workpapers and draft journal entries before the books lock."
 ---
 
 # Workpaper-matched close agents

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Draft budget-versus-actual narratives in the company’s tone from the planning model; finance edits the explanation for its audience before handing it to leadership."
 ---
 
 # Drafted variance narratives

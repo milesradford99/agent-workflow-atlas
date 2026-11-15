@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Give no agent the ability to pay a claim; an audit agent summarizes all specialist decisions and a claims professional alone decides payment."
 ---
 
 # Agent-crew claim file

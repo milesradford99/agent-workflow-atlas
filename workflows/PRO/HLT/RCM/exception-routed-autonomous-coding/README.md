@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Drop the whole chart to a coder when understanding, confidence or documentation is incomplete or conflicting; audit samples of charts that pass directly to billing and retain staff for uncovered specialties."
 ---
 
 # Exception-routed autonomous coding

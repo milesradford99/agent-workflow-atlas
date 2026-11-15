@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Validate medical-report summaries across conditions before extending coverage; start with lower-risk cases after 18 months of testing and keep post-application audits."
 ---
 
 # Summarised GP-report underwriting

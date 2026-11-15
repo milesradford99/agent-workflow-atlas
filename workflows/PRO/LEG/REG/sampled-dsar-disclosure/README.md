@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Sample documents labeled not relevant to catch missed personal data, then QC redactions, exemptions and privilege before disclosure; negotiate request scope before collection."
 ---
 
 # Sampled DSAR disclosure

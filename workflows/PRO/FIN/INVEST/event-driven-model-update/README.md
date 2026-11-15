@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Use sector-specific disambiguation rules for segment, period and accounting basis, and attach per-cell citations and change tracking so analysts can trace each financial-model update."
 ---
 
 # Event-driven model update

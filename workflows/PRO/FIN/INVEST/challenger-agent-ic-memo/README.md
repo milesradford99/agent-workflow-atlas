@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare]
+move: "Ground a separate challenger agent in the firm’s historic deals to critique the investment memo before team review, so the draft does not simply echo the target company’s pitch."
 ---
 
 # Challenger-agent IC memo

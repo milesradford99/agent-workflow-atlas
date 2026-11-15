@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Give each hospital-course draft inline source citations for physician checking; omissions affected 25% and inaccuracies 20% of rated summaries, so adoption alone is not evidence of time saved."
 ---
 
 # Nightly hospital-course drafts

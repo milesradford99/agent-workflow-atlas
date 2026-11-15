@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Apply the same research thresholds to agent-generated trading ideas and check consistency between hypothesis, code and evaluation; high idea volume increases the risk of p-hacking."
 ---
 
 # Agent-researched trading signals

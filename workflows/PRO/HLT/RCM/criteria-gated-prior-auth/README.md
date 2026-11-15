@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Validate prior-authorization checks against per-drug ground truth before go-live; staff select the supporting records themselves because a correct-looking criterion can cite the wrong documentation."
 ---
 
 # Criteria-gated prior auth

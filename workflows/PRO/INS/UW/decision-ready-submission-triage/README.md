@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Route extracted underwriting submissions by confidence: high-confidence items enter the scored queue directly, low-confidence items get validation before the underwriter decides."
 ---
 
 # Decision-ready submission triage

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, prepare]
+move: "Keep accrual entries parked until a finance manager approves posting; load the business logic from editable SOPs and ask the PO owner to confirm delivery facts first."
 ---
 
 # Owner-confirmed PO accruals

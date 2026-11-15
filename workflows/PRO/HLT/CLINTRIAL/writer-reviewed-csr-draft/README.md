@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Map and validate the clinical data tables before drafting the study report, then run automated draft checks before qualified medical writers review the entire document."
 ---
 
 # Writer-reviewed CSR draft

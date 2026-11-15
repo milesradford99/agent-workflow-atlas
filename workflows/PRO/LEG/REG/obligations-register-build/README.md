@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [standard]
+move: "Build a standing register of regulatory obligations and controls; lawyers check every output and review weekly old/new diffs to distinguish legal changes from editorial edits."
 ---
 
 # Obligations register build
