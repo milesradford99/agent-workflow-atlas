@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Keep simulated grant critique separate from rewriting: the PI accepts or rejects each concern before integration, and citations are checked against PubMed for what they actually support."
 ---
 
 # Critique-first grant draft

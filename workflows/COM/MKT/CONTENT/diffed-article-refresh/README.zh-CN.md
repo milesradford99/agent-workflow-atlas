@@ -4,7 +4,8 @@ name: 带对比的文章更新
 summary: "调研并起草已发布文章的更新稿，以对比 diff 呈现；编辑检查 diff 后才发布。"
 deliverable: 带 diff 的更新版文章
 shape: "文章 URL + 目标关键词 → 抓取线上文章 → SERP + 竞品调研 → 与自家文章做相似度检查 → 更新方案 → 标出过时内容 → 核对产品提及 → 起草更新 → 并排 diff → 🛑 review (编辑检查 diff 并修改) → 适配 CMS 格式 → 发布"
-source_hash: f97fdaba902c
+move: "审计产品提及，并将更新文章与原文并排展示差异，让编辑能看见编造功能和意外改动。"
+source_hash: c7b520c5c415
 ---
 
 # 带对比的文章更新

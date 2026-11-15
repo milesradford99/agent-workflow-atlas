@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Recalibrate conversation judges against expert scores and report each criterion separately with its rationale, so one failure does not spill into several criteria or vanish in a blended score."
 ---
 
 # Calibrated conversation scoring

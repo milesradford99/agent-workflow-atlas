@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Trace every proposed CRM field to the call transcript and show the rep a diff before writing; offer rollback afterward and leave follow-up sending manual."
 ---
 
 # Call-to-CRM diff approval

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Draft passage-level diffs rather than whole-article rewrites, and have a second model check them against the code diff; merge triggers drafting, but customer availability gates publication."
 ---
 
 # Code-change doc refresh

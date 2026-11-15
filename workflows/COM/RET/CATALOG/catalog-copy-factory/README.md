@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Run only SKUs with complete product data and build the copy-rule checker from the same text specification as the writing brief; unsupported claims still get fact review."
 ---
 
 # Catalog copy factory

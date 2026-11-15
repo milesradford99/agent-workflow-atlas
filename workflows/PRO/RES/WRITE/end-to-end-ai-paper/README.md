@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [restrict, triage]
+move: "Run experiment code in sandboxed containers, generate many papers, and have researchers select a few; none of the 3 trial papers met the authors’ internal main-conference bar."
 ---
 
 # End-to-end AI paper

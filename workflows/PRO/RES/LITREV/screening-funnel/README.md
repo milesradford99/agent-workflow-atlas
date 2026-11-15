@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Calibrate independent screeners against human-screened records for sensitivity, resolve every conflict by hand, and verify 100% of numbers feeding the meta-analysis against quoted pages."
 ---
 
 # Screening funnel

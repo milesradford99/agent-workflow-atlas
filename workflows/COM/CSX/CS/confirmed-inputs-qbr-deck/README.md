@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Save account-manager-confirmed judgments as structured inputs from one account snapshot, then QA the deck against them; include owned products to avoid recommending modules the customer already has."
 ---
 
 # Confirmed-inputs QBR deck

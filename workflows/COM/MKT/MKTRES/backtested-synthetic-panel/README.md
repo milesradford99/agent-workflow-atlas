@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Backtest synthetic respondents against a held-out human study before insights-lead approval; elicit free text and map it to ratings to avoid narrow, overly positive direct scores."
 ---
 
 # Backtested synthetic panel

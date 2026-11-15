@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify, triage]
+move: "Try deterministic SKU-code matching before model matching, cite the source for every quote line, and flag low-confidence or off-policy prices for the rep to confirm."
 ---
 
 # RFQ-to-quote drafting

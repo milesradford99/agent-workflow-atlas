@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Check article facts against primary sources or an expert before publication, then revisit rankings at 30/90 days; an invented Ethereum upgrade showed why plausible copy is insufficient."
 ---
 
 # Cluster-brief-draft content

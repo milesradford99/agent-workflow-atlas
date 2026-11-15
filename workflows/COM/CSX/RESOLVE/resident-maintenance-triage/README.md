@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Ask safety-risk questions before dispatching resident maintenance work, and hand emergencies to on-call staff; the sources describe the handoff design only briefly."
 ---
 
 # Resident maintenance triage

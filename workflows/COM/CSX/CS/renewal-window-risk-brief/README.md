@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Replay combined usage, support, call and billing signals against past churns; a static green health score can miss a customer already on the way out."
 ---
 
 # Renewal-window risk brief

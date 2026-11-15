@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Gate review-of-review feedback with reliability tests before sending it privately; the reviewer can edit or ignore it, and acceptance outcomes did not differ between trial groups."
 ---
 
 # Review-of-review feedback

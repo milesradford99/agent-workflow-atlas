@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [standard]
+move: "Add a labeled, unscored AI paper review beside human reviews; organizers inspect outputs before posting, and human chairs retain the decision."
 ---
 
 # Added AI review

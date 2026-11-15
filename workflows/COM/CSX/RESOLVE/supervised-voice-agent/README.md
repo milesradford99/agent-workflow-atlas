@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [triage]
+move: "Rank live calls by scores and alerts so one supervisor can choose where to listen or intervene; cap the call load and let the AI introduce a colleague before takeover."
 ---
 
 # Supervised voice agent

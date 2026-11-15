@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Require a cluster of resolved tickets before drafting a KB article, score source completeness, and send thin candidates to a human call instead of inventing missing steps."
 ---
 
 # Gap-match knowledge upkeep

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Draft channel-specific social posts into a dated scheduler calendar; a person fact-checks and edits each post and explicitly approves publishing."
 ---
 
 # Plan-to-calendar drafting

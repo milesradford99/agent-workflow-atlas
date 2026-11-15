@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Audit product mentions and show the refreshed article as a side-by-side diff against the original, making invented features and unintended edits visible to the editor."
 ---
 
 # Diffed article refresh

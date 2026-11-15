@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Enforce customer-service transaction limits in code after authentication, rather than relying on the prompt; sensitive cases transfer with context and QA audits flagged and random conversations."
 ---
 
 # Procedure agent

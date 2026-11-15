@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Admit only repeated objections, confirmed public moves or battlecard gaps to the digest, and tag each item to its owning product marketer rather than a central analyst."
 ---
 
 # Routed competitive digest

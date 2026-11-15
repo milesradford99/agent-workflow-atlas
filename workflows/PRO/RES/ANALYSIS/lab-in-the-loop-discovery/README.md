@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Run 8 analysis trajectories on the same wet-lab data and combine them by consensus; scientists perform the experiments and re-analyze and replicate promising results."
 ---
 
 # Lab-in-the-loop discovery

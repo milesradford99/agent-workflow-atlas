@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Execute ad changes only within permission tiers and cross-check ads against analytics for tracking anomalies; budget raises, campaign switches and measurement changes remain human-gated."
 ---
 
 # Tiered-permission ads optimizer

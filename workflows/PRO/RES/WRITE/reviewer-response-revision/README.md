@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Match every revised number to regenerated outputs and resolve every citation key before author sign-off; this is a proposed revision workflow, with no source documenting its steps."
 ---
 
 # Reviewer-response revision

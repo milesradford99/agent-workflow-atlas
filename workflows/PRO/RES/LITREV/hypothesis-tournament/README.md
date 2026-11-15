@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Treat tournament Elo as model ranking rather than ground truth; scientists assess the top hypotheses and validate them in the lab before calling them discoveries."
 ---
 
 # Hypothesis tournament
