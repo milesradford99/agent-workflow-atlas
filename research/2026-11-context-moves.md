@@ -108,3 +108,35 @@
 | AWF-0046 Review-of-review feedback | 外验 | 反馈先过可靠性测试才发给审稿人，而且只私下发、可忽略；两组的录用结果没有差别。 |
 | AWF-0169 End-to-end AI paper | 分流 | 开放题目成功率低，所以生成很多、由人挑少数；3 篇里没有一篇达到作者自己对主会的标准。代码在沙箱容器里跑。 |
 | AWF-0010 Reviewer-response revision | 标准 | 按每条审稿意见修改并起草回复，作者批准计划并签发。条目没有引用任何来源。 |
+
+## COM 商业
+
+| 条目 | 分类 | 一招 |
+|---|---|---|
+| AWF-0174 Autonomous long-tail renewals | 挡住 | 折扣上限写在工作流里强制执行，不写在提示词里；联系客户前先给客户负责人一个否决窗口。 |
+| AWF-0223 Confirmed-inputs QBR deck | 放入 | 用单一快照数据集，人确认过的判断存成结构化记录，跨多天的会话才不会丢决定；把客户已购产品的数据喂进去，免得推荐人家已有的模块。 |
+| AWF-0049 Renewal-window risk brief | 外验 | 静态健康分会把正在流失的客户标成绿色；把多系统的非结构化信号合起来，用过去的流失案例回放检验。 |
+| AWF-0173 Code-change doc refresh | 外验 | 只改段落不重写整篇（整篇重写会把错误藏起来），再由第二个模型对照代码 diff 核对；合并触发，客户可用时才发布。 |
+| AWF-0048 Gap-match knowledge upkeep | 分流 | 先给来源完整度打分，素材太薄的转给人打电话补；要成簇才起草，一次性的修复不进知识库。 |
+| AWF-0047 Calibrated conversation scoring | 外验 | 评审模型定期对照专家评分重新校准；各项标准分开报告并保留理由，否则一项出错会连带判几项不过。 |
+| AWF-0172 Simulation release gate | 外验 | 先验证模拟器本身：看它对已上线版本的排序是否与生产一致；盲评的人仍能认出大多数模拟对话，所以排序一致才是要紧的检验。 |
+| AWF-0107 Human-sent reply drafting | 分流 | 最有经验的坐席照着建议做反而掉质量，所以按技能水平衡量，允许老手不理会建议。 |
+| AWF-0021 Procedure agent | 挡住 | 交易限额写在代码里。条目没有防护一行。 |
+| AWF-0108 Resident maintenance triage | 标准 | 问诊分诊、派单，紧急情况转值班人员。来源对转交设计着墨很少。 |
+| AWF-0175 Supervised voice agent | 分流 | 一个主管同时盯几路通话，按通话评分和告警排序决定听哪路；接管时由 AI 先介绍“同事”，避免声音突变。 |
+| AWF-0115 Tiered-permission ads optimizer | 挡住 + 外验 | 按权限分级：否定词、出价等在限度内自动执行，预算和结构要批准；广告平台与分析工具的数据对不上时不执行（转化追踪出故障会让最好的系列看起来坏了）。 |
+| AWF-0018 Cluster-brief-draft content | 外验 | 事实对照一手来源或专家核查（出现过不存在的以太坊升级）；30 天和 90 天回看排名。 |
+| AWF-0224 Diffed article refresh | 外验 | 更新以与原文的并排 diff 呈现，加一道产品提及审计，编出来的产品功能一分钟就能抓到。 |
+| AWF-0225 Ranker-guided creative slate | 外验 | 离线排序模型不当部署规则用（它的第一名线上排第 43），只用来凑一个高召回的候选集，由线上测试选赢家；对着代理指标只优化一轮。 |
+| AWF-0171 Backtested synthetic panel | 外验 | 合成受访者先对照留出的真人研究回测，洞察负责人认可准确度后才用；直接要评分会偏窄偏正面，所以让它写自由文本再映射。 |
+| AWF-0055 Routed competitive digest | 分流 | 设明确的入选门槛（重复出现的异议、已证实的公开动作、作战卡缺口），每条标给负责的产品营销，而不是压在一个分析师身上。 |
+| AWF-0053 Plan-to-calendar drafting | 标准 | 按渠道起草进排期日历，人逐条审并批准发布（小红书对全自动发帖有风控）。 |
+| AWF-0111 Catalog copy factory | 挡住 | 只跑数据完整的 SKU；规则检查器与写作简报出自同一份文本规范。 |
+| AWF-0050 Call-to-CRM diff approval | 外验 | 每个字段都要能追溯到通话记录；写回前给销售看 diff，写后可回滚。 |
+| AWF-0176 RFQ-to-quote drafting | 外验 | 先用确定性的编码匹配，匹配不上才用模型；每行带来源，低置信或偏离价格表的行标出来给销售确认。 |
+| AWF-0222 Signed-contract validation | 分流 | 任何一点存疑就转交易台；编排和审计放在确定性的中间件里，与模型的校验逻辑分开。与 AWF-0110 做法几乎相同。 |
+| AWF-0109 Inbound qualify-and-book agent | 外验 | 通话被打断的线索不直接判不合格，先做网站分析兜底；每天人工回看全部对话。 |
+| AWF-0020 Research-then-personalize outbound | 外验 | 首句只许用调研结果，调研回答带来源 URL；邮箱瀑布流最后一步必须验证（退信率从 22% 到 1.3%）；上线前看 20 行样本。 |
+| AWF-0110 Exception-only contract validation | 分流 | 只自动化有文档的“顺利路径”，存疑即转交易台，另设独立审计层。与 AWF-0222 做法几乎相同。 |
+| AWF-0052 Propose-confirm pipeline sweep | 挡住 | 只读实时记录，提议与写回分开，人确认后才写。 |
+| AWF-0051 Governed-library response draft | 放入 | 只从受管的答案库取材，每个答案带出处；先做文档适配检查，拒掉不该答的文件。 |
