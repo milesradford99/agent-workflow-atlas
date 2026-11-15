@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **233 of 238 entries converted, 5 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **238 of 238 entries converted. Part A is done.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -155,7 +155,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0212 workflows/unplaced/incident-to-signed-investigation
   - AWF-0152 workflows/unplaced/layered-safety-audit-agents
   - AWF-0147 workflows/unplaced/analyst-verified-lease-abstracts
-- [ ] **Batch 17** (unplaced, 5). One unplaced entry is already converted and is a usable example: find it with `grep -l '^build:' workflows/unplaced/*/README.md`.
+- [x] **Batch 17** (unplaced, 5). One unplaced entry is already converted and is a usable example: find it with `grep -l '^build:' workflows/unplaced/*/README.md`.
   - AWF-0234 workflows/unplaced/agent-built-replenishment-plans
   - AWF-0213 workflows/unplaced/cited-interconnection-readiness-review
   - AWF-0237 workflows/unplaced/cited-outage-revalidation
@@ -436,3 +436,18 @@ This batch's updates were mostly about *where the check sits*, not whether the m
 | AWF-0147 | service | A batch pipeline over a portfolio, then continuous amendments with delta re-abstraction, worked as a queue by several analysts | 3 of 4, not re-opened; + 2 new | Accuracy now has a shape: 80–88% on scans, 90–95% on text-layer PDFs, 95%+ on native files; escalations 95–98% common-format against 85–90% conditional; recoveries 90–95%; dates 97–99% with the failure being an exhibit not uploaded. So review routes by document quality and five clause types, and co-tenancy or recovery formulas are a detector pointing at the clause rather than an extraction. A widely repeated claim that over half of rent rolls hold a material error could not be traced to a primary study. |
 
 Checks: `validate.py` reports 238 workflows, 233 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes after rebuilding two blocks; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.
+
+
+**Batch 17 (2026-11-14), last five unplaced entries; five bilingual entries; two read in full (AWF-0234, AWF-0238)**
+
+Part A ends here: `validate.py` reports 238 of 238 in the STANDARD.md format, `grep -L '^build:'` prints nothing, and the CHANGELOG line now says all 238 are converted. This batch's five entries are the ones with no home class, and the form question was less obvious than usual — a planning agent that keeps monitoring a running plan is a `service`, while a cycle-bound readiness review is a `project` even though both are batch pipelines. Two findings are worth carrying forward. First, three of the five had their newest source *disagree in kind* with an older one rather than simply update it: the operator's own FAQ describes the interconnection tool as in testing while the vendor reports per-application medians, and the dispatch vendor's aggregate comparison against "peers" is not the controlled measure the entry's override rate is. Second, the clearest 2026 change in this group is architectural rather than model-level: the field-service platforms are absorbing the troubleshooting assistant, so the build decision moves from assembling a retrieval stack to configuring one — which changes the questions that decide success. One search result claimed OSHA now mandates six-monthly AI audits and one claimed NERC issued a binding AI standard in February 2026; neither had a primary source and neither was used. No source, public run, quote, shape or id changed.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0234 | service | A planning loop runs on a schedule — weekly plans, daily execution comparison, deviations diagnosed as they appear — with nobody starting the monitoring | 1 of 2 + 2 new | The surrounding programme has grown (70+ agents in the industrial arm, 13.8% warehouse efficiency) without changing the study's numbers. A trade analysis makes the right point: "1,000+ scenarios" counts where an agent was switched on, not where it beat the baseline, and an agent that trims the average while fattening the tail raises complaints. Judge this on deviation and fulfilment, not on requests served. |
+| AWF-0213 | project | The tariff, instruction set, per-application reports and audit trail belong to one intake cycle and must persist for its disputes | 0 of 1 + 2 new | The operator's own words are more careful than the vendor's: PJM describes the tool as in testing, with results to be validated by benchmarking, against a vendor note reporting 811 applications at a 6m15s median. Both can be true; do not average them. Context: ~46 GW still to clear by end-2026, one annual intake window closed 2026-04-27, request-to-COD now over eight years. |
+| AWF-0237 | service | Runs nightly and at fixed horizons over the whole fleet of live requests; the report is waiting before the shift and operators act on it | 0 of 2 + 1 new | The legal frame, not the deployment, moved: as of 2026-08 no state commission had issued guidance on operational AI, so general reliability and CIP obligations do the work — access control, change management, human authority. A model update is a change-management event in a controlled system, so pin the version behind each report. |
+| AWF-0214 | service | Jobs arrive continuously and the board is assigned as they land; dispatchers supervise by exception rather than approving each one | 0 of 2 + 1 new | The vendor now publishes aggregate results "versus peers" with no cohort sizes, no baseline and no control, on a package still in limited release — not the controlled measure this entry's override rate (40% → ~10%) is. Scope change matters more: the same agent set now throttles demand generation, which is a commercial decision upstream of scheduling. |
+| AWF-0238 | skill | One technician, one callout, questions answered from approved sources, with the technician deciding each action | 0 of 4 + 1 new | No newer account found. What changed is where the capability comes from: FSM vendors are shipping the field co-pilot inside the platform, so a 2026 team configures rather than assembles. The questions that decide success move with it — corpus restricted to approved documentation, answers short enough for a ladder, helpdesk resolutions written back as verified cases. |
+
+Checks: `validate.py` reports 238 workflows, 238 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes after rebuilding two blocks; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the five folders plus CHANGELOG/CONVERSION-TODO.
