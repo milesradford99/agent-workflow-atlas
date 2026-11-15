@@ -87,3 +87,24 @@
 | AWF-0156 Approve-only payer auto-auth | 挡住 | 只能批准不能拒绝：凡是不批的都交给有执照的临床人员。 |
 | AWF-0032 Criteria-gated prior auth | 外验 | 上线前按药品逐个用标准答案验证（Duke 评估 970 条标准里 7 个错）；病历材料由工作人员自己挑。 |
 | AWF-0090 Exception-routed autonomous coding | 分流 | 有缺口或冲突的病历整份“掉出”给编码员；覆盖只是部分专科，所以保留编码员编制。 |
+| AWF-0094 Agent-crew claim file | 挡住 | 没有任何智能体能付款；审计智能体把每个智能体的决定汇总给人工审批者。 |
+| AWF-0095 Handler-accepted invoice recommendation | 回灌 | 理赔员标出缺失的药品或治疗知识，由资深人员把关后才更新进去。 |
+| AWF-0096 Policy-grounded claim letters | 挡住 | 找不到支持的保单条文就拒绝生成拒赔信，直接显示“未找到相关保单条文”。 |
+| AWF-0162 Subrogation alert triage | 放入 | 后台扫描所有案件（含已结案的），不靠理赔员记得转交；告警里直接套用各州的时效和过失规则。 |
+| AWF-0149 Decision-ready submission triage | 分流 | 按抽取置信度决定直接入队还是先过人；整个收件箱都分诊，而不是核保人只看到一小部分。 |
+| AWF-0163 Summarised GP-report underwriting | 外验 | 上线前测了 18 个月，按病种验证准确率，先从低风险案件做起，再扩到重疾险。 |
+| AWF-0092 Business self-serve drafting | 挡住 | 只从法务批准的模板里填，超出范围就拒绝并转加急法务审。 |
+| AWF-0159 Sample-tuned contract abstraction | 外验 + 回灌 | 先在有代表性的样本上抽取，律师据此改提示词，再全量跑；每个字段带回到原文的超链接。 |
+| AWF-0161 Page-cited medical chronology | 外验 | 每个事件带页码引用，律师助理逐条对照原件。 |
+| AWF-0035 Validated GenAI first-pass | 外验 | 全量跑完后抽样验证精确率和漏检率；把边缘文件算进去召回到 96.2% 但精确率掉到 58.4%，所以边缘政策要事先定。 |
+| AWF-0036 Obligations register build | 标准 | 抓取法规、拆成义务并打标签，律师检查每项输出并签字。 |
+| AWF-0160 Sampled DSAR disclosure | 外验 | 对被判“不相关”的文件做漏检抽样；收集前先和请求人谈范围（姓名缩写会撞上常用词）。 |
+| AWF-0044 Gated replication run | 外验 | “代码跑通”不等于“结果复现”，所以单独设一个把系数与论文逐项比对的阶段；数据缺失记为不可复现，不记为代码失败。 |
+| AWF-0168 Lab-in-the-loop discovery | 外验 | 同一份数据的分析每次跑都不一样，所以并行跑 8 条分析轨迹再做共识荟萃；实验全部由科学家做。 |
+| AWF-0045 Critique-first grant draft | 分流 | 模拟评审只提意见不改稿，PI 逐条接受或拒绝后才整合；引用对照 PubMed 查（防止引了支持对立机制的论文）。 |
+| AWF-0104 Hypothesis tournament | 外验 | Elo 排名是模型自评，不是事实；靠专家评估头部候选加实验验证。有一例其实是重新发现了已知但未发表的结果。 |
+| AWF-0009 Screening funnel | 标准 | 两名独立筛选者筛每条记录，冲突和纳入项抽检，摘录带引文和页码。条目没有防护一行。 |
+| AWF-0170 Added AI review | 分流 | AI 评审带标签、不打分，放在人工评审旁边；前 30% 批次由组织者抽看。 |
+| AWF-0046 Review-of-review feedback | 外验 | 反馈先过可靠性测试才发给审稿人，而且只私下发、可忽略；两组的录用结果没有差别。 |
+| AWF-0169 End-to-end AI paper | 分流 | 开放题目成功率低，所以生成很多、由人挑少数；3 篇里没有一篇达到作者自己对主会的标准。代码在沙箱容器里跑。 |
+| AWF-0010 Reviewer-response revision | 标准 | 按每条审稿意见修改并起草回复，作者批准计划并签发。条目没有引用任何来源。 |
