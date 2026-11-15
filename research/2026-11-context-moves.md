@@ -140,3 +140,31 @@
 | AWF-0110 Exception-only contract validation | 分流 | 只自动化有文档的“顺利路径”，存疑即转交易台，另设独立审计层。与 AWF-0222 做法几乎相同。 |
 | AWF-0052 Propose-confirm pipeline sweep | 挡住 | 只读实时记录，提议与写回分开，人确认后才写。 |
 | AWF-0051 Governed-library response draft | 放入 | 只从受管的答案库取材，每个答案带出处；先做文档适配检查，拒掉不该答的文件。 |
+
+## ORG 组织与公共部门
+
+| 条目 | 分类 | 一招 |
+|---|---|---|
+| AWF-0236 Agronomist-gated push advisories | 外验 | 扩大前先做 A/B：AI 写的脚本收听率比人写的低 2–3.5 个百分点，项目页上“略高”的初步说法没有成立；农艺师逐稿比对。 |
+| AWF-0154 Plot-registered agronomy advice | 放入 | 农户先在地图上核对自己地块的多边形，后面的土壤数据和养分计划都以它为准。 |
+| AWF-0085 Policy-checked expense audit | 放入 | 政策库由团队自己维护、每周同步，防止用错版本；先并行跑，再逐步放权。准确率数字是厂商自报。 |
+| AWF-0029 Source-screen-schedule hiring | 挡住 | 智能体永远不做拒绝决定；一句“全部拒掉”曾在约 2 分钟内发出 8 封拒信，所以按每个候选人签字而不是按批。 |
+| AWF-0084 Data-pulled status report | 标准 | 拉数据起草状态报告，项目经理对照源数据后发出。证据只有工具作者的一份自述。 |
+| AWF-0030 Issue-tree research | 外验 | 每个数字重新抓取来源核对；允许答“未知”，因为智能体会用看着合理的整数填空（两期通讯发布后被更正过）。 |
+| AWF-0228 QA-agent competitive brief | 外验 | 另设一个 QA 智能体逐条对照来源和内部文档，不让研究智能体自己批改自己的作业；每个来源必查日期。 |
+| AWF-0141 Gap-checked benefits form fill | 放入 + 外验 | 填表前先做缺口分析，社工和当事人把缺的补齐；每个字段标明数据从哪来、为什么填它。 |
+| AWF-0142 Visit-recorded care assessment | 标准 | 录音转写后起草评估，从业者核对修改后归档。 |
+| AWF-0205 Exemption-cited records redaction | 外验 + 挡住 | 每处遮蔽都附豁免条款引用，由档案官员逐处批准；哪些请求类型可以自动放行要显式配置。 |
+| AWF-0143 Officer-checked planning data extraction | 外验 | 边界用 IoU 和中心距离检查；准确率看着高之后更容易过度信任，所以全量复核而不是抽检（日期 94% 正确）。 |
+| AWF-0204 Statute-mapped regulatory review | 标准 | 逐条对照授权法律并分类，分类只当路线图，机构协调员和律师决定删什么。 |
+| AWF-0080 Theme sign-off consultation analysis | 外验 | 先让两个人互相比对，得到人与人之间的基线（F1 0.710），再拿模型去比；审阅者可以标“没有合适的主题”，据此回头改主题表。 |
+| AWF-0148 Broker-reviewed entry prep | 放入 | 零件库是关键输入：关税规则变得比零件数据快，所以要能批量更新零件库；每个字段带置信度和来源。 |
+| AWF-0233 Pre-transmission entry audit | 外验 | 每票报关单在传输前都过一遍规则审计，规则集集中维护；只标规则或法规违规，干净的直接放行。归类本身对不对不在这道审计里。 |
+| AWF-0209 Carrier-call booking agent | 挡住 | 每条线路的运价上下限由人设定，智能体只在其间谈；后台做合规和欺诈检查（第一个月抓到 3 起）。 |
+| AWF-0150 Email-to-order freight agents | 放入 | 含糊的委托（“周二有一车货”）靠该客户的历史记录补全。 |
+| AWF-0031 Daily inbox triage | 挡住 | 只给草稿权限，不给发送工具，而不是靠提示词约束（原型曾自作主张答应了一个写书邀约）。 |
+| AWF-0229 Ledger-earned inbox actions | 挡住 + 回灌 | 每类动作各自从主人的批准记录里挣自主权，记在台账里，有升级和降级规则；另有每小时和每天的上限（曾有 37 个删除请求被上限拦下）。 |
+| AWF-0208 Confidence-routed meeting tickets | 分流 + 回灌 | 负责人置信度低或没人认领的事项进 Slack 等批准；用少样本示例教它“我们大概应该……”不算任务；用编辑距离做反馈。 |
+| AWF-0086 Template-driven meeting minutes | 标准 | 转写后按模板生成纪要，工作人员改正后分发。 |
+| AWF-0087 Diff-reviewed vault upkeep | 回灌 | 主人审 git diff 并写行内批注；再从会话日志里挖摩擦点，更新 CLAUDE.md。 |
+| AWF-0146 Pick-then-summarise research digest | 分流 | 只给读者自己存下的论文做深度摘要；另有一个 QA 定时任务修小毛病、拦大问题。 |
