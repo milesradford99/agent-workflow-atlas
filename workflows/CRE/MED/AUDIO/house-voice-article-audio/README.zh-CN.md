@@ -4,7 +4,7 @@ name: 自有声音的文章音频
 summary: "用定制的自有声音为每篇发布的文章生成音频；语音专家抽检纠正发音，编辑可随时覆盖。"
 deliverable: 文章朗读音频
 shape: "打造自有声音（演员录制基础语料 + 自家文章句子） → 影子运行：每天的文章 → TTS → 🛑 sample (语音专家试听，按拼音纠正发音) → 发音/替换词库 → 上线：每篇发布的文章：去掉小标题和括号内容 → TTS (交替使用不同声音) → 片头音 + 标题 + 署名 → 在应用中发布 → 听众反馈 → 🛑 review (编辑覆盖错误发音) → 扩展到更多文章"
-source_hash: 004123791b03
+source_hash: 4300828da1a9
 ---
 
 # 自有声音的文章音频
@@ -41,7 +41,7 @@ source_hash: 004123791b03
 
 **检查点：** `sample`：影子运行期间及之后，每天音频的固定比例会复制到语音专家的队列；专家的纠正进入词库，并决定何时上线。`review`：智能体只为每个被反馈的词提出替换建议，发到编辑的队列。它没有修改线上词库的工具；由编辑在管理界面里应用改动。
 
-**与来源相比：** 来源 1 是厂商的案例，页面标注日期为 2023-06，此后有更新；来源 2 没有日期。截至 2026-11 没有找到这一工作流更新的第一手记录。较新的材料来自厂商一侧：BeyondWords 介绍了编辑可在项目设置或通过 API 设定的发音规则（[BeyondWords blog](https://beyondwords.io/blog/enhancing-ai-generated-audio-articles-with-pronunciation-rules-2/)），南华早报宣布改进了文章的旁白（[SCMP](https://www.scmp.com/announcements/article/3367019/high-quality-natural-audio-listen-scmp-articles-improved-narration)）。来源 1 中厂商的工具 Azure 定制声音仍是受限访问功能：只有获批的客户才能使用（[Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/cognitive-services-limited-access)）。没有获批的出版方需要改用其他 TTS 厂商的定制或克隆声音。两个来源都是厂商或代理机构的说法，不是独立报道。
+**与来源相比：** 来源 1 是厂商的案例，页面标注日期为 2023-06，此后有更新；来源 2 没有日期。截至 2026-11 没有找到这一工作流更新的第一手记录。较新的材料来自厂商一侧：BeyondWords 介绍了编辑可在项目设置或通过 API 设定的发音规则（[BeyondWords blog](https://beyondwords.io/blog/enhancing-ai-generated-audio-articles-with-pronunciation-rules-2/)），南华早报宣布改进了文章的旁白（[SCMP](https://www.scmp.com/announcements/article/3367019/high-quality-natural-audio-listen-scmp-articles-improved-narration)）。来源 1 中厂商的工具 Azure 定制声音仍是受限访问功能：只有获批的客户才能使用（[Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/cognitive-services-limited-access)）。没有获批的出版方需要改用其他 TTS 厂商的定制或克隆声音。两个来源都是厂商或代理机构的说法，不是独立报道。2026-11-15 再次检查：就这一做法和所列工具做了一次检索，未重新打开来源页面；截至 2026-11 未发现更新的记述。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

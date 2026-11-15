@@ -96,7 +96,7 @@ When a potential customer fills in a "contact sales" form on a company's website
 
 **Checkpoints:** `review`: the daily pack goes to the team, and the scheduled task has read-only access to transcripts and the CRM, so a change to how leads are qualified is made only by a person on the platform. `handoff`: the rep runs every booked meeting; nothing in the build contacts the lead after the booking.
 
-**Since the sources:** Sources date from 2025-10 to 2026-09. Sources 1 and 2 are a voice-agent vendor describing the agent it runs on its own product; source 3 is a media company's account of an inbound agent run by three people. None of them describes a general agent holding the conversation, so the build proposes one only for the steps before and after the call. Source 1 reports switching models when tool calls failed; that is a setting on the voice platform and is not part of this build.
+**Since the sources:** Sources date from 2025-10 to 2026-09. Sources 1 and 2 are a voice-agent vendor describing the agent it runs on its own product; source 3 is a media company's account of an inbound agent run by three people. None of them describes a general agent holding the conversation, so the build proposes one only for the steps before and after the call. Source 1 reports switching models when tool calls failed; that is a setting on the voice platform and is not part of this build. Checked again on 2026-11-15 with one search covering the practice and any named tools, without re-opening the source pages: no newer account found as of 2026-11.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

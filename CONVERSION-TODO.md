@@ -473,3 +473,11 @@ Findings that need a maintainer, added to Part C below: AWF-0074 cites a Septemb
 **Part B, remaining 94 entries (2026-05 to 2026-11 sources): agreed lighter standard**
 
 These entries cite sources from within the last six months, so a search for a newer account is expected to return nothing and page-level re-reading would mostly re-confirm text written this year. The agreed standard for them, recorded here so it is not improvised later: run one search per entry for the practice and for the named tool; where nothing newer appears, append one sentence to **Since the sources** stating the check date and "No newer account found as of 2026-11."; do not re-open every source page; leave `last_verified` unchanged. Any entry where the single search does turn something up gets the full treatment instead. This is a deliberate, documented reduction from the brief, not an oversight.
+
+**Part B, second pass (2026-11-15): the remaining 94 entries, lighter standard**
+
+One search per entry for the practice and its named tools; source pages were not re-opened; `last_verified` and `method_checked` unchanged. Each entry's **Since the sources** now ends with a dated sentence in both languages.
+
+- 79 entries: no newer account found as of 2026-11.
+- 8 entries: the search returned material of a different kind (how-to posts, aggregate studies, press items), described without a link because it was not opened: AWF-0001, 0003, 0029, 0031, 0076, 0088, 0146, 0219.
+- 7 entries where the search found a newer account or a tool change that could not be opened in that session (page fetches were refused by the session's network). They are marked in the entry as still due a full re-check and are **not done**: AWF-0174 (vendor press material on Atlas), 0141 (pilot results), 0100 (independent trial results, 2026-10), 0148 (Cervo reported acquired, 2026-07), 0210 (newer customer story), 0086 (LGA publication on the pilot), 0220 (later usage figures).

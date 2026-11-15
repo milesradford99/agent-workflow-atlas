@@ -78,7 +78,7 @@ Before an investment firm commits money to a company, the deal team studies it (
 
 **Checkpoints:** `review`: the skill stops after the draft and the critique are written to files, and the deal team edits and adds its own risk view; a redraft stops again at the same place. `sign-off`: the committee decides outside the agent, which has no tool to record or send a decision.
 
-**Since the sources:** Sources date from 2025-06 to 2026-07 (the second page shows 2026-07-22, though the entry lists it as undated). Source 1 is a firm's announcement of its own in-house tools, and source 2 is a vendor's account of its product, so neither shows the steps inside. This build is one reading of them. The sources do not say how the challenger is made to draw on the firm's historic data; here it reads reference files. The V7 variant's traceable citations are a product feature, and in this build they are only a rule written into the skill.
+**Since the sources:** Sources date from 2025-06 to 2026-07 (the second page shows 2026-07-22, though the entry lists it as undated). Source 1 is a firm's announcement of its own in-house tools, and source 2 is a vendor's account of its product, so neither shows the steps inside. This build is one reading of them. The sources do not say how the challenger is made to draw on the firm's historic data; here it reads reference files. The V7 variant's traceable citations are a product feature, and in this build they are only a rule written into the skill. Checked again on 2026-11-15 with one search covering the practice and any named tools, without re-opening the source pages: no newer account found as of 2026-11.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

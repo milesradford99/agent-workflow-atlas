@@ -4,7 +4,7 @@ name: AI 先读的剧本初筛
 summary: "为每部投稿剧本生成审读报告并建立可检索片单；由高管挑选精读，每部入选剧本需有人力挺。"
 deliverable: 剧本审读报告
 shape: "收取投稿 → 每个剧本：智能体拆解(分场摘要、角色、对标作品、选角建议) → 审读报告(部分工具附评分/结论) → 索引到可检索片单数据库 → 🛑 review (高管/审读人阅读报告，挑选精读剧本) → 人工通读全本并写意见 → 🛑 sign-off (人类力挺者，另有人附议)"
-source_hash: e8eb08ef1fe5
+source_hash: dc02f1511dac
 ---
 
 # AI 先读的剧本初筛
@@ -43,7 +43,7 @@ source_hash: e8eb08ef1fe5
 
 **检查点：** `review`：skill 在结尾展示片单和审读报告后停下；高管或审读人挑出要精读的剧本，对其余剧本 skill 不再做任何事。`sign-off`：智能体没有推进剧本、联系作者或记录决定的工具；由一位人类力挺者和另一位附议者自己做出并记录这个决定。
 
-**与来源相比：** 有日期的来源是 2025-10 的 Variety；Anthropic 客户案例和 INTERDEPENDENT 规则页面未注明日期。有日期的最新来源已超过 12 个月，所以在 2026-11 做了搜索：ScriptSense 的厂商 Jumpcut 已被 Cinelytic 收购，2025-03-12 宣布（[SiliconANGLE](https://siliconangle.com/2025/03/12/cinelytic-acquires-jumpcut-media-expand-ai-powered-entertainment-analytics-platform/)），搜索结果称它现在属于 The Cinelytic Group；没有找到 2026 年对其流程的报道。客户案例提到的是较早的模型 Claude 3 Opus。Anthropic 的页面和与厂商相关的工具介绍的是产品，没有展示其提示词；INTERDEPENDENT 规则页面在 2026-11 无法打开，所以那一步依据的是条目原文。本搭建方式是用通用智能体照着已报道的步骤做的设计，来源并没有报道有通用智能体这样做过。它没有评分和结论，因为 Variety 的测试发现这些工具偏向作者，同时它让意见保持由人撰写。
+**与来源相比：** 有日期的来源是 2025-10 的 Variety；Anthropic 客户案例和 INTERDEPENDENT 规则页面未注明日期。有日期的最新来源已超过 12 个月，所以在 2026-11 做了搜索：ScriptSense 的厂商 Jumpcut 已被 Cinelytic 收购，2025-03-12 宣布（[SiliconANGLE](https://siliconangle.com/2025/03/12/cinelytic-acquires-jumpcut-media-expand-ai-powered-entertainment-analytics-platform/)），搜索结果称它现在属于 The Cinelytic Group；没有找到 2026 年对其流程的报道。客户案例提到的是较早的模型 Claude 3 Opus。Anthropic 的页面和与厂商相关的工具介绍的是产品，没有展示其提示词；INTERDEPENDENT 规则页面在 2026-11 无法打开，所以那一步依据的是条目原文。本搭建方式是用通用智能体照着已报道的步骤做的设计，来源并没有报道有通用智能体这样做过。它没有评分和结论，因为 Variety 的测试发现这些工具偏向作者，同时它让意见保持由人撰写。2026-11-15 再次检查：就这一做法和所列工具做了一次检索，未重新打开来源页面；截至 2026-11 未发现更新的记述。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

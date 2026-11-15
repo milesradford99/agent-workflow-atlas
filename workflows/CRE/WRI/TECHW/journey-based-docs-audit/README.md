@@ -86,7 +86,7 @@ A company that sells several software products publishes documentation for each,
 
 **Checkpoints:** `review`: the skill stops after preparing the per-product branches and the issue log; each PO reads their changes line by line in their PR and confirms the facts. `sign-off`: the agent has no deploy or merge tool and cannot touch production; the team merges and deploys after every PO has confirmed.
 
-**Since the sources:** The newest source is from 2026-10 and the other from 2026-08. Source 1, the account of the audit itself, could not be opened when this was written (the site refused the request), so the steps rest on the entry text. Source 2 is a weekly codebase-versus-docs review rather than a journey audit. The entry does not name the agent tool the audit used, so the build above names none. The source's 71 issues and the nine blocked ones belong to Public runs, not to this design.
+**Since the sources:** The newest source is from 2026-10 and the other from 2026-08. Source 1, the account of the audit itself, could not be opened when this was written (the site refused the request), so the steps rest on the entry text. Source 2 is a weekly codebase-versus-docs review rather than a journey audit. The entry does not name the agent tool the audit used, so the build above names none. The source's 71 issues and the nine blocked ones belong to Public runs, not to this design. Checked again on 2026-11-15 with one search covering the practice and any named tools, without re-opening the source pages: no newer account found as of 2026-11.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

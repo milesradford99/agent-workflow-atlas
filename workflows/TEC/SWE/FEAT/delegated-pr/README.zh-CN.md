@@ -4,7 +4,7 @@ name: 委派式 PR 开发
 summary: "将打好标签的议题实现为草稿 PR；CI 运行需人工批准，PR 由人评审并合并。"
 deliverable: 拉取请求（PR）
 shape: "🛑 plan (为适合的议题打标签) → 智能体读取议题和仓库 → (写代码 ⟲ 测试) → 草稿 PR → (机器人评审 ⟲ 修复) → 🛑 action (运行 CI) → 🛑 review → 合并"
-source_hash: 36be7c10c9bc
+source_hash: 03e4515b6e93
 ---
 
 # 委派式 PR 开发
@@ -43,7 +43,7 @@ source_hash: 36be7c10c9bc
 
 **检查点：** `plan`：只有维护者能加标签，工作流的条件会跳过未加标签议题上的评论和不受信任账号的评论，所以外人的评论无法启动运行。`action`：只有人把 PR 标为就绪，完整的 CI 才会开始；用 GitHub 自家的智能体时，由人点击 “Approve and run workflows”。`review`：智能体可用的工具里没有合并命令，它的分支也从不是默认分支；由人合并。
 
-**与来源相比：** 有日期的来源和实例出自 2025-07 到 2026-03；来源 3 是一个文档页面，于 2026-11 查阅，来源 4 中的培训页面未注明日期。来源 4 里的工具后来改了名：GitHub 2026-04 的更新日志称它为 [Copilot cloud agent, formerly Copilot coding agent](https://github.blog/changelog/2026-04-01-research-plan-and-code-with-copilot-cloud-agent)，并说它现在可以只在分支上工作而不创建 PR，也可以先给出计划，经批准后再写代码。来源 4 中的培训页面如今以 “Copilot in the cloud” 为题，仍然写明智能体看不到指派之后新增的议题评论。工具变体的标识 `copilot-coding-agent` 还在用旧名。Claude Code GitHub Actions 的文档页面仍然描述了这里用到的 `@claude` 触发方式和 `/install-github-app` 安装步骤。第 4 步没有引用来源。
+**与来源相比：** 有日期的来源和实例出自 2025-07 到 2026-03；来源 3 是一个文档页面，于 2026-11 查阅，来源 4 中的培训页面未注明日期。来源 4 里的工具后来改了名：GitHub 2026-04 的更新日志称它为 [Copilot cloud agent, formerly Copilot coding agent](https://github.blog/changelog/2026-04-01-research-plan-and-code-with-copilot-cloud-agent)，并说它现在可以只在分支上工作而不创建 PR，也可以先给出计划，经批准后再写代码。来源 4 中的培训页面如今以 “Copilot in the cloud” 为题，仍然写明智能体看不到指派之后新增的议题评论。工具变体的标识 `copilot-coding-agent` 还在用旧名。Claude Code GitHub Actions 的文档页面仍然描述了这里用到的 `@claude` 触发方式和 `/install-github-app` 安装步骤。第 4 步没有引用来源。2026-11-15 再次检查，做了一次检索，未重新打开来源页面：检索到2026 年关于智能体所开 pull request 的汇总研究（未打开），截至 2026-11 未发现关于这一做法的更新的第一手记述。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

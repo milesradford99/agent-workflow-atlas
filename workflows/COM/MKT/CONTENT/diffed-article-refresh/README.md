@@ -92,7 +92,7 @@ A company blog accumulates hundreds or thousands of articles, and over time they
 
 **Checkpoints:** `review`: the skill stops after presenting the diff and the product-mention audit; the editor reads the diff against the original, edits, and only then publishes. The agent has no CMS publish tool, so nothing reaches the live site without the editor.
 
-**Since the sources:** Sources date from 2026 (Kokoc, no month) and 2026-06 (Semrush). Source 1 first built this as an n8n workflow, where research worked and drafting did not, and moved to Claude Code with one skill per step; a single skill plus built-in subagents covers the same ground in this build. Source 2 describes a company-built agent that takes tasks from a shared spreadsheet on a schedule; that queue is not part of this build, which starts from one article an editor names. The sources' reports of time or cost saved are not repeated here.
+**Since the sources:** Sources date from 2026 (Kokoc, no month) and 2026-06 (Semrush). Source 1 first built this as an n8n workflow, where research worked and drafting did not, and moved to Claude Code with one skill per step; a single skill plus built-in subagents covers the same ground in this build. Source 2 describes a company-built agent that takes tasks from a shared spreadsheet on a schedule; that queue is not part of this build, which starts from one article an editor names. The sources' reports of time or cost saved are not repeated here. Checked again on 2026-11-15 with one search covering the practice and any named tools, without re-opening the source pages: no newer account found as of 2026-11.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

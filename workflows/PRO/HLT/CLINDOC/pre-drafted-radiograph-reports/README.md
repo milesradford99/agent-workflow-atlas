@@ -83,7 +83,7 @@ When an X-ray is taken, a radiologist looks at the images and writes a report, a
 
 **Checkpoints:** `review`: the draft is only a field in the template the radiologist chooses; the radiologist finalises the report in the dictation system, and no agent in this build has access to it. The monitoring service reads an export and cannot change a report.
 
-**Since the sources:** The source and the public run date from 2025-06. No newer account found as of 2026-11. The source describes a custom vision model that one health system built and wired into its EHR and dictation system; no agent runs these steps, so a general agent's part is limited to the monitoring step.
+**Since the sources:** The source and the public run date from 2025-06. No newer account found as of 2026-11. The source describes a custom vision model that one health system built and wired into its EHR and dictation system; no agent runs these steps, so a general agent's part is limited to the monitoring step. Checked again on 2026-11-15 with one search, without re-opening the source pages: it returned a 2026-08 journal guide to generative AI in chest radiograph reporting and a 2026-06 vendor product announcement (neither opened), and no newer first-hand account of this practice as of 2026-11.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

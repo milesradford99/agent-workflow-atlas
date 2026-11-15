@@ -85,7 +85,7 @@ A sales pipeline is the set of all deals a company is currently trying to win, k
 
 **Checkpoints:** `action`: the scheduled run has no CRM write tool, so it can only propose; each write-back happens in a second step that writes only the items a person confirmed, and each update asks before it runs. `review`: the weekly review is a meeting of people, outside the agent's tools.
 
-**Since the sources:** The one source dates from 2026-09. It is a consultancy's account of running a Claude and CRM setup on its own pipeline for four months, and it reports the checks and the rule that a person confirms every write-back, not how the run is scheduled. Cloud scheduled tasks, in research preview as of 2026-11, can supply the weekday schedule without a scheduler of your own. The build splits proposing from writing so that the unattended run never holds a write tool.
+**Since the sources:** The one source dates from 2026-09. It is a consultancy's account of running a Claude and CRM setup on its own pipeline for four months, and it reports the checks and the rule that a person confirms every write-back, not how the run is scheduled. Cloud scheduled tasks, in research preview as of 2026-11, can supply the weekday schedule without a scheduler of your own. The build splits proposing from writing so that the unattended run never holds a write tool. Checked again on 2026-11-15 with one search covering the practice and any named tools, without re-opening the source pages: no newer account found as of 2026-11.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

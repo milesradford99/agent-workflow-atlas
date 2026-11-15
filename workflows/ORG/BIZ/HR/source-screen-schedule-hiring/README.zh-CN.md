@@ -4,7 +4,7 @@ name: 寻访筛选排期招聘
 summary: "寻访候选人、整理个人证据摘要、安排面试并准备面试材料；智能体不做淘汰决定，由人定夺。"
 deliverable: 候选人管线
 shape: "职位描述 → 🛑 plan → 每个渠道：寻访 → 按评分项给出匹配理由 → 🛑 action → 外联 → 每位候选人：证据摘要 (不做淘汰决定) → 排期 → 面试材料包 → 🛑 sign-off (由人决定)"
-source_hash: 49d8384ac6ba
+source_hash: 3e6a69524460
 ---
 
 # 寻访筛选排期招聘
@@ -44,7 +44,7 @@ source_hash: 49d8384ac6ba
 
 **检查点：** `plan`：skill 把标准和搜索计划写进岗位文件，然后停下，等招聘人员批准或修改。`action`：招聘人员阅读并修改每份草稿；发送消息和邀请的工具在权限规则里设为“询问”，所以没有确认就不会有东西发出。`sign-off`：skill 最后展示证据摘要并停下。智能体没有淘汰候选人或更改候选人阶段的工具，所以由招聘人员或用人经理自己在 ATS 里操作。
 
-**与来源相比：** 来源出自 2025-09 至 2026-07；YC 仓库、纽约 FAQ 和两个 LinkedIn 页面未注明日期。其中两个来源（纽约 FAQ 和 YC 仓库）撰写本节时无法重新打开（页面读取器收到这两个站点的 403），所以对它们仍以条目文字为准。上文关于欧盟时间的说明已经过时：Cuatrecasas 的页面现在报告，Digital Omnibus on AI 已于 2026-07-24 作为法规 (EU) 2026/1744 公布，独立高风险系统（含招聘）的义务自 2027-12-02 起适用（[source 28](https://www.cuatrecasas.com/en/global/labor-and-employment/art/digital-omnibus-on-ai-how-does-it-impact-employment-relations)）。YC 仓库是一组 Claude Code 命令，这套搭建方式与它一致，只是 YC 的经理还会通过智能体批准淘汰，而本搭建不允许这样做。LinkedIn 的 Hiring Assistant 是在 LinkedIn 自己的网络中搜索的厂商产品，通用智能体做不到这一点；本搭建只能从有连接器的渠道寻访，来源也没有展示厂商内部的步骤。
+**与来源相比：** 来源出自 2025-09 至 2026-07；YC 仓库、纽约 FAQ 和两个 LinkedIn 页面未注明日期。其中两个来源（纽约 FAQ 和 YC 仓库）撰写本节时无法重新打开（页面读取器收到这两个站点的 403），所以对它们仍以条目文字为准。上文关于欧盟时间的说明已经过时：Cuatrecasas 的页面现在报告，Digital Omnibus on AI 已于 2026-07-24 作为法规 (EU) 2026/1744 公布，独立高风险系统（含招聘）的义务自 2027-12-02 起适用（[source 28](https://www.cuatrecasas.com/en/global/labor-and-employment/art/digital-omnibus-on-ai-how-does-it-impact-employment-relations)）。YC 仓库是一组 Claude Code 命令，这套搭建方式与它一致，只是 YC 的经理还会通过智能体批准淘汰，而本搭建不允许这样做。LinkedIn 的 Hiring Assistant 是在 LinkedIn 自己的网络中搜索的厂商产品，通用智能体做不到这一点；本搭建只能从有连接器的渠道寻访，来源也没有展示厂商内部的步骤。2026-11-15 再次检查，做了一次检索，未重新打开来源页面：检索到2026-09 关于 LinkedIn 招聘智能体的媒体报道（未打开），截至 2026-11 未发现关于这一做法的更新的第一手记述。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 
