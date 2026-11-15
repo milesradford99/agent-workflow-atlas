@@ -132,4 +132,4 @@ Coverage as of 2026-11-06: **Strong**: a first-hand, detailed run that matches m
 ## Sources
 
 1. Steven Xu and Fabio Flores, DoorDash, Building Ask DoorDash (Part 3): Evaluation, 2026-06-30. https://careersatdoordash.com/blog/building-ask-doordash-part-three-evaluation/
-2. Simran Jumani, Dropbox, How we used DSPy to turn AI evaluations into better responses in Dash Chat, 2026-06-25. https://dropbox.tech/machine-learning/how-we-turned-ai-evaluations-into-better-responses-in-dash-chat
+2. Simran Jumani and Dmitriy Meyerzon, Dropbox, How we used DSPy to turn AI evaluations into better responses in Dash Chat, 2026-06-25. https://dropbox.tech/machine-learning/how-we-turned-ai-evaluations-into-better-responses-in-dash-chat
