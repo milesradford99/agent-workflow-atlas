@@ -13,18 +13,22 @@ patterns: [orch-workers, role-crew, parallel, eval-opt]
 variants: [virtual-lab-gpt4o, esm-alphafold-multimer-rosetta]
 tags: {risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Accept wet-lab ELISA rather than computational ranking as the binding verdict; scientist agents design the pipeline, but researchers approve synthesis and a separate lab tests the sequences."
 ---
 
 # Agent-team binder design
 
-`PRO › HLT › DRUGDISC` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › HLT › DRUGDISC` · checkpointed · evidence A · **retired**
 
 **Shape:** `human sets agenda (target + constraints) → PI agent runs 5 parallel individual meetings to pick the scientist team → merge meeting → team meeting on project spec (scientist agents + Scientific Critic) → 🛑 plan (human researcher's high-level feedback on spec + tool choice) → agent writes each pipeline component (ESM | AlphaFold-Multimer | Rosetta) with critic loop (code ⟲ critic) → (run mutation round + rank ⟲ next round) → shortlist sequences → 🛑 sign-off (human researcher approves list for synthesis) → 🛑 handoff (wet lab: expression, antigen array, multiplexed ELISA) → binding data back to the team`
 **Variants:** `virtual-lab-gpt4o` · `esm-alphafold-multimer-rosetta`

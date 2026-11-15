@@ -13,18 +13,22 @@ patterns: [chain, route]
 variants: [arisglobal-lifesphere-navax, bayer-mygenassist, indegene-naem]
 tags: {risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Re-validate the whole adverse-event intake process after integration, not only extraction; four-eyes QC checks case facts before follow-up and medical sign-off."
 ---
 
 # QC-gated safety case intake
 
-`PRO › HLT › CLINTRIAL` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › HLT › CLINTRIAL` · checkpointed · evidence A · **retired**
 
 **Shape:** `adverse-event source document (form, email, call note) → GenAI extracts case fields into safety database → 🛑 review (four-eyes QC by case-processing team) → missing data: draft follow-up letter to reporter → 🛑 review (PV officer edits + sends) → 🛑 sign-off (medical review) → submit ICSR (E2B)`
 **Variants:** `arisglobal-lifesphere-navax` · `bayer-mygenassist` · `indegene-naem`

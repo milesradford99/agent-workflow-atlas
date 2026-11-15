@@ -13,18 +13,22 @@ patterns: [auto-loop, chain]
 variants: [aws-media-replay-engine, amazon-rekognition]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [standard]
+move: "Auto-publish narrowly scoped match-event recaps and monitor samples plus viewer feedback; people improve detection afterward rather than approving each clip before publication."
 ---
 
 # Autonomous live recap
 
-`CRE › MED › POST` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › MED › POST` · sampled · evidence A · **retired**
 
 **Shape:** `ingest live match streams → CV detects key moments (audio cues, camera angles) → each event: clip + auto-assemble recap (transitions, fade) → publish straight to CMS/app (recap retold up to ~20 times per match) → 🛑 sample (team watches performance + viewer thumbs up/down) → roll out improvements`
 **Variants:** `aws-media-replay-engine` · `amazon-rekognition`

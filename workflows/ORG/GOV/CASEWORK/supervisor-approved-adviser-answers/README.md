@@ -13,18 +13,22 @@ patterns: [route, chain]
 variants: [caddy]
 tags: {region: [UK], risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Restrict answer sources to Advisernet and GOV.UK, show references and supervisor notes, and log rejected answers for retraining; advisers receive only supervisor-approved answers."
 ---
 
 # Supervisor-approved adviser answers
 
-`ORG › GOV › CASEWORK` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › GOV › CASEWORK` · assist · evidence A · **retired**
 
 **Shape:** `adviser asks question during client call → semantic routing to topic → retrieve Advisernet + GOV.UK guidance → draft answer with source references → 🛑 review (supervisor approves, edits or rejects with comment) → approved answer + supervisor notes to adviser → adviser advises client → rejections logged for retraining`
 **Variants:** `caddy`

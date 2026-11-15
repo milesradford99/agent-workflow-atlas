@@ -13,18 +13,22 @@ patterns: [auto-loop]
 variants: [hightouch-ai-decisioning, moengage-campaign-decisioning, monocle]
 tags: {risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Set message frequency and cost caps before per-customer decisions, and compare outcomes with a holdout; marketers approve goals and guardrails rather than every individual send."
 ---
 
 # Guardrailed 1:1 decisioning
 
-`COM › MKT › LIFECYCLE` · sampled · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`COM › MKT › LIFECYCLE` · sampled · evidence B · **retired**
 
 **Shape:** `audit message assets → set goals + goal weights + guardrails (who, how often, which creative, which days) + holdout group → 🛑 plan → each customer: agent picks message, channel, timing or no send → send → learn from outcomes → compare vs holdout → 🛑 review (marketers read insights, refresh content)`
 **Variants:** `hightouch-ai-decisioning` · `moengage-campaign-decisioning` · `monocle`

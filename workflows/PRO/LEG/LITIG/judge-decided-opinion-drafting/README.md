@@ -13,18 +13,22 @@ patterns: [chain, route]
 variants: [shenzhen-intelligent-adjudication-system, modelbest-judicial-llm]
 tags: {region: [CN], lang: [zh], risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Require the judge to decide each disputed issue before AI drafts the reasoning, then confirm each node with an audit trail; generated justification can reinforce an initial human error."
 ---
 
 # Judge-decided opinion drafting
 
-`PRO › LEG › LITIG` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › LEG › LITIG` · assist · evidence A · **retired**
 
 **Shape:** `e-filing → agent checks filing against 35 intake criteria + prompts party for missing material → agent organizes case file + flags data inconsistencies → agent-assisted file reading: issue list + suspect points for the bench → hearing with agent-generated questions → 🛑 action (judge confirms facts module, selects/edits disputed issues, enters decision on each) → agent pushes matching statutes, Q&A entries and similar cases → agent generates reasoning + full judgment draft → 🛑 review (judge revises reasoning; each node has a tick-to-confirm gate) → 🛑 sign-off (judge issues judgment) → case-level audit trail`
 **Variants:** `shenzhen-intelligent-adjudication-system` · `modelbest-judicial-llm`

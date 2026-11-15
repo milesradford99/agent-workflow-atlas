@@ -13,18 +13,22 @@ patterns: [route, chain]
 variants: [azure-openai, gpt-embeddings]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, prepare]
+move: "Ground incident-ownership decisions in team-specific guides and past incidents, and allow uncertain cases to stay in the queue for engineers instead of bouncing them to another team."
 ---
 
 # Team-agent incident triage
 
-`TEC › ITS › SRE` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › ITS › SRE` · checkpointed · evidence A · **retired**
 
 **Shape:** `incident enters team queue → distill incident semantics → retrieve similar historical incidents + team TSGs → accept or reject for team → accept: reasoning → 🛑 handoff (engineer reviews) | reject: send back to previous team / transfer to TSG-named team / keep in queue for engineer`
 **Variants:** `azure-openai` · `gpt-embeddings`

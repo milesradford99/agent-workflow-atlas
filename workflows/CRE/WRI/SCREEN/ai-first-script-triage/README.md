@@ -13,18 +13,22 @@ patterns: [parallel, chain]
 variants: [scriptsense, greenlight-coverage, screenplayiq]
 tags: {risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [triage, verify]
+move: "Use AI coverage to shortlist scripts, not to accept its recommendation; humans read shortlisted scripts and check synopses against the original for misattributed or invented plot points."
 ---
 
 # AI-first script triage
 
-`CRE › WRI › SCREEN` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › WRI › SCREEN` · checkpointed · evidence B · **retired**
 
 **Shape:** `intake submissions → each script: agentic breakdown (scene summaries, characters, comps, casting ideas) → coverage report (+ scores/verdict on some tools) → index into searchable slate DB → 🛑 review (exec/reader reads coverage, picks scripts for full read) → full human read + notes → 🛑 sign-off (human champion, seconded)`
 **Variants:** `scriptsense` · `greenlight-coverage` · `screenplayiq`

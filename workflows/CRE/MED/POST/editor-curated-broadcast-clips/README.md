@@ -13,18 +13,22 @@ patterns: [chain, parallel]
 variants: [framedrop, mediacorp-ai-smartcut]
 tags: {risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [standard]
+move: "Segment a live broadcast into vertical clips, then let an editor select, trim and fix captions before publishing; every clip gets human context and reframing checks."
 ---
 
 # Editor-curated broadcast clips
 
-`CRE › MED › POST` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › MED › POST` · checkpointed · evidence B · **retired**
 
 **Shape:** `ingest live broadcast → segment by speech + visual cues (pair intro with package/interview) → each segment: clip + verticalize + metadata → 🛑 review (editor picks, trims, fixes captions/titles after the show) → publish to site, app, TikTok/Instagram/YouTube`
 **Variants:** `framedrop` · `mediacorp-ai-smartcut`

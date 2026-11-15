@@ -13,18 +13,22 @@ patterns: [route, chain]
 variants: [microsoft-qe-quest-plus-plus, taus-epic-qe, modelfront]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Route translations by language-specific quality thresholds and an explicit error-rate budget; publish passing segments directly, post-edit failures, and recalibrate from monthly samples and satisfaction."
 ---
 
 # QE-routed MT publishing
 
-`CRE › WRI › TRANS` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › WRI › TRANS` · sampled · evidence A · **retired**
 
 **Shape:** `new strings → recycle TM perfect matches → exclusion rules (high-impact features, short strings) → human translation | MT → QE score per segment (per-language threshold) → pass: publish without review | fail: 🛑 handoff (human post-edit) → publish → 🛑 sample (monthly error-rate + customer satisfaction check, recalibrate threshold)`
 **Variants:** `microsoft-qe-quest-plus-plus` · `taus-epic-qe` · `modelfront`

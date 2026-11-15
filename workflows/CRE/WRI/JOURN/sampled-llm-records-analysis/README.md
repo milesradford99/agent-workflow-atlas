@@ -13,18 +13,22 @@ patterns: [chain, eval-opt]
 variants: [gpt-4o, python-sqlite-r]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Ask binary questions with precise definitions and structured outputs, then have at least two reporters double-code sampled cases against preset accuracy thresholds before publishing any numbers."
 ---
 
 # Sampled LLM records analysis
 
-`CRE › WRI › JOURN` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › WRI › JOURN` · sampled · evidence A · **retired**
 
 **Shape:** `story idea → 🛑 plan (AI review committee approves use) → pull + confirm case list, scan source documents → (binary yes/no question set + precise definitions ⟲ prompt test) → bulk structured-output queries → store answers + query metadata → 🛑 sample (≥2 reporters per sampled case, disagreements resolved against predefined accuracy thresholds) → analysis → publish story + data methodology section`
 **Variants:** `gpt-4o` · `python-sqlite-r`

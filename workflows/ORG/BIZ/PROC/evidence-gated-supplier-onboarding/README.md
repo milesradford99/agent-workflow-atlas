@@ -13,18 +13,22 @@ patterns: [route, chain]
 variants: [lio, box-ai-agents]
 tags: {risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Block supplier creation until duplicate, category-evidence and document-expiry checks plus procurement and master-data sign-offs pass; re-request certificates before they expire."
 ---
 
 # Evidence-gated supplier onboarding
 
-`ORG › BIZ › PROC` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › BIZ › PROC` · checkpointed · evidence B · **retired**
 
 **Shape:** `buyer submits offer or invoice → agent reads it and assigns supplier category → duplicate check (tax ID, registry) → category sets required evidence → supplier form pre-filled from public sources → each document: validate type, company, expiry → risk score + security review → 🛑 sign-off (central procurement, then master data team) → create supplier in ERP → monitor and re-request expiring certificates`
 **Variants:** `lio` · `box-ai-agents`

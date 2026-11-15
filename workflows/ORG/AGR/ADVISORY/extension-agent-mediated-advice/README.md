@@ -13,18 +13,22 @@ patterns: [chain, route]
 variants: [farmer-chat]
 tags: {region: [KE, IN], risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Answer from a ministry-validated agronomy knowledge base through an extension agent, then classify unanswered queries and update the corpus; content gaps accounted for 66% of unanswered queries."
 ---
 
 # Extension-agent mediated advice
 
-`ORG › AGR › ADVISORY` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › AGR › ADVISORY` · assist · evidence A · **retired**
 
 **Shape:** `farmer question (voice | text | crop photo) → extension agent asks Farmer.Chat → RAG over ministry-validated knowledge base → answer in local language → 🛑 review (extension agent judges + relays to farmer) → unanswered: classify gap (out of context | collection | content) → update knowledge base`
 **How it differs:** Closest AWF-0154 Plot-registered agronomy advice: that runs a season-long, plot-specific nutrient plan with farmer plot verification and technician handoff. This is on-demand Q&A for any crop or topic, with no plot model, where the human checkpoint is an extension agent reviewing every answer before it reaches the farmer (assist, not checkpointed).

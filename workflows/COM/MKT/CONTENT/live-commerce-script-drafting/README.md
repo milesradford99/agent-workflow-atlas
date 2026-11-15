@@ -13,18 +13,22 @@ patterns: [chain]
 variants: [deepseek, doubao, douyin-jichuang]
 tags: {region: [CN], lang: [zh], risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Filter banned words and exaggerated claims before legal review of live-commerce scripts; the host then personalizes the spoken copy instead of reading unchecked web-derived material."
 ---
 
 # Live-commerce 口播稿 drafting
 
-`COM › MKT › CONTENT` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`COM › MKT › CONTENT` · checkpointed · evidence B · **retired**
 
 **Shape:** `merchant product info (名称, 零售价, 机制, 直播价) → collect KOL/KOC 种草 copy + comments → generate 口播稿 (切入点, 痛点, 卖点) with banned-word and exaggeration filter → 🛑 review (法务 compliance) → 🛑 review (主播 personalises) → live broadcast`
 **Variants:** `deepseek` · `doubao` · `douyin-jichuang`

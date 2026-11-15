@@ -13,18 +13,22 @@ patterns: [chain, auto-loop]
 variants: [google-critique-ml-edits]
 tags: {risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [triage, feedback]
+move: "Filter suggested code edits by confidence and heuristics, then mine not-helpful ratings into new serving filters; authors still preview and apply each edit with a three-way merge."
 ---
 
 # Comment-to-edit suggestions
 
-`TEC › SWE › REVIEW` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › SWE › REVIEW` · assist · evidence A · **retired**
 
 **Shape:** `reviewer writes comment → model drafts suggested edit → confidence + heuristic filters → show in review tool / IDE → 🛑 action (author previews, applies or ignores) → helpful rating → aggregate feedback → new serving filters`
 **Variants:** `google-critique-ml-edits`

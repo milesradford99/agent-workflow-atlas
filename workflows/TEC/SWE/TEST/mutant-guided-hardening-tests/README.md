@@ -13,18 +13,22 @@ patterns: [chain, eval-opt]
 variants: [meta-ach]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Keep tests that reliably kill a concern-specific mutant no existing test catches, and have reviewers rate concern relevance separately; coverage alone would discard useful fault-catching tests."
 ---
 
 # Mutant-guided hardening tests
 
-`TEC › SWE › TEST` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › SWE › TEST` · checkpointed · evidence A · **retired**
 
 **Shape:** `plain-text concern (e.g. privacy) → each class: generate concern-specific mutants → equivalent-mutant agent filters → generate tests that kill surviving mutants → builds → passes consistently → catches mutant no existing test catches → 🛑 review (engineer accepts or rejects in test-a-thon)`
 **Variants:** `meta-ach`

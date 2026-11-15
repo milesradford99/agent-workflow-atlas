@@ -4,10 +4,13 @@ name: AI 优先的 CAM 编程
 summary: "在 CAM 中自动生成数控加工工序、刀路及切削参数；编程员逐个调整程序，员工检验首件。"
 deliverable: 数控零件程序
 shape: "CAM 中的零件模型 + 机床设置 + 刀具库 → AI 生成工序、3+2 刀路、转速与进给 → 🛑 review (编程员逐个调整程序) → 后处理 → 试加工一两个零件 → 🛑 review (检验零件)"
-source_hash: 2ca3cdbfe01a
+move: "CAM 生成前建可复用刀具库，程序员逐份调整程序，再用首件验证刀路，不只信生成策略。"
+source_hash: f16332ad6706
 ---
 
 # AI 优先的 CAM 编程
+
+**已退役：** 所有者于 2026-11-15 按 2025-11 证据日期门槛将本条目退役。目录与 ID 保留供参考；这不表示其全部工具已经停用。
 
 **工具变体：** `cloudnc-cam-assist` · `autodesk-fusion` · `mastercam`
 

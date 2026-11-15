@@ -13,18 +13,22 @@ patterns: [chain, eval-opt, parallel]
 variants: [oss-fuzz-gen, clusterfuzz]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Compile and short-run generated fuzz targets before long campaigns, then distinguish driver bugs from project bugs with human-confirmed triage before reporting vulnerabilities."
 ---
 
 # AI fuzz-target hunting
 
-`TEC › ITS › APPSEC` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › ITS › APPSEC` · checkpointed · evidence A · **retired**
 
 **Shape:** `index project (functions, types, xrefs, unit tests) → each target function: (draft fuzz target ⟲ fix compile errors) → (short run ⟲ fix runtime mistakes) → long run on fuzzing infra → each crash: triage driver bug | project bug → 🛑 review (human confirms triage) → report to maintainers → 🛑 handoff (maintainer fixes)`
 **Variants:** `oss-fuzz-gen` · `clusterfuzz`

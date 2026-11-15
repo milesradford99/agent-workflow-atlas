@@ -13,18 +13,22 @@ patterns: [chain, auto-loop]
 variants: [azure-speech-custom-voice, google-wavenet-speechbert, elevenlabs-beyondwords]
 tags: {risk: low}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Train custom voices on in-house sentences, then use a shadow period with expert listeners to build a persistent pronunciation library; later editor corrections update the spoken output."
 ---
 
 # House-voice article audio
 
-`CRE › MED › AUDIO` · sampled · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › MED › AUDIO` · sampled · evidence B · **retired**
 
 **Shape:** `build house voices (actors record base corpus + in-house sentences) → shadow run: each day's articles → TTS → 🛑 sample (speech expert listens, fixes pronunciation phonetically) → pronunciation/replacement library → go live: each published article: strip subheads + brackets → TTS (alternate voices) → jingle + headline + byline → publish in app → listener feedback → 🛑 review (editors override mispronunciations) → extend to more articles`
 **Variants:** `azure-speech-custom-voice` · `google-wavenet-speechbert` · `elevenlabs-beyondwords`

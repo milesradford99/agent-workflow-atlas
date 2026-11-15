@@ -4,10 +4,13 @@ name: 质控把关的安全病例录入
 summary: "将不良事件病例提取进安全数据库；经双人质控、药物警戒专员和医学审核签字后提交 ICSR。"
 deliverable: 个例安全报告（ICSR）
 shape: "不良事件来源文件（表单、邮件、通话记录） → GenAI 将病例字段提取进安全数据库 → 🛑 review (病例处理团队双人质控) → 数据缺失：起草给报告人的随访函 → 🛑 review (药物警戒专员修改并发送) → 🛑 sign-off (医学审核) → 提交 ICSR (E2B)"
-source_hash: ebddc643b4a6
+move: "系统集成后重验不良事件接收全流程，不只验证抽取；双人质检先核对病例事实，再跟进并医学签发。"
+source_hash: e01bb45526e7
 ---
 
 # 质控把关的安全病例录入
+
+**已退役：** 所有者于 2026-11-15 按 2025-11 证据日期门槛将本条目退役。目录与 ID 保留供参考；这不表示其全部工具已经停用。
 
 **工具变体：** `arisglobal-lifesphere-navax` · `bayer-mygenassist` · `indegene-naem`
 

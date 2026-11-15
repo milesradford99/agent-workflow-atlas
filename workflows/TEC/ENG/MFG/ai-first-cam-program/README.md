@@ -13,18 +13,22 @@ patterns: [chain]
 variants: [cloudnc-cam-assist, autodesk-fusion, mastercam]
 tags: {risk: low}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify, prepare]
+move: "Build a reusable tool database before CAM generation, let programmers tune every program, and prove the toolpaths on the first part rather than trusting the generated strategy alone."
 ---
 
 # AI-first CAM program
 
-`TEC › ENG › MFG` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › ENG › MFG` · checkpointed · evidence B · **retired**
 
 **Shape:** `part model + machine setup + tool database in CAM → AI generates operations, 3+2 toolpaths, speeds and feeds → 🛑 review (programmer tunes each program) → post → run first part or two → 🛑 review (inspect part)`
 **Variants:** `cloudnc-cam-assist` · `autodesk-fusion` · `mastercam`

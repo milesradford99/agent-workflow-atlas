@@ -13,18 +13,22 @@ patterns: [chain]
 variants: [traide-ai]
 tags: {region: [EU], risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare, triage]
+move: "Extract product characteristics into a standard GRI-step rationale before tariff review; incomplete data sends an item out of the accept-as-is fast lane for manual rework."
 ---
 
 # Fast-lane tariff classification
 
-`ORG › LOG › CUSTOMS` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › LOG › CUSTOMS` · checkpointed · evidence B · **retired**
 
 **Shape:** `new items (≈1,250/month) → extract product characteristics from datasheets / public sources → classify HS tariff number with GRI 1-6 rationale + explanatory/chapter notes → 🛑 review (trade compliance accepts as-is = fast lane | reworks) → write code + rationale to core product data`
 **Variants:** `traide-ai`

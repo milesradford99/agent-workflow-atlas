@@ -13,18 +13,22 @@ patterns: [chain, parallel, eval-opt]
 variants: [uber-perfinsights, optix]
 tags: {risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Start from measured hot functions, then validate candidate performance findings with an LLM jury and rule-based checks; a plausible antipattern in cold code is not the target."
 ---
 
 # Profile-led perf fixes
 
-`TEC › SWE › MAINT` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › SWE › MAINT` · checkpointed · evidence A · **retired**
 
 **Shape:** `daily fleet CPU/memory profiles → top 30 hot functions per service → static filter (drop OSS + runtime) → each function: detect antipatterns vs catalogue → LLM jury + rule-based validators → confidence score + suggested fix → 🛑 review (developer) → merge diff`
 **Variants:** `uber-perfinsights` · `optix`
