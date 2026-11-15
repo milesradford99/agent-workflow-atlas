@@ -13,18 +13,22 @@ patterns: [chain, parallel, eval-opt]
 variants: [gemini-internal-pipeline, github-copilot-autofix, snyk-agent-fix]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Rerun tests and the sanitizer on each candidate patch, then use security-engineer filtering and code-owner sign-off; deleting a failing test or serializing code can masquerade as a fix."
 ---
 
 # Sanitizer-bug autopatch
 
-`TEC › ITS › APPSEC` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`TEC › ITS › APPSEC` · checkpointed · evidence A · **retired**
 
 **Shape:** `sanitizer finding from unit tests → reproduce + isolate (stack trace, target file) → each model: generate fix → build + rerun tests + sanitizer → pick best fix → 🛑 review (security engineers filter) → 🛑 sign-off (code owner) → submit`
 **Variants:** `gemini-internal-pipeline` · `github-copilot-autofix` · `snyk-agent-fix`

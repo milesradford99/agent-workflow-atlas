@@ -13,18 +13,22 @@ patterns: [chain, route, auto-loop]
 variants: [state-dept-ips-declass]
 tags: {region: [US], risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, feedback]
+move: "Route unsure declassification predictions to reviewers and sample the model’s other calls; relabel and retrain when world events shift which historical records are sensitive."
 ---
 
 # Model-triaged records release
 
-`ORG › GOV › CIVIC` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › GOV › CIVIC` · sampled · evidence A · **retired**
 
 **Shape:** `past reviewer decisions → train model → each record: score declassify | exempt | unsure → unsure: 🛑 handoff (human reviewer) → 🛑 sample (QC on model calls) → load decisions into review system → release to FOIA reading room → retrain for topic drift`
 **Variants:** `state-dept-ips-declass`

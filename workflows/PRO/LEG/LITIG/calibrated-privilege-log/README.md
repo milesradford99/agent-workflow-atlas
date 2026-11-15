@@ -13,18 +13,22 @@ patterns: [eval-opt, chain]
 variants: [lighthouse-genai-privilege]
 tags: {risk: high}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [feedback]
+move: "Tune privilege-log wording on a sample with outside counsel before processing the full population; the account does not document formal QC sampling after the full run."
 ---
 
 # Calibrated privilege log
 
-`PRO › LEG › LITIG` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › LEG › LITIG` · checkpointed · evidence B · **retired**
 
 **Shape:** `privileged document population → draw sample set → prompt tailored to matter language → (generate log descriptions on sample ⟲ 🛑 review (outside counsel feedback)) → run refined prompt on full privileged population → finalize log`
 **Variants:** `lighthouse-genai-privilege`

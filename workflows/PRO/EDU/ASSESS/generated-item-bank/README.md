@@ -13,18 +13,22 @@ patterns: [chain, parallel]
 variants: [gpt3-duolingo-item-factory, gpt4]
 tags: {risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Pilot generated test items after content and fairness adjudication, then remove weak items using psychometric statistics, including distractor discrimination, before the operational pool."
 ---
 
 # Generated item bank
 
-`PRO › EDU › ASSESS` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › EDU › ASSESS` · checkpointed · evidence A · **retired**
 
 **Shape:** `few-shot passage generation per genre → filters (length, repetition, offensive content, likelihood) → each passage: generate item set + distractors → 🛑 review (≥3 content + 2 fairness reviewers, adjudication) → pilot in practice test → psychometric analysis (easiness, item-total correlation, distractor discrimination) → drop weak items → 🛑 sign-off (operational pool)`
 **Variants:** `gpt3-duolingo-item-factory` · `gpt4`

@@ -13,18 +13,22 @@ patterns: [chain, auto-loop]
 variants: [qidian-international-in-house]
 tags: {region: [CN], lang: [zh], risk: low}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Prepare genre and slang glossaries before chapter translation, then feed reader-comment analysis back into them; xianxia and complex relationships still need heavier human post-editing."
 ---
 
 # Glossary-backed MTPE serial
 
-`CRE › WRI › TRANS` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › WRI › TRANS` · checkpointed · evidence B · **retired**
 
 **Shape:** `build genre 术语库 (glossaries) → new chapter published → auto machine-translate chapter → 🛑 review (human 校对: post-edit) → publish on overseas platform → mine reader comments → update glossary`
 **Variants:** `qidian-international-in-house`

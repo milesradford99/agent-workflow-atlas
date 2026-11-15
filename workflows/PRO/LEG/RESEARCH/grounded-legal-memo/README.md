@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Run a separate verification pass on every legal citation for existence, quotation, holding and current validity; the signing attorney reads each authority rather than trusting grounded retrieval alone."
 ---
 
 # Grounded legal memo

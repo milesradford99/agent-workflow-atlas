@@ -13,18 +13,22 @@ patterns: [route, auto-loop]
 variants: [ramp-policy-agent]
 tags: {risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Approve low-risk expenses and route outliers with policy citations, but keep the human mark-ready/sync step; the sources do not publish thresholds, so measure local override rates."
 ---
 
 # Policy-cited expense review
 
-`PRO › FIN › AP` · sampled · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › FIN › AP` · sampled · evidence B · **retired**
 
 **Shape:** `upload expense policy PDF → each expense: check against policy with citations → low risk: approve + rationale | outlier or suspicious receipt: 🛑 handoff (approver) → 🛑 action (reviewer marks ready + syncs) → suggest policy edits → 🛑 review (finance decides policy changes)`
 **Variants:** `ramp-policy-agent`

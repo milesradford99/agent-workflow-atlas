@@ -13,18 +13,22 @@ patterns: [chain, parallel]
 variants: [descript, adobe-premiere-adobe-podcast-whisper]
 tags: {risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Edit recorded podcast tracks, correct captions by hand and listen to the entire episode before publishing; the first-hand production account makes take selection and unwanted cuts human decisions."
 ---
 
 # Episode post-production chain
 
-`CRE › MED › AUDIO` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › MED › AUDIO` · assist · evidence A · **retired**
 
 **Shape:** `multitrack record → filler/pause removal + jump cuts → generative audio cleanup → Whisper SRT captions → 🛑 review (caption fixes) → 🛑 review (full listen, take choices) → each asset: summary/tags | transcript cleanup | social posts → 🛑 review (before publish) → publish`
 **Variants:** `descript` · `adobe-premiere-adobe-podcast-whisper`

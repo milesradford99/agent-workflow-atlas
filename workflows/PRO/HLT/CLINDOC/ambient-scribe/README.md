@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Link note phrases back to source audio or transcript inside the clinical workflow, so the clinician can check and edit the generated note before signing as its legal author."
 ---
 
 # Ambient scribe

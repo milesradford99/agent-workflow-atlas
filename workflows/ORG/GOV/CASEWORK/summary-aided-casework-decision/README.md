@@ -13,18 +13,22 @@ patterns: [chain]
 variants: [home-office-acs, home-office-aps]
 tags: {region: [UK], risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify, restrict]
+move: "Open the full policy source before relying on a summary and keep asylum decisions with the caseworker; interview summaries lack transcript references, so checking them remains manual."
 ---
 
 # Summary-aided casework decision
 
-`ORG › GOV › CASEWORK` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › GOV › CASEWORK` · assist · evidence A · **retired**
 
 **Shape:** `interview transcript → summarise case → 🛑 review (decision-maker checks summary) → policy questions → search country policy notes with references → decision-maker reads full source → draft decision → 🛑 sign-off (decision-maker decides) → 🛑 sample (quality dip-sampling)`
 **Variants:** `home-office-acs` · `home-office-aps`

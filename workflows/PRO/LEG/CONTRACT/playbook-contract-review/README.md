@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, triage]
+move: "Load clause-level standard positions, fallbacks and walk-away points before redlining; rate clauses green, yellow or red so lawyers review deviations and missing expected clauses."
 ---
 
 # Playbook contract review

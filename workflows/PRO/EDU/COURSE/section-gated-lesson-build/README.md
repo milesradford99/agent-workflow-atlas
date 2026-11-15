@@ -13,18 +13,22 @@ patterns: [chain, route]
 variants: [oak-aila-gpt4o-cohere-rerank]
 tags: {region: [GB], risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, restrict]
+move: "Anchor each lesson to a teacher-chosen base from a vetted curriculum corpus; an independent moderation pass can stop generation and the teacher agrees each section."
 ---
 
 # Section-gated lesson build
 
-`PRO › EDU › COURSE` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › EDU › COURSE` · assist · evidence A · **retired**
 
 **Shape:** `teacher gives subject + key stage + title → retrieve similar curriculum lessons + rerank → 🛑 plan (teacher picks a base lesson) → each template section: draft → 🛑 review (teacher agrees or edits) → parallel moderation (safe | guidance | toxic: stop) → download plan + slides + quizzes + worksheet`
 **Variants:** `oak-aila-gpt4o-cohere-rerank`

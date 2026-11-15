@@ -13,18 +13,22 @@ patterns: [eval-opt, parallel, route]
 variants: []
 tags: {risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Calibrate grading against human-scored anchors and a rubric before release; hard open-ended questions need the rubric as well as examples, and students retain an appeal path."
 ---
 
 # Anchor-calibrated grader
 
-`PRO › EDU › ASSESS` · checkpointed · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › EDU › ASSESS` · checkpointed · evidence A · **retired**
 
 **Shape:** `🛑 plan (rubric + 5–10 human-graded anchors) → (calibration grades ⟲ agreement within 1 point) → each submission: score + evidence quote + feedback → low confidence: 🛑 sample → 🛑 sign-off → release`
 

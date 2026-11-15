@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, feedback]
+move: "Have editors decide every integrity flag and retrain on expert corrections; only about 10% of flagged images had a real problem, so flags are screening prompts rather than rejection decisions."
 ---
 
 # Submission intake screen

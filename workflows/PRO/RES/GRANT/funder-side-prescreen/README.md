@@ -13,18 +13,22 @@ patterns: [parallel, route]
 variants: [biolinkbert-bioelectra-ensemble]
 tags: {region: [ES], risk: medium}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [triage, verify]
+move: "Flag a grant only when all 3 classifiers predict the bottom class, then require 2 reviewers to rescue it on reasonable doubt; run a hidden parallel trial before using exclusions live."
 ---
 
 # Funder-side prescreen
 
-`PRO › RES › GRANT` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › RES › GRANT` · sampled · evidence A · **retired**
 
 **Shape:** `retrain 3 models yearly on past proposals + peer-review scores → each proposal: 3 independent classifiers → all 3 say bottom class: flag | else: peer review → 🛑 review (2 eligibility reviewers per flagged proposal; any reasonable doubt: rescue) → confirmed: removed | rescued: peer review`
 **Variants:** `biolinkbert-bioelectra-ensemble`

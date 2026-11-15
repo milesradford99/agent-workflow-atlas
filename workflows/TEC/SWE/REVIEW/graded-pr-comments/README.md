@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, feedback]
+move: "Grade review comments with category-specific confidence thresholds, deduplicate and suppress low-value categories, then use author usefulness ratings to judge rollout to new languages."
 ---
 
 # Graded PR comments

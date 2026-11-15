@@ -13,18 +13,22 @@ patterns: [parallel, route]
 variants: [pactum]
 tags: {risk: medium}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Set category-level negotiation goals, trade-offs and hard limits with finance and legal before supplier talks; out-of-mandate cases go to the buyer rather than expanding the bot’s authority."
 ---
 
 # Bounded tail-spend negotiation
 
-`ORG › BIZ › PROC` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`ORG › BIZ › PROC` · checkpointed · evidence B · **retired**
 
 **Shape:** `buyers set goals, limits and trade-offs per category → 🛑 plan (buyers with finance, treasury, legal) → upload supplier file → each supplier: bot negotiates within limits → out of limits: 🛑 handoff (buyer) | agreed: signed agreement → push terms to ERP`
 **Variants:** `pactum`

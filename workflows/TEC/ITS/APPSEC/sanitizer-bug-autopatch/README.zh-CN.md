@@ -4,10 +4,13 @@ name: Sanitizer 漏洞自动修复
 summary: "为 Sanitizer 发现的缺陷生成并测试修复提交；安全工程师筛选，代码所有者验证后提交。"
 deliverable: 安全修复提交
 shape: "单元测试中发现 sanitizer 问题 → 复现并隔离（堆栈跟踪、目标文件）→ 每个模型：生成修复 → 构建 + 重跑测试 + 重跑 sanitizer → 选出最佳修复 → 🛑 review (安全工程师筛选) → 🛑 sign-off (代码所有者) → 提交"
-source_hash: f6db620f5221
+move: "候选补丁逐个重跑测试与 sanitizer，再经安全工程师筛选和代码负责人签字；删失败测试或把代码串行化可能伪装成修复。"
+source_hash: 4e23f3d80600
 ---
 
 # Sanitizer 漏洞自动修复
+
+**已退役：** 所有者于 2026-11-15 按 2025-11 证据日期门槛将本条目退役。目录与 ID 保留供参考；这不表示其全部工具已经停用。
 
 **工具变体：** `gemini-internal-pipeline` · `github-copilot-autofix` · `snyk-agent-fix`
 

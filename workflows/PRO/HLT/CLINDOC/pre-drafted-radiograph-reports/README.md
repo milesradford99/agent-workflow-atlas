@@ -13,18 +13,22 @@ patterns: [chain]
 variants: [in-house-vit-opt-powerscribe]
 tags: {risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Phase radiograph drafting by section and monitor addenda and peer-review samples for drift; nonchest studies required heavier edits than chest reports."
 ---
 
 # Pre-drafted radiograph reports
 
-`PRO › HLT › CLINDOC` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › HLT › CLINDOC` · assist · evidence A · **retired**
 
 **Shape:** `radiograph acquisition completes → EHR sends current + comparison images and clinical prompt (radiologist, procedure, reason, comparison) → generate draft report → draft appears as template field in dictation system → 🛑 review (radiologist verifies + edits as with a trainee draft) → final report → track addenda + peer-review sample`
 **Variants:** `in-house-vit-opt-powerscribe`

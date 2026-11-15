@@ -13,18 +13,22 @@ patterns: [chain, parallel]
 variants: []
 tags: {risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Approve the objective set before lesson generation and map every assessment and activity back to it; check Bloom’s levels explicitly instead of trusting the model’s labels."
 ---
 
 # Backward-design course
 
-`PRO › EDU › COURSE` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › EDU › COURSE` · assist · evidence A · **retired**
 
 **Shape:** `standards → objectives by Bloom's level → 🛑 plan → assessments + rubrics → module plan → 🛑 plan → each lesson: materials + differentiated versions → check every objective is assessed, accuracy, accessibility → 🛑 review → LMS import`
 

@@ -13,18 +13,22 @@ patterns: [parallel, route, chain]
 variants: [harvey, deeligence]
 tags: {risk: high}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Load deal context and the review playbook before scanning a data room, request missing documents, and track room changes while lawyers validate the resulting red flags."
 ---
 
 # Data-room red-flag review
 
-`PRO › LEG › DD` · checkpointed · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › LEG › DD` · checkpointed · evidence B · **retired**
 
 **Shape:** `deal-context prompt (size, jurisdictions, debt) → index data room + missing-doc check → request missing items → each document: cited review vs playbook + external search → 🛑 review (lawyers validate + categorize flags) → red-flag summary + DD report`
 **Variants:** `harvey` · `deeligence`

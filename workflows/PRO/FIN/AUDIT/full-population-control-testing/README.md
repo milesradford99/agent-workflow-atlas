@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Test controls across the full population with cited evidence and agree the false-negative KPI before rollout; auditors review each conclusion and exception rather than trusting coverage alone."
 ---
 
 # Full-population control testing

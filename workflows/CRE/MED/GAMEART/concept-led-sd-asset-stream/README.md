@@ -13,18 +13,22 @@ patterns: [chain, parallel, eval-opt]
 variants: [stable-diffusion-controlnet]
 tags: {risk: low}
 evidence: B
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare]
+move: "Train style-specific image models and always start generation from artist concepts, sketches or 3D blockouts; artists paint over and stitch outputs instead of relying on text-only prompts."
 ---
 
 # Concept-led SD asset stream
 
-`CRE › MED › GAMEART` · assist · evidence B · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › MED › GAMEART` · assist · evidence B · **retired**
 
 **Shape:** `pick tool + prepare style dataset → train custom models → 🛑 plan (artist concept art) → each asset: img2img/ControlNet from concept, sketch or 3D blockout → upscale → (artist tweak ⟲ meets target) → 🛑 review (artist approval)`
 **Variants:** `stable-diffusion-controlnet`

@@ -13,18 +13,22 @@ patterns: [chain, eval-opt]
 variants: []
 tags: {risk: low}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Lock the logline and beats before scene generation, then use short objective–conflict–turn briefs and add style later to avoid tone drift from over-prompting."
 ---
 
 # Beat-to-scene screenplay
 
-`CRE › WRI › SCREEN` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`CRE › WRI › SCREEN` · assist · evidence A · **retired**
 
 **Shape:** `logline → variants → critique → 🛑 plan → treatment → beat sheet → scene list → 🛑 plan → (draft ⟲ coverage notes + TTS table read + 🛑 review) → 🛑 sign-off → Final Draft or Highland`
 

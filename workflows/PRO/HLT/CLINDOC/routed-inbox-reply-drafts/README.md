@@ -13,18 +13,22 @@ patterns: [route, chain]
 variants: [epic-in-basket-gpt4]
 tags: {risk: high}
 evidence: A
-status: draft
+status: retired
 reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Exclude out-of-scope patient messages before category-specific drafting and preserve a start-blank path; clinicians edit and send every reply rather than being forced to use the AI draft."
 ---
 
 # Routed inbox reply drafts
 
-`PRO › HLT › CLINDOC` · assist · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Retired:** The owner retired this entry under the 2025-11 evidence-date cutoff on 2026-11-15. The folder and ID are retained for reference; this is not a finding that all its tools are discontinued.
+
+`PRO › HLT › CLINDOC` · assist · evidence A · **retired**
 
 **Shape:** `incoming patient message → exclusion check (non-English, attachment, proxy) → classify (general | results | medications | paperwork) → category prompt + structured patient data + last clinic note → draft shown in EHR inbox → 🛑 review (clinician starts from draft or blank, edits) → 🛑 action (clinician sends reply)`
 **Variants:** `epic-in-basket-gpt4`

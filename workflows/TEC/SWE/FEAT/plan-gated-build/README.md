@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify, feedback]
+move: "Write acceptance tests before implementation, check the diff in a fresh review context, and persist recurring corrections to the context file so the next task starts with them."
 ---
 
 # Plan-gated build
