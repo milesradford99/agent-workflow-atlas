@@ -2,7 +2,7 @@
 
 A handover note for whoever (person or agent) finishes converting the catalog to [STANDARD.md](STANDARD.md). Delete this file in the pull request that completes Part C.
 
-State on 2026-11-14: **214 of 238 entries converted, 24 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
+State on 2026-11-14: **219 of 238 entries converted, 19 left.** `validate.py`, `build_index.py --check`, `build_diagrams.py --check` and `i18n.py status` all pass on this branch.
 
 The aim behind the whole exercise: a reader must not be handed anything stale. Agent tooling changes monthly, so every entry's Build section is designed for today's tools, and every entry says what has changed since its sources.
 
@@ -133,7 +133,7 @@ Extra example for batches 5 to 7: `workflows/TEC/ITS/SRE/triage-then-remediate`.
   - AWF-0143 workflows/ORG/GOV/CIVIC/officer-checked-planning-data-extraction
   - AWF-0204 workflows/ORG/GOV/POLICY/statute-mapped-regulatory-review
   - AWF-0080 workflows/ORG/GOV/POLICY/theme-sign-off-consultation-analysis
-- [ ] **Batch 14** (education and medical coding, 5)
+- [x] **Batch 14** (education and medical coding, 5)
   - AWF-0103 workflows/PRO/EDU/LND/ai-role-play-practice
   - AWF-0043 workflows/PRO/EDU/LND/sme-docs-to-elearning
   - AWF-0102 workflows/PRO/EDU/TUTOR/guardrailed-course-tutor
@@ -386,3 +386,18 @@ The batch's agriculture and civic entries draw on 2026 evidence that all points 
 | AWF-0080 | service | Consultations arrive as batches of tens of thousands of responses from many teams and are discarded after write-up; unattended processing with three gates | 4 old not re-opened, 3 new opened | Access is now the binding constraint: demand exceeds capacity, a waitlist runs, and full cross-government rollout is planned for 2027. Consult is in production use (2026-10-30 written answer) but the 1,000 sign-ins a week cover four tools, not Consult alone. A second live build (DfT with the Turing Institute, 200,000 responses, 92% raw agreement, F1 0.75 blind) reports that without human validation of the theme set it finds only about 75% of the human themes. Savings figures on both remain modelled, not measured. |
 
 Checks: `validate.py` reports 238 workflows, 214 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the seven folders plus CHANGELOG/CONVERSION-TODO.
+
+
+**Batch 14 (2026-11-14), education and medical coding; five bilingual entries; two read in full (AWF-0042, AWF-0090)**
+
+This batch found two 2026 results that bound or reverse what the entries previously claimed, and both are the kind of thing the conversion exists to catch. The expanded Eedi/LearnLM trial keeps the earlier "matched expert tutors" result on the material a student just practised and removes it on a standardised test that samples the curriculum. The first randomised workplace test of LLM role-play finds the large effect only on an immediate reaction measure and nothing at four weeks. Put together, the batch's lesson is about which number a build should be judged on: near transfer is not far transfer, and a reaction score aligned with the training is not an outcome. The two entries with the strongest new evidence are the two whose forms are least ambiguous — a tutor service supervising concurrent chats, and a coding service routing charts — while the weakest-evidence entry (AWF-0103) is also the smallest form, which is consistent: the smaller the form, the more the evidence question moves to what the operation already measures. No source, public run, quote, shape or id changed.
+
+| ID | Form | Why this form | Sources opened | Flags |
+|---|---|---|---|---|
+| AWF-0103 | skill | One learner and one simulated customer per session; nothing persists between learners except the approved scenario file the skill reads | 0 of 1 + 1 new | Source not re-opened (undated). The first randomised workplace test of LLM role-play (2026-10, 12 employees, 4 weeks, vendor-funded) found a large immediate-motivation effect with every interval crossing zero and nothing at four weeks, and warns that a content-aligned reaction measure can produce a large estimate whether or not anything transferred. Judge this build on ramp time and QA scores, not the scorecard. |
+| AWF-0043 | project | A course build spans weeks: corpus, approved outline, drafts, item bank and style guide must persist across versions | 0 of 2 + 2 new | Failure modes are now documented: AI items skew to recall, one course found the correct option was always the longest, and a model wrote the best activity in a comparison while teaching a false consent rule and citing a non-existent clause. The 2026 BCG field experiment (758 consultants) shows reviewers rate wrong AI answers as more coherent than correct human ones, so the gate has to be a citation check, not a read-through. |
+| AWF-0102 | service | Runs for a student population far larger than staff could serve, with nobody starting a run; staff act after the fact | 0 of 2 + 1 new | The guardrail is code, not the prompt: the team added a pre-delivery check that rejects and retries, plus a per-student usage cap ("heart system") after a student asked about 200 questions. The code-block failure is still live at up to a quarter of responses. Office hours demand fell and grades rose, so the course returned to proctored exams and oral check-ins — if the tutor works, the assessment it feeds has to move. |
+| AWF-0042 | service | Tutors supervise several concurrent chats; every turn is logged and gated, so the tutor works a queue | 1 of 1 + 1 new | Expanded RCT (2026-10-29, 1,179 students, 10 schools): 94.7% of 94,385 drafts approved unchanged, 6 of 114,935 flagged, parity with expert tutors on near transfer — but no arm beat standard remediation on Star Maths, expert tutoring included (-0.09 SD), because coverage fell to 99 units against 132. When tutors did edit, the median change was 69% of the text. Supervision was lighter but more draining; seven of eight interviewees found monitoring several chats hard. |
+| AWF-0090 | service | Charts arrive from the EHR continuously and most are coded and billed without a person; exceptions queue to coders | 0 of 1 + 2 new | Source not re-opened (undated vendor deck). 2026 figures are now published by name: Your Health on Fathom, 95.5% of encounters coded on day one, accuracy 96.3% to 98.3%; Nym's go-live bar is 95% on the customer's own historical charts. The same release reports RAF rising 1.12 to 1.78 and revenue benchmarking $35M to $70M — HCC capture or upcoding, and a payer audit will assume the second, so the per-code citation is the defence. Independence is thin; evidence stays B. |
+
+Checks: `validate.py` reports 238 workflows, 219 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes after rebuilding one block (AWF-0042, copied classDef with semicolons); i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the five folders plus CHANGELOG/CONVERSION-TODO.
