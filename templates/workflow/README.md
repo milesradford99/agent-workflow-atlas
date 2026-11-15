@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11       # month the sources and public runs were last re-opened
 build: skill                 # skill | project | service | platform (STANDARD.md §3)
 method_checked: 2026-11      # month the Build section was last compared with current agent tooling
+moves: [verify]              # prepare | restrict | verify | feedback | triage | standard (STANDARD.md §8)
+move: "What this entry does beyond 'AI drafts, a person reviews', in one or two sentences."
 ---
 
 # Short plain name

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "The AI is 'right 80% of the time, and wrong when it matters most', so teachers look at the size of disagreements, not the agreement rate; a 10% human share means every script is still seen twice by a person."
 ---
 
 # AI-blended comparative judgement

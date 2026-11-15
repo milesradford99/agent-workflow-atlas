@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [standard]
+move: "A visit is recorded and transcribed, the assessment is drafted, and the practitioner checks and edits it before filing. Nothing here goes beyond draft-then-review."
 ---
 
 # Visit-recorded care assessment

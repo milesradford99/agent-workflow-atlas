@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, feedback]
+move: "Each type of action earns its own autonomy from the owner's recorded approvals, with promotion and demotion rules in a ledger; hourly and daily caps once held back 37 trash requests."
 ---
 
 # Ledger-earned inbox actions

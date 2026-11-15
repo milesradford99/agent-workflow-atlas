@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "One green rerun proves nothing for an intermittent failure, so a fix counts only after a clean streak of N reruns; each fixer tries one hypothesis and a separate verifier judges only the target test."
 ---
 
 # Streak-verified flake fix

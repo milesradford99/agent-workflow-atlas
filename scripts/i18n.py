@@ -104,6 +104,8 @@ def problems(readme, fm, allow_todo=False):
         errs.append(f"{ZH_NAME}: id `{zfm.get('id')}` should be `{fm['id']}`")
     if str(zfm.get("source_hash")) == "TODO" and not allow_todo:
         errs.append(f"{ZH_NAME}: not translated yet (source_hash: TODO)")
+    if fm.get("move") and not str(zfm.get("move") or "").strip():
+        errs.append(f"{ZH_NAME}: `move` is empty (the English has one; STANDARD.md §8)")
     if len(str(zfm.get("summary") or "")) > 120:
         errs.append(f"{ZH_NAME}: summary is longer than 120 characters")
     if errs:

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Reviewers approve the plan output posted on the pull request, not the code diff: a small-looking diff can replace or destroy resources."
 ---
 
 # Chat-to-IaC change

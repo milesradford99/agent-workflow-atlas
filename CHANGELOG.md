@@ -4,6 +4,9 @@ Catalog-level changes: new workflows, taxonomy changes, and tooling. Changes to 
 
 ## 2026-11
 
+### The move
+- New optional front-matter fields `moves` and `move` ([STANDARD.md §8](STANDARD.md#8-the-move)): what an entry does beyond "AI drafts, a person reviews", classified as `prepare`, `restrict`, `verify`, `feedback`, `triage` or `standard`. 22 entries carry them so far; drafts for 191 are in `research/2026-11-context-moves.md` and the remaining work is in [MOVES-PLAN.md](MOVES-PLAN.md).
+
 ### Taxonomy
 - New classes `ORG/LOG/CUSTOMS` (AWF-0148, 0210, 0233), `TEC/ENG/SUBMITTAL` (AWF-0151, 0190, 0235) and, in a new phylum `ORG/AGR` (agriculture), `ADVISORY` (AWF-0154, 0211, 0236).
 - New class `PRO/INS/UW` (insurance underwriting) with AWF-0149, AWF-0155 and AWF-0163, and new phylum `ORG/LOG` (logistics and supply chain) with class `FREIGHT`: AWF-0150, AWF-0153 and AWF-0209. Each had three unplaced workflows (TAXONOMY.md rule 2). IDs are unchanged.

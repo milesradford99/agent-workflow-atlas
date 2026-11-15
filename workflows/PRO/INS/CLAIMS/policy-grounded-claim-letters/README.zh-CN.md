@@ -4,7 +4,8 @@ name: 基于保单条款的理赔函件
 summary: "起草引用保单条款的理赔函件，无依据条款时拦截；由理赔员复核，保险公司批准后发出。"
 deliverable: 保障范围决定函
 shape: "理赔档案 + 保单声明页 + 估损单 → 生成引用保单条款的函件 → 没有支持条款：拦截 ('no relevant policy language found') → 🛑 review (内勤理赔员) → 🛑 sign-off (保险公司批准) → 发出"
-source_hash: 6c2e597bd624
+move: "找不到支持的保单条文时，生成器不写信而是拦下，并直接说明：“no relevant policy language found”。"
+source_hash: a3486ad84bff
 ---
 
 # 基于保单条款的理赔函件

@@ -172,3 +172,31 @@ The first date says the evidence is intact. The second says the advice is curren
 ## 7. When an entry does not survive conversion
 
 Converting an entry sometimes shows that it is not a workflow a reader could rerun: the source is a press release with no steps, or the "agent" is one product feature. Do not pad it. Write the Background, set `build: platform`, say in **Since the sources** that the public material does not support a build, and list the entry in your conversion report for a maintainer to consider retiring (TAXONOMY.md rule 6).
+
+## 8. The move
+
+Most entries share one skeleton: gather context, let the model work, check the result, and have a person decide. Read one after another they look alike. What a reader can take to their own field is the one thing an entry does beyond "AI drafts, a person reviews". The catalog calls that the entry's **move** and records it in two front-matter fields:
+
+```yaml
+moves: [verify]
+move: "Every model is proven by a row-level diff against production data; a two-way comparison with a row-count check catches an incremental watermark that silently drops NULL and late rows."
+```
+
+`moves` holds one or two codes. They name what was done to the model's context or around it:
+
+| Code | 中文 | The entry's distinguishing step is… |
+|---|---|---|
+| `prepare` | 放入 | an input a person settled before the run: an approved glossary, a label guide, reference images, a per-codebase pattern file. |
+| `restrict` | 挡住 | a limit held outside the prompt: an allowlist, read-only access, a cap in code, a tool the agent does not have. |
+| `verify` | 外验 | a check the model does not make: a build, a rule check, a re-query, a diff against real data, a repeat in the lab. |
+| `feedback` | 回灌 | a person's correction written back into the skill, prompt, rule file or documentation, so the next run starts from it. |
+| `triage` | 分流 | confidence, risk or ownership deciding which person sees an item, or that nobody does. |
+| `standard` | 标准 | none of these. The entry is "AI drafts, a person reviews or takes over" in one field. Never combined with another code. |
+
+`move` is one or two sentences, 300 characters or fewer, written for a reader from another field:
+
+- Say what is done and why it matters, in that order. Use the number that shows the stakes if the entry has one.
+- Take it from the entry: usually **Failure modes → guards**, sometimes the shape or **How it differs**. Do not add a fact, number or claim the entry does not carry.
+- For `standard`, say plainly what the entry is and, if its value lies elsewhere (a measured error rate, a rare first-hand account), say that.
+
+The Chinese file carries the same sentence as `move:` in its front matter, with the same numbers. Both fields are optional while the catalog is being filled in ([MOVES-PLAN.md](MOVES-PLAN.md)); `validate.py` checks them wherever they are present and requires them as a pair.

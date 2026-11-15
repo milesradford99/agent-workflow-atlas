@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [restrict]
+move: "The generator blocks instead of writing a letter when it finds no policy language to support it, and says so: 'no relevant policy language found'."
 ---
 
 # Policy-grounded claim letters

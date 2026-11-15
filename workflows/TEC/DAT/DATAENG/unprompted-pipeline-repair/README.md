@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Source-data problems are report-only by rule, so the agent cannot hide bad data behind a creative filter; it works with read-only roles in a sandbox."
 ---
 
 # Unprompted pipeline repair

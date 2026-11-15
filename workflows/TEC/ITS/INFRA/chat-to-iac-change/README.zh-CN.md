@@ -4,7 +4,8 @@ name: 对话驱动的 IaC 变更
 summary: "把 Slack 请求或告警转成附带 plan 结果的基础设施即代码 PR；CODEOWNERS 审批人通过后合并才会生效。"
 deliverable: 已应用的基础设施变更
 shape: "Slack 请求或监控告警 → 读取 IaC 仓库的既有写法（MCP）→ 生成 Terragrunt/OpenTofu 变更 → 开 PR → PR 上运行 plan，结果发到 PR 和 Slack → 🛑 review (CODEOWNERS 审批 plan) → 合并后 apply → 每日漂移检查"
-source_hash: c15d05432b42
+move: "评审人批准的是贴在 pull request 上的 plan 输出，而不是代码 diff：看着很小的 diff 可能会替换或销毁资源。"
+source_hash: 4cc1faa69bc8
 ---
 
 # 对话驱动的 IaC 变更

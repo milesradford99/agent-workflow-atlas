@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [restrict]
+move: "The agent never makes a reject decision. One 'reject all of these' instruction sent 8 rejections in about 2 minutes, so a person signs off on each candidate, not on a batch."
 ---
 
 # Source-screen-schedule hiring

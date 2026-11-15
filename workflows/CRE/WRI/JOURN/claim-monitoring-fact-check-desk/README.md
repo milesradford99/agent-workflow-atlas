@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "The model is never asked whether a claim is true. It finds checkworthy claims and matches them to past fact checks; fact checkers decide what to check."
 ---
 
 # Claim-monitoring fact-check desk

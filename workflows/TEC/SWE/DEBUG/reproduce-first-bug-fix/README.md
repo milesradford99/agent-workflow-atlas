@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "The bug is reproduced before any fix, and the same reproduction is rerun with the same sample size afterwards; a second case worded differently guards against fitting the report's exact wording."
 ---
 
 # Reproduce-first bug fix

@@ -4,7 +4,8 @@ name: 先复现再修复的缺陷处理
 summary: "先复现缺陷，再提交修复 PR 和回归测试 PR；无法复现的转人工，合并前由工程师评审。"
 deliverable: 经验证的修复 PR
 shape: "缺陷工单 → 复现（基线运行）+ 诊断 → 未复现：🛑 handoff | 已复现：在隔离的 worktree 中修复 → (修复 ⟲ 在 staging 重跑同一复现) → 开修复 PR + 回归测试 PR → 按 git blame 选审阅人 → 🛑 review → 合并"
-source_hash: 391282244345
+move: "先复现再修，修完用同样的样本量重跑同一个复现；另加一个换了说法的用例，防止对报告的措辞过拟合。"
+source_hash: 6ebae96508f6
 ---
 
 # 先复现再修复的缺陷处理

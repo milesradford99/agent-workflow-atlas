@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Two people first review the same mappings to set a human-versus-human baseline (F1 0.710), and the model is judged against that; reviewers can flag 'no theme fits', which reopens the theme list."
 ---
 
 # Theme sign-off consultation analysis

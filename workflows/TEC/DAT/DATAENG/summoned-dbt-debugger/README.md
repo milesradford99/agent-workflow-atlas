@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [restrict]
+move: "Queries come from templates and a context registry, which cut failures from made-up schema paths from about 25% to about 13%; 83% of diagnoses needed no action, so a person decides on every fix."
 ---
 
 # Summoned dbt debugger

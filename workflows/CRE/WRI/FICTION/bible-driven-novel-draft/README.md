@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [restrict]
+move: "Critic agents never edit the prose and the author chooses which notes apply; loops run only against floors (lint, continuity, tic budgets), or the text is smoothed into 'consensus mush'."
 ---
 
 # Bible-driven novel draft

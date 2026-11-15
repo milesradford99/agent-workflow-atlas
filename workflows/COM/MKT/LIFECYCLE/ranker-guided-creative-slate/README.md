@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "The offline ranker is not used as a deployment rule (its top pick ranked 43rd online); it only builds a high-recall slate, and the online test picks the winner after one refinement round."
 ---
 
 # Ranker-guided creative slate

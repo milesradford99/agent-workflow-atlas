@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "The simulator is tested first: does it rank shipped versions the way production did? Blinded reviewers still spotted most simulated conversations, so ranking agreement is the test that matters."
 ---
 
 # Simulation release gate

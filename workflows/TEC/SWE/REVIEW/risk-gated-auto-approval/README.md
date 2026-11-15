@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, verify]
+move: "Whether a pull request may be auto-approved is decided first by deterministic rules (path, size, base branch, labels); prompt changes are backtested on past pull requests, including the one approved wrongly."
 ---
 
 # Risk-gated auto-approval

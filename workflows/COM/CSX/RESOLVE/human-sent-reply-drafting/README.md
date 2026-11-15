@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [triage]
+move: "The most experienced agents lose some quality when they follow suggestions, so results are measured by skill level and experts may ignore the drafts."
 ---
 
 # Human-sent reply drafting

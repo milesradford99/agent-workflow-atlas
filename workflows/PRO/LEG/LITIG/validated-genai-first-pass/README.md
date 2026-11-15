@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "After the full run, attorneys validate precision and elusion on samples. Counting borderline documents lifts recall to 96.2% but cuts precision to 58.4%, so the borderline policy is decided up front."
 ---
 
 # Validated GenAI first-pass

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "The system can approve but never deny: every request it does not approve goes to a licensed clinician."
 ---
 
 # Approve-only payer auto-auth

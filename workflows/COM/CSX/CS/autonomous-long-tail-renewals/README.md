@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "The discount cap is enforced in the workflow, not written in the prompt, and the account owner gets a veto window before the agent contacts the customer."
 ---
 
 # Autonomous long-tail renewals

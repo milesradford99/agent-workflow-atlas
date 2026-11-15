@@ -98,6 +98,21 @@ def check_species(path, fm, tax, errors):
     for field in ["autonomy", "evidence", "status"]:
         if fm[field] not in traits[field]:
             err(f"`{field}: {fm[field]}` is not one of {traits[field]}")
+    # STANDARD.md §8: `moves` and `move` are optional for now, but come as a pair
+    if ("moves" in fm) != ("move" in fm):
+        err("`moves` and `move` must be set together (STANDARD.md §8)")
+    elif "moves" in fm:
+        mv, line = fm["moves"], str(fm["move"] or "").strip()
+        if not isinstance(mv, list) or not mv or len(mv) > 2:
+            err("`moves` must be a list of one or two codes")
+        else:
+            for m in mv:
+                if m not in traits["moves"]:
+                    err(f"`moves: {m}` is not one of {traits['moves']}")
+            if "standard" in mv and len(mv) > 1:
+                err("`moves: standard` cannot be combined with another code")
+        if not line or len(line) > 300:
+            err("`move` must be one or two sentences, 300 characters or fewer")
     for field in ["checkpoints", "patterns"]:
         if not isinstance(fm[field], list) or not fm[field]:
             err(f"`{field}` must be a non-empty list")

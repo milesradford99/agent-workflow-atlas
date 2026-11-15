@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Running the code is not the same as reproducing the results, so a separate gated phase matches each coefficient to the paper; missing data is logged as non-reproducible, not as a code failure."
 ---
 
 # Gated replication run

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Every model is proven by a row-level diff against production data; a two-way comparison with a row-count check catches an incremental watermark that silently drops NULL and late rows."
 ---
 
 # Diff-proven dbt migration
