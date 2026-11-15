@@ -60,3 +60,30 @@
 | AWF-0182 Risk-gated auto-approval | 挡住 + 外验 | 能否自动批准先由确定性规则决定（路径、大小、分支、标签）；提示词改动用历史 PR 回测，包括那次批错的。 |
 | AWF-0181 Scenario release sweep | 外验 | 结果不确定，所以不拿它卡合并，单元测试照旧；另一个验证智能体确认并找原因，人再分拣。 |
 | AWF-0132 Streak-verified flake fix | 外验 | 偶发失败重跑一次变绿不算数，要连续 N 次干净；每个修复者只试一个假设，专门的验证者只看目标测试。 |
+
+## PRO 专业服务
+
+| 条目 | 分类 | 一招 |
+|---|---|---|
+| AWF-0167 AI-blended comparative judgement | 外验 | AI“80% 的时候对，偏偏在要紧处错”，所以看分歧的大小而不是一致率；人保留 10% 的比较，保证每份答卷都被人看过两次。 |
+| AWF-0099 Data-informed IEP draft | 挡住 | 不知道的字段留空并标出，不许编内容；用学区审过的平台而不是通用聊天工具。 |
+| AWF-0103 AI role-play practice | 放入 | 场景从最常见的真实对话里写出来，先批准场景集再让学员练。 |
+| AWF-0043 SME-docs to e-learning | 标准 | 从专家资料出大纲和课程，教学设计师和专家审阅。 |
+| AWF-0022 Invoice extract-match-route | 外验 | 明细行的数值会被编造，所以用业务规则检查（供应商、重复、银行信息、三单匹配）兜底；准确率低的供应商单独标记。 |
+| AWF-0164 Exception-only reconciliation run | 挡住 + 回灌 | 自动清账有硬边界（金额上限、关联方除外），每季度按人工推翻率重新校准；上次的例外和阈值存在对话外的状态库。 |
+| AWF-0218 Owner-confirmed PO accruals | 挡住 + 放入 | 分录一直停在“暂存”，经理批准才过账；业务逻辑放在可编辑的 SOP 里而不是写死，审阅中发现的缺口用来补 SOP。 |
+| AWF-0038 Workpaper-matched close agents | 挡住 | 故意不给智能体银行权限；会计定规则，AI 只执行，主计长全部审阅。 |
+| AWF-0039 Drafted variance narratives | 标准 | 按公司口吻起草预算差异说明，财务团队修改。 |
+| AWF-0216 Agent-researched trading signals | 外验 | 想法量大带来多重检验问题，所以沿用同一套研究方法阈值；自动加人工检查“想法、代码、评估”三者是否一致。 |
+| AWF-0166 Challenger-agent IC memo | 放入 | 初稿容易照搬标的公司自己的说法，所以另设一个挑战者智能体，用本所历史交易做依据来挑毛病。 |
+| AWF-0023 Event-driven model update | 放入 + 外验 | 每个单元格带出处批注；多分部公司选错分部、月度当季度这类错靠分行业的消歧规则防。 |
+| AWF-0098 Underwriter-finalized credit memo | 标准 | 抽取、分节起草，核保人定稿，走银行审批。 |
+| AWF-0217 Expert-approved taxability rules | 回灌 | 现成的 RAG 免改准确率不到 65%；把专家以往的审阅意见传回去并微调；法规变了，监控会标出受影响的判定重审。 |
+| AWF-0165 Issue-split notice reply | 放入 | 先把通知拆成一个个问题，每个问题套 13 点模板分别检索和作答，防止多问题通知漏答一点。 |
+| AWF-0041 Review-ready 1040 prep | 分流 + 外验 | 低置信字段给报税员核对；用上年对比查漏表。 |
+| AWF-0157 Nightly hospital-course drafts | 外验 | 摘要带行内出处，医生对照原文再用；遗漏占 25%、不准确占 20%，所以看 EHR 用时和倦怠，而不只看使用率。 |
+| AWF-0033 Coordinator-reviewed prescreen | 外验 | 每条入组标准单独给标签、理由和出处，协调员逐条裁定；随机试验里每份病历用时 37.4 对 37.8 分钟，省时未必出现。 |
+| AWF-0091 Writer-reviewed CSR draft | 外验 | 起草前先对数据表做映射和校验，起草后再跑自动检查，最后医学写作者全文审。 |
+| AWF-0156 Approve-only payer auto-auth | 挡住 | 只能批准不能拒绝：凡是不批的都交给有执照的临床人员。 |
+| AWF-0032 Criteria-gated prior auth | 外验 | 上线前按药品逐个用标准答案验证（Duke 评估 970 条标准里 7 个错）；病历材料由工作人员自己挑。 |
+| AWF-0090 Exception-routed autonomous coding | 分流 | 有缺口或冲突的病历整份“掉出”给编码员；覆盖只是部分专科，所以保留编码员编制。 |
