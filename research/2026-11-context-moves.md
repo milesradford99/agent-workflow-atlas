@@ -36,3 +36,27 @@
 | AWF-0066 Chat-to-IaC change | 外验 | 评审对象是 plan 输出而不是 HCL diff：看着很小的 diff 可能会替换或销毁资源。 |
 | AWF-0186 Plan-verified drift fixes | 放入 | 一张导入 ID 格式表把 ID 错误从 13 个降到 5 个；仍有 12 个弱方案通过了干净的 plan，只被评审人抓到。 |
 | AWF-0005 Alert enrich and adjudicate | 标准 | 富化、裁决，良性的自动关闭，其余转二线，每周抽检。条目没有防护一行。 |
+| AWF-0128 Detonate-and-confirm detections | 外验 + 挡住 | 攻击模拟必须在实验主机上真跑，由验证智能体到 SIEM 查原始事件和规则命中；无人值守时智能体曾越界改了转发器配置，所以关进 devcontainer 并限制出站。 |
+| AWF-0187 Purple-team detection build | 外验 | 每条规则至少用 5 个以上技术变体引爆，避免只能抓住那一个 PoC；送审前先对照真实运营遥测压误报。 |
+| AWF-0185 Agent-run war room | 标准 | 调查、起草状态更新和复盘，P1/P2 不自主修复，后续事项同步进团队已用的工单系统。 |
+| AWF-0127 Open-loop NOC root cause | 挡住 | 用确定的流程而不是开放的智能体循环，换来可复现的答案。 |
+| AWF-0008 Design to code | 标准 | 载入令牌和组件映射，截图比对后设计师审阅。条目没有防护一行。 |
+| AWF-0122 Scored token migration | 回灌 | 先分片试迁、工程和 UX 审，追问模型错在哪，改技能文件，直到规则稳定再锁定评分矩阵；简单映射交给 codemod。 |
+| AWF-0060 Spec-to-ticket planning | 放入 | 拆任务时让智能体读代码库，票才不会脱离实现；它默认用户完全理性，会漏边缘情况。 |
+| AWF-0232 In-codebase handoff prototype | 放入 | 开发者先给设计师备好仓库（设计师配置加 3 个技能文件），原型用真组件做在一条分支上，空状态和错误状态要写明。 |
+| AWF-0121 Routed accessibility PR agent | 分流 | 约 36% 的 A 和 AA 级准则无法自动发现，所以超过复杂度阈值的直接转给无障碍团队，高风险模式列入拒绝清单。 |
+| AWF-0062 Spec-bound screen options | 挡住 + 回灌 | 只许用组件库实例；每周重复的错误写进记忆（约 70 条），规格优先；QA 脚本报零错误设计师也要看。 |
+| AWF-0120 Agent-run interviews | 标准 | 研究员定访谈提纲，智能体访谈并聚类，研究员共同分析后发布。 |
+| AWF-0195 PR-reviewed research wiki | 回灌 | 每次访谈变成对研究 wiki 的一个 PR，研究员标出漏掉的再合并；带上分群背景，否则差异被抹平。 |
+| AWF-0061 Quote-verified synthesis | 外验 | 引语会被编造（温度 0.1 也出现过），所以 100% 对照原文核对；不让模型判断情绪。 |
+| AWF-0072 Guardrailed design spec | 放入 + 回灌 | 架构、安全、法务规则写成系统文件，每次运行都对照；每周用 PR 更新这些文件；规格分人读和智能体读两半。 |
+| AWF-0184 Guideline-checked design review | 分流 | 安全团队先核实发现再给开发者看；160 多条内部准则逐条查，并标出缺失信息。 |
+| AWF-0183 On-demand alert investigation | 标准 | 工程师点按钮才开始调查，出证据报告；修复 PR 另行选择。 |
+| AWF-0071 Reproduce-first bug fix | 外验 | 先复现再修，修完用同样的样本量重跑同一个复现；另加一个换了说法的用例防止对报告措辞过拟合。 |
+| AWF-0003 Delegated PR | 标准 | 贴标签的 issue 变成草稿 PR，人批准跑 CI 并审阅合并。条目没有防护一行。 |
+| AWF-0179 Spec-PR then agent build | 外验 | 规格里的每条断言都对照真实代码核对（8 条里 7 条成立，第 8 条被标出），再过一道唱反调的裁决。 |
+| AWF-0002 Fan-out codemod | 标准 | 试点后冻结方案，逐文件过 lint、类型、测试，抽检后分批 PR。条目没有防护一行。 |
+| AWF-0180 Stale-flag cleanup PRs | 放入 | 开关的真实值取自平台的发布状态，不从代码里猜，再由人确认；50 次运行里 5 次干预全是调用链深度问题。 |
+| AWF-0182 Risk-gated auto-approval | 挡住 + 外验 | 能否自动批准先由确定性规则决定（路径、大小、分支、标签）；提示词改动用历史 PR 回测，包括那次批错的。 |
+| AWF-0181 Scenario release sweep | 外验 | 结果不确定，所以不拿它卡合并，单元测试照旧；另一个验证智能体确认并找原因，人再分拣。 |
+| AWF-0132 Streak-verified flake fix | 外验 | 偶发失败重跑一次变绿不算数，要连续 N 次干净；每个修复者只试一个假设，专门的验证者只看目标测试。 |
