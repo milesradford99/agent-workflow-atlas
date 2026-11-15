@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Maintain a bulk-updatable parts library for tariff stacking because rules change faster than parts data; show per-field confidence and sources for broker review before filing."
 ---
 
 # Broker-reviewed entry prep

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Draft project status from live project data, then have the PM check it against the sources before sending; evidence is one tool-author self-report and time savings remain unverified."
 ---
 
 # Data-pulled status report

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify, restrict]
+move: "Cite an exemption for each proposed redaction and have a records officer approve it; explicitly configure which routine request types may bypass review and keep sensitive ones on full review."
 ---
 
 # Exemption-cited records redaction

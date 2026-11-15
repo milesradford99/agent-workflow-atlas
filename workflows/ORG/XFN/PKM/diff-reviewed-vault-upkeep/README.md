@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [feedback]
+move: "Review vault edits as git diffs with inline comments before committing, then mine session logs for friction and update the agent’s instructions for the next session."
 ---
 
 # Diff-reviewed vault upkeep

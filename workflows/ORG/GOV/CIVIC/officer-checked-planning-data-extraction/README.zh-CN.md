@@ -4,7 +4,8 @@ name: 规划档案数据提取与人工核验
 summary: "从扫描的规划档案中提取字段与地图边界；规划官员逐项核对后才导出至国家平台。"
 deliverable: 结构化规划数据集
 shape: "上传扫描的规划档案 (TPO、保护区、Article 4) → 按模式提取文本字段 → 将地图边界描绘为多边形 → 地理配准到 Ordnance Survey → 🛑 review (规划官员核对并修正每一项输出) → 导出标准格式 → 国家 Planning Data Platform"
-source_hash: b8f65bdda869
+move: "用 IoU 和中心距离检查抽取的边界，再由官员检查全部输出，不只抽样；看似高的准确率可能加重过度信任。"
+source_hash: 134842bdf266
 ---
 
 # 规划档案数据提取与人工核验

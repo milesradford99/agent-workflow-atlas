@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [standard]
+move: "Transcribe a meeting into template-based minutes and let an officer correct speaker attribution and statements before circulation; the reported time saving comes from early government tests."
 ---
 
 # Template-driven meeting minutes

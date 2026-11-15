@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Re-fetch the source for every research number before review and allow an explicit unknown; plausible round figures already led to corrections after two newsletters were published."
 ---
 
 # Issue-tree research

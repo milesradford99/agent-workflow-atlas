@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "A/B-test voiced crop advisories before scaling and compare scripts with agronomists; final results showed AI listening rates 2–3.5 pp lower, contrary to the project page’s preliminary claim."
 ---
 
 # Agronomist-gated push advisories

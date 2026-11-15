@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare]
+move: "Have the farmer verify the plot polygon on a map before soil data and nutrient planning are attached to it; technicians then support implementation of the plan."
 ---
 
 # Plot-registered agronomy advice

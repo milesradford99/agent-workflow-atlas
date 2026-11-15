@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Run a form gap analysis before filling, let the caseworker and client gather missing items, and show why each field was pulled so stale agency records can be corrected."
 ---
 
 # Gap-checked benefits form fill

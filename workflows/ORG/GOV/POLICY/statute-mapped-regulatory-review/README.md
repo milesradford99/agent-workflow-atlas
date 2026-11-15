@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [standard]
+move: "Map regulatory provisions to their authorizing statutes and propose cuts; agency coordinators and lawyers treat the classifications as a roadmap and decide what to change."
 ---
 
 # Statute-mapped regulatory review

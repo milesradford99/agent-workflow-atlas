@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, feedback]
+move: "Create only clear, owned commitments directly; send ambiguous meeting items to Slack approval, then use ticket edit distance and revised few-shot examples to reduce phantom tasks."
 ---
 
 # Confidence-routed meeting tickets

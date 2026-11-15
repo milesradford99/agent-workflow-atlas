@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [restrict]
+move: "Set human-owned rate floors and ceilings per freight lane, run carrier compliance checks in the background, and require a team lead to confirm the negotiated booking."
 ---
 
 # Carrier-call booking agent

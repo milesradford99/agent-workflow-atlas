@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Draft RFP answers from a governed library with source lineage, reject unsuitable documents at intake, and feed approved edits back into the library for later questionnaires."
 ---
 
 # Governed-library response draft

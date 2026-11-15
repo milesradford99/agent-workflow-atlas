@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Check extracted boundaries with IoU and centre distance, then have an officer inspect every output rather than samples; high-looking accuracy can increase over-trust."
 ---
 
 # Officer-checked planning data extraction

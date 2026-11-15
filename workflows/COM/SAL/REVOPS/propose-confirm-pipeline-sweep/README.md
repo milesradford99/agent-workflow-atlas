@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Read live CRM records, reconcile conversations across channels, and keep proposed changes separate from writes until a person confirms each write-back."
 ---
 
 # Propose-confirm pipeline sweep

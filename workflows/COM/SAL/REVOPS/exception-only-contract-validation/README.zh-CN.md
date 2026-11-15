@@ -4,10 +4,13 @@ name: 仅处理异常的合同校验
 summary: "对照报价核验已签合同，无误的写入 CRM；存疑的合同交由交易支持专员处理。"
 deliverable: 已校验的赢单记录
 shape: "已签合同回传 → 视觉模型读取签名 + 缩写签字 → 交叉核对签署人权限、定价、ACV 与报价、必备条款 → 无问题：将字段写入 CRM + 审计轨迹 | 任何疑问：🛑 handoff (交易支持专员) → 赢单"
-source_hash: e697d5cc94bb
+move: "只自动化有文档的无异常合同路径，任何疑点都转人工；独立审计层检查流程，无异常记录才可不经逐项批准进入 CRM。"
+source_hash: d5dcfb329f24
 ---
 
 # 仅处理异常的合同校验
+
+**合并记录：** [AWF-0222](../../DEAL/signed-contract-validation/) 已合并至此，来源 URL、校验步骤、自主程度与异常交接相同。2026-11-15 重新打开双方共用的 ZoomInfo 来源确认合并。
 
 **工具变体：** `salesforce` · `docusign` · `gemini-vision` · `claude-sonnet`
 
@@ -44,7 +47,7 @@ source_hash: e697d5cc94bb
 
 **检查点：** `handoff`：调用程序把所有并非全部通过的结果送进交易支持队列。智能体没有写入 CRM 的工具，所以存疑的合同只能由专员记为赢单；没有问题的合同由程序以与专员相同的访问权限写入。
 
-**与来源相比：** 唯一的来源同时也是唯一的公开实例，出自 2026-01。本月重新打开了它的 LinkedIn 页面，里面仍然是同样的步骤和同样的理由：把专员的检查项记录下来、准确优先于速度、把校验与 CRM 编排分开。更新的材料显示，这套做法已经收拢到一个智能体里。2026-08 的一篇第一手记述（[Ryan Dharma, Automating deal desk contract reviews](https://rdharma.xyz/case-studies/deal-desk-automation)）中，交叉核对由一个带 skill 文件的 Claude 实例完成，每一项经得住验证的检查都从模型判断改写成确定性代码；从 7 月起，全部检查通过的合同自动审核，累计 207 份。电子签服务也在向智能体开放：Docusign 于 2026-09-04 宣布其 MCP 服务器将从 2026-09-30 起正式开放（[Docusign](https://www.docusign.com/company/news-center/docusign-agreement-layer-for-the-agentic-enterprise-coming-to-every-agent)）。把这两点放在一起看，来源那种“一个模型读图、一个模型推理”的两模型分工，已经不再是让一套系统完成这项工作的唯一做法；不过两篇材料都没有显示单个智能体能同样可靠地从 PDF 页面读取签名。中间件，以及“智能体不得把交易标为赢单”这条规则，本月打开的材料都没有推翻。AWF-0222 已签合同校验描述的是同一个来源和同样的步骤；维护者应考虑合并这两个条目。
+**与来源相比：** 唯一的来源同时也是唯一的公开实例，出自 2026-01。本月重新打开了它的 LinkedIn 页面，里面仍然是同样的步骤和同样的理由：把专员的检查项记录下来、准确优先于速度、把校验与 CRM 编排分开。更新的材料显示，这套做法已经收拢到一个智能体里。2026-08 的一篇第一手记述（[Ryan Dharma, Automating deal desk contract reviews](https://rdharma.xyz/case-studies/deal-desk-automation)）中，交叉核对由一个带 skill 文件的 Claude 实例完成，每一项经得住验证的检查都从模型判断改写成确定性代码；从 7 月起，全部检查通过的合同自动审核，累计 207 份。电子签服务也在向智能体开放：Docusign 于 2026-09-04 宣布其 MCP 服务器将从 2026-09-30 起正式开放（[Docusign](https://www.docusign.com/company/news-center/docusign-agreement-layer-for-the-agentic-enterprise-coming-to-every-agent)）。把这两点放在一起看，来源那种“一个模型读图、一个模型推理”的两模型分工，已经不再是让一套系统完成这项工作的唯一做法；不过两篇材料都没有显示单个智能体能同样可靠地从 PDF 页面读取签名。中间件，以及“智能体不得把交易标为赢单”这条规则，本月打开的材料都没有推翻。AWF-0222 已合并至本条目，其原有记录保留供参考。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

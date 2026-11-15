@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Audit every prepared customs entry against a centrally maintained rule set before transmission; route only breaches for correction and keep classification correctness as a separate upstream review."
 ---
 
 # Pre-transmission entry audit

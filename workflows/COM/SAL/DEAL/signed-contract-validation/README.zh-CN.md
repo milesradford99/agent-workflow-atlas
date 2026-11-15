@@ -4,10 +4,13 @@ name: 已签合同校验
 summary: "对照报价和规则校验每份已签合同并写入 CRM；有疑问的转交交易支持台。"
 deliverable: 已校验的赢单记录
 shape: "DocuSign 回传 → 读取已签 PDF（视觉） → 核对签署人权限 → 对照报价校验价格 + ACV → 确认缩写签名 + 必备条款 → 有任何疑问：🛑 handoff (交易支持台专员) | 全部检查通过：把字段写入 Salesforce + 审计轨迹 → 赢单"
-source_hash: a2088a34139c
+move: "已签合同有任何疑点都转交易台；确定性编排与审计独立于模型校验，全部通过后才写入已成交记录。"
+source_hash: 0b1e35176ac5
 ---
 
 # 已签合同校验
+
+**已合并：** 请转到 [AWF-0110 · 仅异常合同校验](../../REVOPS/exception-only-contract-validation/)。两条引用同一篇 ZoomInfo 记录，交付物、自主程度和交接相同；本 ID 与历史内容保留。
 
 **工具变体：** `salesforce` · `docusign` · `gemini` · `claude`
 
@@ -42,7 +45,7 @@ source_hash: a2088a34139c
 
 **检查点：** `handoff`：调用程序把所有并非全部通过的结果送进交易支持台队列。智能体没有写入 CRM 的工具，所以无法把交易标为赢单；只有在全部通过时，程序才以与专员相同的访问权限完成这一步。
 
-**与来源相比：** 唯一的来源同时也是唯一的公开实例，出自 2026-01。本月重新打开了它的 LinkedIn 页面，内容仍是同样的分工：视觉模型读取签名和缩写签名，推理模型对照 Salesforce 记录核对合同，中间件写入字段并保留审计轨迹。有两处更新。这套做法现在用一个带 skill 的智能体就能跑：2026-08 的一篇记述（[Ryan Dharma, Automating deal desk contract reviews](https://rdharma.xyz/case-studies/deal-desk-automation)）里，一个 Claude 实例把每份成交合同与 CRM 和一个收入系统交叉核对，把已经验证过的检查项从模型判断转写成确定性代码，从 7 月起全部通过的合同自动审核，累计 207 份；该记述没有从 PDF 页面读取签名。电子签这一端也在向智能体开放：Docusign 于 2026-09-04 宣布其 MCP 服务器将从 2026-09-30 起对所有智能体正式开放（[Docusign](https://www.docusign.com/company/news-center/docusign-agreement-layer-for-the-agentic-enterprise-coming-to-every-agent)），所以第一行可以带上读取工具而不只是一个脚本。来源手工做、本搭建方式仍然保留的，是与模型判断分开的确定性写入程序和审计记录；两篇材料都没有显示智能体被允许自行把交易标为赢单，因此这道防线没有过时。AWF-0110 仅处理异常的合同校验描述的是同一个来源和同样的步骤；维护者应考虑合并这两个条目。
+**与来源相比：** 唯一的来源同时也是唯一的公开实例，出自 2026-01。本月重新打开了它的 LinkedIn 页面，内容仍是同样的分工：视觉模型读取签名和缩写签名，推理模型对照 Salesforce 记录核对合同，中间件写入字段并保留审计轨迹。有两处更新。这套做法现在用一个带 skill 的智能体就能跑：2026-08 的一篇记述（[Ryan Dharma, Automating deal desk contract reviews](https://rdharma.xyz/case-studies/deal-desk-automation)）里，一个 Claude 实例把每份成交合同与 CRM 和一个收入系统交叉核对，把已经验证过的检查项从模型判断转写成确定性代码，从 7 月起全部通过的合同自动审核，累计 207 份；该记述没有从 PDF 页面读取签名。电子签这一端也在向智能体开放：Docusign 于 2026-09-04 宣布其 MCP 服务器将从 2026-09-30 起对所有智能体正式开放（[Docusign](https://www.docusign.com/company/news-center/docusign-agreement-layer-for-the-agentic-enterprise-coming-to-every-agent)），所以第一行可以带上读取工具而不只是一个脚本。来源手工做、本搭建方式仍然保留的，是与模型判断分开的确定性写入程序和审计记录；两篇材料都没有显示智能体被允许自行把交易标为赢单，因此这道防线没有过时。本重复条目现已合并至 AWF-0110，原记录与搭建设计保留供参考。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

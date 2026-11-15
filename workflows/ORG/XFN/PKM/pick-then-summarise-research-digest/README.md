@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Deep-summarize only papers the reader deliberately saves from the digest; a separate QA cron fixes minor output defects and blocks serious ones before the next delivery."
 ---
 
 # Pick-then-summarise research digest

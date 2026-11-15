@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Before disqualifying an interrupted or unsuccessful sales call, fall back to website analysis and grants checks; people score every conversation daily and tune the criteria."
 ---
 
 # Inbound qualify-and-book agent

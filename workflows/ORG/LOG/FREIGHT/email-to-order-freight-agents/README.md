@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare]
+move: "Use customer history to fill gaps in ambiguous freight tenders such as a load for Tuesday; unresolved cases go to managers rather than becoming guessed operational records."
 ---
 
 # Email-to-order freight agents

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare]
+move: "Keep expense policy in a team-owned store synced weekly, run audits in parallel first, and grant autonomy gradually; reported near-perfect accuracy is the vendor’s claim."
 ---
 
 # Policy-checked expense audit

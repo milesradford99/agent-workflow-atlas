@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Give the inbox agent draft-only access and no send tool; a prototype once accepted an unwanted book-writing request, so sending stays outside the agent’s reach."
 ---
 
 # Daily inbox triage

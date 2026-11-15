@@ -13,18 +13,22 @@ patterns: [chain, route]
 variants: [salesforce, docusign, gemini, claude]
 tags: {risk: medium}
 evidence: A
-status: draft
+status: merged
 reference_example: null
 inputs_from: []
-merged_into: null
+merged_into: AWF-0110
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Escalate any doubt in a signed contract to the deal desk; keep deterministic orchestration and audit apart from model validation before writing clean records as Closed Won."
 ---
 
 # Signed-contract validation
 
-`COM › SAL › DEAL` · sampled · evidence A · **draft: needs a reference example** ([how to add one](../../../../../CONTRIBUTING.md#1-add-an-example-run))
+**Merged:** Continue at [AWF-0110 · Exception-only contract validation](../../REVOPS/exception-only-contract-validation/). Both entries cite the same ZoomInfo account and describe the same deliverable, autonomy and handoff; this ID and its historical content are retained.
+
+`COM › SAL › DEAL` · sampled · evidence A · **merged into AWF-0110**
 
 **Shape:** `DocuSign returned → read signed PDF (vision) → check signer authority → validate pricing + ACV vs quote → confirm initials + required clauses → any doubt: 🛑 handoff (deal desk specialist) | all checks pass: write fields to Salesforce + audit trail → Closed Won`
 **Variants:** `salesforce` · `docusign` · `gemini` · `claude`
@@ -84,7 +88,7 @@ When a customer signs a sales contract electronically, someone has to check it b
 
 **Checkpoints:** `handoff`: the calling program sends every result that is not all-pass to the deal desk queue. The agent has no CRM write tool, so it cannot mark a deal won; the program does that only for an all-pass result, under the same access rights a specialist would have.
 
-**Since the sources:** The one source, which is also the one public run, dates from 2026-01. Its LinkedIn page was opened again in 2026-11 and still reports the same split: a vision model reads signatures and initials, a reasoning model cross-checks the contract against the Salesforce record, and middleware writes the fields and keeps the audit trail. Two things are newer. The practice now runs as one agent with a skills file: an account from 2026-08 ([Ryan Dharma, Automating deal desk contract reviews](https://rdharma.xyz/case-studies/deal-desk-automation)) has a Claude instance cross-check each closing contract against the CRM and a revenue system, moves every check it has validated from model judgement into deterministic code, and since July has auto-reviewed contracts that pass all of them; that account does not read signatures from a PDF page. The e-signature end is also opening to agents: Docusign announced on 2026-09-04 that its MCP server would be generally available to any agent from 2026-09-30 ([Docusign](https://www.docusign.com/company/news-center/docusign-agreement-layer-for-the-agentic-enterprise-coming-to-every-agent)), so the first row can bring a read tool rather than a script. What the sources did by hand and this build still keeps is the deterministic writer and the audit record, held apart from the model's judgement; neither account shows an agent trusted to mark a deal won, so that guard is not superseded. AWF-0110 Exception-only contract validation describes the same source and the same steps; a maintainer should consider merging the two entries.
+**Since the sources:** The one source, which is also the one public run, dates from 2026-01. Its LinkedIn page was opened again in 2026-11 and still reports the same split: a vision model reads signatures and initials, a reasoning model cross-checks the contract against the Salesforce record, and middleware writes the fields and keeps the audit trail. Two things are newer. The practice now runs as one agent with a skills file: an account from 2026-08 ([Ryan Dharma, Automating deal desk contract reviews](https://rdharma.xyz/case-studies/deal-desk-automation)) has a Claude instance cross-check each closing contract against the CRM and a revenue system, moves every check it has validated from model judgement into deterministic code, and since July has auto-reviewed contracts that pass all of them; that account does not read signatures from a PDF page. The e-signature end is also opening to agents: Docusign announced on 2026-09-04 that its MCP server would be generally available to any agent from 2026-09-30 ([Docusign](https://www.docusign.com/company/news-center/docusign-agreement-layer-for-the-agentic-enterprise-coming-to-every-agent)), so the first row can bring a read tool rather than a script. What the sources did by hand and this build still keeps is the deterministic writer and the audit record, held apart from the model's judgement; neither account shows an agent trusted to mark a deal won, so that guard is not superseded. This duplicate is now merged into AWF-0110; its original account and build design remain here for reference.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

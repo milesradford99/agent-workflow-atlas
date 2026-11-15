@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Use a separate QA agent to check each competitive claim against dated sources and internal product docs; pull unsupported claims before the PM approves battlecard edits."
 ---
 
 # QA-agent competitive brief

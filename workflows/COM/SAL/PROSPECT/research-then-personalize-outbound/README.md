@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "End the enrichment waterfall with email verification and attach evidence URLs to personalization fields; check a 20-row sample before launching, rather than trusting a stale prospect list."
 ---
 
 # Research-then-personalize outbound
