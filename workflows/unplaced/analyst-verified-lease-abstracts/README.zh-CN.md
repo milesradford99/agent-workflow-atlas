@@ -4,7 +4,7 @@ name: 分析师核验的租约摘要
 summary: "将租约及修订条款提取为带出处的数据字段；分析师对照原文核对并裁定需判断的字段。"
 deliverable: 租约摘要
 shape: "组合 ZIP → 按租户排序并分组 → 为修订条款排序 → 将租约与修订条款一并提取摘要 (每个值都标注原文出处) → 🛑 review (分析师对照原文核对，裁定需判断的字段) → 载入组合管理系统 → 修订：只对变化的字段重新提取"
-source_hash: 7e4b839931df
+source_hash: 88c69a04aafe
 ---
 
 # 分析师核验的租约摘要
@@ -13,25 +13,59 @@ source_hash: 7e4b839931df
 **未归类原因：** taxonomy.yaml 中目前没有涵盖此类的类别。在有三个类似的工作流足以支撑新类别 `LEASEADMIN`（TAXONOMY.md 规则 2）之前，先归在这里。
 **工具变体：** `cremodels-mercury` · `dealsumm` · `kolena` · `legora`
 
+## 背景
+
+租约是一份决定租金、谁为什么付费、以及选择权何时到期的合同，而一组租约就是一堆没人能装在脑子里的义务。摘要是替代文件本身的结构化概括：基础租金、递增、费用回收、续约窗口，以及那些只在特定情形下才咬人的条款。弄错的代价以一种安静的方式昂贵——漏掉一个续约通知、一个本该包含某项却排除在外的回收池、一条没人知道适用的共同租户条款——而代价要到数年之后、在续约或出售时重读文件才浮现。人工摘要每份租约要数小时，而且会漂移，这正是租金台账带着错误、也正是任何审计费用回收的人都能找出钱来的原因。模型读租约及其修订链，为每个字段返回它来自的页码，于是分析师的复核变成对着引用核对，而不是重读一遍。判断仍留给人：一条回收公式与上限如何交互、共同租户条款是否被触发、两条冲突的修订以哪条为准。
+
+**术语：**
+- **摘要（abstract）**：租约的结构化概括，每份租约一条记录。
+- **修订链（amendment chain）**：一连串修订，每一条都可能推翻原始条款。
+- **递增（escalation）**：约定的租金上调，固定或与指数挂钩。
+- **费用回收 / CAM（recoveries / CAM）**：租户向业主分摊的运营成本，受上限与排除项约束。
+- **共同租户条款（co-tenancy）**：把租金或救济与其他租户是否开门营业挂钩的条款。
+- **续约窗口（renewal window）**：必须行使选择权的时段，最常被错过、也始终值钱。
+- **租金台账（rent roll）**：业主的租金清单，本质是对租约的转抄。
+- **出处引用（source citation）**：某个字段被提取出来的页码与条款。
+
+## 用智能体搭建
+
+**形态：** `service`。工作是对一个组合的流水线：一批租约到来，摘要被产出并复核，然后修订持续到来，只对变化的字段重新提取。多名分析师对着记录系统处理一条队列，所以这是服务，而不是单个分析师手上的工具，也不是某个项目的仓库。
+
+**需要：** 租约与完整修订链的文件，因为缺了链条做出来的摘要，错得恰好是那些要紧字段；组合的字段模式，让产出能被载入而不是被重新打字；每个提取值的出处，这是"定向复核"得以成立的前提；每份租约的文档质量记录，因为扫描件与原生 PDF 值得不同强度的复核；以及一位能裁定判断字段——回收、共同租户、冲突修订——并有权驳回摘要的分析师。智能体不能裁定判断字段，也不能载入记录系统：在分析师对着原文核过之前，摘要只是提案。
+
+| 步骤 | 搭建方式 |
+|---|---|
+| 组合 ZIP → 按租户排序并分组 | 导入时按租户分组并区分租约与修订，记录每个文件的文档质量，因为扫描件比原生 PDF 需要更重的复核。 |
+| 为修订条款排序 | 链条按签署日期排序，使后签署的修订推翻先前条款；链条错序会产出一份自信的错摘要。 |
+| 将租约与修订条款一并提取摘要（每个值都标注原文出处） | 字段对着合并后的现行条款提取而不是对着原租约，每个值带页码与条款，租金表按表格读而不是压平成文本。 |
+| 🛑 review（分析师对照原文核对，裁定需判断的字段） | 分析师对着原文核对带引用的值，并裁定判断字段；分流按风险进行——扫描件逐字段核，干净的件定向核。 |
+| 载入组合管理系统 | 核验过的摘要被载入，引用痕迹一并保留，日后有争议可从记录里回答。 |
+| 修订：只对变化的字段重新提取 | 新的修订触发受影响字段的增量重提，这也正是"取代关系"出错会浮现的地方。 |
+
+**检查点：** `review`：分析师对着原文签发，而本条目的要点是在这里部分准确毫无价值——80% 准确率的数据集比空的更糟，因为它会被信任。搭建通过给每个值附引用、并按文档质量与条款类型分配注意力（而不是平均铺开），让这次复核做得成。
+
+**与来源相比：** 来源出自 2026-02 到 2026-06，较新；本轮都没有重新打开。此后有变化的是本条目那句直白算术背后的细节，而它让复核变得可以分流。字段级准确率现在有了形状：扫描件约 80% 到 88%，干净的文字层 PDF 90% 到 95%，数字原生文档 95% 或更好，下滑可追溯到 OCR 在模型推理之前就把文本弄坏了。准确率也按条款类型分开——递增在常见格式下为 95% 到 98%，当增幅取决于外部触发条件时降到 85% 到 90%；回收在标准的总额上调与 stop 条款上为 90% 到 95%，在定制的排除清单上更弱；关键日期为 97% 到 99%，典型失败是日期指向一份没有上传的附件。对这套搭建有两点后果。第一，"逐字段签发"对扫描件组合是正确规则，对干净的组合则昂贵；站得住的版本是按文档质量与五类承载损失条款来分流——续约期限、共同租户救济、递增、回收机制、交还条件。第二，条件逻辑是抽取在结构上失败的地方，所以共同租户与回收公式应当被当作"指向条款的探测器"，而不是一次抽取。有一个被广泛重复的数字——过半租金台账存在重大错误——追不到一手研究，引用时应带这个保留。
+
+*以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
+
 ## 步骤
 
-1. 把整个组合作为一个 ZIP 载入；系统对文件排序，并按租户分组 [[1]](#sources)。
-2. 按顺序梳理修订历史，让后来的修订取代先前的条款 [[1]](#sources)。
-3. 提取带出处的字段；JLL 的平台涵盖 'more than 2,500 data points per lease' [[2]](#sources)。
-4. 🛑 **审阅**：分析师对照原文审阅，纠正错误，并裁定回收款和共同租户条款（co-tenancy）这类需要判断的问题 [[1]](#sources)；在 JLL，数据定稿前由人工验证 [[2]](#sources)。
-5. 修订条款到达时，只更新有变化的数据点 [[2]](#sources)。
+*以下按来源所述。*
 
-**产出：** 存入组合管理系统的租约摘要，用于承销和租约管理。
-**失败模式 → 防护：** 准确率为 80% 时租约数据不可用（'no better than 0%'）→ 分析师签发每一个字段 [[1]](#sources)。
+1. 把一个组合作为一个 ZIP 载入；系统对文件排序并按租户分组 [[1]](#sources)。
+2. 按顺序梳理修订历史，使后签署的修订推翻先前条款 [[1]](#sources)。
+3. 带出处地提取字段；JLL 的平台覆盖"每份租约 2,500 多个数据点" [[2]](#sources)。
+4. 🛑 **审阅**：分析师对照原文复核、更正错误，并裁定回收与共同租户之类的判断字段 [[1]](#sources)；在 JLL，数据定稿前由人验证 [[2]](#sources)。
+5. 修订到来时，只更新发生变化的数据点 [[2]](#sources)。
 
-**近期实践（2026）：**
-- 为修订条款排序：把租约和所有修订合并为当前有效条款，并把租金表当作表格来读，而不是压平成文本（Kolena，2026-02-26）。[[3]](#sources)
+**产出：** 组合管理系统中的租约摘要，用于承销与租约管理。
+**失败模式 → 防护：** 80% 准确率下租约数据不可用（"不比 0% 好"）→ 分析师逐字段签发 [[1]](#sources)。
 
 ## 公开实例
 
-覆盖度（截至 2026-11-06）：**充分**：有详细的第一手实例，与流程的大部分环节一致。收集与复核见 [Second collection pass](../../../research/2026-11-second-pass.md)。更多实例补充见 [Third collection pass](../../../research/2026-11-third-pass.md)。
+覆盖度（截至 2026-11-06）：**充分**：有详细的第一手实例，与流程的大部分环节一致。收集与复核见 [Second collection pass](../../../research/2026-11-second-pass.md)。更多实例补充于 [Third collection pass](../../../research/2026-11-third-pass.md)。
 
-- [CREModels case study](https://www.cremodels.com/ai-lease-abstraction-case-study) (2026-06-24)。为一家购物中心业主处理约 200 家零售租户；分析师签发每个字段。"about 200 retail tenants"（项目范围）。*第一手：是；可信度：高。*
-- [Databricks, JLL](https://www.databricks.com/customers/jll/dealsumm) (n.d.)。保留人工审阅；吞吐量翻倍。"Review time per lease dropped from 130 minutes to 85 minutes"。*第一手：厂商；可信度：中。*
-- [Kolena, How Real Capital Solutions Cut Lease Review Time by 85%](https://www.kolena.com/blog/how-real-capital-solutions-cut-lease-review-time-by-85/) (2026-02-26)。一家商业地产私募基金管理人（管理规模 $2.8B）提取租约和修订的摘要，输出到 SharePoint/Teams 文件夹供内部审阅。"Internal review time dropped from an average of two hours to roughly 17 minutes"。*第一手：厂商；可信度：中。*
-- [Axiom, 2,000 Leases Digitized with Axiom Tech+Talent for Real Estate Manager](https://www.axiomlaw.com/resources/case-studies/real-estate-contracts-digitized-ai-lawyers) (2026-06-03)。93 处物业的组合；Legora 接手审阅 1,400 份租约；由一名领域专家验证数据准确性。"After Legora, the 5-lawyer team turned into one subject matter expert to verify data accuracy"。*第一手：厂商；可信度：低。*
+- [CREModels case study](https://www.cremodels.com/ai-lease-abstraction-case-study) (2026-06-24)。为一家购物中心业主处理约 200 个零售租户；分析师逐字段签发。"about 200 retail tenants"（项目范围）。*第一手：是；可信度：高。*
+- [Databricks, JLL](https://www.databricks.com/customers/jll/dealsumm)（未标日期）。人工复核保留；吞吐翻倍。"Review time per lease dropped from 130 minutes to 85 minutes"。*第一手：厂商；可信度：中。*
+- [Kolena, How Real Capital Solutions Cut Lease Review Time by 85%](https://www.kolena.com/blog/how-real-capital-solutions-cut-lease-review-time-by-85/) (2026-02-26)。私募地产资管人（28 亿美元 AUM）提取租约与修订，产出到 SharePoint/Teams 文件夹供内部复核。"Internal review time dropped from an average of two hours to roughly 17 minutes"。*第一手：厂商；可信度：中。*
+- [Axiom, 2,000 Leases Digitized with Axiom Tech+Talent for Real Estate Manager](https://www.axiomlaw.com/resources/case-studies/real-estate-contracts-digitized-ai-lawyers) (2026-06-03)。93 处物业的组合；Legora 接手 1,400 份租约的复核；由一位专家核验数据准确性。"After Legora, the 5-lawyer team turned into one subject matter expert to verify data accuracy"。*第一手：厂商；可信度：低。*

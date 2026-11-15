@@ -18,6 +18,8 @@ reference_example: null
 inputs_from: []
 merged_into: null
 last_verified: 2026-11
+build: skill
+method_checked: 2026-11
 ---
 
 # Formulary-checked discharge supply
@@ -58,7 +60,48 @@ flowchart TD
 <!-- end shape diagram -->
 
 
+## Background
+
+When a patient leaves a hospital for a step-down facility — a community hospital, a nursing home — the discharge supply has to be decided line by line against what that facility stocks. Send a medicine the facility already holds and it is wasted, sometimes thrown away; withhold one it does not hold and the patient arrives without it. The receiving facility's formulary is a document the discharging pharmacy does not own, changes without notice, and has to be applied to an order list that comes out of the dispensing system as unstructured text. Pharmacists do this from memory and a printed list, which works until the roster rotates and the weekend pharmacist has never sent a patient to that home. An assistant that holds the formulary and the supply rules turns the question into a lookup, and the case for it is not speed but consistency across staff who each know a different subset of the facilities. What it must not do is finalise the decision: a false negative here means a patient transfers without a medicine they need, so every line gets a pharmacist's check before anything is packed.
+
+**Terms:**
+- **step-down facility**: a lower-acuity setting a patient transfers to, such as a community hospital or nursing home.
+- **formulary**: the list of medicines a facility stocks and supplies.
+- **discharge supply**: the medicines sent with the patient for the transfer.
+- **order line**: one medication on the prescription, with drug, dose and form.
+- **false negative**: a line marked "do not supply" when the facility needed it, the feared error here.
+- **oversupply**: sending medicines the receiving facility already stocks, which is waste rather than harm.
+- **re-validation**: re-running the evaluation on a fresh sample after the dispensing system changes.
+- **decision support**: a tool that recommends, with a human deciding, as opposed to automation that acts.
+
+## Build it with an agent
+
+**Form:** `skill`. One pharmacist, one discharge prescription, one list of per-line recommendations they must each validate — the assistant is configured once with the formulary and then used per patient by whoever is on shift. Nothing accumulates per patient that a service would own, and the work is a conversation with a paste, not a queue.
+
+**You need:** the receiving facility's formulary and its supply rules as a maintained reference file, since the assistant's answers are only as current as that document; the order list in whatever unstructured form the dispensing system emits, because requiring a clean export would mean the workflow never runs; a per-line output that names the drug, the dose and the reason, so a pharmacist can check the line against the order rather than re-deriving it; a rule that uncertainty resolves to "supply and flag" rather than "do not supply", because the two errors are not symmetric; and a re-validation plan tied to system changes, since the input format is the thing most likely to break. The agent must not finalise a supply decision and must not be trusted to notice that its formulary is out of date.
+
+| Step | Built as |
+|---|---|
+| discharge prescription for a step-down facility | The case starts with the destination, because the formulary lookup is per receiving facility and a wrong destination makes every line wrong. |
+| paste unstructured order list into the enterprise AI assistant | A paste into an approved enterprise assistant, with no scripting, because the staff who run this are pharmacists rather than programmers. |
+| agent parses each order (drug, dose, form) | Parsing is shown back per line for confirmation, so a misread drug name is visible before it is matched against a formulary. |
+| each order: match against the receiving facility's formulary | The formulary is a reference document the assistant reads, with the facility named explicitly; a match not found in the document is reported as not found, not inferred. |
+| supply | no-supply recommendation per line | Each line gets a recommendation and its basis, and the default under uncertainty is to supply, since a spare box costs less than a missing medicine. |
+| 🛑 review (pharmacist validates every line before dispensing) | Every line is checked by a pharmacist before packing; the build has no path to a supply list without that check, and a false-negative taxonomy drives what reviewers look for. |
+| pack and send only the non-formulary items | The pack list is derived from the validated decisions, which is where the waste reduction comes from rather than from the model's accuracy alone. |
+| periodic re-validation on a prescription sample after any dispensing-system change | A fixed sample is re-run after any change to the dispensing system, because the migration is what breaks the input rather than the model. |
+| 🛑 sign-off (quality team accepts accuracy before continued use) | The quality team accepts the measured accuracy on the re-validation sample before the assistant keeps being used; the build cannot declare itself validated. |
+
+**Checkpoints:** `review`: a pharmacist validates every line, which is the only thing standing between a recommendation and a patient transferring without a medicine — the entry's error taxonomy is built around false negatives for that reason. `sign-off`: the quality team re-accepts the assistant after a system change on a fresh sample, which turns "it worked last year" into a dated claim about the current pipeline.
+
+**Since the sources:** Sources date from 2025-12-31 (two hospital evaluations) and were not re-opened on this pass. What has changed since: the platform pattern has spread inside Singapore's public healthcare faster than the evaluations, and the spread is the more interesting story. The enterprise assistant this workflow depends on is now described by the government technology agency as used by tens of thousands of public officers, and in another public-hospital cluster a nursing team with no coding background built its own ward tool on it — after failing with a low-code bot that data-protection rules blocked and a student-built prototype they could not maintain — with the pharmacy division subsequently asking to add its own data. That is the same lesson this entry records from one pharmacy, arriving from a different direction: the assistant is adopted because the people who own the problem can configure it themselves, and the thing that kills such tools is not model quality but maintenance. It also sharpens the caution. Self-built assistants on a shared platform mean code and configuration that nobody reviewed, which is why the government's own CTO has started talking about classifying AI-generated code rather than only data — for a clinical tool, the re-validation gate after a system change is the minimum version of that discipline.
+
+*A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
+
 ## Steps
+
+*As reported by the sources.*
+
 1. A hospital pharmacy receives a discharge prescription for a patient transferring to a step-down facility (community hospital or nursing home) that supplies some medicines from its own formulary. Order data is copied out of the dispensing system and is unstructured, which rules out spreadsheet macros [[1]](#sources).
 2. Pharmacy staff — without programming expertise — configured an assistant on Pair, the government AI platform approved for Restricted/Sensitive Normal data, to hold the receiving facility's formulary and the supply rules [[1]](#sources).
 3. The pasted order list is parsed and each medication line is cross-checked against that facility's formulary; the assistant returns a supply / no-supply recommendation per line in real time [[1]](#sources).
@@ -81,3 +124,4 @@ Coverage as of 2026-11-13: **Strong**: a first-hand, detailed run that matches m
 
 1. Tan, C.J.Y., Yew, W.K. & Phua, C.J. (Division of Pharmacy, Tan Tock Seng Hospital), Evaluation of an Artificial intelligence (AI)-Assisted Decision Support for Medication Supply in Stepdown Care Transitions, R Clin Pharm, published online 31 December 2025. https://www.rescp.org/journal/view.html?uid=311&vmd=Full&year=
 2. Tan, W.Q. et al. (Tan Tock Seng Hospital), Integration of AI Powered Co-Pilot Tools for Discharge Prescription Processing Efficiency, R Clin Pharm 2025;3(Suppl 1):S4. https://www.rescp.org/journal/view.html?uid=218&vmd=Full&year=
+3. Hospital Management Asia, No IT expertise, no coding background: how nurses at Singapore's KKH use AI to build their own tools, 2026. https://www.hospitalmanagementasia.com/tech-innovation/2026-no-it-expertise-no-coding-background-how-nurses-at-singapores-kkh-use-ai-to-build-their-own-tools/
