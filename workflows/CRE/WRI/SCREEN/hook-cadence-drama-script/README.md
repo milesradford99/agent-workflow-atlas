@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Name the hook type for every episode ending, then shoot eps 1–5 for a small ad test; if viewers leave before the paywall, move a reversal one episode earlier."
 ---
 
 # Hook-cadence drama script

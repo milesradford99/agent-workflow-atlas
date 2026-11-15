@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Write the chapter outline with key sentences before drafting in segments; reload the settings sheet every session and check contradictions per volume to limit long-serial drift."
 ---
 
 # Daily web serial

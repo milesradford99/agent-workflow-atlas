@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare]
+move: "Check AI feasibility at greenlight and approve the character, scene and prop assets before any shot starts; live-action shot grammar may not survive AI generation."
 ---
 
 # Gated AI 漫剧 line

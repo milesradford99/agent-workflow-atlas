@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage]
+move: "Split docs-PR review by ownership: the code author checks accuracy and the docs team checks style; keep drafts synchronized with code changes until the code PR merges."
 ---
 
 # Code-PR docs drafts

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [feedback]
+move: "Turn volume-audit findings into concrete checklists and rotation tables, and rewrite misunderstood rules as scene instructions; the author samples audits and adds rules for later chapters."
 ---
 
 # Agent-crew serial with volume audits

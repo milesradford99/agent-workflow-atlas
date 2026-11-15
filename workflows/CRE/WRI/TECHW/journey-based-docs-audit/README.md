@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [triage]
+move: "Audit all docs touched by one user journey together, split fixes into product-owned PRs, and escalate missing facts as blocked rather than guessing across gaps in the corpus."
 ---
 
 # Journey-based docs audit

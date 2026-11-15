@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Skip unfamiliar prescriptions and log the reason instead of improvising; every entered script then passes two pharmacist verifications before dispensing."
 ---
 
 # Pharmacist-verified script entry

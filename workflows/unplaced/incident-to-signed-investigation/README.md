@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Let AI flag a possible notification-criteria match, but keep the regulatory notification decision with people; supervisors accept or reject corrective actions before a competent person signs."
 ---
 
 # Incident-to-signed investigation

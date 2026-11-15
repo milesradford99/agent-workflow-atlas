@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Require live URLs for Tier 1 sources, use DOI placeholders for unretrieved material, and audit citations with a second model; the account admits not every citation was independently verified."
 ---
 
 # Dossier-to-chapter book

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare]
+move: "Audition the first chapter in 5–6 voices before committing to a narrator, then use one global pronunciation dictionary and a full directed listen for the book."
 ---
 
 # Directed AI audiobook

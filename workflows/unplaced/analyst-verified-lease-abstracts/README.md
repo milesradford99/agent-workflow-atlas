@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Read amendments in order with the original lease and cite every extracted value; an analyst signs off every field because partially accurate lease data is unusable."
 ---
 
 # Analyst-verified lease abstracts

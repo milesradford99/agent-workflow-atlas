@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Have pharmacists verify every supply decision with special attention to omitted medicines; after a dispensing-format change, re-evaluate on a fresh 100-prescription sample before continued use."
 ---
 
 # Formulary-checked discharge supply

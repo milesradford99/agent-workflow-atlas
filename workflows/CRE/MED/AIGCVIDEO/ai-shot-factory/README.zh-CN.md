@@ -4,7 +4,8 @@ name: AI 镜头工厂
 summary: "把剧本逐镜头生成 AI 视频剧集；方案、成片审核和发布前签发均由人工把关。"
 deliverable: 剧集
 shape: "剧本 → 分镜表 → 🛑 plan → 锁定角色 → 每个镜头：(关键帧 ⟲ 评审) → (视频 ⟲ 检查) → 配音 + 口型同步 → 剪辑 → 🛑 review → AI 标识 → 🛑 sign-off → 发布"
-source_hash: ce28be0a8405
+move: "生成镜头前锁定角色正、侧、背面及表情图，后续每次生成都复用这些参考，保持身份一致。"
+source_hash: cd7412e559ac
 ---
 
 # AI 镜头工厂

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Re-transcribe the exact final video export for captions rather than a proxy file, which can shift timing; run a jargon-dictionary check and watch the finished cut."
 ---
 
 # Transcript-first video edit

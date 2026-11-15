@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [restrict, prepare]
+move: "Lock the voice-timed animatic and obtain explicit spend approval before video calls; use product references for pack accuracy and render on-screen text in post instead of generating it."
 ---
 
 # Animatic-gated AI commercial

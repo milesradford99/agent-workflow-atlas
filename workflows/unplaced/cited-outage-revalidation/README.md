@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify, restrict]
+move: "Re-check outages at D+21, D+2 and D+1, validate each agent before integration, and cite every finding; operators make corrections and the agents take no autonomous grid actions."
 ---
 
 # Cited outage revalidation

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [restrict]
+move: "Retrieve only approved manuals and verified helpdesk cases for troubleshooting instructions; technicians decide and perform fixes, and solved cases become future retrieval material."
 ---
 
 # Pre-arrival troubleshooting assist

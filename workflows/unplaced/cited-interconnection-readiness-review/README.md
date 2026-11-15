@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Link every grid-interconnection readiness assessment to the source page and clause; grid engineers keep the final compliance determination instead of relying on a black-box verdict."
 ---
 
 # Cited interconnection readiness review

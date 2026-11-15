@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [feedback]
+move: "Log why dispatchers override technician assignments and use those reasons to tune skills and settings; the reported override rate fell from 40% to ~10%."
 ---
 
 # Dispatcher-overridden job assignment

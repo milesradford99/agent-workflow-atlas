@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Filter generated tests through build, pass, 5 reruns and coverage gain before review; only about 4–5% survive, and each surviving test gets its own small diff."
 ---
 
 # Filtered test augmentation

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [standard]
+move: "Layer document, task and report agents to compile a site-safety audit; a human examines the process, but the source describes that checkpoint only briefly."
 ---
 
 # Layered safety audit agents

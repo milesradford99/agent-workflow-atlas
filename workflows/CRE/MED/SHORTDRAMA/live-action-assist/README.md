@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [verify]
+move: "Test several cuts of one scene with distinct openings against real ad-spend data; repeated first 3 seconds can fail cold start, and more generated variants alone do not establish better ROI."
 ---
 
 # Live-action assist

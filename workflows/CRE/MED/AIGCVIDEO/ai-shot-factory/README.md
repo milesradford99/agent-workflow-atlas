@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare]
+move: "Lock character front, side and back views plus expression sheets before generating shots, and reuse them as references in every later generation to preserve identity."
 ---
 
 # AI shot factory

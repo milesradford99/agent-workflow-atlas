@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: platform
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Build a per-series glossary and character roster before dubbing, then reconcile speaker labels across chunks; literal kinship translations can change the plot."
 ---
 
 # Dubbing pipeline

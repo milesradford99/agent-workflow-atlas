@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Break planning data work into atomic, auditable operations so faults can be traced to data, slot extraction, aggregation or tools; keep monitoring execution deviations after plan adoption."
 ---
 
 # Agent-built replenishment plans

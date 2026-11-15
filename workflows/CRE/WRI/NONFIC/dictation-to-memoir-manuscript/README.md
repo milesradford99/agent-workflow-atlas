@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Ask what is weak in the author’s existing words instead of requesting a better rewrite; set voice rules, request the negative case, and have the author rewrite generated passages."
 ---
 
 # Dictation-to-memoir manuscript
