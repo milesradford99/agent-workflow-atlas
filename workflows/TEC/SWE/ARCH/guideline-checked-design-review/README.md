@@ -68,7 +68,7 @@ Before developers build a new feature, many companies ask the security team to r
 
 **Form:** `skill`. A security engineer takes one review request at a time and verifies the findings in the same conversation, so one skill holding the guideline catalogue and the procedure is enough.
 
-**You need:** the guideline catalogue and the triage rules as reference files beside the skill; read access to the design document (a file, or an MCP connector to the document store); a Slack connector only if the skill is to post the verified feedback. Design documents can describe unreleased products and internal systems, so use a setup your organisation has approved for confidential material.
+**You need:** the guideline catalogue and the triage rules as reference files beside the skill; read access to the design document (a file, or an MCP connector to the document store); an MCP connector to Slack only if the skill is to post the verified feedback. Design documents can describe unreleased products and internal systems, so use a setup your organisation has approved for confidential material.
 
 | Step | Built as |
 |---|---|
@@ -80,7 +80,7 @@ Before developers build a new feature, many companies ask the security team to r
 
 **Checkpoints:** `review`: the skill stops after presenting the findings list and does not post anything; the security engineer confirms, edits or drops each finding. Only then does the skill draft the message to the developer, and it posts it only on the engineer's instruction, or the engineer sends it from their own account.
 
-**Since the sources:** Source 1 and its public run date from 2026-02. The source built Hayami as its own service, started from the existing Slack request flow and with results going to the security team; it does not say which agent framework or model it uses. The build above drops the Slack trigger and the separate service: a security engineer runs the skill on each request. The source's planned continuous benchmarking (step 6) is not part of this build; it needs a set of past documents with expert findings, kept beside the skill and rerun when the guidelines or the model change. A team that wants every request analysed before an engineer picks it up would run the same skill as a `service`, with the findings sent to the security team's queue.
+**Since the sources:** Source 1 and its public run date from 2026-02; the Sansan post opened this month and still describes Hayami, the 160+ guideline catalogue and the benchmark against human expert reviews. No newer account found as of 2026-11. The source built Hayami as its own service, started from the existing Slack request flow and with results going to the security team; it does not say which agent framework or model it uses, so the vendor's service is the part left out rather than superseded. The build above drops the Slack trigger and the separate service: a security engineer runs the skill on each request. The source's planned continuous benchmarking (step 6) is not part of this build; it needs a set of past documents with expert findings, kept beside the skill and rerun when the guidelines or the model change. A team that wants every request analysed before an engineer picks it up would run the same skill as a `service`, with the findings sent to the security team's queue.
 
 *A design based on this entry's steps and the tool documentation as of 2026-11, not a reported run.*
 

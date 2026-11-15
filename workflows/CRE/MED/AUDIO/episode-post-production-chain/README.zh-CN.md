@@ -4,7 +4,7 @@ name: 播客单集后期流程
 summary: "剪辑并为录制好的播客添加字幕，起草配套素材；字幕、整期试听和素材发布前均由人工审核。"
 deliverable: 已发布的播客单集
 shape: "多轨录制 → 去除语气词/停顿 + 跳剪 → 生成式音频降噪 → Whisper SRT 字幕 → 🛑 review (字幕修正) → 🛑 review (完整试听，取舍镜头) → 每个素材：摘要/标签 | 文字稿清理 | 社交媒体帖子 → 🛑 review (发布前) → 发布"
-source_hash: 63e3dab6f700
+source_hash: 6eb68c98fb3e
 ---
 
 # 播客单集后期流程
@@ -40,7 +40,7 @@ source_hash: 63e3dab6f700
 
 **检查点：** `review`：skill 停三次，分别在 SRT 之后、制作人完整试听之后和草稿之后。每次停下都呈现文件并等待。智能体没有发布工具，也不能访问节目的账号，所以由制作人从播客托管平台和视频网站发布。
 
-**与来源相比：** 唯一的来源和唯一的公开实例出自 2024-06。较新的同类做法：Descript 2026 年 6 月的文章说，它的应用内智能体 Underlord 现在可以直接分析视频画面，而不只是文字稿（[Descript blog](https://www.descript.com/blog/article/underlord-ai-can-watch-videos)）；Anthropic 的客户案例说 Underlord 运行在 Claude 上（[Claude customer case study](https://claude.com/es/customers/descript)）。所以来源里用基于文字稿的工具手工完成的剪辑步骤，现在可能由编辑器内的智能体来做；本搭建方式不依赖这一点，剪辑仍留给制作人。来源里分别用提示词起草摘要和社交帖子，如今是通用模型处理文字稿的常规用法。本搭建方式没有包含来源涉及的音乐生成和音频可视化短片。
+**与来源相比：** 唯一的来源，以及公开实例（就是同一个页面），出自 2024-06；本月两者连同下面引用的页面都在 2026-11 重新打开过。较新的情况：Descript 的工程文章（2026-07 更新）说，它的应用内智能体 Underlord 现在能看懂画面，而不只是文字稿（[Descript blog](https://www.descript.com/blog/article/underlord-ai-can-watch-videos)）；Anthropic 的客户案例说 Underlord 运行在 Claude 模型上，Descript 在 2026-01 对 Underlord 做了大幅更新（[Claude customer case study](https://claude.com/es/customers/descript)）。所以来源里靠人做的基于文字稿的剪辑，现在可能由编辑器内的智能体完成；本搭建方式不依赖这一点，剪辑仍留给制作人。来源点名的工具没有被改名或下线：它用来做清理的 Adobe Podcast 的 Enhance Speech 在 2026-03 又做过一次升级（[Adobe Podcast](https://podcast.adobe.com/it/guides/whats-new-in-adobe-podcast-march-2026)）。来源里分别用提示词起草摘要和社交帖子，如今是通用模型处理文字稿的常规用法。本搭建方式没有包含来源涉及的音乐生成和音频可视化短片。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

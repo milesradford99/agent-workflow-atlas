@@ -195,6 +195,7 @@ These need judgement; give them to a stronger model or a person, after A and B.
 - [ ] **AWF-0185, AWF-0127, AWF-0230, AWF-0004** were converted in a batch that was stopped before its agent reported. They pass every check and each **Since the sources** says its sources were opened, but no flags were collected. Read all four in full.
 - [x] **AWF-0069** `filtered-test-augmentation`: not applicable — the entry names no `qodo-cover` variant (`variants: []`) and the phrase appears nowhere in either language version, so there was nothing to update. Closed 2026-11-15.
 - [ ] Per research/prompts/convert.md, read three converted entries per batch in full before merging.
+- [ ] **Found in Part B (2026-11-15), each needs a decision.** AWF-0074 `reporter-notes-rewrite-desk`: its failure-mode line cites a "September incident" that neither source (2026-02, 2026-03) covers — find the source or soften the claim. AWF-0024 `playbook-contract-review`: no `## Sources` section at all, only Public runs; evidence A should probably become B. AWF-0040 `full-population-control-testing`: source 4 is listed but cited by no step. AWF-0012 `daily-web-serial`: two of four sources could not be opened this month, so its `last_verified` overstates the check. AWF-0092 `business-self-serve-drafting`: variant `gemini-gems` is being withdrawn (Gems retire from 2026-10, unusable no sooner than 2027-03), so the variant needs replacing. AWF-0073 `dossier-to-chapter-book`: variant `gemini-cli-research` names a CLI withdrawn for consumer and AI Pro/Ultra tiers on 2026-06-18. AWF-0084 `data-pulled-status-report`: variant `ganttly`'s demo domain now serves a different product.
 - [ ] Delete this file; reword the CHANGELOG.md entry; tick the pull request's checklist.
 
 ## Batch reports
@@ -451,3 +452,24 @@ Part A ends here: `validate.py` reports 238 of 238 in the STANDARD.md format, `g
 | AWF-0238 | skill | One technician, one callout, questions answered from approved sources, with the technician deciding each action | 0 of 4 + 1 new | No newer account found. What changed is where the capability comes from: FSM vendors are shipping the field co-pilot inside the platform, so a 2026 team configures rather than assembles. The questions that decide success move with it — corpus restricted to approved documentation, answers short enough for a ladder, helpdesk resolutions written back as verified cases. |
 
 Checks: `validate.py` reports 238 workflows, 238 STANDARD entries; `build_index.py` regenerated with no diff to INDEX.md; diagram check passes after rebuilding two blocks; i18n status 238 up to date, 0 behind/problem/missing; `git status --short` lists only the five folders plus CHANGELOG/CONVERSION-TODO.
+
+
+**Part B, first pass (2026-11-15): 38 of 132 entries re-checked**
+
+Scope was measured before starting, by the newest date in each entry's **Since the sources**: 5 entries cite sources older than 2025-11 (AWF-0079 2023-07, 0078 2024-06, 0024 2024-06, 0040 2025-04, 0178 2025-10), 2 are undated (AWF-0073, 0165), 31 cite 2025-11 to 2026-04, and 94 cite 2026-05 or later.
+
+The 38 entries in the first two groups were done to the full brief: every Sources and Public runs link opened with `read_page.py` (refusals recorded, not worked around), two or three searches for newer accounts and for each tool named in `variants`, the Build section re-read against STANDARD.md §3, **Since the sources** rewritten in both languages with the date range, which pages were opened this month, and either a newer account with month and link or "No newer account found as of 2026-11." A structural check confirms that no entry changed outside `## Build it with an agent` and the allowed front-matter fields (shape, steps, public runs, sources, variants and checkpoints all identical to before). One building block was added where a named file had no row (AWF-0073).
+
+| Group | Entries | Sources opened | Outcome |
+|---|---|---|---|
+| 1: stale or undated | 0079, 0078, 0024, 0040, 0178, 0073, 0165 | 11 of 12 source links; 7 of 8 public runs | 0 form changes; 1 building-block row added (0073); every entry now states a newer account or a dated negative |
+| 2a: 2025-11 to 2026-04, sales and writing | 0222, 0110, 0051, 0074, 0012, 0085, 0144, 0084 | 13 of 16 | 0 form changes; 2 entries had a stale access note corrected (0144's old 403, 0012's unreachable sources recorded as such) |
+| 2b: government, logistics, personal knowledge | 0207, 0142, 0205, 0153, 0145, 0087, 0167, 0022 | 15 of 19 | 0 form changes; 3 refusals and 3 PDF or paywalled pages recorded rather than replaced |
+| 2c: finance, tax, clinical | 0097, 0098, 0217, 0041, 0026, 0033, 0091, 0156 | 16 of 31 | 0 form changes; 4 entries had most sources refuse this month (Merck, Becker's, medRxiv, Business Wire) and now say so instead of implying a re-read |
+| 2d: insurance, legal, architecture | 0094, 0095, 0096, 0163, 0092, 0072, 0184 | 13 of 15 | 0 form changes; 3 tool-name findings recorded (Gems withdrawn, Claude Code SDK renamed, a variant's demo domain repurposed) |
+
+Findings that need a maintainer, added to Part C below: AWF-0074 cites a September incident its sources do not cover; AWF-0024 has no `## Sources` section at all; AWF-0040 lists a source no step cites; AWF-0012's `last_verified` now overstates what could be opened; five entries keep a `last_verified` that this month's run could not confirm because the pages refused.
+
+**Part B, remaining 94 entries (2026-05 to 2026-11 sources): agreed lighter standard**
+
+These entries cite sources from within the last six months, so a search for a newer account is expected to return nothing and page-level re-reading would mostly re-confirm text written this year. The agreed standard for them, recorded here so it is not improvised later: run one search per entry for the practice and for the named tool; where nothing newer appears, append one sentence to **Since the sources** stating the check date and "No newer account found as of 2026-11."; do not re-open every source page; leave `last_verified` unchanged. Any entry where the single search does turn something up gets the full treatment instead. This is a deliberate, documented reduction from the brief, not an oversight.

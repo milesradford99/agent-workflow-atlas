@@ -4,7 +4,7 @@ name: 依手册审阅合同
 summary: "将各条款对照审查手册按红黄绿分级并加修订批注；律师审阅并签核后才发出。"
 deliverable: 合同修订稿
 shape: "合同 → 判断类型 → 加载审查手册 → 每个条款：对照立场 (绿/黄/红) → 修订痕迹 + 批注 → 一致性检查 → 🛑 review → 🛑 sign-off → 发出"
-source_hash: 55f519666752
+source_hash: 43f652f4a4d2
 ---
 
 # 依手册审阅合同
@@ -38,7 +38,7 @@ source_hash: 55f519666752
 
 **检查点：** `review`：skill 最后列出所有黄色和红色条款，附手册立场和建议修改，然后停下；由律师修改修订稿。`sign-off`：skill 里没有发送步骤，智能体也没有邮件工具，所以由律师从自己的邮箱发出。
 
-**与来源相比：** 步骤没有引用来源；唯一的公开实例出自 2024-06。撰写本节时没有另外查找更新的第一手记录。本条目列出的工具（`harvey`、`spellbook`、`luminance`）是法律行业产品，在 Word 或它们自己的审阅界面里完成这些步骤。通用智能体加一个 skill 是在文件上完成同样的步骤，不在 Word 界面内工作。本条目的步骤没有引用来源，唯一的公开实例讲的是一家律所对起草类工具的一般性试用，不是这套搭建方式。
+**与来源相比：** 步骤没有引用来源，本条目也没有 Sources 列表；唯一的公开实例出自 2024-06，2026-11 重新打开过，而且讲的是律所对起草类工具的一般性试用，不是这次审阅。本条目列出的工具（`harvey`、`spellbook`、`luminance`）是法律行业产品，在 Word 或它们自己的审阅界面里完成这些步骤；三家现在仍在卖这类审阅，Harvey 叫 Contract Intelligence，Spellbook 叫 Playbooks，Luminance 叫 contract intelligence。较新的情况：Anthropic 的开源法律插件（首次提交于 2026-01）带一个 `review-contract` skill，做的正是上面这套搭建方式描述的事——逐条对照审查手册文件，给出绿、黄、红标记，草拟修订措辞，并给律师一份交接说明（[knowledge-work-plugins, legal](https://github.com/anthropics/knowledge-work-plugins/blob/main/legal/README.md)）。所以这套搭建方式有一部分已经以公开 skill 的形式存在；本条目另外要做的，是把修订痕迹写进 Word 文件的副本，并把审查手册作为独立的参考文件放在 skill 旁边。通用智能体仍是在文件上工作，而不是像那三个产品那样在 Word 界面内工作。这几次检索没有找到更新的、由律所实际运行这套审阅的第一手记录。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 

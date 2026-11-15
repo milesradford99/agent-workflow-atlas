@@ -4,7 +4,7 @@ name: 概念图驱动的 SD 美术资产
 summary: "基于美术概念图，用定制训练的图像模型生成游戏美术资产；美术师逐项调整并批准。"
 deliverable: 游戏美术资产
 shape: "选定工具 + 准备风格数据集 → 训练定制模型 → 🛑 plan (美术师的概念图) → 每个资产：从概念图、草图或 3D 白模出发做 img2img/ControlNet → 放大 → (美术师修整 ⟲ 达到目标) → 🛑 review (美术师批准)"
-source_hash: fafe3c1c6895
+source_hash: 07ac277f87e0
 ---
 
 # 概念图驱动的 SD 美术资产
@@ -42,7 +42,7 @@ source_hash: fafe3c1c6895
 
 **检查点：** `plan`：在美术师的概念图、草图或白模放入项目文件夹、并且美术师说开始之前，skill 不会为该资产排队生成。`review`：skill 把完成的资产与其概念图和简报并排展示，然后停下；由美术师批准或退回。智能体没有把资产复制进游戏美术文件夹的工具，所以只有美术师才能把批准的作品放进去。
 
-**与来源相比：** 来源 1 出自 2023-07，来源 2 没有日期。社区指南里报道的较新做法：一份 2026 年的独立开发者指南说，基于节点图的界面 ComfyUI 是串联模型、ControlNet 和放大器的常见方式，并说最后的修整仍然需要人（[Stray Spark Studio](https://www.strayspark.studio/blog/comfyui-game-asset-pipeline-indie-2026)）；一份 2025 年的工作室报告发现，要得到可用的输出，定制训练是必要的（[Room 8 Group](https://room8group.com/wp-content/uploads/2025/01/AI-in-2d-gam-dev_-Report_final.pdf)）。两者都是第二手的说法，不是对这个工作流的重新运行。来源报道的是由美术师主导、配有内部 AI 部门的流程，而不是由智能体来运转，所以这套搭建方式只增加了准备和记录。
+**与来源相比：** 来源出自 2023-07，来源 2 没有日期；公开实例就是同一篇 2023 年的文章，它本月拒绝自动读取（HTTP 403），那份复盘则在 2026-11 重新打开过。较新的说法：Room 8 Group 2025 年的报告（本月打开）比较了用于 2D 游戏美术的 SDXL 和 FLUX.1 Dev，在上面训练 LoRA，并指出即便是这些模型，最后阶段仍需要人来做（[Room 8 Group, 2025](https://room8group.com/wp-content/uploads/2025/01/AI-in-2d-gam-dev_-Report_final.pdf)）；一家工作室 2026-06 的文章描述了同样的概念图驱动链条，用 ComfyUI、取自游戏引擎截图的 ControlNet 深度图、批量筛选、人工重绘，最后再放大（[Althera Games, 2026-06](https://altheragames.com/en/blog/ai-asset-pipeline-stable-diffusion-ue5)）。两者都是第二手的说法，不是对这个工作流的重新运行。来源在早期的 Stable Diffusion 上训练了 100 多个 hypernetworks 和 embeddings；较新的说法则在 SDXL 或 FLUX.1 上训练 LoRA 模块，所以本搭建方式不绑定模型，把基础模型的选择留在流程之外。来源还为工作室配备了负责训练和流水线支持的内部 AI 部门；本搭建方式用一份 skill 和两个脚本替代它。来源报道的是由美术师主导的流程，而不是由智能体来运转，所以这套搭建方式只增加了准备和记录。
 
 *以上是依据本条目的步骤和截至 2026-11 的工具文档做出的设计，不是已报道的实例。*
 
