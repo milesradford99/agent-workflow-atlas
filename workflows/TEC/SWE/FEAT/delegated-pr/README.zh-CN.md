@@ -4,7 +4,8 @@ name: 委派式 PR 开发
 summary: "将打好标签的议题实现为草稿 PR；CI 运行需人工批准，PR 由人评审并合并。"
 deliverable: 拉取请求（PR）
 shape: "🛑 plan (为适合的议题打标签) → 智能体读取议题和仓库 → (写代码 ⟲ 测试) → 草稿 PR → (机器人评审 ⟲ 修复) → 🛑 action (运行 CI) → 🛑 review → 合并"
-source_hash: 03e4515b6e93
+move: "只把贴标签的 issue 实现为草稿 PR，经过测试与机器人评审循环，等待人批准运行 CI，再最终审阅合并。"
+source_hash: 9d664ba57690
 ---
 
 # 委派式 PR 开发

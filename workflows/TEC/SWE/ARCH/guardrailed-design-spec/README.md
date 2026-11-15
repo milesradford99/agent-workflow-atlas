@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Check every spec against architecture, security and legal rule files, then turn review notes into weekly PRs updating those files so meeting decisions survive into later runs."
 ---
 
 # Guardrailed design spec

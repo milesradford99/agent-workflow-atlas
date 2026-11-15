@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify]
+move: "Implement only labeled issues as draft PRs, loop through tests and bot review, and wait for a human to authorize CI before the final review and merge."
 ---
 
 # Delegated PR

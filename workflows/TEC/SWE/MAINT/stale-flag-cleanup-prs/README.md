@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [prepare]
+move: "Take a stale flag’s target value from live platform rollout state, then have an engineer confirm it before removing code; code references alone cannot establish the value to hardcode."
 ---
 
 # Stale-flag cleanup PRs

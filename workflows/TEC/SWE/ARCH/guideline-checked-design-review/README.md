@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare, triage]
+move: "Check the design against the company’s internal security guidelines one by one and flag missing information; the security team verifies findings before developers receive them."
 ---
 
 # Guideline-checked design review

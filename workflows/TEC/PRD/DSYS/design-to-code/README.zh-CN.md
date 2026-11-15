@@ -4,7 +4,8 @@ name: 设计稿转代码
 summary: "借助 Figma MCP，用已映射的组件和设计令牌把设计稿转成 UI 组件代码；设计师在预览版中评审。"
 deliverable: UI 组件代码
 shape: "设计稿链接 → 加载设计上下文、令牌、组件映射 → (写代码 ⟲ 截图对比) → 🛑 review → PR"
-source_hash: e672f58dba9e
+move: "写代码前载入真实设计令牌和组件映射，再将渲染截图与 Figma 比较；设计系统上下文不可达时停止，不猜测。"
+source_hash: 0ac5e448d448
 ---
 
 # 设计稿转代码

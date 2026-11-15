@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [feedback]
+move: "Audit pilot slices with engineering and UX, use the misses to rewrite the migration skill, and lock the scoring matrix only after rules stabilize; direct mappings go to a codemod."
 ---
 
 # Scored token migration

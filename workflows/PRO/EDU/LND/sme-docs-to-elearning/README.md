@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [standard]
+move: "Turn subject-expert documents into corporate e-learning lessons; an instructional designer shapes the outline and the expert checks accuracy before publication."
 ---
 
 # SME-docs to e-learning

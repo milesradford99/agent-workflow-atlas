@@ -4,7 +4,8 @@ name: 经 PR 审阅的研究维基
 summary: "把每次用户研究转为对研究维基的 PR 更新；研究员指出遗漏后合并。"
 deliverable: 研究维基更新
 shape: "每天从 Teams 拉取访谈文字稿 → 用视频工具处理录像 → 把发现整合进研究维基 → 开 PR → 🛑 review (研究员指出遗漏) → 合并"
-source_hash: e7bd4affcfb1
+move: "每次研究访谈形成一个更新长期 wiki 的 PR；研究员合并前标出遗漏，并保留分群背景，避免抹平参与者差异。"
+source_hash: ed40c27679b9
 ---
 
 # 经 PR 审阅的研究维基

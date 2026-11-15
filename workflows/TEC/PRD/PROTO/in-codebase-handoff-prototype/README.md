@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare]
+move: "Developers prepare a designer profile and 3 skill files before prototyping; the designer hands off one branch built from real components with empty, error and loading states specified."
 ---
 
 # In-codebase handoff prototype

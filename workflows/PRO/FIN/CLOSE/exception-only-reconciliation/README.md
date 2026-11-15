@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict, feedback]
+move: "Cap automatic clearing and exclude related parties; persist exceptions and thresholds outside the conversation, then recalibrate quarterly against human override rates."
 ---
 
 # Exception-only reconciliation run

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Test prototype variants with 5 users after design review, then feed the transcripts back into feedback clustering instead of treating the approved prototype as validated demand."
 ---
 
 # Feedback to prototype

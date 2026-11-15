@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [verify, triage]
+move: "Check extracted invoices against vendor, duplicate, bank and matching rules; pause changed or unverified bank accounts for human review instead of letting plausible line items trigger payment."
 ---
 
 # Invoice extract-match-route

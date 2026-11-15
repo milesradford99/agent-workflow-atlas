@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Freeze the migration prompt after a representative pilot, then give each file its own lint, type and test loop; sample semantic fidelity beyond passing tests before batching owner PRs."
 ---
 
 # Fan-out codemod

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Read the actual codebase while breaking a specification into tickets, so dependencies and touched files reflect implementation constraints; PM and engineering still check missed edge cases."
 ---
 
 # Spec-to-ticket planning

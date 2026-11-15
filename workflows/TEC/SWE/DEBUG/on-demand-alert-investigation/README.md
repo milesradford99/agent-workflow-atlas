@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [restrict]
+move: "Separate investigation from the opt-in fix: a protected-path hook blocks edits and a size guard reports oversized patches instead of opening a draft PR."
 ---
 
 # On-demand alert investigation

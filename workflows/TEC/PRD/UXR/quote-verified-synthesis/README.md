@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "Check 100% of quotes against the source transcripts and leave sentiment judgments to people; even temperature 0.1 did not prevent invented quotations."
 ---
 
 # Quote-verified synthesis

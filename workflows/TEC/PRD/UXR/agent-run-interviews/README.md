@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [standard]
+move: "Researchers finalize the interview plan, the agent conducts adaptive interviews, and researchers co-analyze the transcripts before releasing findings and data."
 ---
 
 # Agent-run interviews

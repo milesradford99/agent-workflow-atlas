@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [verify]
+move: "A separate verifier confirms scenario failures and looks for causes in code before human triage; keep unit tests as merge gates because agent-driven release sweeps are non-deterministic."
 ---
 
 # Scenario release sweep

@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [restrict]
+move: "Leave unknown IEP fields blank and flagged instead of inventing student information; use a vetted district platform, with goals and services decided by the special educator."
 ---
 
 # Data-informed IEP draft

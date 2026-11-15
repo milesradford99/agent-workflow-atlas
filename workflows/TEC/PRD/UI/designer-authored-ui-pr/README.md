@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Require linters, CI, tests, a running preview and engineering review on designer-authored PRs; keep those changes to the frontend and pair on complex features."
 ---
 
 # Designer-authored UI PR

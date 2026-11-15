@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [verify]
+move: "Check every spec claim against real code before the team merges the spec PR, then get a contrarian verdict; this caught a false configuration premise that questioning alone missed."
 ---
 
 # Spec-PR then agent build

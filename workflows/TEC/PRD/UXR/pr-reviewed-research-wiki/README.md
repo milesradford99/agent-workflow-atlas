@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [feedback]
+move: "Turn each research session into a PR against a living wiki; the researcher flags missed findings before merge, and segment context keeps participant differences from being flattened."
 ---
 
 # PR-reviewed research wiki

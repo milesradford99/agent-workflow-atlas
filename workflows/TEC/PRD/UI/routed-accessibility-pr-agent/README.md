@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [triage, restrict]
+move: "Route accessibility work above a complexity threshold to specialists and deny automatic fixes for high-risk widgets; about 36% of level A and AA criteria cannot be found automatically."
 ---
 
 # Routed accessibility PR agent

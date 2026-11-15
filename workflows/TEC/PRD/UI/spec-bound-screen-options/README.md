@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare, feedback]
+move: "Use library instances for screen options and persist recurring corrections to the spec and memory; the spec takes precedence, and designers inspect even when visual QA reports no errors."
 ---
 
 # Spec-bound screen options

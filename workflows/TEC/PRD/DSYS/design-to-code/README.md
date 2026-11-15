@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: project
 method_checked: 2026-11
+moves: [prepare, verify]
+move: "Load real design tokens and mapped components before coding, then compare rendered screenshots with Figma; stop if the design-system context is unreachable instead of guessing."
 ---
 
 # Design to code

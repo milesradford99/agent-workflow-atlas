@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: skill
 method_checked: 2026-11
+moves: [prepare]
+move: "Build and approve the role-play scenarios from the most frequent real customer conversations before learners practice; trainers then sample sessions and coach."
 ---
 
 # AI role-play practice

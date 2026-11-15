@@ -20,6 +20,8 @@ merged_into: null
 last_verified: 2026-11
 build: service
 method_checked: 2026-11
+moves: [restrict]
+move: "Use a deterministic root-cause flow rather than an open agent loop to make ticket annotations reproducible; complex network faults still go to Tier-2."
 ---
 
 # Open-loop NOC root cause

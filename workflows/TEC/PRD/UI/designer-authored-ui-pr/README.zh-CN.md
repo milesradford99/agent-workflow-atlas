@@ -4,7 +4,8 @@ name: 设计师提交的 UI PR
 summary: "设计师借助智能体在产品代码库中改 UI 并提交 PR；每个 PR 合并前都由工程团队审阅。"
 deliverable: 已合并的 UI pull request
 shape: "想法或 Figma 草图 → 设计师在产品代码库中向接入仓库的智能体下达提示词 → (调整样式、行为、布局 ⟲ 在运行中的应用里预览) → 提交附背景说明和文档的 PR → linter、CI、测试、预览应用 → 🛑 review (工程团队审阅每个 PR) → 合并 | 关闭并记录经验"
-source_hash: 2748b2c47e9e
+move: "设计师提交的 PR 必须过 linter、CI、测试、运行预览和工程评审；改动限于前端，复杂功能与工程师配合。"
+source_hash: 8493b3e697b0
 ---
 
 # 设计师提交的 UI PR
